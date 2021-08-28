@@ -23,6 +23,10 @@ public class DatabaseHandler {
         }
     }
 
+    public Connection getConn() {
+        return conn;
+    }
+
     public ResultSet excecuteQuery(String query)  {
         ResultSet resultSet;
         try {

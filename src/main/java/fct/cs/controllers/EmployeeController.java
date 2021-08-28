@@ -21,6 +21,8 @@ import javafx.scene.layout.VBox;
 
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -143,7 +145,20 @@ public class EmployeeController implements Initializable {
 
     }
 
-    public void removeEmployee(ActionEvent actionEvent) {
+    public void removeEmployee(ActionEvent actionEvent) throws SQLException {
+        System.out.println("Remove Element: " + selectedEmployee.toString());
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+        Connection connection = databaseHandler.getConn();
+        String tableName = "employee";
+        String sql = "DELETE FROM "+tableName+" WHERE employee_id = ?";
+        int id = selectedEmployee.getEmployee_id();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1,id);
+        statement.executeUpdate();
+        statement.close();
+        connection.close();
+
+        getResults();
 
     }
 
