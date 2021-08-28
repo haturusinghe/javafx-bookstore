@@ -110,6 +110,7 @@ public class EmployeeController implements Initializable {
 
     public void selectEmployee(MouseEvent mouseEvent) {
         employee_details_vbox.setDisable(true);
+        removeBtn.setVisible(false);
         updateBtn.setVisible(false);
         selectedEmployee = (Employee) employeeTable.getSelectionModel().getSelectedItem();
         employeeID_txtField.setText(String.valueOf(selectedEmployee.getEmployee_id()));
@@ -277,6 +278,7 @@ public class EmployeeController implements Initializable {
     public void editEmployee(ActionEvent actionEvent) {
         if (selectedEmployee != null) {
             employee_details_vbox.setDisable(false);
+            removeBtn.setVisible(true);
         }
     }
 }

@@ -123,7 +123,7 @@
                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                          <children>
                              <Button fx:id="updateBtn" mnemonicParsing="false" onAction="#updateEmployee" text="Update" visible="false" />
-                             <Button fx:id="removeBtn" mnemonicParsing="false" onAction="#removeEmployee" text="Remove" visible="true" />
+                             <Button fx:id="removeBtn" mnemonicParsing="false" onAction="#removeEmployee" text="Remove" visible="false" />
                          </children>
                      </HBox>
                  </children>
