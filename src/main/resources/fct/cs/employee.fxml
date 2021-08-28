@@ -49,7 +49,7 @@
                                      <Insets right="50.0" />
                                  </HBox.margin>
                              </Label>
-                             <Button fx:id="editEmpBtn" mnemonicParsing="false" onAction="#editEmployee" text="Edit" />
+                             <Button fx:id="editEmpBtn" mnemonicParsing="false" onAction="#editEmployee" text="Edit" visible="false"/>
                          </children>
                      </HBox>
                      <VBox fx:id="employee_details_vbox" alignment="CENTER" disable="true" prefHeight="354.0" prefWidth="400.0">
@@ -124,6 +124,8 @@
                          <children>
                              <Button fx:id="updateBtn" mnemonicParsing="false" onAction="#updateEmployee" text="Update" visible="false" />
                              <Button fx:id="removeBtn" mnemonicParsing="false" onAction="#removeEmployee" text="Remove" visible="false" />
+                             <Button fx:id="addNewBtn" mnemonicParsing="false" onAction="#addNewEmployee" text="Add New Employee" visible="false" />
+                             <Button fx:id="cancelNewBtn" mnemonicParsing="false" onAction="#cancelNewEmployee" text="Cancel" visible="false" />
                          </children>
                      </HBox>
                  </children>

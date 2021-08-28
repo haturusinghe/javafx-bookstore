@@ -30,6 +30,12 @@ import java.util.ResourceBundle;
 public class EmployeeController implements Initializable {
 
     @FXML
+    private Button cancelNewBtn;
+    
+    @FXML
+    private Button addNewBtn;
+
+    @FXML
     private Button editEmpBtn;
 
     @FXML
@@ -101,6 +107,8 @@ public class EmployeeController implements Initializable {
     @FXML
     private Button removeBtn;
 
+    private boolean isAddingNew = false;
+
 
 //    private static DatabaseHandler databaseHandler;
 
@@ -114,7 +122,10 @@ public class EmployeeController implements Initializable {
         employee_details_vbox.setDisable(true);
         removeBtn.setVisible(false);
         updateBtn.setVisible(false);
+        editEmpBtn.setVisible(true);
+
         selectedEmployee = (Employee) employeeTable.getSelectionModel().getSelectedItem();
+
         employeeID_txtField.setText(String.valueOf(selectedEmployee.getEmployee_id()));
         salary_txtField.setText(String.valueOf(selectedEmployee.getSalary()));
         firstName_txtField.setText(selectedEmployee.getFirst_name());
@@ -126,7 +137,19 @@ public class EmployeeController implements Initializable {
 
     }
 
-    private void clearEmployeeFields() {
+
+
+    private void resetEmployeeDetailsSidebar() {
+        employee_details_vbox.setDisable(true);
+        removeBtn.setVisible(false);
+        updateBtn.setVisible(false);
+        addNewBtn.setVisible(false);
+        cancelNewBtn.setVisible(false);
+
+        if(employeeTable.isDisabled()){
+            employeeTable.setDisable(false);
+        }
+
 //        selectedEmployee = null;
         employeeID_txtField.setText("");
         salary_txtField.setText("");
@@ -138,27 +161,107 @@ public class EmployeeController implements Initializable {
     }
 
     public void addEmployee(ActionEvent actionEvent) {
+        resetEmployeeDetailsSidebar();
+        isAddingNew = true;
+        editEmpBtn.setVisible(false);
+        employeeTable.setDisable(true);
+        employee_details_vbox.setDisable(false);
+        employeeID_txtField.setPromptText("Add Details");
+        addNewBtn.setVisible(false);
+        cancelNewBtn.setVisible(true);
 
     }
 
-    public void updateEmployee(ActionEvent actionEvent) {
+    public void updateEmployee(ActionEvent actionEvent)  {
+
+        DatabaseHandler databaseHandler = null;
+        try {
+            databaseHandler = new DatabaseHandler();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            errorAlert(e.getLocalizedMessage());
+        }
+        Connection connection = databaseHandler.getConn();
+        //employee_id, first_name, last_name, email, gender, phone_number, salary
+        String tableName = "employee";
+        String sql = "UPDATE "+tableName+" set employee_id = ? , first_name = ? , last_name = ? , email = ?, gender = ?, phone_number = ?, salary = ? where employee_id = ?";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, Integer.parseInt(employeeID_txtField.getText()));
+            preparedStatement.setString(2,firstName_txtField.getText());
+            preparedStatement.setString(3,lastName_txtField.getText());
+            preparedStatement.setString(4,email_txtField.getText());
+            preparedStatement.setString(5,gender_txtField.getText());
+            preparedStatement.setString(6,phone_txtField.getText());
+            preparedStatement.setInt(7, Integer.parseInt(salary_txtField.getText()));
+            preparedStatement.setInt(8,selectedEmployee.getEmployee_id());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            errorAlert(e.getLocalizedMessage());
+        }
+
+        try {
+            getResults();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        resetEmployeeDetailsSidebar();
+        updateAlert(selectedEmployee.getFirst_name());
+
 
     }
 
     public void removeEmployee(ActionEvent actionEvent) throws SQLException {
-        System.out.println("Remove Element: " + selectedEmployee.toString());
-        DatabaseHandler databaseHandler = new DatabaseHandler();
-        Connection connection = databaseHandler.getConn();
-        String tableName = "employee";
-        String sql = "DELETE FROM "+tableName+" WHERE employee_id = ?";
-        int id = selectedEmployee.getEmployee_id();
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1,id);
-        statement.executeUpdate();
-        statement.close();
-        connection.close();
 
-        getResults();
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Confirm Removal");
+        alert.setContentText("Save?");
+        ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+        ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+//        ButtonType cancelButton = new ButtonType("Yes", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(okButton, noButton);
+        alert.showAndWait().ifPresent(type -> {
+            if (type == okButton) {
+
+                System.out.println("Remove Element: " + selectedEmployee.toString());
+
+                DatabaseHandler databaseHandler = null;
+                try {
+                    databaseHandler = new DatabaseHandler();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                Connection connection = databaseHandler.getConn();
+
+                String tableName = "employee";
+                String sql = "DELETE FROM " + tableName + " WHERE employee_id = ?";
+
+                int id = selectedEmployee.getEmployee_id();
+
+                PreparedStatement statement = null;
+                try {
+                    statement = connection.prepareStatement(sql);
+
+                    statement.setInt(1, id);
+                    statement.executeUpdate();
+
+                    statement.close();
+                    connection.close();
+                    getResults();
+                    resetEmployeeDetailsSidebar();
+                } catch (SQLException e) {
+                    errorAlert(e.getLocalizedMessage());
+                    e.printStackTrace();
+                }
+
+
+            } else if (type == noButton) {
+
+            }
+        });
+
 
     }
 
@@ -287,7 +390,12 @@ public class EmployeeController implements Initializable {
     }
 
     public void showUpdateBtn(KeyEvent keyEvent) {
-        updateBtn.setVisible(true);
+        if (!isAddingNew) {
+            updateBtn.setVisible(true);
+        } else if (isAddingNew) {
+            addNewBtn.setVisible(true);
+            cancelNewBtn.setVisible(true);
+        }
     }
 
     public void editEmployee(ActionEvent actionEvent) {
@@ -296,4 +404,77 @@ public class EmployeeController implements Initializable {
             removeBtn.setVisible(true);
         }
     }
+
+    private void saveAlert(Employee user){
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("User saved successfully.");
+        alert.setHeaderText(null);
+        alert.setContentText("The employee "+user.getFirst_name()+ ".");
+        alert.showAndWait();
+    }
+
+    private void errorAlert(String e){
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error!.");
+        alert.setHeaderText(null);
+        alert.setContentText(e);
+        alert.showAndWait();
+    }
+
+    private void updateAlert(String user){
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("User updated successfully.");
+        alert.setHeaderText(null);
+        alert.setContentText("The employee "+user+" has been updated.");
+        alert.showAndWait();
+    }
+
+    public void addNewEmployee(ActionEvent actionEvent) {
+        DatabaseHandler databaseHandler = null;
+        try {
+            databaseHandler = new DatabaseHandler();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            errorAlert(e.getLocalizedMessage());
+        }
+        Connection connection = databaseHandler.getConn();
+        //employee_id, first_name, last_name, email, gender, phone_number, salary
+        String tableName = "employee";
+        String sql_old = "UPDATE "+tableName+" set employee_id = ? , first_name = ? , last_name = ? , email = ?, gender = ?, phone_number = ?, salary = ? where employee_id = ?";
+        String sql = "insert into employee (employee_id, first_name, last_name, email, gender, phone_number, salary) values (?, ?, ?, ?, ?, ?, ?);";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, Integer.parseInt(employeeID_txtField.getText()));
+            preparedStatement.setString(2,firstName_txtField.getText());
+            preparedStatement.setString(3,lastName_txtField.getText());
+            preparedStatement.setString(4,email_txtField.getText());
+            preparedStatement.setString(5,gender_txtField.getText());
+            preparedStatement.setString(6,phone_txtField.getText());
+            preparedStatement.setInt(7, Integer.parseInt(salary_txtField.getText()));
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            errorAlert(e.getLocalizedMessage());
+        }
+
+        try {
+            getResults();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            errorAlert(e.getLocalizedMessage());
+        }
+        resetEmployeeDetailsSidebar();
+        updateAlert(firstName_txtField.getText());
+    }
+
+    public void cancelNewEmployee(ActionEvent actionEvent) {
+        isAddingNew = false;
+        resetEmployeeDetailsSidebar();
+    }
 }
+
+
