@@ -468,6 +468,7 @@ public class EmployeeController implements Initializable {
             errorAlert(e.getLocalizedMessage());
         }
         resetEmployeeDetailsSidebar();
+        isAddingNew = false;
         updateAlert(firstName_txtField.getText());
     }
 
