@@ -499,7 +499,17 @@ public class EmployeeController implements Initializable {
         employeeTable.setItems(employeeFilteredList);
     }
 
-    public void filterEmployees(MouseEvent mouseEvent) {
+    public void filterEmployees(ActionEvent actionEvent) {
+        employeeTable.setItems(employeeFilteredList);
+        System.out.println(categoryCombo.getValue());
+        Category category = (Category)categoryCombo.getSelectionModel().getSelectedItem();
+
+        if (category != null) {
+            employeeFilteredList.setPredicate(employee -> {
+                boolean creator_matches = employee.getSalary() >= category.getLow_value() && employee.getSalary() < category.getUp_value();
+                return creator_matches;
+            });
+        }
 
     }
 
@@ -535,7 +545,9 @@ public class EmployeeController implements Initializable {
         while (rs.next()){
             categoryList.add(new Category(
                     rs.getString("category_id"),
-                    rs.getString("category_name")
+                    rs.getString("category_name"),
+                    rs.getInt("low_value"),
+                    rs.getInt("up_value")
             ));
         }
 
