@@ -30,7 +30,7 @@
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                      <children>
                         <TextField fx:id="search_txtField" onKeyTyped="#searchEmployees" promptText="Search Employees" />
-                        <ComboBox fx:id="categoryCombo" onMouseClicked="#filterEmployees" prefWidth="150.0" />
+                        <ComboBox fx:id="categoryCombo" onAction="#filterEmployees" prefWidth="150.0" />
                      </children>
                   </HBox>
                   <TableView fx:id="employeeTable" onMouseClicked="#selectEmployee" prefHeight="466.0" prefWidth="435.0">
