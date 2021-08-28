@@ -28,6 +28,9 @@ import java.util.ResourceBundle;
 public class EmployeeController implements Initializable {
 
     @FXML
+    private Button editEmpBtn;
+
+    @FXML
     private VBox employee_details_vbox;
 
     @FXML
@@ -269,5 +272,11 @@ public class EmployeeController implements Initializable {
 
     public void showUpdateBtn(KeyEvent keyEvent) {
         updateBtn.setVisible(true);
+    }
+
+    public void editEmployee(ActionEvent actionEvent) {
+        if (selectedEmployee != null) {
+            employee_details_vbox.setDisable(false);
+        }
     }
 }

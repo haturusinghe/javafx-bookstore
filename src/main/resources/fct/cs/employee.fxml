@@ -33,8 +33,8 @@
                   <TableColumn fx:id="colGender" prefWidth="75.0" text="Gender " />
                   <TableColumn fx:id="colPhone" prefWidth="75.0" text="Phone Number" />
                   <TableColumn fx:id="colSalary" prefWidth="75.0" text="Salary" />
-                  <TableColumn fx:id="colEdit" prefWidth="75.0" text="Edit" />
-                  <TableColumn fx:id="colRemove" prefWidth="75.0" text="Remove" />
+                  <TableColumn fx:id="colEdit" prefWidth="75.0" text="Edit" visible="false"/>
+                  <TableColumn fx:id="colRemove" prefWidth="75.0" text="Remove" visible="false"/>
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -49,6 +49,7 @@
                                      <Insets right="50.0" />
                                  </HBox.margin>
                              </Label>
+                             <Button fx:id="editEmpBtn" mnemonicParsing="false" onAction="#editEmployee" text="Edit" />
                          </children>
                      </HBox>
                      <VBox fx:id="employee_details_vbox" alignment="CENTER" disable="true" prefHeight="354.0" prefWidth="400.0">
@@ -122,6 +123,7 @@
                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                          <children>
                              <Button fx:id="updateBtn" mnemonicParsing="false" onAction="#updateEmployee" text="Update" visible="false" />
+                             <Button fx:id="removeBtn" mnemonicParsing="false" onAction="#removeEmployee" text="Remove" visible="true" />
                          </children>
                      </HBox>
                  </children>
