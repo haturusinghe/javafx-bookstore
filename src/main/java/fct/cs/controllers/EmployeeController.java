@@ -2,6 +2,7 @@ package fct.cs.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import fct.cs.commonUtil.AppUtils;
+import fct.cs.data.Category;
 import fct.cs.data.Employee;
 import fct.cs.dbUtil.DatabaseHandler;
 import javafx.collections.FXCollections;
@@ -12,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,6 +30,12 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class EmployeeController implements Initializable {
+
+    @FXML
+    private TextField search_txtField;
+
+    @FXML
+    private ComboBox categoryCombo;
 
     @FXML
     private Button cancelNewBtn;
@@ -115,6 +123,8 @@ public class EmployeeController implements Initializable {
     private ObservableList<Employee> employeeObservableList = FXCollections.observableArrayList();
     private FilteredList<Employee> employeeFilteredList = new FilteredList<>(employeeObservableList);
 
+    private ObservableList<Category> categoryList = FXCollections.observableArrayList();
+
     private static AppUtils appUtils;
     private static Employee selectedEmployee;
 
@@ -197,6 +207,7 @@ public class EmployeeController implements Initializable {
             preparedStatement.setInt(7, Integer.parseInt(salary_txtField.getText()));
             preparedStatement.setInt(8,selectedEmployee.getEmployee_id());
             preparedStatement.executeUpdate();
+            updateAlert(selectedEmployee.getFirst_name());
         } catch (SQLException e) {
             e.printStackTrace();
             errorAlert(e.getLocalizedMessage());
@@ -208,7 +219,7 @@ public class EmployeeController implements Initializable {
             e.printStackTrace();
         }
         resetEmployeeDetailsSidebar();
-        updateAlert(selectedEmployee.getFirst_name());
+
 
 
     }
@@ -268,6 +279,11 @@ public class EmployeeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setColumnProperties();
+        try {
+            setCategories();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         try {
             getResults();
         } catch (SQLException e) {
@@ -456,6 +472,7 @@ public class EmployeeController implements Initializable {
             preparedStatement.setString(6,phone_txtField.getText());
             preparedStatement.setInt(7, Integer.parseInt(salary_txtField.getText()));
             preparedStatement.executeUpdate();
+            updateAlert(firstName_txtField.getText());
         } catch (SQLException e) {
             e.printStackTrace();
             errorAlert(e.getLocalizedMessage());
@@ -469,12 +486,62 @@ public class EmployeeController implements Initializable {
         }
         resetEmployeeDetailsSidebar();
         isAddingNew = false;
-        updateAlert(firstName_txtField.getText());
+
     }
 
     public void cancelNewEmployee(ActionEvent actionEvent) {
         isAddingNew = false;
         resetEmployeeDetailsSidebar();
+    }
+
+    public void searchEmployees(KeyEvent keyEvent) {
+        filterList();
+        employeeTable.setItems(employeeFilteredList);
+    }
+
+    public void filterEmployees(MouseEvent mouseEvent) {
+
+    }
+
+
+    public void filterList() {
+        System.out.println("Searching ...");
+        employeeFilteredList.setPredicate(employee -> {
+            String filter = search_txtField.getText().toLowerCase();
+            boolean title_matches = employee.getFirst_name().toLowerCase().contains(filter) || employee.getLast_name().toLowerCase().contains(filter);
+
+            /*
+            boolean creator_matches = (employee.getTitle() != null
+                    && employee.getPrice().toLowerCase().contains(filter))
+                    || (employee.getAuthor() != null && employee.getPublisher.toLowerCase().contains(filter));*/
+
+            // check that the series has the selected category
+
+            /*boolean category_matches = false;
+
+            if (categoryCombo.getSelectionModel().getSelectedItem() != null) {
+
+            }*/
+
+            return title_matches; //&& category_matches;
+        });
+    }
+
+    public void setCategories() throws SQLException {
+        String qu = "select * from category";
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+        ResultSet rs = databaseHandler.excecuteQuery(qu);
+
+        while (rs.next()){
+            categoryList.add(new Category(
+                    rs.getString("category_id"),
+                    rs.getString("category_name")
+            ));
+        }
+
+        categoryCombo.setItems(categoryList);
+
+
     }
 }
 
