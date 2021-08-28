@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="login_vbox" alignment="CENTER" minHeight="300.0" minWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.controllers.LoginController">
+   <children>
+      <MFXTextField fx:id="user_txtfield" minWidth="200.0" promptText="Username" />
+      <MFXPasswordField fx:id="pass_textfield" minWidth="170.0" prefHeight="26.0" prefWidth="170.0" promptText="Password">
+         <VBox.margin>
+            <Insets right="30.0" />
+         </VBox.margin></MFXPasswordField>
+      <HBox fx:id="buttons_hbox" alignment="CENTER" spacing="10.0">
+         <children>
+            <MFXButton fx:id="cancelBtn" onMouseClicked="#cancel" text="Cancel" />
+            <MFXButton fx:id="loginBtn" layoutX="10.0" layoutY="10.0" onMouseClicked="#login" text="Login" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
