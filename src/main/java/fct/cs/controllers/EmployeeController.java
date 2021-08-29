@@ -176,6 +176,7 @@ public class EmployeeController implements Initializable {
     public void addEmployee(ActionEvent actionEvent) {
         resetEmployeeDetailsSidebar();
         isAddingNew = true;
+        cancelNewBtn.setVisible(true);
         editEmpBtn.setVisible(false);
         employeeTable.setDisable(true);
         employee_details_vbox.setDisable(false);
