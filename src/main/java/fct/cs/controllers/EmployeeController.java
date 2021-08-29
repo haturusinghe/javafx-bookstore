@@ -126,23 +126,26 @@ public class EmployeeController implements Initializable {
     private ObservableList<Category> categoryList = FXCollections.observableArrayList();
 
     private static AppUtils appUtils;
-    private static Employee selectedEmployee;
+    private static Employee selectedEmployee = null;
 
     public void selectEmployee(MouseEvent mouseEvent) {
-        employee_details_vbox.setDisable(true);
-        removeBtn.setVisible(false);
-        updateBtn.setVisible(false);
-        editEmpBtn.setVisible(true);
 
         selectedEmployee = (Employee) employeeTable.getSelectionModel().getSelectedItem();
 
-        employeeID_txtField.setText(String.valueOf(selectedEmployee.getEmployee_id()));
-        salary_txtField.setText(String.valueOf(selectedEmployee.getSalary()));
-        firstName_txtField.setText(selectedEmployee.getFirst_name());
-        lastName_txtField.setText(selectedEmployee.getLast_name());
-        email_txtField.setText(selectedEmployee.getEmail());
-        gender_txtField.setText(selectedEmployee.getGender());
-        phone_txtField.setText(selectedEmployee.getPhone_number());
+        if (selectedEmployee != null) {
+            employee_details_vbox.setDisable(true);
+            removeBtn.setVisible(false);
+            updateBtn.setVisible(false);
+            editEmpBtn.setVisible(true);
+
+            employeeID_txtField.setText(String.valueOf(selectedEmployee.getEmployee_id()));
+            salary_txtField.setText(String.valueOf(selectedEmployee.getSalary()));
+            firstName_txtField.setText(selectedEmployee.getFirst_name());
+            lastName_txtField.setText(selectedEmployee.getLast_name());
+            email_txtField.setText(selectedEmployee.getEmail());
+            gender_txtField.setText(selectedEmployee.getGender());
+            phone_txtField.setText(selectedEmployee.getPhone_number());
+        }
 
 
     }
