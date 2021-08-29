@@ -69,7 +69,7 @@ public class StoreDashboardController implements Initializable {
 
 //    DatabaseHandler databaseHandler;
 
-    AppUtils appUtils;
+    private AppUtils appUtils;
     private static Inventory selectedItem;
 
     public void filter(KeyEvent keyEvent) {
@@ -78,7 +78,7 @@ public class StoreDashboardController implements Initializable {
     }
 
 
-    public void filterList() {
+    private void filterList() {
         System.out.println("Searching ...");
         filteredList.setPredicate(inventory -> {
             // check that the series title, author, or artist contains the
@@ -106,7 +106,7 @@ public class StoreDashboardController implements Initializable {
         });
     }
 
-    public void setCategories() throws SQLException {
+    private void setCategories() throws SQLException {
         String qu = "select * from category";
         DatabaseHandler databaseHandler = new DatabaseHandler();
         ResultSet rs = databaseHandler.excecuteQuery(qu);
