@@ -13,10 +13,10 @@
                <children>
                   <JFXButton fx:id="inventoryPage" onAction="#loadInventoryPage" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Inventroy" />
                   <JFXButton fx:id="employeePage" layoutX="141.0" layoutY="369.0" onAction="#loadEmployeePage" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Employees" />
+                  <JFXButton fx:id="reportsPage" layoutX="141.0" layoutY="369.0" onAction="#loadReportsPage" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Reports" />
                   <JFXButton fx:id="orderBtn" layoutX="141.0" layoutY="404.0" onAction="#loadOrdersPage" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Orders" />
                   <JFXButton layoutX="141.0" layoutY="439.0" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Books" />
                   <JFXButton layoutX="141.0" layoutY="475.0" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Customers" />
-                  <JFXButton layoutX="141.0" layoutY="509.0" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Reports" />
                </children>
             </VBox>
             <VBox fx:id="contentPanel_vbox" minWidth="922.0" prefHeight="768.0" prefWidth="922.0">
