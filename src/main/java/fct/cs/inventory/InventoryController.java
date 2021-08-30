@@ -85,7 +85,7 @@ public class InventoryController implements Initializable {
         loadTableData();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/sidepanel.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/book-details.fxml"));
             VBox box = loader.load();
             drawer.setSidePane(box);
         } catch (IOException e) {
