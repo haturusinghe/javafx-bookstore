@@ -1,9 +1,9 @@
-package fct.cs.controllers;
+package fct.cs.Employee;
 
 import com.jfoenix.controls.JFXButton;
 import fct.cs.commonUtil.AppUtils;
 import fct.cs.data.Category;
-import fct.cs.data.Employee;
+import fct.cs.Employee.Employee;
 import fct.cs.dbUtil.DatabaseHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -556,8 +555,6 @@ public class EmployeeController implements Initializable {
         }
 
         categoryCombo.setItems(categoryList);
-
-
     }
 }
 

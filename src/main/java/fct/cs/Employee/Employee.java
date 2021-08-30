@@ -1,4 +1,4 @@
-package fct.cs.data;
+package fct.cs.Employee;
 
 public class Employee {
     private int employee_id;
