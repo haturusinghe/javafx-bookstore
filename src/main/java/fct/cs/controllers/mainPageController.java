@@ -81,4 +81,19 @@ public class mainPageController {
             System.out.println("already loaded");
         }
     }
+
+    public void loadReportsPage(ActionEvent actionEvent) {
+        if (!currentPage.equals("reports")) {
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/reports.fxml"));
+            try {
+                mainContent_vbox.getChildren().clear();
+                mainContent_vbox.getChildren().add(loader.load());
+                currentPage = "reports";
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("already loaded");
+        }
+    }
 }
