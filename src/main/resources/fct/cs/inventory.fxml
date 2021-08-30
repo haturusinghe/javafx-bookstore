@@ -14,7 +14,7 @@
    <children>
       <StackPane fx:id="stackPane">
          <children>
-            <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" direction="RIGHT" onDrawerClosing="#hideDrawer" prefHeight="368.0" prefWidth="108.0" />
+            <JFXDrawer fx:id="drawer" defaultDrawerSize="600.0" direction="RIGHT" onDrawerClosing="#hideDrawer" prefHeight="368.0" prefWidth="108.0" />
                   <VBox alignment="CENTER" style="-fx-background-color: blue;">
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
