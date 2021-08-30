@@ -1,5 +1,7 @@
 package fct.cs.Books;
 
+import fct.cs.Author.Author;
+
 import java.time.Year;
 
 public class Book {
@@ -14,6 +16,40 @@ public class Book {
     private int num_pages;
     private String lang;
     private String book_description;
+    private Author author;
+    private String categoryName;
+
+    public Book(int book_id, String isbn, int category_id, String publisher, int author_id, String title, int b_year, int mrp, int num_pages, String lang, String book_description, Author author, String categoryName) {
+        this.book_id = book_id;
+        this.isbn = isbn;
+        this.category_id = category_id;
+        this.publisher = publisher;
+        this.author_id = author_id;
+        this.title = title;
+        this.b_year = Year.of(b_year);
+        this.mrp = mrp;
+        this.num_pages = num_pages;
+        this.lang = lang;
+        this.book_description = book_description;
+        this.author = author;
+        this.categoryName = categoryName;
+    }
+
+    public Book(int book_id, String isbn, String publisher, String title, Year b_year, int mrp, int num_pages, String lang, String book_description, Author author, String categoryName) {
+        this.book_id = book_id;
+        this.isbn = isbn;
+        this.publisher = publisher;
+        this.title = title;
+        this.b_year = b_year;
+        this.mrp = mrp;
+        this.num_pages = num_pages;
+        this.lang = lang;
+        this.book_description = book_description;
+        this.author = author;
+        this.categoryName = categoryName;
+    }
+
+
 
     public Book(int book_id, String isbn, int category_id, String publisher, int author_id, String title, short b_year, int mrp, int num_pages, String lang, String book_description) {
         this.book_id = book_id;
@@ -27,6 +63,110 @@ public class Book {
         this.num_pages = num_pages;
         this.lang = lang;
         this.book_description = book_description;
+    }
+
+    public int getBook_id() {
+        return book_id;
+    }
+
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public int getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public int getAuthor_id() {
+        return author_id;
+    }
+
+    public void setAuthor_id(int author_id) {
+        this.author_id = author_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Year getB_year() {
+        return b_year;
+    }
+
+    public void setB_year(Year b_year) {
+        this.b_year = b_year;
+    }
+
+    public int getMrp() {
+        return mrp;
+    }
+
+    public void setMrp(int mrp) {
+        this.mrp = mrp;
+    }
+
+    public int getNum_pages() {
+        return num_pages;
+    }
+
+    public void setNum_pages(int num_pages) {
+        this.num_pages = num_pages;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public String getBook_description() {
+        return book_description;
+    }
+
+    public void setBook_description(String book_description) {
+        this.book_description = book_description;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     @Override
