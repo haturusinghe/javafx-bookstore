@@ -17,50 +17,49 @@ create table BOOK (
 
 /*ALTER TABLE book DROP COLUMN price;*/
 
-create table BOOK (
-	isbn VARCHAR(50) NOT NULL PRIMARY KEY,
+create table book (
+	book_id INT PRIMARY KEY,
+	isbn VARCHAR(50),
 	category_id INT,
 	publisher VARCHAR(50),
 	author_id INT,
-	title VARCHAR(50) NOT NULL,
-	year VARCHAR(50),
-	mrp INT NOT NULL,
+	title VARCHAR(50),
+	b_year YEAR,
+	mrp INT,
 	num_pages INT,
 	lang VARCHAR(50),
 	book_description VARCHAR(50)
 );
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('952348969-0', 1, 'Denesik-Lang', 8, 'Scolopax minor', 2007, 3477, 848, 'Finnish', 'Multi-lateral upward-trending Graphical User Interface');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('333517190-X', 2, 'McLaughlin and Sons', 7, 'Cacatua tenuirostris', 2001, 645, 924, 'New Zealand Sign Language', 'Compatible impactful open system');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('434699066-5', 4, 'Stroman-Feest', 1, 'Haliaetus leucogaster', 1994, 4709, 350, 'Tswana', 'Team-oriented attitude-oriented knowledge base');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('547303192-7', 4, 'Bosco, Bosco and Gibson', 10, 'unavailable', 1993, 1387, 331, 'Zulu', 'Programmable transitional analyzer');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('938061269-9', 5, 'O''Keefe-Bogisich', 3, 'Phasianus colchicus', 2003, 2256, 442, 'Korean', 'Versatile global core');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('871286938-4', 5, 'Tillman-Considine', 4, 'Trichosurus vulpecula', 1993, 1497, 594, 'Lithuanian', 'Ergonomic fault-tolerant matrices');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('816524505-8', 2, 'Dibbert-Ebert', 5, 'Cacatua galerita', 2005, 1099, 152, 'Tajik', 'Re-contextualized client-driven help-desk');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('049540344-X', 1, 'Parisian-Gutkowski', 5, 'Anas bahamensis', 2007, 4189, 939, 'German', 'Enhanced encompassing frame');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('054443042-5', 4, 'Legros Group', 10, 'Semnopithecus entellus', 2010, 734, 253, 'Belarusian', 'Diverse zero tolerance moderator');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('208020808-X', 3, 'O''Hara-Beahan', 7, 'Paradoxurus hermaphroditus', 1994, 565, 558, 'Tok Pisin', 'Total solution-oriented open system');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('385244820-4', 3, 'Langworth, Carter and Roberts', 3, 'unavailable', 2008, 2666, 321, 'Tetum', 'Intuitive web-enabled definition');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('358320771-8', 1, 'Lind-Wyman', 10, 'Mungos mungo', 2000, 3774, 144, 'Romanian', 'Re-contextualized solution-oriented intranet');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('608566781-7', 2, 'Trantow and Sons', 5, 'Carduelis uropygialis', 2007, 701, 561, 'Quechua', 'Innovative dynamic core');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('012085041-9', 1, 'Stokes-Gottlieb', 5, 'Acridotheres tristis', 2006, 1793, 494, 'Kazakh', 'Proactive encompassing implementation');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('072320758-5', 5, 'Price LLC', 5, 'Morelia spilotes variegata', 1999, 4017, 337, 'Kurdish', 'Implemented upward-trending projection');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('030577984-2', 5, 'Metz, Krajcik and Shanahan', 6, 'Axis axis', 2008, 1795, 426, 'Croatian', 'Enhanced full-range knowledge base');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('450438063-3', 1, 'Bruen-DuBuque', 3, 'Pelecanus occidentalis', 1999, 1528, 897, 'Latvian', 'Advanced didactic Graphical User Interface');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('123126058-0', 3, 'Lueilwitz Inc', 8, 'Geochelone radiata', 2006, 3861, 511, 'Aymara', 'Monitored attitude-oriented middleware');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('018693037-2', 5, 'Carter-Ferry', 7, 'Chelodina longicollis', 1960, 2441, 777, 'Estonian', 'Ameliorated intermediate orchestration');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('322625054-X', 1, 'DuBuque Group', 1, 'Theropithecus gelada', 2006, 2570, 699, 'Haitian Creole', 'Open-source contextually-based interface');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('972096623-8', 4, 'Paucek-Johnston', 4, 'Macropus eugenii', 2008, 4693, 168, 'Oriya', 'Optional secondary analyzer');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('924529817-5', 5, 'Braun-Wolff', 10, 'Dendrocitta vagabunda', 2010, 772, 893, 'Kannada', 'Phased context-sensitive core');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('877824997-X', 4, 'Brown Inc', 4, 'Tamiasciurus hudsonicus', 1996, 4442, 265, 'Gujarati', 'Innovative eco-centric groupware');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('779976853-3', 4, 'Cremin Group', 7, 'Spilogale gracilis', 1999, 4100, 184, 'Irish Gaelic', 'Robust analyzing interface');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('921292247-3', 5, 'Quitzon Group', 10, 'Dusicyon thous', 1997, 1676, 319, 'Persian', 'Total mission-critical function');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('490388383-3', 5, 'Bauch Group', 9, 'Galictis vittata', 2000, 1954, 557, 'Malagasy', 'Extended context-sensitive intranet');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('248019536-8', 3, 'Turner Inc', 4, 'Podargus strigoides', 1999, 1291, 844, 'Northern Sotho', 'Implemented attitude-oriented groupware');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('412756529-2', 5, 'Goyette, Prosacco and Erdman', 5, 'Gyps bengalensis', 2011, 4903, 445, 'Indonesian', 'Intuitive multi-state protocol');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('190332044-5', 4, 'Torp Inc', 10, 'Pan troglodytes', 2002, 109, 598, 'Gagauz', 'Integrated 6th generation superstructure');
-insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num_pages, lang, book_description) values ('111917715-4', 1, 'Boyer, Howell and Kautzer', 6, 'Felis libyca', 1967, 3367, 364, 'Assamese', 'Operative asymmetric support');
-
-
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (1, '226424542-5', 4, 'Fisher Inc', 10, 'Phalacrocorax albiventer', 1991, 547, 842, 'Chinese', 'Switchable asynchronous utilisation');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (2, '782809134-6', 2, 'Ferry-Dietrich', 3, 'Cordylus giganteus', 2004, 2787, 586, 'Hungarian', 'Proactive user-facing circuit');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (3, '526316243-X', 5, 'Spencer, Quigley and Stanton', 5, 'Ninox superciliaris', 2006, 1768, 830, 'Icelandic', 'Optimized uniform groupware');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (4, '791417617-6', 5, 'Breitenberg, Goodwin and Quitzon', 2, 'Geochelone elephantopus', 1990, 1371, 565, 'Hungarian', 'User-friendly asynchronous neural-net');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (5, '532310026-5', 2, 'Reichel LLC', 9, 'Gorilla gorilla', 2009, 1741, 374, 'Kazakh', 'Persistent asynchronous conglomeration');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (6, '106780385-8', 2, 'Connelly, Baumbach and Aufderhar', 1, 'Creagrus furcatus', 2003, 3821, 578, 'Montenegrin', 'Profit-focused client-driven info-mediaries');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (7, '566332181-0', 2, 'Cremin, Ondricka and Schumm', 7, 'Manouria emys', 2006, 2296, 925, 'Fijian', 'Implemented 3rd generation forecast');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (8, '545924208-8', 1, 'Zemlak Group', 9, 'Chlamydosaurus kingii', 1984, 2072, 549, 'Kyrgyz', 'Digitized object-oriented focus group');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (9, '893818838-8', 5, 'Harber, Kozey and Douglas', 5, 'unavailable', 2012, 1414, 305, 'Marathi', 'Reactive didactic workforce');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (10, '204386047-X', 4, 'Pouros, Murray and Glover', 6, 'Macropus robustus', 2002, 2371, 221, 'Oriya', 'Open-source intermediate data-warehouse');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (11, '061028428-2', 4, 'Bosco, Kub and Kiehn', 4, 'Canis aureus', 2006, 722, 298, 'Tajik', 'Optimized next generation utilisation');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (12, '191235481-0', 5, 'Windler-Wehner', 6, 'Diceros bicornis', 2009, 2010, 794, 'Thai', 'Networked holistic software');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (13, '476984142-6', 3, 'Pouros, Skiles and Grimes', 4, 'Acrobates pygmaeus', 2002, 4404, 862, 'Nepali', 'Reactive user-facing productivity');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (14, '936524938-4', 4, 'Casper Inc', 6, 'Phalacrocorax niger', 1996, 240, 724, 'Telugu', 'Extended systematic model');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (15, '622089167-8', 5, 'Blick-Stamm', 10, 'Sylvilagus floridanus', 2000, 869, 301, 'Norwegian', 'Public-key human-resource system engine');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (16, '744784190-0', 5, 'Metz and Sons', 6, 'Echimys chrysurus', 2001, 2963, 442, 'Kurdish', 'Right-sized content-based contingency');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (17, '543309810-9', 1, 'Hamill-Adams', 8, 'Amblyrhynchus cristatus', 2007, 3401, 162, 'Oriya', 'Open-source analyzing parallelism');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (18, '651982624-3', 2, 'Hermann and Sons', 3, 'Ardea golieth', 1993, 290, 768, 'Indonesian', 'Robust systematic focus group');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (19, '316159158-5', 3, 'Hayes, Beatty and Bergnaum', 8, 'Motacilla aguimp', 1984, 1689, 677, 'Irish Gaelic', 'Persevering reciprocal knowledge user');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (20, '986247367-3', 1, 'Gorczany, Harber and Grimes', 3, 'Kobus leche robertsi', 1993, 2210, 128, 'Yiddish', 'Cross-group encompassing paradigm');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (21, '990755377-8', 1, 'Murazik Group', 4, 'Bison bison', 2000, 3711, 296, 'Afrikaans', 'Assimilated dynamic solution');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (22, '841884138-9', 3, 'Murray-Padberg', 4, 'Chloephaga melanoptera', 2009, 926, 142, 'Kannada', 'Automated grid-enabled architecture');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (23, '171323191-3', 2, 'Cummerata Group', 2, 'Anser anser', 2005, 2488, 784, 'Greek', 'Reactive stable focus group');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (24, '973849306-4', 5, 'Gusikowski, Jacobs and Labadie', 10, 'Cacatua tenuirostris', 1990, 2149, 275, 'West Frisian', 'Expanded multi-state software');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (25, '069938420-6', 1, 'Hoppe-Mills', 1, 'Francolinus swainsonii', 2009, 868, 875, 'Spanish', 'Upgradable solution-oriented customer loyalty');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (26, '424759974-7', 1, 'Zboncak-Blick', 5, 'Axis axis', 2005, 2821, 747, 'Japanese', 'Seamless incremental extranet');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (27, '719479191-9', 2, 'Kozey-Graham', 8, 'Genetta genetta', 2011, 1494, 697, 'Mongolian', 'Ergonomic impactful info-mediaries');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (28, '748800431-0', 2, 'Pfeffer Group', 6, 'Macropus fuliginosus', 2000, 4931, 263, 'Yiddish', 'Secured tertiary focus group');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (29, '015858967-X', 1, 'Schmidt Group', 6, 'Sula dactylatra', 1993, 3783, 536, 'Malagasy', 'Open-architected optimal framework');
+insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (30, '788542204-6', 1, 'West, White and Reichert', 5, 'Threskionis aethiopicus', 2003, 239, 606, 'Hiri Motu', 'Advanced fresh-thinking analyzer');
 
 
 
@@ -70,32 +69,19 @@ insert into BOOK (isbn, category_id, publisher, author_id, title, year, mrp, num
 
 create table INVENTORY (
 	inv_id INT PRIMARY KEY,
-	isbn VARCHAR(50),
-	list_price INT NOT NULL,
-	qty INT NOT NULL,
-	min_qty INT NOT NULL
+	book_id INT,
+	list_price INT,
+	qty INT,
+	min_qty INT
 );
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (1, '952348969-0', 753, 11, 0);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (2, '333517190-X', 813, 16, 5);
-
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (3, '616034976-7', 613, 19, 4);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (4, '659797712-2', 812, 10, 2);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (5, '127834789-5', 519, 23, 5);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (6, '043559031-6', 887, 13, 5);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (7, '815152329-8', 508, 12, 3);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (8, '526863061-X', 758, 1, 4);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (9, '044814690-8', 584, 28, 5);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (10, '279607500-1', 639, 39, 3);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (11, '272007921-9', 793, 38, 0);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (12, '382366220-1', 759, 4, 0);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (13, '593073645-6', 973, 50, 5);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (14, '705599565-5', 618, 47, 4);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (15, '009663442-1', 594, 4, 2);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (16, '016460076-0', 831, 29, 4);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (17, '856499807-6', 709, 32, 0);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (18, '209332315-X', 621, 19, 5);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (19, '154226266-6', 735, 30, 5);
-insert into INVENTORY (inv_id, isbn, list_price, qty, min_qty) values (20, '138123505-0', 877, 49, 1);
+insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (1, 1, 865, 9, 10);
+insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (2, 2, 898, 17, 2);
+insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (3, 3, 767, 5, 6);
+insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (4, 4, 824, 10, 5);
+insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (5, 5, 874, 4, 2);
+insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (6, 6, 932, 5, 6);
+insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (7, 7, 925, 3, 10);
+insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (8, 8, 835, 28, 2);
 
 create table orders (
 	order_id INT PRIMARY KEY,
@@ -121,6 +107,16 @@ create table order_details (
 	discount INT,
 	PRIMARY KEY (order_detail_id,book_id,order_id)
 );
+
+create table order_details (
+	order_id INT,
+	book_id INT,
+	quantity INT,
+	unit_price INT,
+	discount INT,
+	PRIMARY KEY (book_id,order_id)
+);
+
 insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (1, 5, 1, 2, 840, 441);
 insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (2, 1, 4, 5, 481, 339);
 insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (3, 7, 1, 2, 231, 485);
@@ -221,3 +217,18 @@ insert into order_details (order_detail_id, book_id, order_id, quantity, unit_pr
 insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (98, 4, 3, 3, 431, 300);
 insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (99, 3, 2, 5, 167, 256);
 insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (100, 7, 4, 3, 1755, 68);
+
+create table book_category (
+	category_id INT PRIMARY KEY,
+	category_name VARCHAR(50)
+);
+insert into book_category (category_id, category_name) values (1, 'application');
+insert into book_category (category_id, category_name) values (2, 'Synergized');
+insert into book_category (category_id, category_name) values (3, 'systemic');
+insert into book_category (category_id, category_name) values (4, 'Mandatory');
+insert into book_category (category_id, category_name) values (5, 'ability');
+insert into book_category (category_id, category_name) values (6, 'Sharable');
+insert into book_category (category_id, category_name) values (7, 'context-sensitive');
+insert into book_category (category_id, category_name) values (8, 'Digitized');
+insert into book_category (category_id, category_name) values (9, 'tangible');
+insert into book_category (category_id, category_name) values (10, 'Synergized');
