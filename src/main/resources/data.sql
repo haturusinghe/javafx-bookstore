@@ -232,3 +232,18 @@ insert into book_category (category_id, category_name) values (7, 'context-sensi
 insert into book_category (category_id, category_name) values (8, 'Digitized');
 insert into book_category (category_id, category_name) values (9, 'tangible');
 insert into book_category (category_id, category_name) values (10, 'Synergized');
+
+create table author (
+	author_id INT PRIMARY KEY,
+	author_name VARCHAR(50)
+);
+insert into author (author_id, author_name) values (1, 'Amity Dockrill');
+insert into author (author_id, author_name) values (2, 'Bale Bahike');
+insert into author (author_id, author_name) values (3, 'Winnifred Filchakov');
+insert into author (author_id, author_name) values (4, 'Devora Gallehawk');
+insert into author (author_id, author_name) values (5, 'Ivor Livingstone');
+insert into author (author_id, author_name) values (6, 'Had Brixey');
+insert into author (author_id, author_name) values (7, 'Reamonn Riatt');
+insert into author (author_id, author_name) values (8, 'Lazarus Strode');
+insert into author (author_id, author_name) values (9, 'Dylan Heake');
+insert into author (author_id, author_name) values (10, 'Barbara Pilmore');
