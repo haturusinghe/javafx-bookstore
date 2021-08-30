@@ -11,9 +11,9 @@
          <children>
             <VBox alignment="CENTER" minWidth="360.0" prefHeight="768.0" prefWidth="360.0" spacing="20.0" style="-fx-background-color: #2F3136;">
                <children>
-                  <JFXButton prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Overview" />
+                  <JFXButton fx:id="inventoryPage" onAction="#loadInventoryPage" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Inventroy" />
                   <JFXButton fx:id="employeePage" layoutX="141.0" layoutY="369.0" onAction="#loadEmployeePage" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Employees" />
-                  <JFXButton layoutX="141.0" layoutY="404.0" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Orders" />
+                  <JFXButton fx:id="orderBtn" layoutX="141.0" layoutY="404.0" onAction="#loadOrdersPage" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Orders" />
                   <JFXButton layoutX="141.0" layoutY="439.0" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Books" />
                   <JFXButton layoutX="141.0" layoutY="475.0" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Customers" />
                   <JFXButton layoutX="141.0" layoutY="509.0" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Reports" />
@@ -23,7 +23,7 @@
                <children>
                   <AnchorPane fx:id="contentAnchor" maxWidth="922.0" minWidth="922.0" prefHeight="530.0" prefWidth="922.0" style="-fx-background-color: #36393F;" VBox.vgrow="ALWAYS">
                      <children>
-                        <VBox alignment="CENTER" fx:id="mainContent_vbox" layoutX="8.0" layoutY="203.0" prefHeight="682.0" prefWidth="922.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <VBox fx:id="mainContent_vbox" alignment="CENTER" layoutX="8.0" layoutY="203.0" prefHeight="682.0" prefWidth="922.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                      </children></AnchorPane>
                </children>
             </VBox>

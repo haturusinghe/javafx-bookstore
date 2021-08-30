@@ -11,7 +11,7 @@
 
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.MenuItem?>
-<HBox prefHeight="600.0" prefWidth="800.0" stylesheets="@dash-styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.controllers.ManagerDashboardController">
+<HBox prefHeight="600.0" prefWidth="800.0" stylesheets="@styles/dash-styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.controllers.ManagerDashboardController">
    <children>
       <VBox alignment="CENTER" minHeight="300.0" minWidth="106.0" prefHeight="600.0" prefWidth="205.0" spacing="10.0" style="-fx-background-color: #272D35;">
          <children>

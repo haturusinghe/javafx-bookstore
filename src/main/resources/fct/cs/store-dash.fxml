@@ -15,7 +15,7 @@
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ComboBox?>
-<VBox fx:id="tableContainer" prefHeight="600.0" prefWidth="800.0" stylesheets="@store-styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.controllers.StoreDashboardController">
+<VBox fx:id="tableContainer" prefHeight="600.0" prefWidth="800.0" stylesheets="@styles/store-styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.controllers.StoreDashboardController">
    <children>
       <HBox id="header" fx:id="headerHBox" alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #1B1F27;">
          <children>
@@ -50,7 +50,7 @@
             <JFXButton id="search-btn" fx:id="SearchBtn" prefHeight="50.0" prefWidth="130.0" text="Search" onMouseClicked="#getResults" />
          </children>
       </HBox>
-      <TableView id="table" fx:id="inventoryTable" prefHeight="350.0" prefWidth="800.0" stylesheets="@table-styles.css">
+      <TableView id="table" fx:id="inventoryTable" prefHeight="350.0" prefWidth="800.0" stylesheets="@styles/table-styles.css">
         <columns>
           <TableColumn prefWidth="75.0" text="Inventory ID" fx:id="colInvId" />
           <TableColumn prefWidth="75.0" text="ISBN" fx:id="colIsbn" />

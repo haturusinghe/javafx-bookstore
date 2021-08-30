@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox  xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.controllers.EmployeeController" style="-fx-background-color: #fff;">
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Employee.EmployeeController" style="-fx-background-color: #fff;">
    <children>
       <HBox alignment="CENTER" prefHeight="124.0" prefWidth="846.0" >
          <children>
@@ -63,7 +63,7 @@
                              <Button fx:id="editEmpBtn" mnemonicParsing="false" onAction="#editEmployee" text="Edit" visible="false" />
                          </children>
                      </HBox>
-                     <VBox fx:id="employee_details_vbox" alignment="CENTER" disable="true" prefHeight="354.0" prefWidth="400.0" styleClass="employeeDetailsPanel" stylesheets="/fct/cs/disable.css">
+                     <VBox fx:id="employee_details_vbox" alignment="CENTER" disable="true" prefHeight="354.0" prefWidth="400.0" styleClass="employeeDetailsPanel" stylesheets="/fct/cs/styles/disable.css">
                          <children>
                              <HBox alignment="CENTER" layoutX="10.0" layoutY="13.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                  <children>

@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXLabel?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox alignment="CENTER" minHeight="600.0" minWidth="400.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.controllers.BookViewController">
+<VBox alignment="CENTER" minHeight="319.0" minWidth="316.0" prefHeight="319.0" prefWidth="316.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.controllers.BookViewController">
    <children>
-      <MFXLabel minWidth="200.0" fx:id="isbn"/>
-      <MFXLabel layoutX="160.0" layoutY="296.0" minWidth="200.0" />
-      <MFXLabel layoutX="160.0" layoutY="283.0" minWidth="200.0" />
-      <MFXLabel layoutX="160.0" layoutY="310.0" minWidth="200.0" />
-      <MFXLabel layoutX="160.0" layoutY="256.0" minWidth="200.0" />
-      <MFXLabel layoutX="160.0" layoutY="283.0" minWidth="200.0" />
-      <MFXLabel layoutX="160.0" layoutY="310.0" minWidth="200.0" />
-      <MFXLabel layoutX="160.0" layoutY="337.0" minWidth="200.0" />
-      <MFXLabel layoutX="160.0" layoutY="364.0" minWidth="200.0" />
-      <MFXLabel layoutX="160.0" layoutY="392.0" minWidth="200.0" />
+      <MFXTextField />
+      <Button mnemonicParsing="false" text="Get Books" />
    </children>
 </VBox>
