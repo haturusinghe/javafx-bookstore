@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox alignment="CENTER" prefHeight="447.0" prefWidth="400.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.inventory.BookPanelController">
+<VBox alignment="CENTER" prefHeight="447.0" prefWidth="400.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.inventory.BookPanelController">
    <children>
       <HBox alignment="CENTER" prefHeight="74.0" prefWidth="400.0">
          <children>
@@ -104,7 +103,7 @@
                   <VBox alignment="CENTER_LEFT">
                      <children>
                         <Label text="Category" />
-                        <TextField fx:id="phone_txtField1" />
+                        <TextField fx:id="category_txtField" />
                      </children>
                   </VBox>
                </children>

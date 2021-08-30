@@ -23,7 +23,7 @@
                <children>
                   <AnchorPane fx:id="contentAnchor" maxWidth="922.0" minWidth="922.0" prefHeight="530.0" prefWidth="922.0" style="-fx-background-color: #36393F;" VBox.vgrow="ALWAYS">
                      <children>
-                        <VBox fx:id="mainContent_vbox" alignment="CENTER" layoutX="8.0" layoutY="203.0" prefHeight="682.0" prefWidth="922.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <VBox fx:id="mainContent_vbox" alignment="CENTER" layoutX="8.0" layoutY="203.0" prefHeight="682.0" prefWidth="922.0" style="-fx-background-color: aliceblue;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                      </children></AnchorPane>
                </children>
             </VBox>
