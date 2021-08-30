@@ -12,6 +12,9 @@ import java.io.IOException;
 public class mainPageController {
 
     @FXML
+    private JFXButton orderBtn;
+
+    @FXML
     private VBox mainContent_vbox;
 
     @FXML
@@ -28,15 +31,54 @@ public class mainPageController {
 
     private FXMLLoader loader = null;
 
+    private String currentPage = "";
+
     @FXML
     void loadEmployeePage(ActionEvent event) {
-        loader = new FXMLLoader(getClass().getResource("/fct/cs/employee.fxml"));
-        try {
-            mainContent_vbox.getChildren().add(loader.load());
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (currentPage != "employees") {
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/employee.fxml"));
+            try {
+                mainContent_vbox.getChildren().clear();
+                mainContent_vbox.getChildren().add(loader.load());
+                currentPage = "employees";
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("already loaded");
         }
 //        EmployeeController childController = loader.getController();
     }
 
+
+
+    public void loadOrdersPage(ActionEvent actionEvent) {
+        if (!currentPage.equals("orders")) {
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/orders.fxml"));
+            try {
+                mainContent_vbox.getChildren().clear();
+                mainContent_vbox.getChildren().add(loader.load());
+                currentPage = "orders";
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("already loaded");
+        }
+    }
+
+    public void loadInventoryPage(ActionEvent actionEvent) {
+        if (!currentPage.equals("inventory")) {
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/inventory.fxml"));
+            try {
+                mainContent_vbox.getChildren().clear();
+                mainContent_vbox.getChildren().add(loader.load());
+                currentPage = "inventory";
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("already loaded");
+        }
+    }
 }
