@@ -90,14 +90,14 @@ public class EditInventoryController {
             System.out.println(getStockEntryFromForm().toString());
             inventoryManager.updateSingleEntry(getStockEntryFromForm());
             clearTextFields();
-            parentController.loadTableData();
             drawer.close();
+            parentController.loadTableData();
         }else{
             inventoryManager.addSingleEntry(getStockEntryFromForm());
             setAddingNew(false);
             clearTextFields();
-            parentController.loadTableData();
             drawer.close();
+            parentController.loadTableData();
         }
     }
 
