@@ -20,7 +20,6 @@
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                            <children>
                               <Button fx:id="addNewEntryBtn" mnemonicParsing="false" onAction="#addNewEntry" text="Add New Entry" />
-                              <Button  mnemonicParsing="false" onAction="#showNotification" text="Show Notification" />
                               <TextField fx:id="search_txt" onKeyTyped="#searchTable" promptText="Search" />
                               <ComboBox fx:id="category_combo" onAction="#filterTableCategory" prefWidth="150.0" />
                               <Button fx:id="outStockBtn" mnemonicParsing="false" onAction="#viewOutOfStock" text="Out of Stock" />
