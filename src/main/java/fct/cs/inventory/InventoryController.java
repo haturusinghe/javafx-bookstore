@@ -149,14 +149,20 @@ public class InventoryController implements Initializable {
     public void loadTableData() {
 
         ArrayList<StockEntry> stockItemList = inventoryManager.getStockItemList(100, 1);
+        ArrayList<StockEntry> lowItems = new ArrayList<>();
         stockEntryObservableList.clear();
         for (StockEntry currentStockItem : stockItemList) {
             stockEntryObservableList.add(currentStockItem);
+            if (currentStockItem.getQty() < currentStockItem.getMin_qty()){
+                lowItems.add(currentStockItem);
+            }
         }
         inventoryTable.setItems(stockEntryObservableList);
+        if(lowItems.size() > 0){
+            showNotification(lowItems);
+        }
 
     }
-
 
 
     public void searchTableFromText(String key) {
@@ -546,5 +552,10 @@ public class InventoryController implements Initializable {
     public void showNotification(ActionEvent actionEvent) {
         NotificationManager notificationManager = new NotificationManager();
         notificationManager.showBottomRight();
+    }
+
+    private void showNotification(ArrayList<StockEntry> lowItems) {
+        NotificationManager notificationManager = new NotificationManager();
+        notificationManager.showBottomRight(lowItems);
     }
 }
