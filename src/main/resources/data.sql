@@ -61,12 +61,6 @@ insert into book (book_id, isbn, category_id, publisher, author_id, title, b_yea
 insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (29, '015858967-X', 1, 'Schmidt Group', 6, 'Sula dactylatra', 1993, 3783, 536, 'Malagasy', 'Open-architected optimal framework');
 insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (30, '788542204-6', 1, 'West, White and Reichert', 5, 'Threskionis aethiopicus', 2003, 239, 606, 'Hiri Motu', 'Advanced fresh-thinking analyzer');
 
-
-
-
-
-
-
 create table INVENTORY (
 	inv_id INT PRIMARY KEY,
 	book_id INT,
@@ -247,3 +241,13 @@ insert into author (author_id, author_name) values (7, 'Reamonn Riatt');
 insert into author (author_id, author_name) values (8, 'Lazarus Strode');
 insert into author (author_id, author_name) values (9, 'Dylan Heake');
 insert into author (author_id, author_name) values (10, 'Barbara Pilmore');
+
+create table category (
+	category_id INT PRIMARY KEY,
+	category_name VARCHAR(50),
+	low_value INT,
+	up_value INT
+);
+
+insert into category (category_id, category_name,low_value,up_value) values (1, 'Less than 25k',0,25000);
+insert into category (category_id, category_name,low_value,up_value) values (2, 'greater than 25k',25000,150000);
