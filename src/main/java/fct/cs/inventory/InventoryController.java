@@ -86,10 +86,14 @@ public class InventoryController implements Initializable {
 
     private ObservableList<Category> categoryList = FXCollections.observableArrayList();
 
-    private FXMLLoader loader;
+    /*private FXMLLoader editPanelLoader;
+    private FXMLLoader bookPanelLoader;
 
     private EditInventoryController editInventoryController;
+    private BookPanelController bookPanelController;
 
+    private VBox boxStock = null;
+    private VBox boxBook = null;*/
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -97,21 +101,38 @@ public class InventoryController implements Initializable {
         setColumnProperties();
         loadTableData();
 
-        try {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/edit-inventory.fxml"));
-            VBox box = null;
-            box = loader.load();
-            drawer.setSidePane(box);
+        /*try {
+            *//*
+            *FXMLLoader loader =   new FXMLLoader(getClass().getResource("/fct/cs/edit-inventory.fxml"));
+            *VBox box = loader.load();
+            *controller = loader.getController();
+            *
+            * *//*
 
-            editInventoryController = loader.getController();
+            editPanelLoader = new FXMLLoader(getClass().getResource("/fct/cs/edit-inventory.fxml"));
+            boxStock = editPanelLoader.load();
+
+            bookPanelLoader = new FXMLLoader(getClass().getResource("/fct/cs/book-details.fxml"));
+            boxBook = editPanelLoader.load();
+
+//            drawer.setSidePane(box);
+
+            // Inventory Panel
+            editInventoryController = editPanelLoader.getController();
             editInventoryController.setParentController(this);
             editInventoryController.setDrawer(drawer);
             editInventoryController.setInventoryManager(inventoryManager);
+            System.out.println("loaded");
+            // Book Panel
+            bookPanelController = bookPanelLoader.getController();
+            bookPanelController.setParentController(this);
+            bookPanelController.setDrawer(drawer);
+
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+*/
         /*try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/book-details.fxml"));
             VBox box = loader.load();
@@ -226,15 +247,19 @@ public class InventoryController implements Initializable {
 
                             try {
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/book-details.fxml"));
-                                VBox box = null;
-                                box = loader.load();
+                                VBox box = loader.load();
                                 BookPanelController controller = loader.getController();
 
+//                            controller.setParentController(this);
                                 controller.loadBookDetails(currentBook);
+                                controller.setDrawer(drawer);
+//                            controller.setInventoryManager(inventoryManager);
+//                            controller.setAddingNew(true);
                                 drawer.setSidePane(box);
                             } catch (IOException ex) {
                                 ex.printStackTrace();
                             }
+
 
 /*                            TranslateTransition openNav = new TranslateTransition(new Duration(350), drawerBox);
                             openNav.setToX(0);
@@ -246,7 +271,6 @@ public class InventoryController implements Initializable {
                                 closeNav.setToX(-(drawerBox.getWidth()));
                                 closeNav.play();
                             }*/
-
                             if (drawer.isHidden()) {
                                 drawer.open();
                                 drawer.toFront();
@@ -301,7 +325,24 @@ public class InventoryController implements Initializable {
                             getTableView().getSelectionModel().select(getIndex());
                             System.out.println(getTableView().getSelectionModel().getSelectedItem().toString());
 
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/edit-inventory.fxml"));
+                                VBox box = loader.load();
+                                EditInventoryController controller = loader.getController();
+
+//                                controller.setParentController();
+                                controller.setDrawer(drawer);
+                                controller.setInventoryManager(inventoryManager);
+                                controller.setEntry(entry);
+                                controller.setAddingNew(false);
+                                drawer.setSidePane(box);
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+
+                            /*editInventoryController.setAddingNew(false);
                             editInventoryController.setEntry(entry);
+                            drawer.setSidePane(boxStock);*/
 
                             if (drawer.isHidden()) {
                                 drawer.open();
@@ -480,18 +521,43 @@ public class InventoryController implements Initializable {
     }
 
     public void addNewEntry(ActionEvent actionEvent) {
+
+        /*try {
+
+            bookPanelLoader = new FXMLLoader(getClass().getResource("/fct/cs/book-details.fxml"));
+            boxBook = editPanelLoader.load();
+
+            bookPanelController = bookPanelLoader.getController();
+            bookPanelController.setParentController(this);
+            bookPanelController.setDrawer(drawer);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/book-details.fxml"));
+            VBox box = loader.load();
+            BookPanelController controller = loader.getController();
+            controller.loadBookDetails();
+            drawer.setSidePane(box);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/edit-inventory.fxml"));
-            VBox box = null;
-            box = loader.load();
+            VBox box = loader.load();
             EditInventoryController controller = loader.getController();
+
+            controller.setParentController(this);
             controller.setDrawer(drawer);
             controller.setInventoryManager(inventoryManager);
             controller.setAddingNew(true);
             drawer.setSidePane(box);
 
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         if (drawer.isHidden()) {
