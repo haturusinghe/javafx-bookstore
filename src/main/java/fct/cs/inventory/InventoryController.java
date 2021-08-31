@@ -157,6 +157,8 @@ public class InventoryController implements Initializable {
 
     }
 
+
+
     public void searchTableFromText(String key) {
         System.out.println("Searching ...");
         stockEntryFilteredList.setPredicate(stockEntry -> {
@@ -539,5 +541,10 @@ public class InventoryController implements Initializable {
 
             System.out.println("close");
         }
+    }
+
+    public void showNotification(ActionEvent actionEvent) {
+        NotificationManager notificationManager = new NotificationManager();
+        notificationManager.showBottomRight();
     }
 }
