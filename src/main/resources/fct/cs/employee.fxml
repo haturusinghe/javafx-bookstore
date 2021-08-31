@@ -20,7 +20,7 @@
                   <Insets right="50.0" />
                </HBox.margin>
             </Label>
-            <Button fx:id="addBtn" mnemonicParsing="false" onAction="#addEmployee" text="Add" />
+            <Button fx:id="addBtn" mnemonicParsing="false" onAction="#prepareAddEmployee" text="Add" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="110.0" prefHeight="472.0" prefWidth="830.0">
