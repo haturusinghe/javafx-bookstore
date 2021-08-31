@@ -1,5 +1,6 @@
 package fct.cs.inventory;
 
+import com.jfoenix.controls.JFXDrawer;
 import fct.cs.Books.Book;
 
 import javafx.fxml.FXML;
@@ -41,11 +42,24 @@ public class BookPanelController {
     @FXML
     private TextField category_txtField;
 
+    @FXML
+    private JFXDrawer drawer;
+
+    private InventoryController parentController;
+
     public void loadBookDetails(Book bookDetails) {
 
         title_txtField.setText(bookDetails.getTitle());
         bookID_txtField.setText(String.valueOf(bookDetails.getBook_id()));
 
+    }
+
+    public void setDrawer(JFXDrawer drawer) {
+        this.drawer = drawer;
+    }
+
+    public void setParentController(InventoryController parentController) {
+        this.parentController = parentController;
     }
 }
 
