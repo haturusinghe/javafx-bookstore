@@ -148,7 +148,7 @@ public class InventoryController implements Initializable {
 
     public void loadTableData() {
 
-        ArrayList<StockEntry> stockItemList = inventoryManager.getStockItemList(5, 1);
+        ArrayList<StockEntry> stockItemList = inventoryManager.getStockItemList(100, 1);
         stockEntryObservableList.clear();
         for (StockEntry currentStockItem : stockItemList) {
             stockEntryObservableList.add(currentStockItem);
