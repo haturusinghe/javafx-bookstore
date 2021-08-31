@@ -17,14 +17,39 @@ import javafx.util.Duration;
 
 //import org.kordamp.ikonli.javafx.FontIcon; #TODO : Need to import this
 
+import java.util.ArrayList;
 import java.util.Random;
 
+
+
 public class NotificationManager {
+
+    private ArrayList<StockEntry> lowItems = new ArrayList<>();
+
+    public void setLowItems(ArrayList<StockEntry> lowItems) {
+        this.lowItems = lowItems;
+    }
+
     @FXML
     void showBottomRight() {
         NotificationPos pos = NotificationPos.BOTTOM_RIGHT;
         showNotification(pos);
     }
+
+    public void showBottomRight(ArrayList<StockEntry> lowItems) {
+        NotificationPos pos = NotificationPos.BOTTOM_RIGHT;
+        setLowItems(lowItems);
+        showNotification(pos);
+    }
+
+    private String generateMessageFromList(ArrayList<StockEntry> lowItems) {
+        String message = "";
+        for (StockEntry current : lowItems) {
+            message = message + "Book ID: " + current.getBook_id() + "\n";
+        }
+        return message;
+    }
+
 
     private void showNotification(NotificationPos pos) {
         MFXNotification notification = buildNotification();
@@ -49,7 +74,7 @@ public class NotificationManager {
 
     private Region getRandomTemplate() {
         final int rand = 1;
-
+        String message = "The following items :\n" + generateMessageFromList(lowItems) + "are low on stock !!";
         switch (rand) {
             /*case 0:
                 FontIcon icon1 = new FontIcon("fas-info-circle");
@@ -82,12 +107,13 @@ public class NotificationManager {
                         "Hi Mark, it's been ages since we last spoke!\nHow are you?"
                 );*/
             case 1:
-                AbstractMFXDialog dialog = MFXDialogFactory.buildDialog(DialogType.WARNING, "Warning Dialog as Notification", "Disk space is running low, better watch out...");
+                AbstractMFXDialog dialog = MFXDialogFactory.buildDialog(DialogType.WARNING, "Warning ! Some items are running low on stock ...", message);
                 dialog.setVisible(true);
                 return dialog;
             default:
                 return null;
         }
     }
+
 
 }
