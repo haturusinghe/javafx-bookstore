@@ -2,6 +2,7 @@ package fct.cs.inventory;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.events.JFXDrawerEvent;
+import fct.cs.Books.Book;
 import fct.cs.data.Category;
 import fct.cs.dbUtil.DatabaseHandler;
 import javafx.animation.TranslateTransition;
@@ -33,8 +34,15 @@ import java.util.logging.Logger;
 
 public class InventoryController implements Initializable {
 
-    public VBox drawerBox;
-    public StackPane stackPane;
+    @FXML
+    private VBox drawerBox;
+
+    @FXML
+    private StackPane stackPane;
+
+    @FXML
+    private Button addNewEntryBtn;
+
     @FXML
     private JFXDrawer drawer;
 
@@ -78,6 +86,11 @@ public class InventoryController implements Initializable {
 
     private ObservableList<Category> categoryList = FXCollections.observableArrayList();
 
+    private FXMLLoader loader;
+
+    private EditInventoryController editInventoryController;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         inventoryManager = new InventoryManager();
@@ -85,12 +98,29 @@ public class InventoryController implements Initializable {
         loadTableData();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/book-details.fxml"));
-            VBox box = loader.load();
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/edit-inventory.fxml"));
+            VBox box = null;
+            box = loader.load();
             drawer.setSidePane(box);
+
+            editInventoryController = loader.getController();
+            editInventoryController.setParentController(this);
+            editInventoryController.setDrawer(drawer);
+            editInventoryController.setInventoryManager(inventoryManager);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        /*try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/book-details.fxml"));
+            VBox box = loader.load();
+            BookPanelController controller = loader.getController();
+            controller.loadBookDetails();
+            drawer.setSidePane(box);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
 
 
         try {
@@ -102,7 +132,7 @@ public class InventoryController implements Initializable {
 //        printInventoryList();
     }
 
-    private void loadTableData() {
+    public void loadTableData() {
 
         ArrayList<StockEntry> stockItemList = inventoryManager.getStockItemList(5, 1);
         stockEntryObservableList.clear();
@@ -164,7 +194,6 @@ public class InventoryController implements Initializable {
         category_combo.setItems(categoryList);
     }
 
-
     private void setColumnProperties() {
         colBookId.setCellValueFactory(new PropertyValueFactory<>("book_id"));
         colListedPrice.setCellValueFactory(new PropertyValueFactory<>("list_price"));
@@ -174,7 +203,7 @@ public class InventoryController implements Initializable {
 
         colViewDet.setCellFactory((tableColumn) -> {
             TableCell<StockEntry, Integer> tableCell = new TableCell<>() {
-                Image imgEdit = new Image(getClass().getResourceAsStream("/images/edit.png"));
+                Image imgEdit = new Image(getClass().getResourceAsStream("/images/book.png"));
                 final Button btnEdit = new Button();
 
                 @Override
@@ -191,6 +220,21 @@ public class InventoryController implements Initializable {
                             System.out.println("Clicked View Book");
                             StockEntry entry = getTableView().getItems().get(getIndex());
                             System.out.println(entry.toString());
+                            System.out.println(book_id);
+                            Book currentBook = inventoryManager.getBookDetails(entry.getBook_id());
+                            System.out.println(currentBook.toString());
+
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/book-details.fxml"));
+                                VBox box = null;
+                                box = loader.load();
+                                BookPanelController controller = loader.getController();
+
+                                controller.loadBookDetails(currentBook);
+                                drawer.setSidePane(box);
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
 
 /*                            TranslateTransition openNav = new TranslateTransition(new Duration(350), drawerBox);
                             openNav.setToX(0);
@@ -240,6 +284,7 @@ public class InventoryController implements Initializable {
                 Image imgRemove = new Image(getClass().getResourceAsStream("/images/edit.png"));
                 final Button btnRemove = new Button();
 
+
                 @Override
                 protected void updateItem(Integer inv_id, boolean empty) {
                     super.updateItem(inv_id, empty);
@@ -255,6 +300,55 @@ public class InventoryController implements Initializable {
                             StockEntry entry = getTableView().getItems().get(getIndex());
                             getTableView().getSelectionModel().select(getIndex());
                             System.out.println(getTableView().getSelectionModel().getSelectedItem().toString());
+
+                            editInventoryController.setEntry(entry);
+
+                            if (drawer.isHidden()) {
+                                drawer.open();
+                                drawer.toFront();
+                                System.out.println("open");
+                            } else {
+                                drawer.toBack();
+                                drawer.close();
+
+                                System.out.println("close");
+                            }
+
+                            /*try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/book-details.fxml"));
+                                VBox box = null;
+                                box = loader.load();
+                                BookPanelController controller = loader.getController();
+
+                                controller.loadBookDetails(currentBook);
+                                drawer.setSidePane(box);
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+
+*//*                            TranslateTransition openNav = new TranslateTransition(new Duration(350), drawerBox);
+                            openNav.setToX(0);
+                            TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawerBox);
+
+                            if (drawerBox.getTranslateX() != 0) {
+                                openNav.play();
+                            } else {
+                                closeNav.setToX(-(drawerBox.getWidth()));
+                                closeNav.play();
+                            }*//*
+
+                            if (drawer.isHidden()) {
+                                drawer.open();
+                                drawer.toFront();
+                                System.out.println("open");
+                            } else {
+                                drawer.toBack();
+                                drawer.close();
+
+                                System.out.println("close");
+                            }
+                        });*/
+
                         });
 
                         btnRemove.setStyle("-fx-background-color: #fff;");
@@ -297,6 +391,10 @@ public class InventoryController implements Initializable {
                             StockEntry entry = getTableView().getItems().get(getIndex());
                             getTableView().getSelectionModel().select(getIndex());
                             System.out.println(getTableView().getSelectionModel().getSelectedItem().toString());
+
+                            inventoryManager.deleteSingleEntry(entry);
+                            loadTableData();
+
                         });
 
                         btnRemove.setStyle("-fx-background-color: #fff;");
@@ -320,17 +418,12 @@ public class InventoryController implements Initializable {
         });
     }
 
-
     private void printInventoryList() {
         ArrayList<StockEntry> ls = inventoryManager.getStockItemList(5, 1);
 
         for (StockEntry i : ls) {
             System.out.println(i.toString());
         }
-    }
-
-    {
-
     }
 
     @FXML
@@ -384,5 +477,32 @@ public class InventoryController implements Initializable {
 
     public void hideDrawer(JFXDrawerEvent jfxDrawerEvent) {
         drawer.toBack();
+    }
+
+    public void addNewEntry(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/edit-inventory.fxml"));
+            VBox box = null;
+            box = loader.load();
+            EditInventoryController controller = loader.getController();
+            controller.setDrawer(drawer);
+            controller.setInventoryManager(inventoryManager);
+            controller.setAddingNew(true);
+            drawer.setSidePane(box);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        if (drawer.isHidden()) {
+            drawer.open();
+            drawer.toFront();
+            System.out.println("open");
+        } else {
+            drawer.toBack();
+            drawer.close();
+
+            System.out.println("close");
+        }
     }
 }
