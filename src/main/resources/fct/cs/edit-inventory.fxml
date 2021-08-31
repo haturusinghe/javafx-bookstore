@@ -10,13 +10,14 @@
 <VBox alignment="CENTER" minWidth="500.0" prefHeight="500.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.inventory.EditInventoryController">
    <children>
       <Label text="Inventory Entry" />
+      <TextField fx:id="txtInvId" promptText="inv_id" disable="true" />
       <TextField fx:id="txtBookId" promptText="book_id" />
       <TextField fx:id="txtPrice" layoutX="10.0" layoutY="248.0" promptText="listed price" />
       <TextField fx:id="txtQty" layoutX="10.0" layoutY="235.0" promptText="quantity" />
       <TextField fx:id="txtMin" layoutX="10.0" layoutY="260.0" promptText="minimum quantity" />
       <HBox alignment="CENTER" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" text="Submit" />
+            <Button mnemonicParsing="false" text="Submit" fx:id="submitBtn" onAction="#updateInventory"/>
             <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
          </children>
       </HBox>
