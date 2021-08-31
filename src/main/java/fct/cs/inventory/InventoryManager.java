@@ -21,13 +21,13 @@ public class InventoryManager {
         int totalQty = -1;
         Statement stmt = conn.createStatement();
         ResultSet resultSet = stmt.executeQuery(sumQuery);
-        while (resultSet.next()){
+        while (resultSet.next()) {
             totalQty = resultSet.getInt("sum_qty");
         }
         return totalQty;
     }
 
-    public ArrayList<String>  getBookIdsForCategory(int categoryId){
+    public ArrayList<String> getBookIdsForCategory(int categoryId) {
         String query = "SELECT book_id FROM book where category_id = ?";
         PreparedStatement preparedStatement = null;
         ArrayList<String> idList = new ArrayList<>();
@@ -38,7 +38,7 @@ public class InventoryManager {
             preparedStatement.setInt(1, categoryId);
             resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 idList.add(resultSet.getString("book_id"));
             }
 
@@ -49,7 +49,7 @@ public class InventoryManager {
         }
     }
 
-    public String getCategoryName(int categoryId){
+    public String getCategoryName(int categoryId) {
         String query = "SELECT category_name FROM category where category_id = ?";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
@@ -59,7 +59,7 @@ public class InventoryManager {
             preparedStatement.setInt(1, categoryId);
             resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 return resultSet.getString("category_name");
             }
         } catch (SQLException e) {
@@ -69,7 +69,7 @@ public class InventoryManager {
         return "";
     }
 
-    public Author getAuthor(int authorId){
+    public Author getAuthor(int authorId) {
         String query = "SELECT * FROM author where author_id = ?";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
@@ -79,14 +79,14 @@ public class InventoryManager {
             preparedStatement.setInt(1, authorId);
             resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 return new Author(
                         resultSet.getInt("author_id"),
                         resultSet.getString("first_name"),
                         resultSet.getString("last_name"),
                         resultSet.getString("website"),
                         resultSet.getString("gender")
-                        );
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -95,11 +95,11 @@ public class InventoryManager {
         return null;
     }
 
-    private ArrayList<StockEntry> createOrderList(ResultSet rs){
+    private ArrayList<StockEntry> createOrderList(ResultSet rs) {
         ArrayList<StockEntry> orderList = new ArrayList<>();
         try {
             //inv_id, book_id, list_price, qty, min_qty
-            while (rs.next()){
+            while (rs.next()) {
                 orderList.add(new StockEntry(
                         rs.getInt("inv_id"),
                         rs.getInt("book_id"),
@@ -116,12 +116,12 @@ public class InventoryManager {
         return orderList;
     }
 
-    public ArrayList<StockEntry> getStockItemList(int entriesPerPage, int pageNumber){
+    public ArrayList<StockEntry> getStockItemList(int entriesPerPage, int pageNumber) {
         ResultSet rs = getInventoryFromDatabase(entriesPerPage, pageNumber);
         return createOrderList(rs);
     }
 
-    private ResultSet getInventoryFromDatabase(int entriesPerPage, int pageNumber)  {
+    private ResultSet getInventoryFromDatabase(int entriesPerPage, int pageNumber) {
         int offset = entriesPerPage * (pageNumber - 1);
         String query = "SELECT * FROM inventory LIMIT ?  OFFSET  ?";
         PreparedStatement preparedStatement = null;
@@ -131,7 +131,7 @@ public class InventoryManager {
 
             preparedStatement.setInt(1, entriesPerPage);
             preparedStatement.setInt(2, offset);
-            resultSet= preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             return resultSet;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -139,13 +139,66 @@ public class InventoryManager {
         }
     }
 
-    public Book getBookDetails(int bookId){
+    public boolean updateSingleEntry(StockEntry entry){
+        String updateQuery = "UPDATE inventory set book_id = ?, list_price = ?, qty = ?, min_qty = ? where inv_id = ?";
+        PreparedStatement preparedStatement = null;
+        int count = 0;
+        try {
+            preparedStatement = conn.prepareStatement(updateQuery);
+            preparedStatement.setInt(1,entry.getBook_id());
+            preparedStatement.setInt(2,entry.getList_price());
+            preparedStatement.setInt(3,entry.getQty());
+            preparedStatement.setInt(4,entry.getMin_qty());
+            preparedStatement.setInt(5,entry.getInv_id());
+            count = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count > 0;
+    }
+
+    public boolean deleteSingleEntry(StockEntry entry){
+        String updateQuery = "DELETE FROM INVENTORY where inv_id = ?";
+        PreparedStatement preparedStatement = null;
+        int count = 0;
+        try {
+            preparedStatement = conn.prepareStatement(updateQuery);
+            preparedStatement.setInt(1,entry.getInv_id());
+            count = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count > 0;
+    }
+
+    public boolean addSingleEntry(StockEntry entry){
+        String addQuery = "insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (?,?,?,?,?)";
+        PreparedStatement preparedStatement = null;
+        int count = 0;
+        try {
+            preparedStatement = conn.prepareStatement(addQuery);
+            preparedStatement.setInt(1,entry.getInv_id());
+            preparedStatement.setInt(2,entry.getBook_id());
+            preparedStatement.setInt(3,entry.getList_price());
+            preparedStatement.setInt(4,entry.getQty());
+            preparedStatement.setInt(5,entry.getMin_qty());
+            count = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count > 0;
+    }
+
+    public Book getBookDetails(int bookId) {
         ResultSet rs = getBookDetailsFromDatabase(bookId);
         Book bookInfo = null;
 
         try {
             //book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description
-            while (rs.next()){
+            while (rs.next()) {
                 int category_id = rs.getInt("category_id");
                 int author_id = rs.getInt("author_id");
                 bookInfo = new Book(
@@ -171,7 +224,7 @@ public class InventoryManager {
         return bookInfo;
     }
 
-    private ResultSet getBookDetailsFromDatabase(int bookId){
+    private ResultSet getBookDetailsFromDatabase(int bookId) {
         String query = "SELECT * FROM book WHERE book_id = ?";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
@@ -179,13 +232,12 @@ public class InventoryManager {
             preparedStatement = conn.prepareStatement(query);
 
             preparedStatement.setInt(1, bookId);
-            resultSet= preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             return resultSet;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
-
 
 }
