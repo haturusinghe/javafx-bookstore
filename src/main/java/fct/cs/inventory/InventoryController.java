@@ -86,15 +86,6 @@ public class InventoryController implements Initializable {
 
     private ObservableList<Category> categoryList = FXCollections.observableArrayList();
 
-    /*private FXMLLoader editPanelLoader;
-    private FXMLLoader bookPanelLoader;
-
-    private EditInventoryController editInventoryController;
-    private BookPanelController bookPanelController;
-
-    private VBox boxStock = null;
-    private VBox boxBook = null;*/
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         inventoryManager = new InventoryManager();
@@ -510,7 +501,6 @@ public class InventoryController implements Initializable {
         inventoryTable.setItems(stockEntryFilteredList);
     }
 
-
     public void resetFilters(ActionEvent actionEvent) {
         searchTableFromText("");
         inventoryTable.setItems(stockEntryFilteredList);
@@ -521,29 +511,6 @@ public class InventoryController implements Initializable {
     }
 
     public void addNewEntry(ActionEvent actionEvent) {
-
-        /*try {
-
-            bookPanelLoader = new FXMLLoader(getClass().getResource("/fct/cs/book-details.fxml"));
-            boxBook = editPanelLoader.load();
-
-            bookPanelController = bookPanelLoader.getController();
-            bookPanelController.setParentController(this);
-            bookPanelController.setDrawer(drawer);
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/book-details.fxml"));
-            VBox box = loader.load();
-            BookPanelController controller = loader.getController();
-            controller.loadBookDetails();
-            drawer.setSidePane(box);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/edit-inventory.fxml"));
