@@ -5,7 +5,7 @@ import java.sql.*;
 public class DatabaseHandler {
     private static String USER = "root";
     private static String PASS = "";
-    private static String DB_URL = "jdbc:mysql://localhost:3306/bookstore";
+    private static String DB_URL = "jdbc:mysql://localhost:3306/book_store";
 
     private Connection conn;
     private Statement stmt;

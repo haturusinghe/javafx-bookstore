@@ -21,6 +21,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import fct.cs.reporting.ReportsPageController;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -30,6 +31,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
+
 
 public class InventoryController implements Initializable {
 
@@ -385,4 +387,14 @@ public class InventoryController implements Initializable {
     public void hideDrawer(JFXDrawerEvent jfxDrawerEvent) {
         drawer.toBack();
     }
+
+
+    public void report(ActionEvent actionEvent){
+        ReportsPageController report = new ReportsPageController();
+
+        report.showReport(actionEvent);
+
+    }
 }
+
+
