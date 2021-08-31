@@ -116,16 +116,29 @@ public class EmployeeController implements Initializable {
 
     private boolean isAddingNew = false;
 
-
-//    private static DatabaseHandler databaseHandler;
-
+    /* Lists for Employee Details Table */
     private ObservableList<Employee> employeeObservableList = FXCollections.observableArrayList();
     private FilteredList<Employee> employeeFilteredList = new FilteredList<>(employeeObservableList);
 
     private ObservableList<Category> categoryList = FXCollections.observableArrayList();
 
-    private static AppUtils appUtils;
     private static Employee selectedEmployee = null;
+
+    @Override
+    /*Set Table Columns and ComboBox values , then */
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setColumnProperties();
+        try {
+            setCategories();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            getResults();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void selectEmployee(MouseEvent mouseEvent) {
 
@@ -149,8 +162,6 @@ public class EmployeeController implements Initializable {
 
     }
 
-
-
     private void resetEmployeeDetailsSidebar() {
         employee_details_vbox.setDisable(true);
         removeBtn.setVisible(false);
@@ -172,7 +183,7 @@ public class EmployeeController implements Initializable {
         phone_txtField.setText("");
     }
 
-    public void addEmployee(ActionEvent actionEvent) {
+    public void prepareAddEmployee(ActionEvent actionEvent) {
         resetEmployeeDetailsSidebar();
         isAddingNew = true;
         cancelNewBtn.setVisible(true);
@@ -277,21 +288,6 @@ public class EmployeeController implements Initializable {
         });
 
 
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        setColumnProperties();
-        try {
-            setCategories();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            getResults();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     private void getResults() throws SQLException {
@@ -515,7 +511,6 @@ public class EmployeeController implements Initializable {
         }
 
     }
-
 
     public void filterList() {
         System.out.println("Searching ...");
