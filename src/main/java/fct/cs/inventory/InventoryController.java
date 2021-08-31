@@ -86,6 +86,8 @@ public class InventoryController implements Initializable {
 
     private ObservableList<Category> categoryList = FXCollections.observableArrayList();
 
+    private InventoryController thisController = this;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         inventoryManager = new InventoryManager();
@@ -321,7 +323,7 @@ public class InventoryController implements Initializable {
                                 VBox box = loader.load();
                                 EditInventoryController controller = loader.getController();
 
-//                                controller.setParentController();
+                                controller.setParentController(thisController);
                                 controller.setDrawer(drawer);
                                 controller.setInventoryManager(inventoryManager);
                                 controller.setEntry(entry);
