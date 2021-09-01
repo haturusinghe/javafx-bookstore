@@ -33,15 +33,15 @@
             </VBox>
             <VBox fx:id="contentPanel_vbox" minWidth="922.0" prefHeight="738.0" prefWidth="1030.0" styleClass="content-vbox">
                <children>
-                  <HBox fx:id="header_hbox" prefHeight="124.0" prefWidth="1030.0" styleClass="content-header">
+                  <HBox fx:id="header_hbox" alignment="CENTER_LEFT" prefHeight="124.0" prefWidth="1030.0" styleClass="content-header">
                      <children>
                         <Label text="Label" />
                      </children>
                   </HBox>
                   <Separator prefWidth="200.0" />
-                  <VBox fx:id="contentAnchor" prefHeight="685.0" prefWidth="1030.0">
+                  <VBox fx:id="contentAnchor" prefHeight="685.0" prefWidth="1030.0" styleClass="holder-vbox">
                      <children>
-                        <VBox fx:id="mainContent_vbox" alignment="CENTER" />
+                        <VBox fx:id="mainContent_vbox" alignment="CENTER" styleClass="loaded-vbox" />
                      </children>
                   </VBox>
                </children>

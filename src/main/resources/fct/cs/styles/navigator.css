@@ -28,6 +28,42 @@
 }
 
 .side-nav-button:hover{
-	-fx-background-color: #333539;
+	-fx-background-color: #fff;
 	
 }
+
+.content-vbox{
+	-fx-background-color: #fff;
+	
+}
+
+.holder-vbox{
+	-fx-background-color: #EFEFEC;
+}
+
+.loaded-vbox{
+	
+}
+
+/*
+-fx-background-color: red;
+	-fx-alignment: center;
+	-fx-alignment: center;
+	-fx-background-insets: 20px;
+    -fx-background-radius: 20;
+	-fx-alignment: center;
+	-fx-padding: 20;
+*/
+
+
+/*
+-fx-background-insets: 20px;
+    -fx-background-radius: 20;
+*/
+
+/*
+-fx-border-color: #121212;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+
+*/
