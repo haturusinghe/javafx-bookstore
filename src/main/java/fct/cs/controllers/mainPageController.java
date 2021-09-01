@@ -5,12 +5,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
 public class mainPageController {
 
+    public HBox header_hbox;
+    public JFXButton inventoryPage;
     @FXML
     private JFXButton orderBtn;
 
@@ -25,9 +28,10 @@ public class mainPageController {
 
     @FXML
     private VBox contentPanel_vbox;
+    
 
     @FXML
-    private AnchorPane contentAnchor;
+    private VBox contentAnchor;
 
     private FXMLLoader loader = null;
 
@@ -80,5 +84,9 @@ public class mainPageController {
         }else{
             System.out.println("already loaded");
         }
+    }
+
+    public void exit(ActionEvent actionEvent) {
+        System.exit(0);
     }
 }
