@@ -1,0 +1,33 @@
+.side-VBox{
+	-fx-background-color:#26232B;
+}
+
+.content-anchor{
+	-fx-background-color:red;
+}
+
+.root{
+	-fx-background-color: #FAFAFA;
+}
+
+.side-nav-button{
+	-fx-background-color: transparent;
+	-fx-background-radius: 9,8,5,4,3;
+	
+	
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #fff;
+	-fx-alignment: center-left;
+	-fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+	
+    -fx-background-insets: 0,0,0,0;
+    -fx-padding: 0 0 0 15;
+    
+   -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+.side-nav-button:hover{
+	-fx-background-color: #333539;
+	
+}

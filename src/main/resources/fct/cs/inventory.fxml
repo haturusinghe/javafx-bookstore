@@ -10,22 +10,22 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.inventory.InventoryController">
+<VBox stylesheets="@styles/inventory-page.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.inventory.InventoryController">
    <children>
       <StackPane fx:id="stackPane">
          <children>
             <JFXDrawer fx:id="drawer" defaultDrawerSize="300.0" direction="RIGHT" onDrawerClosing="#hideDrawer" prefHeight="368.0" prefWidth="108.0" />
-                  <VBox alignment="CENTER" style="-fx-background-color: blue;">
+                  <VBox alignment="CENTER" >
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                            <children>
-                              <Button fx:id="addNewEntryBtn" mnemonicParsing="false" onAction="#addNewEntry" text="Add New Entry" />
+                              <Button styleClass="custom-buttons-1" fx:id="addNewEntryBtn" mnemonicParsing="false" onAction="#addNewEntry" text="Add New Entry" />
                               <TextField fx:id="search_txt" onKeyTyped="#searchTable" promptText="Search" />
                               <ComboBox fx:id="category_combo" onAction="#filterTableCategory" prefWidth="150.0" />
-                              <Button fx:id="outStockBtn" mnemonicParsing="false" onAction="#viewOutOfStock" text="Out of Stock" />
-                              <Button fx:id="lowStockBtn" mnemonicParsing="false" onAction="#viewLowOnStock" text="Low on Stock" />
-                              <Button fx:id="resetFilterBtn" mnemonicParsing="false" onAction="#resetFilters" text="Reset Filters" />
-      <!--                               <VBox fx:id="drawerBox" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="180.0" style="-fx-background-color: #435;" translateX="-180.0" HBox.hgrow="NEVER" />-->
+                              <Button styleClass="custom-buttons-1" fx:id="outStockBtn" mnemonicParsing="false" onAction="#viewOutOfStock" text="Out of Stock" />
+                              <Button styleClass="custom-buttons-1" fx:id="lowStockBtn" mnemonicParsing="false" onAction="#viewLowOnStock" text="Low on Stock" />
+                              <Button styleClass="custom-buttons-1" fx:id="resetFilterBtn" mnemonicParsing="false" onAction="#resetFilters" text="Reset Filters" />
+
                            </children>
                         </HBox>
                         <TableView fx:id="inventoryTable" onMouseClicked="#selectItem" prefHeight="400.0" prefWidth="600.0">

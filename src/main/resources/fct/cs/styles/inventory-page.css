@@ -1,0 +1,11 @@
+.custom-buttons-1{
+	 -fx-background-color: #211F9A;
+    -fx-background-insets: 0,0,0,0,0;
+    -fx-background-radius: 9,8,5,4,3;
+    -fx-padding: 15 20 15 20;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}

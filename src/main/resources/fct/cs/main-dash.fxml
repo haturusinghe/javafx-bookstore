@@ -1,30 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.controllers.mainPageController">
+<AnchorPane fx:id="mainAnchor" maxHeight="720.0" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" stylesheets="@styles/navigator.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.controllers.mainPageController">
    <children>
-      <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox fx:id="main_hbox" maxWidth="720.0" minHeight="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="CENTER" minWidth="360.0" prefHeight="768.0" prefWidth="360.0" spacing="20.0" style="-fx-background-color: #2F3136;">
+            <VBox fx:id="side_vbox" alignment="TOP_CENTER" minWidth="245.0" prefHeight="720.0" prefWidth="253.0" spacing="20.0" styleClass="side-VBox">
                <children>
-                  <JFXButton fx:id="inventoryPage" onAction="#loadInventoryPage" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Inventroy" />
-                  <JFXButton fx:id="employeePage" layoutX="141.0" layoutY="369.0" onAction="#loadEmployeePage" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Employees" />
-                  <JFXButton fx:id="orderBtn" layoutX="141.0" layoutY="404.0" onAction="#loadOrdersPage" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Orders" />
-                  <JFXButton layoutX="141.0" layoutY="439.0" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Books" />
-                  <JFXButton layoutX="141.0" layoutY="475.0" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Customers" />
-                  <JFXButton layoutX="141.0" layoutY="509.0" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Reports" />
+                  <JFXButton fx:id="inventoryPage" minWidth="220.0" onAction="#loadInventoryPage" prefHeight="50.0" styleClass="side-nav-button" text="Inventroy">
+                     <graphic>
+                        <FontIcon fill="WHITE" iconLiteral="cil-taxi" iconSize="20" />
+                     </graphic></JFXButton>
+                  <JFXButton fx:id="employeePage" layoutX="141.0" layoutY="369.0" minWidth="220.0" onAction="#loadEmployeePage" prefHeight="50.0" styleClass="side-nav-button" text="Employees" />
+                  <JFXButton fx:id="orderBtn" layoutX="141.0" layoutY="404.0" minWidth="220.0" onAction="#loadOrdersPage" prefHeight="50.0" styleClass="side-nav-button" text="Orders" />
+                  <JFXButton layoutX="141.0" layoutY="439.0" minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button" text="Books" />
+                  <JFXButton layoutX="141.0" layoutY="475.0" minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button" text="Customers" />
+                  <JFXButton layoutX="141.0" layoutY="509.0" minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button" text="Reports" />
+                  <JFXButton layoutX="140.0" layoutY="521.0" minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button" text="Reports" />
+                  <JFXButton layoutX="10.0" layoutY="432.0" minWidth="220.0" onAction="#exit" prefHeight="50.0" styleClass="side-nav-button" text="Close">
+                     <graphic>
+                        <FontIcon />
+                     </graphic>
+                  </JFXButton>
                </children>
             </VBox>
-            <VBox fx:id="contentPanel_vbox" minWidth="922.0" prefHeight="768.0" prefWidth="922.0">
+            <VBox fx:id="contentPanel_vbox" minWidth="922.0" prefHeight="738.0" prefWidth="1030.0" styleClass="content-vbox">
                <children>
-                  <AnchorPane fx:id="contentAnchor" maxWidth="922.0" minWidth="922.0" prefHeight="530.0" prefWidth="922.0" style="-fx-background-color: #36393F;" VBox.vgrow="ALWAYS">
+                  <HBox fx:id="header_hbox" prefHeight="124.0" prefWidth="1030.0" styleClass="content-header">
                      <children>
-                        <VBox fx:id="mainContent_vbox" alignment="CENTER" layoutX="8.0" layoutY="203.0" prefHeight="682.0" prefWidth="922.0" style="-fx-background-color: aliceblue;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                     </children></AnchorPane>
+                        <Label text="Label" />
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <VBox fx:id="contentAnchor" prefHeight="685.0" prefWidth="1030.0">
+                     <children>
+                        <VBox fx:id="mainContent_vbox" alignment="CENTER" />
+                     </children>
+                  </VBox>
                </children>
             </VBox>
          </children>
