@@ -15,6 +15,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,8 +24,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import org.kordamp.ikonli.javafx.FontIcon;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -227,6 +232,8 @@ public class InventoryController implements Initializable {
             TableCell<StockEntry, Integer> tableCell = new TableCell<>() {
                 Image imgEdit = new Image(getClass().getResourceAsStream("/images/book.png"));
                 final Button btnEdit = new Button();
+                FontIcon icon3 = new FontIcon("antf-book");
+
 
                 @Override
                 protected void updateItem(Integer book_id, boolean empty) {
@@ -284,14 +291,16 @@ public class InventoryController implements Initializable {
                             }
                         });
 
-                        btnEdit.setStyle("-fx-background-color: #fff;");
-                        btnEdit.setStyle("-fx-padding: 5 5 5 5;");
+                        btnEdit.setStyle("-fx-background-color: transparent;");
+
                         ImageView iv = new ImageView();
                         iv.setImage(imgEdit);
                         iv.setPreserveRatio(true);
                         iv.setSmooth(true);
                         iv.setCache(true);
-                        btnEdit.setGraphic(iv);
+                        icon3.setIconColor(Color.WHEAT);
+                        icon3.setIconSize(30);
+                        btnEdit.setGraphic(icon3);
 
                         this.setGraphic(btnEdit);
                         this.setAlignment(Pos.CENTER);
@@ -308,6 +317,7 @@ public class InventoryController implements Initializable {
             TableCell<StockEntry, Integer> tableCell = new TableCell<>() {
                 Image imgRemove = new Image(getClass().getResourceAsStream("/images/edit.png"));
                 final Button btnRemove = new Button();
+                FontIcon icon3 = new FontIcon("antf-edit");
 
 
                 @Override
@@ -393,14 +403,15 @@ public class InventoryController implements Initializable {
 
                         });
 
-                        btnRemove.setStyle("-fx-background-color: #fff;");
-                        btnRemove.setStyle("-fx-padding: 5 5 5 5;");
+                        btnRemove.setStyle("-fx-background-color: transparent;");
+                        icon3.setIconColor(Color.BLACK);
+                        icon3.setIconSize(30);
                         ImageView iv = new ImageView();
                         iv.setImage(imgRemove);
                         iv.setPreserveRatio(true);
                         iv.setSmooth(true);
                         iv.setCache(true);
-                        btnRemove.setGraphic(iv);
+                        btnRemove.setGraphic(icon3);
 
                         this.setGraphic(btnRemove);
                         this.setAlignment(Pos.CENTER);
@@ -417,6 +428,8 @@ public class InventoryController implements Initializable {
             TableCell<StockEntry, Integer> tableCell = new TableCell<>() {
                 Image imgRemove = new Image(getClass().getResourceAsStream("/images/remove.png"));
                 final Button btnRemove = new Button();
+                FontIcon icon3 = new FontIcon("antf-delete");
+
 
                 @Override
                 protected void updateItem(Integer inv_id, boolean empty) {
@@ -439,14 +452,16 @@ public class InventoryController implements Initializable {
 
                         });
 
-                        btnRemove.setStyle("-fx-background-color: #fff;");
-                        btnRemove.setStyle("-fx-padding: 5 5 5 5;");
+                        btnRemove.setStyle("-fx-background-color: transparent;");
+                        icon3.setIconColor(Color.RED);
+                        icon3.setIconSize(30);
+
                         ImageView iv = new ImageView();
                         iv.setImage(imgRemove);
                         iv.setPreserveRatio(true);
                         iv.setSmooth(true);
                         iv.setCache(true);
-                        btnRemove.setGraphic(iv);
+                        btnRemove.setGraphic(icon3);
 
                         this.setGraphic(btnRemove);
                         this.setAlignment(Pos.CENTER);
