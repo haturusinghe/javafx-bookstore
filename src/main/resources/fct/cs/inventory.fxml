@@ -16,7 +16,7 @@
       <StackPane fx:id="stackPane" prefHeight="684.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
          <children>
             <JFXDrawer fx:id="drawer" defaultDrawerSize="300.0" direction="RIGHT" onDrawerClosing="#hideDrawer" prefHeight="368.0" prefWidth="108.0" />
-                  <VBox alignment="CENTER">
+                  <VBox alignment="CENTER" >
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: #fff;">
                            <children>
@@ -32,7 +32,7 @@
                         <Insets left="20.0" />
                      </padding>
                         </HBox>
-                        <TableView fx:id="inventoryTable" onMouseClicked="#selectItem" prefHeight="626.0" prefWidth="600.0">
+                        <TableView fx:id="inventoryTable" onMouseClicked="#selectItem" prefHeight="626.0" prefWidth="600.0" >
                           <columns>
                             <TableColumn fx:id="colBookId" prefWidth="75.0" text="Book ID" />
                             <TableColumn fx:id="colListedPrice" prefWidth="75.0" text="Listed Price" />
