@@ -50,7 +50,7 @@ public class BookManager {
     public ResultSet getBooksFromDatabase(int entriesPerPage, int pageNumber)  {
         int offset = entriesPerPage * (pageNumber - 1);
         String query = "SELECT * FROM book LIMIT ?  OFFSET  ?";
-        PreparedStatement preparedStatement = null;
+       // PreparedStatement preparedStatement = null;
         ResultSet resultSet;
         try {
             preparedStatement = conn.prepareStatement(query);

@@ -30,6 +30,7 @@ create table book (
 	lang VARCHAR(50),
 	book_description VARCHAR(50)
 );
+
 insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (1, '226424542-5', 4, 'Fisher Inc', 10, 'Phalacrocorax albiventer', 1991, 547, 842, 'Chinese', 'Switchable asynchronous utilisation');
 insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (2, '782809134-6', 2, 'Ferry-Dietrich', 3, 'Cordylus giganteus', 2004, 2787, 586, 'Hungarian', 'Proactive user-facing circuit');
 insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (3, '526316243-X', 5, 'Spencer, Quigley and Stanton', 5, 'Ninox superciliaris', 2006, 1768, 830, 'Icelandic', 'Optimized uniform groupware');
@@ -216,6 +217,7 @@ create table book_category (
 	category_id INT PRIMARY KEY,
 	category_name VARCHAR(50)
 );
+
 insert into book_category (category_id, category_name) values (1, 'application');
 insert into book_category (category_id, category_name) values (2, 'Synergized');
 insert into book_category (category_id, category_name) values (3, 'systemic');
@@ -231,6 +233,7 @@ create table author (
 	author_id INT PRIMARY KEY,
 	author_name VARCHAR(50)
 );
+
 insert into author (author_id, author_name) values (1, 'Amity Dockrill');
 insert into author (author_id, author_name) values (2, 'Bale Bahike');
 insert into author (author_id, author_name) values (3, 'Winnifred Filchakov');
