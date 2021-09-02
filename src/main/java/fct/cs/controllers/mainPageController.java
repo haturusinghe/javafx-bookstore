@@ -28,6 +28,9 @@ public class mainPageController {
 
     @FXML
     private VBox contentPanel_vbox;
+
+    @FXML
+    private JFXButton loginPage;
     
 
     @FXML
@@ -78,6 +81,21 @@ public class mainPageController {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());
                 currentPage = "inventory";
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("already loaded");
+        }
+    }
+
+    public void loadLoginPage(ActionEvent actionEvent) {
+        if (!currentPage.equals("login")) {
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/login.fxml"));
+            try {
+                mainContent_vbox.getChildren().clear();
+                mainContent_vbox.getChildren().add(loader.load());
+                currentPage = "login";
             } catch (IOException e) {
                 e.printStackTrace();
             }
