@@ -29,6 +29,6 @@ public class ReportsPageController {
             System.out.println(e.getMessage());
         }
 
-        System.out.printf("test");
+        System.out.printf("test1");
     }
 }
