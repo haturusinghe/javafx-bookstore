@@ -61,7 +61,7 @@ public class LoginController  {
 
 
     @FXML
-    void login(ActionEvent event) throws IOException {
+    void loginOnAction(ActionEvent event) throws IOException {
         DatabaseConnector connect = new DatabaseConnector();
         try {
             Connection conn = connect.getConn();
@@ -75,22 +75,36 @@ public class LoginController  {
             else
             {
 
-                PreparedStatement ps = conn.prepareStatement("select * from admin where telnum=?"
-                        + " and password=?");
+                PreparedStatement ps = conn.prepareStatement("SELECT * FROM admin WHERE telnum=?"
+                        + " AND password=?");
                 ps.setString(1,txtusername.getText().trim() );
                 ps.setString(2, txtpass.getText().trim());
 
                 ResultSet rs = ps.executeQuery();
+
+                PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM admin WHERE email=?" +
+                        "AND password=?");
+                ps2.setString(1, txtusername.getText().trim());
+                ps2.setString(2, txtpass.getText().trim());
+
+                ResultSet rs2 = ps2.executeQuery();
+
                 if(rs.next()){
-                    Parent view3=FXMLLoader.load(getClass().getResource("WelcomePage.fxml"));
+                    /*Parent view3=FXMLLoader.load(getClass().getResource("WelcomePage.fxml"));
                     Scene scene3=new Scene(view3);
                     Stage window =(Stage)((Node)event.getSource()).getScene().getWindow();
                     window.setScene(scene3);
-                    window.show();
+                    window.show();*/
+                    errorMsg.setText("You are login");
                 }
 
-                else if{
-
+                else if(rs2.next()){
+                    /*Parent view3=FXMLLoader.load(getClass().getResource("WelcomePage.fxml"));
+                    Scene scene3=new Scene(view3);
+                    Stage window =(Stage)((Node)event.getSource()).getScene().getWindow();
+                    window.setScene(scene3);
+                    window.show();*/
+                    errorMsg.setText("You are login");
                 }
 
                 else {
