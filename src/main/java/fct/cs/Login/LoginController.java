@@ -55,7 +55,8 @@ public class LoginController  {
     private Button exitBtn;
 
 
-    Connection conn;
+    private Connection conn;
+    private DatabaseConnector databaseConnector;
     PreparedStatement pst;
     ResultSet rs;
 
@@ -64,8 +65,9 @@ public class LoginController  {
     @FXML
     void loginOnAction(ActionEvent event) throws IOException {
         DatabaseConnector connect = new DatabaseConnector();
+
         try {
-            Connection conn = connect.getConn();
+            this.conn = databaseConnector.getConn();
 
             String username = txtusername.getText().trim();
             String password = txtpass.getText().trim();
