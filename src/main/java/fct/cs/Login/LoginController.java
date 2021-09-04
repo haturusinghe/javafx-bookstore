@@ -69,9 +69,9 @@ public class LoginController  {
         String username = txtusername.getText().trim();
         String password = txtpass.getText().trim();
         //sql query for getting username as telnum
-        String verifyLogin_1 = "SELECT * FROM admin WHERE telnum ='" + txtusername.getText() + "' AND password ='" + txtpass.getText() + "'";
+        String verifyLogin_1 = "SELECT * FROM login WHERE telnum ='" + txtusername.getText() + "' AND password ='" + txtpass.getText() + "'";
         //sql query for getting username as telnum
-        String verifyLogin_2 = "SELECT * FROM admin WHERE email ='" + txtusername.getText() + "' AND password ='" + txtpass.getText() + "'";
+        String verifyLogin_2 = "SELECT * FROM login WHERE email ='" + txtusername.getText() + "' AND password ='" + txtpass.getText() + "'";
 
         if(username.isEmpty() || password.isEmpty()){
             errorMsg.setText("Please insert username and password");
