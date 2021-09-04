@@ -9,6 +9,7 @@ package fct.cs.Login;
         import java.sql.PreparedStatement;
         import java.sql.ResultSet;
 
+        import com.jfoenix.controls.JFXButton;
         import fct.cs.dbUtil.DatabaseConnector;
         import javafx.application.Platform;
         import javafx.event.ActionEvent;
@@ -36,7 +37,7 @@ public class LoginController  {
     private TextField txtusername;
 
     @FXML
-    private Button loginBtn;
+    private JFXButton loginBtn;
 
     @FXML
     private Label errorLabel;
