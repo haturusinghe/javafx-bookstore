@@ -5,9 +5,7 @@ package fct.cs.Login;
 
 
         import java.io.IOException;
-        import java.sql.Connection;
-        import java.sql.PreparedStatement;
-        import java.sql.ResultSet;
+        import java.sql.*;
 
         import com.jfoenix.controls.JFXButton;
         import fct.cs.dbUtil.DatabaseConnector;
@@ -61,63 +59,45 @@ public class LoginController  {
     ResultSet rs;
 
 
-
     @FXML
     void loginOnAction(ActionEvent event) throws IOException {
-        DatabaseConnector connect = new DatabaseConnector();
 
-        try {
-            this.conn = databaseConnector.getConn();
 
-            String username = txtusername.getText().trim();
-            String password = txtpass.getText().trim();
+        databaseConnector = new DatabaseConnector();
+        this.conn = databaseConnector.getConn();
 
-            if(username.isEmpty() || password.isEmpty()){
-                errorMsg.setText("Please insert username and password");
-            }
-            else
-            {
+        String username = txtusername.getText().trim();
+        String password = txtpass.getText().trim();
+        //sql query for getting username as telnum
+        String verifyLogin_1 = "SELECT * FROM admin WHERE telnum ='" + txtusername.getText() + "' AND password ='" + txtpass.getText() + "'";
+        //sql query for getting username as telnum
+        String verifyLogin_2 = "SELECT * FROM admin WHERE email ='" + txtusername.getText() + "' AND password ='" + txtpass.getText() + "'";
 
-                PreparedStatement ps = conn.prepareStatement("SELECT * FROM admin WHERE telnum=?"
-                        + " AND password=?");
-                ps.setString(1,txtusername.getText().trim() );
-                ps.setString(2, txtpass.getText().trim());
+        if(username.isEmpty() || password.isEmpty()){
+            errorMsg.setText("Please insert username and password");
+        }else{
+            try {
 
-                ResultSet rs = ps.executeQuery();
+                Statement statement_1 = conn.createStatement();
+                ResultSet queryResult_1 = statement_1.executeQuery(verifyLogin_1);
 
-                PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM admin WHERE email=?" +
-                        "AND password=?");
-                ps2.setString(1, txtusername.getText().trim());
-                ps2.setString(2, txtpass.getText().trim());
+                Statement statement_2 = conn.createStatement();
+                ResultSet queryResult_2 = statement_2.executeQuery(verifyLogin_2);
 
-                ResultSet rs2 = ps2.executeQuery();
+                while (queryResult_1.next() || queryResult_2.next()){
 
-                if(rs.next()){
-                    /*Parent view3=FXMLLoader.load(getClass().getResource("WelcomePage.fxml"));
-                    Scene scene3=new Scene(view3);
-                    Stage window =(Stage)((Node)event.getSource()).getScene().getWindow();
-                    window.setScene(scene3);
-                    window.show();*/
-                    errorMsg.setText("You are login");
+                    if (queryResult_1.getInt(1) == 1 || queryResult_2.getInt(1) == 1){
+                        errorMsg.setText("You are login");
+                    }else {
+                        errorMsg.setText("Invalid credentials. Please try again");
+                    }
                 }
 
-                else if(rs2.next()){
-                    /*Parent view3=FXMLLoader.load(getClass().getResource("WelcomePage.fxml"));
-                    Scene scene3=new Scene(view3);
-                    Stage window =(Stage)((Node)event.getSource()).getScene().getWindow();
-                    window.setScene(scene3);
-                    window.show();*/
-                    errorMsg.setText("You are login");
-                }
-
-                else {
-                    errorMsg.setText("Invalid credentials. Please try again");
-                }
-            }
-        }
-        catch(Exception ex){
+            }catch(Exception ex){
             System.out.println("error" + ex.toString());
         }
+        }
+
 
     }
 
