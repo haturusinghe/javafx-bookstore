@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="mainAnchor" maxHeight="720.0" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" stylesheets="@styles/navigator.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.controllers.mainPageController">
+<AnchorPane fx:id="mainAnchor" maxHeight="720.0" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" stylesheets="@styles/navigator.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.controllers.mainPageController" >
    <children>
       <HBox fx:id="main_hbox" maxWidth="720.0" minHeight="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

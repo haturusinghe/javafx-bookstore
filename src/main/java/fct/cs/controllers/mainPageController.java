@@ -91,7 +91,7 @@ public class mainPageController {
 
     public void loadLoginPage(ActionEvent actionEvent) {
         if (!currentPage.equals("login")) {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/login.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/Register.fxml"));
             try {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());

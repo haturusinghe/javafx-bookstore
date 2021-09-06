@@ -96,7 +96,13 @@ public class LoginController  {
 
                 if(rs_1.next() || rs_2.next()){
                     System.out.println("Found");
-                    errorMsg.setText("login");
+                    Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/Register.fxml"));
+                    Scene scene = new Scene(view);
+                    Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    window.setScene(scene);
+                    window.show();
+
+
                 }
 
                 else {
