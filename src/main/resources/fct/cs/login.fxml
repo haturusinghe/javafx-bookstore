@@ -21,7 +21,7 @@
          <children>
             <Label layoutX="26.0" layoutY="70.0" prefHeight="42.0" prefWidth="134.0" text="Login">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="21.0" />
                </font>
             </Label>
             <Label layoutX="26.0" layoutY="137.0" prefHeight="21.0" prefWidth="134.0" text="Login to your account" />
@@ -31,10 +31,10 @@
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <TextField fx:id="txtusername" layoutX="26.0" layoutY="217.0" prefHeight="33.0" prefWidth="265.0" promptText="Email or Phone Number" />
+            <TextField fx:id="txtUsername" layoutX="26.0" layoutY="217.0" prefHeight="33.0" prefWidth="265.0" promptText="Email or Phone Number" />
             <Label layoutX="93.0" layoutY="192.0" prefHeight="17.0" prefWidth="197.0" textFill="#ff1a1a" />
             <Label layoutX="26.0" layoutY="250.0" prefHeight="33.0" prefWidth="134.0" text="Password" />
-            <PasswordField fx:id="txtpass" layoutX="26.0" layoutY="283.0" prefHeight="33.0" prefWidth="265.0" promptText="Password" />
+            <PasswordField fx:id="txtPass" layoutX="26.0" layoutY="283.0" prefHeight="33.0" prefWidth="265.0" promptText="Password" />
             <Hyperlink layoutX="192.0" layoutY="316.0" text="Fogot Password?" />
             <Label fx:id="errorMsg" layoutX="27.0" layoutY="339.0" prefHeight="21.0" prefWidth="265.0" textFill="#ff1a1a" />
             <Label layoutX="37.0" layoutY="421.0" prefHeight="21.0" prefWidth="145.0" text="Don't have an account yet?" />
