@@ -551,6 +551,7 @@ public class EmployeeController implements Initializable {
 
         categoryCombo.setItems(categoryList);
     }
+
 }
 
 

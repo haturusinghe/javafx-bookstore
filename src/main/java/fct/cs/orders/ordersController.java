@@ -1,4 +1,4 @@
-package fct.cs.controllers;
+package fct.cs.orders;
 
 import fct.cs.data.Order;
 import fct.cs.data.OrderDetailEntry;

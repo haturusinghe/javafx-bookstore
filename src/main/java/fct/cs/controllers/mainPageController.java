@@ -13,6 +13,7 @@ import java.io.IOException;
 public class mainPageController {
 
     public HBox header_hbox;
+
     public JFXButton inventoryPage;
     @FXML
     private JFXButton orderBtn;
@@ -28,7 +29,6 @@ public class mainPageController {
 
     @FXML
     private VBox contentPanel_vbox;
-    
 
     @FXML
     private VBox contentAnchor;
@@ -53,8 +53,6 @@ public class mainPageController {
         }
 //        EmployeeController childController = loader.getController();
     }
-
-
 
     public void loadOrdersPage(ActionEvent actionEvent) {
         if (!currentPage.equals("orders")) {
