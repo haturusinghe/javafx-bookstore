@@ -6,60 +6,71 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="743.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-   <right>
-      <AnchorPane prefHeight="530.0" prefWidth="330.0" BorderPane.alignment="CENTER">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox layoutX="3.0" layoutY="-3.0" prefHeight="685.0" prefWidth="1030.0">
          <children>
-            <Label layoutX="14.0" layoutY="7.0" prefHeight="35.0" prefWidth="110.0" text="Bill">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label layoutY="42.0" prefHeight="13.0" prefWidth="93.0" text="Customer:">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label layoutX="94.0" layoutY="42.0" prefHeight="30.0" prefWidth="124.0" text="name">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <TableView layoutX="6.0" layoutY="79.0" prefHeight="277.0" prefWidth="299.0">
-              <columns>
-                <TableColumn prefWidth="206.40002155303955" text="item" />
-                <TableColumn prefWidth="96.80000305175781" text="price" />
-              </columns>
-            </TableView>
-            <Label layoutX="204.0" layoutY="357.0" prefHeight="22.0" prefWidth="109.0" text="Total : 1234" />
-            <Label layoutX="203.0" layoutY="379.0" prefHeight="27.0" prefWidth="111.0" text="discount: 10" />
-            <Label layoutX="203.0" layoutY="406.0" prefHeight="27.0" prefWidth="111.0" text="final price: 2344" />
-            <Button layoutX="20.0" layoutY="449.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="168.0" text="Charge Customer" />
-            <Button layoutX="210.0" layoutY="449.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="97.0" text="Cancel" />
+            <AnchorPane prefHeight="686.0" prefWidth="622.0" />
+            <AnchorPane prefHeight="686.0" prefWidth="402.0">
+               <children>
+                  <Label layoutX="6.0" layoutY="7.0" prefHeight="66.0" prefWidth="104.0" text="Bill">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="6.0" layoutY="63.0" prefHeight="66.0" prefWidth="127.0" text="Customer: ">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="133.0" layoutY="63.0" prefHeight="66.0" prefWidth="127.0" text="Name">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TableView layoutX="4.0" layoutY="143.0" prefHeight="229.0" prefWidth="394.0">
+                    <columns>
+                      <TableColumn prefWidth="181.59998178482056" text="item" />
+                      <TableColumn prefWidth="68.79998779296875" text="unit_price" />
+                        <TableColumn prefWidth="50.40008544921875" text="qty" />
+                        <TableColumn prefWidth="93.60009765625" text="total" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="245.0" layoutY="373.0" prefHeight="30.0" prefWidth="56.0" text="Total :" textAlignment="RIGHT">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="301.0" layoutY="373.0" prefHeight="30.0" prefWidth="90.0" text="11234">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="223.0" layoutY="403.0" prefHeight="30.0" prefWidth="64.0" text="Discount :" textAlignment="RIGHT">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="301.0" layoutY="405.0" prefHeight="24.0" prefWidth="56.0" text="10%" />
+                  <Label layoutX="215.0" layoutY="433.0" prefHeight="30.0" prefWidth="77.0" text="Final total :" textAlignment="RIGHT">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="301.0" layoutY="433.0" prefHeight="30.0" prefWidth="77.0" text="12345" textAlignment="RIGHT">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="14.0" layoutY="531.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="262.0" text="Charge Customer" />
+                  <Button layoutX="288.0" layoutY="531.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="104.0" text="Cancel" />
+               </children>
+            </AnchorPane>
          </children>
-      </AnchorPane>
-   </right>
-   <center>
-      <AnchorPane prefHeight="530.0" prefWidth="424.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button layoutX="250.0" layoutY="28.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Button" />
-            <TextField layoutX="25.0" layoutY="26.0" prefHeight="34.0" prefWidth="213.0" />
-            <Label layoutX="24.0" layoutY="79.0" prefHeight="39.0" prefWidth="158.0" text="Select a Customer:">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <TableView layoutX="14.0" layoutY="135.0" prefHeight="383.0" prefWidth="384.0">
-              <columns>
-                <TableColumn prefWidth="291.19999408721924" text="C1" />
-                <TableColumn prefWidth="76.79998779296875" text="C2" />
-              </columns>
-            </TableView>
-         </children>
-      </AnchorPane>
-   </center>
-</BorderPane>
+      </HBox>
+   </children>
+</AnchorPane>
