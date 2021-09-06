@@ -254,7 +254,7 @@ public class InventoryController implements Initializable {
                             System.out.println(currentBook.toString());
 
                             try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/book-details.fxml"));
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/show-book.fxml"));
                                 VBox box = loader.load();
                                 BookPanelController controller = loader.getController();
 
