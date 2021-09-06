@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fct.cs.Billing"
-            prefHeight="400.0" prefWidth="600.0">
 
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="743.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <right>
+      <AnchorPane prefHeight="530.0" prefWidth="318.0" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <AnchorPane prefHeight="530.0" prefWidth="424.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="250.0" layoutY="28.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Button" />
+            <TextField layoutX="25.0" layoutY="26.0" prefHeight="34.0" prefWidth="213.0" />
+            <Label layoutX="24.0" layoutY="79.0" prefHeight="39.0" prefWidth="158.0" text="Select a Customer">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TableView layoutX="14.0" layoutY="135.0" prefHeight="383.0" prefWidth="384.0">
+              <columns>
+                <TableColumn prefWidth="291.19999408721924" text="C1" />
+                <TableColumn prefWidth="76.79998779296875" text="C2" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
