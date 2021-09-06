@@ -1,5 +1,7 @@
 package fct.cs.dbUtil;
 
+import javafx.scene.control.Alert;
+
 import java.sql.*;
 
 public class DatabaseConnector {
@@ -8,9 +10,21 @@ public class DatabaseConnector {
     private static String PASS = "";
     private static String DB_URL = "jdbc:mysql://localhost:3306/bookstore";
 
-    private Connection conn;
+    private static Connection conn = null;
 
-    public DatabaseConnector() {
+
+
+    static
+    {
+        try {
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+        }
+        catch (SQLException e) {
+            errorAlert(e.getLocalizedMessage());
+        }
+    }
+
+    /*public DatabaseConnector() {
         createConnection();
     }
 
@@ -21,9 +35,9 @@ public class DatabaseConnector {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
-    public Connection getConn() {
+    public static Connection getConn() {
         return conn;
     }
 
@@ -36,5 +50,13 @@ public class DatabaseConnector {
             System.out.println("Error Closing");
             e.printStackTrace();
         }
+    }
+
+    private static void errorAlert(String e){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error!.");
+        alert.setHeaderText(null);
+        alert.setContentText(e);
+        alert.showAndWait();
     }
 }

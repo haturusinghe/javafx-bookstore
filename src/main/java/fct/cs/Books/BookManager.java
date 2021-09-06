@@ -10,15 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class BookManager {
-    private DatabaseConnector databaseConnector;
-    private Connection conn;
+//    private DatabaseConnector databaseConnector;
+    private static Connection conn = DatabaseConnector.getConn();
 
-    public BookManager() {
-        databaseConnector = new DatabaseConnector();
-        this.conn = databaseConnector.getConn();
-    }
-
-    public ArrayList<Book> getBookList(int entriesPerPage, int pageNumber){
+    public static ArrayList<Book> getBookList(int entriesPerPage, int pageNumber){
         ResultSet rs = getBooksFromDatabase(entriesPerPage, pageNumber);
         ArrayList<Book> bookList = new ArrayList<>();
         //book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description
@@ -47,7 +42,7 @@ public class BookManager {
 
 
 
-    public ResultSet getBooksFromDatabase(int entriesPerPage, int pageNumber)  {
+    public static ResultSet getBooksFromDatabase(int entriesPerPage, int pageNumber)  {
         int offset = entriesPerPage * (pageNumber - 1);
         String query = "SELECT * FROM book LIMIT ?  OFFSET  ?";
         PreparedStatement preparedStatement = null;
