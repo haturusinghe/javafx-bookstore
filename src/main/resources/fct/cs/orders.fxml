@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox alignment="CENTER" prefHeight="214.0" prefWidth="266.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.controllers.ordersController">
+<VBox alignment="CENTER" prefHeight="214.0" prefWidth="266.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.orders.ordersController">
    <children>
       <TextField fx:id="pageCount_txtField" promptText="Page" />
       <TextField fx:id="numEntries_txtField" promptText="Entries" />

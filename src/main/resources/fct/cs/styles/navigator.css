@@ -23,12 +23,18 @@
 	
     -fx-background-insets: 0,0,0,0;
     -fx-padding: 0 0 0 15;
-    
+    -fx-focus-color: transparent;
    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
 }
-
+#header_label{
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+	-fx-alignment: center-left;
+	-fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+	-fx-padding: 10;
+}
 .side-nav-button:hover{
-	-fx-background-color: #fff;
+	-fx-background-color: #595B5D;
 	
 }
 

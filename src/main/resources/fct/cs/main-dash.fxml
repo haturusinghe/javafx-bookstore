@@ -84,7 +84,7 @@
                         <HBox fx:id="header_hbox" alignment="CENTER_LEFT" prefHeight="124.0" prefWidth="1030.0"
                               styleClass="content-header">
                             <children>
-                                <Label text="Label"/>
+                                <Label id="header_label" text="Dashboard"/>
                             </children>
                         </HBox>
                         <Separator prefWidth="200.0"/>
