@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="685.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.SelectCustomerBill">
+   <children>
+      <TextField layoutX="63.0" layoutY="25.0" prefHeight="36.0" prefWidth="164.0" />
+      <Button layoutX="258.0" layoutY="28.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="63.0" text="Search" />
+      <Label layoutX="27.0" layoutY="84.0" prefHeight="36.0" prefWidth="145.0" text="Select a Customer :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TableView layoutX="6.0" layoutY="128.0" prefHeight="557.0" prefWidth="614.0">
+        <columns>
+          <TableColumn prefWidth="488.00004291534424" />
+          <TableColumn prefWidth="125.59991455078125" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
