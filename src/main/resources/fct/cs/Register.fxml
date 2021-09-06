@@ -46,7 +46,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </MFXDatePicker>
-                  <MFXCheckbox fx:id="checkBox" layoutX="41.0" layoutY="450.0" markType="mfx-variant9-mark" text="mkk hri liynn methntath">
+                  <MFXCheckbox fx:id="checkBox" layoutX="45.0" layoutY="467.0" markType="mfx-variant9-mark" text="mkk hri liynn methntath">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -57,8 +57,8 @@
                      </font>
                   </Label>
                   <Hyperlink fx:id="hyperlinkLogin" layoutX="194.0" layoutY="563.0" prefHeight="23.0" prefWidth="46.0" text="Log In" />
-                  <JFXButton fx:id="signBtn" layoutX="47.0" layoutY="517.0" onAction="#signOnAction" prefHeight="36.0" prefWidth="163.0" text="Create Account" />
-                  <Label fx:id="errLabel" layoutX="49.0" layoutY="488.0" prefHeight="20.0" prefWidth="265.0">
+                  <JFXButton fx:id="signBtn" layoutX="47.0" layoutY="527.0" onAction="#signOnAction" prefHeight="36.0" prefWidth="163.0" text="Create Account" />
+                  <Label fx:id="errLabel" layoutX="49.0" layoutY="498.0" prefHeight="20.0" prefWidth="265.0">
                      <font>
                         <Font size="13.0" />
                      </font>

@@ -21,12 +21,15 @@ import javafx.scene.control.Hyperlink;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ResourceBundle;
+
+import javafx.scene.control.PasswordField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -78,6 +81,8 @@ public class RegisterController implements Initializable {
         );
 
 
+
+
         //errLabel.getValidator().add(checkboxValidation, "Checkbox must be selected");
         //firstName.getValidator().add(datePickerValidation, "Selected date must be 03/10/1911");
         //validated.setValidated(true);
@@ -108,6 +113,27 @@ public class RegisterController implements Initializable {
                 ),
                 "Must contain at least one among these: ?!@()[]{}-_"
         );
+
+        String passGet = passwordGet.getPassword();
+        String passCheck = passwordCheck.getPassword();
+
+        /*passwordCheck.setValidated(true);
+        passwordCheck.getValidator().add(BindingUtils.toProperty(
+                        Bindings.createBooleanBinding()
+                ),
+                "Password must be same"
+        );*/
+        passwordCheck.setValidated(true);
+        passwordCheck.getValidator().add(
+                BindingUtils.toProperty(
+                        passwordCheck.passwordProperty().isEqualTo(passwordGet.getPassword())
+                ),
+                "same"
+        );
+        passwordCheck.setValidated(true);
+
+
+
     }
 
     private Connection conn;
