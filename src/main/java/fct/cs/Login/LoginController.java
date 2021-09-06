@@ -9,6 +9,8 @@ package fct.cs.Login;
 
         import com.jfoenix.controls.JFXButton;
         import fct.cs.dbUtil.DatabaseConnector;
+        import io.github.palexdev.materialfx.controls.MFXPasswordField;
+        import io.github.palexdev.materialfx.controls.MFXTextField;
         import javafx.application.Platform;
         import javafx.event.ActionEvent;
         import javafx.fxml.FXML;
@@ -32,7 +34,7 @@ public class LoginController  {
     private Label label;
 
     @FXML
-    private TextField txtUsername;
+    private MFXTextField txtUsername;
 
     @FXML
     private JFXButton loginBtn;
@@ -44,7 +46,7 @@ public class LoginController  {
     private Label errorMsg;
 
     @FXML
-    private PasswordField txtPass;
+    private MFXPasswordField txtPass;
 
     @FXML
     private Button forgotBtn;
@@ -102,46 +104,9 @@ public class LoginController  {
                     errorMsg.setText("Invalid credentials. Please try again");
                 }
             }
-        }
-        catch(Exception ex){
+        }catch(Exception ex){
             System.out.println("error" + ex.toString());
         }
-
-        /*this.conn = databaseConnector.getConn();
-
-        String username = txtUsername.getText().trim();
-        String password = txtPass.getText().trim();
-        //sql query for getting username as telnum
-        String verifyLogin_1 = "SELECT * FROM login WHERE telnum ='" + username + "' AND password ='" + password + "'";
-        //sql query for getting username as telnum
-        String verifyLogin_2 = "SELECT * FROM login WHERE email ='" + username + "' AND password ='" + password + "'";
-
-        if(username.isEmpty() || password.isEmpty()){
-            errorMsg.setText("Please insert username and password");
-        }else{
-            try {
-
-                Statement statement_1 = conn.createStatement();
-                ResultSet queryResult_1 = statement_1.executeQuery(verifyLogin_1);
-
-                Statement statement_2 = conn.createStatement();
-                ResultSet queryResult_2 = statement_2.executeQuery(verifyLogin_2);
-
-                while (queryResult_1.next() && queryResult_2.next()){
-
-                    if (queryResult_1.getInt(1) == 1 || queryResult_2.getInt(1) == 1){
-                        errorMsg.setText("You are login");
-                    }else {
-                        errorMsg.setText("Invalid credentials. Please try again");
-                    }
-                }
-
-            }catch(Exception ex){
-                System.out.println("error" + ex.toString());
-            }*/
-
-
-
     }
 
     @FXML

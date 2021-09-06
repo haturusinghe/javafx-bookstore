@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="600.0" prefWidth="241.0">
+         <children>
+            <ImageView fitHeight="600.0" fitWidth="241.0" layoutX="-2.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <VBox prefHeight="600.0" prefWidth="479.0">
+         <children>
+            <AnchorPane prefHeight="600.0" prefWidth="479.0">
+               <children>
+                  <Label layoutX="48.0" layoutY="55.0" prefHeight="36.0" prefWidth="161.0" text="Register">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="48.0" layoutY="119.0" prefHeight="36.0" prefWidth="161.0" text="mokk hri liyahn methnta">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <MFXTextField fx:id="firstName" alignment="CENTER" layoutX="48.0" layoutY="200.0" prefHeight="29.0" prefWidth="197.0" promptText="First Name" />
+                  <MFXTextField fx:id="lastName" alignment="CENTER" layoutX="262.0" layoutY="200.0" prefHeight="29.0" prefWidth="197.0" promptText="Last Name" />
+                  <MFXTextField fx:id="telNum" alignment="CENTER" layoutX="48.0" layoutY="272.0" prefHeight="29.0" prefWidth="197.0" promptText="Phone Number" />
+                  <MFXTextField fx:id="emailAddress" alignment="CENTER" layoutX="48.0" layoutY="337.0" prefHeight="29.0" prefWidth="302.0" promptText="Email" />
+                  <MFXPasswordField fx:id="passwordGet" layoutX="47.0" layoutY="399.0" prefHeight="36.0" prefWidth="163.0" promptText="Password" />
+                  <MFXPasswordField fx:id="passwordCheck" layoutX="262.0" layoutY="399.0" prefHeight="36.0" prefWidth="163.0" promptText="Confirm Password " />
+                  <MFXDatePicker fx:id="datePicker" layoutX="266.0" layoutY="271.0" lineStrokeCap="SQUARE" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="189.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </MFXDatePicker>
+                  <MFXCheckbox fx:id="checkBox" layoutX="41.0" layoutY="450.0" markType="mfx-variant9-mark" text="mkk hri liynn methntath">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </MFXCheckbox>
+                  <JFXButton fx:id="signBtn" layoutX="49.0" layoutY="517.0" onAction="#signOnAction" prefHeight="36.0" prefWidth="153.0" text="Create Account" />
+                  <Label layoutX="41.0" layoutY="564.0" prefHeight="20.0" prefWidth="153.0" text="Already have an account?">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Hyperlink fx:id="hyperlinkLogin" layoutX="194.0" layoutY="563.0" prefHeight="23.0" prefWidth="46.0" text="Log In" />
+                  <Label fx:id="errLable" layoutX="49.0" layoutY="489.0" prefHeight="20.0" prefWidth="257.0">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</HBox>
