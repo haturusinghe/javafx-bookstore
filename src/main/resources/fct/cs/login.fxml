@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -21,24 +21,22 @@
          <children>
             <Label layoutX="26.0" layoutY="70.0" prefHeight="42.0" prefWidth="134.0" text="Login">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="21.0" />
                </font>
             </Label>
             <Label layoutX="26.0" layoutY="137.0" prefHeight="21.0" prefWidth="134.0" text="Login to your account" />
-            <Label layoutX="26.0" layoutY="184.0" prefHeight="33.0" prefWidth="63.0" text="Username" />
             <JFXButton fx:id="loginBtn" buttonType="RAISED" layoutX="25.0" layoutY="374.0" onAction="#loginOnAction" prefHeight="33.0" prefWidth="265.0" ripplerFill="#723fff" text="Sign In">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <TextField fx:id="txtusername" layoutX="26.0" layoutY="217.0" prefHeight="33.0" prefWidth="265.0" promptText="Email or Phone Number" />
             <Label layoutX="93.0" layoutY="192.0" prefHeight="17.0" prefWidth="197.0" textFill="#ff1a1a" />
-            <Label layoutX="26.0" layoutY="250.0" prefHeight="33.0" prefWidth="134.0" text="Password" />
-            <PasswordField fx:id="txtpass" layoutX="26.0" layoutY="283.0" prefHeight="33.0" prefWidth="265.0" promptText="Password" />
             <Hyperlink layoutX="192.0" layoutY="316.0" text="Fogot Password?" />
             <Label fx:id="errorMsg" layoutX="27.0" layoutY="339.0" prefHeight="21.0" prefWidth="265.0" textFill="#ff1a1a" />
             <Label layoutX="37.0" layoutY="421.0" prefHeight="21.0" prefWidth="145.0" text="Don't have an account yet?" />
             <Hyperlink layoutX="182.0" layoutY="420.0" prefHeight="0.0" prefWidth="98.0" text="Register now" />
+            <MFXTextField fx:id="txtUsername" layoutX="26.0" layoutY="209.0" prefHeight="33.0" prefWidth="265.0" promptText="Phone Number or Email" />
+            <MFXPasswordField fx:id="txtPass" layoutX="26.0" layoutY="269.0" prefHeight="33.0" prefWidth="231.0" promptText="Password" />
          </children>
       </AnchorPane>
    </children>
