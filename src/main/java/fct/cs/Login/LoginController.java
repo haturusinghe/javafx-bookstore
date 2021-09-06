@@ -32,7 +32,7 @@ public class LoginController  {
     private Label label;
 
     @FXML
-    private TextField txtusername;
+    private TextField txtUsername;
 
     @FXML
     private JFXButton loginBtn;
@@ -44,7 +44,7 @@ public class LoginController  {
     private Label errorMsg;
 
     @FXML
-    private PasswordField txtpass;
+    private PasswordField txtPass;
 
     @FXML
     private Button forgotBtn;
@@ -63,15 +63,58 @@ public class LoginController  {
     void loginOnAction(ActionEvent event) throws IOException {
 
 
-        databaseConnector = new DatabaseConnector();
-        this.conn = databaseConnector.getConn();
+        DatabaseConnector databaseConnector = new DatabaseConnector();
 
-        String username = txtusername.getText().trim();
-        String password = txtpass.getText().trim();
+        try {
+            this.conn = databaseConnector.getConn();
+
+            String username = txtUsername.getText().trim();
+            String password = txtPass.getText().trim();
+
+            if(username.isEmpty() || password.isEmpty()){
+                errorMsg.setText("Please insert username and password");
+            }
+            else
+            {
+                //sql query for getting username as telnum
+                PreparedStatement ps_1 = conn.prepareStatement("select * from login where telnum=?"
+                        + " and password=?");
+                //sql query for getting username as email
+                PreparedStatement ps_2 = conn.prepareStatement("select * from login where email=?"
+                        + " and password=?");
+
+                ps_1.setString(1,txtUsername.getText().trim() );
+                ps_1.setString(2, txtPass.getText().trim());
+
+                ps_2.setString(1,txtUsername.getText().trim() );
+                ps_2.setString(2, txtPass.getText().trim());
+
+                ResultSet rs_1 = ps_1.executeQuery();
+                ResultSet rs_2 = ps_2.executeQuery();
+
+                if(rs_1.next() || rs_2.next()){
+                    System.out.println("Found");
+                    errorMsg.setText("login");
+                }
+
+                else {
+                    System.out.println("Not Found");
+                    errorMsg.setText("Invalid credentials. Please try again");
+                }
+            }
+        }
+        catch(Exception ex){
+            System.out.println("error" + ex.toString());
+        }
+
+        /*this.conn = databaseConnector.getConn();
+
+        String username = txtUsername.getText().trim();
+        String password = txtPass.getText().trim();
         //sql query for getting username as telnum
-        String verifyLogin_1 = "SELECT * FROM login WHERE telnum ='" + txtusername.getText() + "' AND password ='" + txtpass.getText() + "'";
+        String verifyLogin_1 = "SELECT * FROM login WHERE telnum ='" + username + "' AND password ='" + password + "'";
         //sql query for getting username as telnum
-        String verifyLogin_2 = "SELECT * FROM login WHERE email ='" + txtusername.getText() + "' AND password ='" + txtpass.getText() + "'";
+        String verifyLogin_2 = "SELECT * FROM login WHERE email ='" + username + "' AND password ='" + password + "'";
 
         if(username.isEmpty() || password.isEmpty()){
             errorMsg.setText("Please insert username and password");
@@ -84,7 +127,7 @@ public class LoginController  {
                 Statement statement_2 = conn.createStatement();
                 ResultSet queryResult_2 = statement_2.executeQuery(verifyLogin_2);
 
-                while (queryResult_1.next() || queryResult_2.next()){
+                while (queryResult_1.next() && queryResult_2.next()){
 
                     if (queryResult_1.getInt(1) == 1 || queryResult_2.getInt(1) == 1){
                         errorMsg.setText("You are login");
@@ -94,9 +137,9 @@ public class LoginController  {
                 }
 
             }catch(Exception ex){
-            System.out.println("error" + ex.toString());
-        }
-        }
+                System.out.println("error" + ex.toString());
+            }*/
+
 
 
     }
