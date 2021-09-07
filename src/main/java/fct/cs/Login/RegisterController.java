@@ -9,14 +9,15 @@ import io.github.palexdev.materialfx.utils.BindingUtils;
 import io.github.palexdev.materialfx.utils.StringUtils;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.fxml.FXML;
-import javafx.scene.control.Hyperlink;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -29,13 +30,17 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ResourceBundle;
 
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class RegisterController implements Initializable {
+
+    ObservableList<String> questionBoxList = FXCollections.observableArrayList("What's your pet's name?","What's your favorite food?","Who was your childhood hero?");
+
 
     @FXML
     private MFXTextField firstName;
@@ -59,6 +64,12 @@ public class RegisterController implements Initializable {
     private MFXPasswordField passwordCheck;
 
     @FXML
+    private MFXComboBox quesBox;
+
+    @FXML
+    private MFXTextField ansField;
+
+    @FXML
     private MFXCheckbox checkBox;
 
     @FXML
@@ -70,24 +81,23 @@ public class RegisterController implements Initializable {
     @FXML
     private Hyperlink hyperlinkLogin;
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        BooleanProperty checkboxValidation = BindingUtils.toProperty(
-                Bindings.createBooleanBinding(
-                        () -> checkBox.isSelected(),
-                        checkBox.selectedProperty()
-                )
+        //quesBox.s("Choose your question");
+        quesBox.setItems(questionBoxList);
+
+        emailAddress.setValidated(true);
+        emailAddress.getValidator().add(BindingUtils.toProperty(
+                        Bindings.createBooleanBinding(
+                                () -> StringUtils.containsAny(emailAddress.getText(),
+                                        "",  "@", "."),
+                                passwordGet.passwordProperty()
+                        )
+                ),
+                "You must enter valid Email Address"
         );
-
-
-
-
-        //errLabel.getValidator().add(checkboxValidation, "Checkbox must be selected");
-        //firstName.getValidator().add(datePickerValidation, "Selected date must be 03/10/1911");
-        //validated.setValidated(true);
-        //validated.setIcon(new MFXFontIcon("mfx-variant7-mark", 16, Color.web("#8FF7A7")));
-        //validated.getIcon().visibleProperty().bind(validated.getValidator().validProperty());
 
         passwordGet.setValidated(true);
         passwordGet.getValidator().add(
@@ -114,24 +124,6 @@ public class RegisterController implements Initializable {
                 "Must contain at least one among these: ?!@()[]{}-_"
         );
 
-        String passGet = passwordGet.getPassword();
-        String passCheck = passwordCheck.getPassword();
-
-        /*passwordCheck.setValidated(true);
-        passwordCheck.getValidator().add(BindingUtils.toProperty(
-                        Bindings.createBooleanBinding()
-                ),
-                "Password must be same"
-        );*/
-        passwordCheck.setValidated(true);
-        passwordCheck.getValidator().add(
-                BindingUtils.toProperty(
-                        passwordCheck.passwordProperty().isEqualTo(passwordGet.getPassword())
-                ),
-                "same"
-        );
-        passwordCheck.setValidated(true);
-
 
 
     }
@@ -150,35 +142,97 @@ public class RegisterController implements Initializable {
             String fName = firstName.getText().trim();
             String lName = lastName.getText().trim();
             String pNum = telNum.getText().trim();
+            LocalDate picker = datePicker.getDate();
             String email = emailAddress.getText().trim();
             String passGet = passwordGet.getText().trim();
             String passCheck = passwordCheck.getText().trim();
-            String dob = datePicker.getTypeSelector();
 
-            if (fName.isEmpty()){
+            if (fName.isEmpty() && lName.isEmpty() && pNum.isEmpty() && email.isEmpty() && passGet.isEmpty() && passCheck.isEmpty()){
+                errLabel.setText("You must need insert All field");
+            }
+            else if (fName.isEmpty() || lName.isEmpty() || pNum.isEmpty() || email.isEmpty() || passGet.isEmpty() || passCheck.isEmpty()  ){
+
+
+
+                //check firstname validation
                 firstName.setValidated(true);
                 firstName.getValidator().add(
                         BindingUtils.toProperty(
-                                firstName.textProperty().isEmpty()
+                                firstName.textProperty().length().isNotEqualTo(0)
                         ),
-                        "You Must be fill this"
+                        "You need enter your first name"
                 );
+
+                //check lastname validation
+                lastName.setValidated(true);
+                lastName.getValidator().add(
+                        BindingUtils.toProperty(
+                                lastName.textProperty().length().isNotEqualTo(0)
+                        ),
+                        "You need enter your last name"
+                );
+
+                //check telnum validation
+                telNum.setValidated(true);
+                telNum.getValidator().add(
+                        BindingUtils.toProperty(
+                                telNum.textProperty().length().isNotEqualTo(0)
+                        ),
+                        "You need enter your Phone Number"
+                );
+
+                //check email validation
+                emailAddress.setValidated(true);
+                emailAddress.getValidator().add(
+                        BindingUtils.toProperty(
+                                emailAddress.textProperty().length().isNotEqualTo(0)
+                        ),
+                        "You need enter your email address"
+                );
+
+                //check passwaordget validation
+                passwordGet.setValidated(true);
+                passwordGet.getValidator().add(
+                        BindingUtils.toProperty(
+                                passwordGet.passwordProperty().length().isNotEqualTo(0)
+                        ),
+                        "You need enter your password"
+                );
+
+                //check passwaordcheck validation
+                passwordCheck.setValidated(true);
+                passwordCheck.getValidator().add(
+                        BindingUtils.toProperty(
+                                passwordCheck.passwordProperty().length().isNotEqualTo(0)
+                        ),
+                        "You need enter your password Again"
+                );
+
+
+
+
+
+
+            }else if(passGet != passCheck){
+
+                passwordCheck.setValidated(true);
+                passwordCheck.getValidator().add(
+                        BindingUtils.toProperty(
+                                passwordCheck.passwordProperty().isEqualTo(passwordGet.getPassword())
+                        ),
+                        "You need enter same password"
+                );
+
             }
 
-            /*String username = firstName.getText().trim();
-            //String password = txtPass.getText().trim();
-
-            if(username.isEmpty() || password.isEmpty()){
-                //errorMsg.setText("Please insert username and password");
-            }
             else
             {
                 //sql query for getting username as telnum
                 //PreparedStatement ps_1 = conn.prepareStatement("select * from login where telnum=?"
-                        + " and password=?");
+                       // " and password=?");
                 //sql query for getting username as email
                 //PreparedStatement ps_2 = conn.prepareStatement("select * from login where email=?"
-                        + " and password=?");
+                        //" and password=?");
 
                 //ps_1.setString(1,txtUsername.getText().trim() );
                 //ps_1.setString(2, txtPass.getText().trim());
@@ -190,21 +244,21 @@ public class RegisterController implements Initializable {
                 //ResultSet rs_2 = ps_2.executeQuery();
 
                 //if(rs_1.next() || rs_2.next()){
-                    System.out.println("Found");
+                   /*ystem.out.println("Found");
                     Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/Register.fxml"));
                     Scene scene = new Scene(view);
                     Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
                     window.setScene(scene);
-                    window.show();
+                    window.show();*/
 
 
                 }
 
-                else {
-                    System.out.println("Not Found");
+                //se {
+                  //System.out.println("Not Found");
                     //errorMsg.setText("Invalid credentials. Please try again");
-                }
-            }*/
+               //
+
         }catch(Exception ex){
             System.out.println("error" + ex.toString());
         }
