@@ -11,6 +11,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -19,7 +20,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.fxml.FXML;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -50,9 +50,6 @@ public class RegisterController implements Initializable {
 
     @FXML
     private MFXTextField telNum;
-
-    @FXML
-    private MFXDatePicker datePicker;
 
     @FXML
     private MFXTextField emailAddress;
@@ -91,9 +88,9 @@ public class RegisterController implements Initializable {
         emailAddress.setValidated(true);
         emailAddress.getValidator().add(BindingUtils.toProperty(
                         Bindings.createBooleanBinding(
-                                () -> StringUtils.containsAny(emailAddress.getText(),
+                                () -> StringUtils.containsAll(emailAddress.getText(),
                                         "",  "@", "."),
-                                passwordGet.passwordProperty()
+                                emailAddress.textProperty()
                         )
                 ),
                 "You must enter valid Email Address"
@@ -132,7 +129,7 @@ public class RegisterController implements Initializable {
     private DatabaseConnector databaseConnector;
 
     @FXML
-    public void signOnAction(javafx.event.ActionEvent event) throws IOException{
+    public void signOnAction(ActionEvent event){
 
         DatabaseConnector databaseConnector = new DatabaseConnector();
 
@@ -142,17 +139,21 @@ public class RegisterController implements Initializable {
             String fName = firstName.getText().trim();
             String lName = lastName.getText().trim();
             String pNum = telNum.getText().trim();
-            LocalDate picker = datePicker.getDate();
             String email = emailAddress.getText().trim();
             String passGet = passwordGet.getText().trim();
             String passCheck = passwordCheck.getText().trim();
+            String answer = ansField.getText().trim();
+            String question = quesBox.getSelectedValue().toString();
 
-            if (fName.isEmpty() && lName.isEmpty() && pNum.isEmpty() && email.isEmpty() && passGet.isEmpty() && passCheck.isEmpty()){
-                errLabel.setText("You must need insert All field");
-            }
-            else if (fName.isEmpty() || lName.isEmpty() || pNum.isEmpty() || email.isEmpty() || passGet.isEmpty() || passCheck.isEmpty()  ){
+            if (fName.isEmpty() || lName.isEmpty() || pNum.isEmpty() || email.isEmpty() || passGet.isEmpty() || passCheck.isEmpty() || question.isEmpty() || answer.isEmpty()){
 
-
+                ansField.setValidated(true);
+                ansField.getValidator().add(
+                        BindingUtils.toProperty(
+                                ansField.textProperty().length().isNotEqualTo(0)
+                        ),
+                        "You need enter the Answer"
+                );
 
                 //check firstname validation
                 firstName.setValidated(true);
@@ -209,10 +210,6 @@ public class RegisterController implements Initializable {
                 );
 
 
-
-
-
-
             }else if(passGet != passCheck){
 
                 passwordCheck.setValidated(true);
@@ -224,7 +221,6 @@ public class RegisterController implements Initializable {
                 );
 
             }
-
             else
             {
                 //sql query for getting username as telnum
