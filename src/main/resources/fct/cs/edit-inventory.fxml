@@ -35,7 +35,7 @@
       </HBox>
       <VBox alignment="CENTER" minWidth="400.0" prefHeight="358.0" prefWidth="500.0" spacing="20.0" styleClass="info-container">
          <children>
-            <HBox alignment="CENTER">
+            <!--<HBox alignment="CENTER" visible="false">
                <children>
                   <VBox alignment="CENTER">
                      <children>
@@ -45,13 +45,13 @@
                   </VBox>
                </children>
             </HBox>
-            <Separator prefWidth="200.0" />
+            <Separator prefWidth="200.0" visible="false"/>-->
             <HBox alignment="CENTER" spacing="20.0">
                <children>
                   <VBox>
                      <children>
                         <Label styleClass="textLabel" text="Book ID" />
-                        <TextField fx:id="txtBookId" promptText="book_id" />
+                        <TextField fx:id="txtBookId" promptText="book_id" editable="false"/>
                      </children>
                   </VBox>
                   <Separator orientation="VERTICAL" styleClass="vSeparator" />
