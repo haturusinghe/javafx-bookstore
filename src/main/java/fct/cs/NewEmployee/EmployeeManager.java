@@ -63,4 +63,70 @@ public class EmployeeManager {
 
         return orderList;
     }
+
+    public static boolean updateEmployee(EmployeeData entry) {
+        String updateQuery = "UPDATE employee set first_name = ?, last_name = ?, email = ?,gender = ?,phone_number = ?,salary = ? where employee_id = ?";
+        //first_name
+        //last_name
+        //email
+        //gender
+        //phone_number
+        //salary
+        PreparedStatement preparedStatement = null;
+        int count = 0;
+        try {
+            preparedStatement = conn.prepareStatement(updateQuery);
+            preparedStatement.setString(1,entry.getFirst_name());
+            preparedStatement.setString(2,entry.getLast_name());
+            preparedStatement.setString(3,entry.getLast_name());
+            preparedStatement.setString(3,entry.getEmail());
+            preparedStatement.setString(4,entry.getGender());
+            preparedStatement.setString(5,entry.getPhone_number());
+            preparedStatement.setInt(6,entry.getSalary());
+            preparedStatement.setInt(7, Integer.parseInt(entry.getEmployee_id()));
+            count = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count > 0;
+    }
+
+    public boolean deleteSingleEmployee(EmployeeData entry){
+        String updateQuery = "DELETE FROM employee where employee_id = ?";
+        PreparedStatement preparedStatement = null;
+        int count = 0;
+        try {
+            preparedStatement = conn.prepareStatement(updateQuery);
+            preparedStatement.setInt(1, Integer.parseInt(entry.getEmployee_id()));
+            count = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count > 0;
+    }
+
+    public boolean addSingleEmployee(EmployeeData entry){
+        String addQuery = "insert into employee (employee_id, first_name, last_name, email, gender, phone_number, salary) values (?,?,?,?,?,?,?)";
+        PreparedStatement preparedStatement = null;
+        int count = 0;
+        try {
+            preparedStatement = conn.prepareStatement(addQuery);
+            preparedStatement.setInt(1, Integer.parseInt(entry.getEmployee_id()));
+            preparedStatement.setString(2,entry.getFirst_name());
+            preparedStatement.setString(3,entry.getLast_name());
+            preparedStatement.setString(4,entry.getEmail());
+            preparedStatement.setString(4,entry.getGender());
+            preparedStatement.setString(4,entry.getPhone_number());
+            preparedStatement.setInt(4,entry.getSalary());
+            count = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count > 0;
+    }
+
+
 }
