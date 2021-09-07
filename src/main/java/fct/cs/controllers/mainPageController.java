@@ -40,7 +40,7 @@ public class mainPageController {
     @FXML
     void loadEmployeePage(ActionEvent event) {
         if (currentPage != "employees") {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/employee.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/new-employee-page.fxml"));
             try {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());
