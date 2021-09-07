@@ -157,12 +157,12 @@ public class InventoryManager {
     }
 
     public boolean deleteSingleEntry(StockEntry entry){
-        String updateQuery = "DELETE FROM INVENTORY where inv_id = ?";
+        String updateQuery = "DELETE FROM INVENTORY where book_id = ?";
         PreparedStatement preparedStatement = null;
         int count = 0;
         try {
             preparedStatement = conn.prepareStatement(updateQuery);
-            preparedStatement.setInt(1,entry.getInv_id());
+            preparedStatement.setInt(1,entry.getBook_id());
             count = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
