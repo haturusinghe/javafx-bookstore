@@ -15,6 +15,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
@@ -133,7 +134,11 @@ public class NewEmployeeController implements Initializable {
             MFXTableRowCell rowCell = new MFXTableRowCell("Delete");
             rowCell.setGraphicTextGap(5);
 //            rowCell.setStyle("-fx-background-color:grey");
-            rowCell.addEventHandler(MouseEvent.MOUSE_CLICKED,mouseEvent -> System.out.println("Delete"));
+            rowCell.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+                System.out.println("Delete");
+                EmployeeManager.deleteSingleEmployee(employeeData);
+                getEmployeeData();
+            });
             MFXFontIcon icon = new MFXFontIcon("mfx-minus-circle", 25);
 //            FontIcon icon = new FontIcon("antf-edit");
 //            icon.setIconSize(10);
@@ -153,5 +158,33 @@ public class NewEmployeeController implements Initializable {
 
     public void hideDrawer(JFXDrawerEvent jfxDrawerEvent) {
         drawer.toBack();
+    }
+
+    public void addNewEntry(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/employee-form.fxml"));
+            VBox box = loader.load();
+            EmployeeFormController controller = loader.getController();
+
+            controller.setParentController(thisController);
+            controller.setDrawer(drawer);
+//                    controller.setInventoryManager(inventoryManager);
+//            controller.setEntry(employeeData);
+            controller.setAddingNew(true);
+            drawer.setSidePane(box);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        if (drawer.isHidden()) {
+            drawer.open();
+            drawer.toFront();
+            System.out.println("open");
+        } else {
+            drawer.toBack();
+            drawer.close();
+
+            System.out.println("close");
+        }
     }
 }
