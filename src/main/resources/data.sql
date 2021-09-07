@@ -62,13 +62,16 @@ insert into book (book_id, isbn, category_id, publisher, author_id, title, b_yea
 insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (30, '788542204-6', 1, 'West, White and Reichert', 5, 'Threskionis aethiopicus', 2003, 239, 606, 'Hiri Motu', 'Advanced fresh-thinking analyzer');
 
 create table INVENTORY (
-	inv_id INT PRIMARY KEY,
+	inv_id INT NOT NULL AUTO_INCREMENT,
 	book_id INT,
 	list_price INT,
 	qty INT,
-	min_qty INT
+	min_qty INT,
+	PRIMARY KEY (book_id),
+	FOREIGN KEY (book_id) REFERENCES book(book_id)
 );
-insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (1, 1, 865, 9, 10);
+
+insert into INVENTORY (book_id, list_price, qty, min_qty) values (1, 865, 9, 10);
 insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (2, 2, 898, 17, 2);
 insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (3, 3, 767, 5, 6);
 insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (4, 4, 824, 10, 5);
