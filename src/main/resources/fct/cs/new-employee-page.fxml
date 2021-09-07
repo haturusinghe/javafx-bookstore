@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXTableView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.StackPane?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<VBox alignment="TOP_CENTER" prefHeight="685.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/16"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.NewEmployee.NewEmployeeController">
+    <children>
+        <StackPane fx:id="stackPane" prefHeight="684.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+            <children>
+                <JFXDrawer fx:id="drawer" defaultDrawerSize="500.0" direction="RIGHT" onDrawerClosing="#hideDrawer"/>
+                <HBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+                    <children>
+                        <MFXTableView fx:id="empTable" fixedRowsHeight="40.0" headerText="Employee Table"
+                                      maxHeight="600.0" maxRowsPerPage="10" minHeight="600.0" minWidth="1030.0"/>
+                    </children>
+                </HBox>
+            </children>
+        </StackPane>
 
-<VBox alignment="CENTER" prefHeight="685.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.NewEmployee.NewEmployeeController">
-   <children>
-      <MFXTableView fx:id="empTable" prefHeight="332.0" prefWidth="702.0" />
-   </children>
+    </children>
 </VBox>
