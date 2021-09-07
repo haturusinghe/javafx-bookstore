@@ -92,7 +92,7 @@ public class EmployeeManager {
         return count > 0;
     }
 
-    public boolean deleteSingleEmployee(EmployeeData entry){
+    public static boolean deleteSingleEmployee(EmployeeData entry){
         String updateQuery = "DELETE FROM employee where employee_id = ?";
         PreparedStatement preparedStatement = null;
         int count = 0;
@@ -107,7 +107,7 @@ public class EmployeeManager {
         return count > 0;
     }
 
-    public boolean addSingleEmployee(EmployeeData entry){
+    public static boolean addSingleEmployee(EmployeeData entry){
         String addQuery = "insert into employee (employee_id, first_name, last_name, email, gender, phone_number, salary) values (?,?,?,?,?,?,?)";
         PreparedStatement preparedStatement = null;
         int count = 0;
@@ -117,9 +117,9 @@ public class EmployeeManager {
             preparedStatement.setString(2,entry.getFirst_name());
             preparedStatement.setString(3,entry.getLast_name());
             preparedStatement.setString(4,entry.getEmail());
-            preparedStatement.setString(4,entry.getGender());
-            preparedStatement.setString(4,entry.getPhone_number());
-            preparedStatement.setInt(4,entry.getSalary());
+            preparedStatement.setString(5,entry.getGender());
+            preparedStatement.setString(6,entry.getPhone_number());
+            preparedStatement.setInt(7,entry.getSalary());
             count = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

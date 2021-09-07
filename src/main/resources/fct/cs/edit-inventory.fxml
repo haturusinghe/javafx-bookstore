@@ -51,7 +51,7 @@
                   <VBox>
                      <children>
                         <Label styleClass="textLabel" text="Book ID" />
-                        <TextField fx:id="txtBookId" promptText="book_id" editable="false"/>
+                        <TextField fx:id="txtBookId" promptText="book_id" />
                      </children>
                   </VBox>
                   <Separator orientation="VERTICAL" styleClass="vSeparator" />

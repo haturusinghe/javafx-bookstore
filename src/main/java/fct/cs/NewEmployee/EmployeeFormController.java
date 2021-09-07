@@ -72,7 +72,11 @@ public class EmployeeFormController {
 
     public void updateEmployee(ActionEvent actionEvent) {
         EmployeeData employeeData = getEntry();
-        EmployeeManager.updateEmployee(employeeData);
+        if (isAddingNew) {
+            EmployeeManager.addSingleEmployee(employeeData);
+        } else {
+            EmployeeManager.updateEmployee(employeeData);
+        }
         parentController.getEmployeeData();
         drawer.close();
 
@@ -117,5 +121,10 @@ public class EmployeeFormController {
 
     public void setAddingNew(boolean b) {
         this.isAddingNew = b;
+        if(b){
+            emp_id_txtField.setEditable(true);
+        }else{
+            emp_id_txtField.setEditable(false);
+        }
     }
 }

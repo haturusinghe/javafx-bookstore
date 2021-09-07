@@ -176,7 +176,6 @@ public class InventoryController implements Initializable {
 
     }
 
-
     public void searchTableFromText(String key) {
         System.out.println("Searching ...");
         stockEntryFilteredList.setPredicate(stockEntry -> {

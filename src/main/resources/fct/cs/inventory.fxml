@@ -17,6 +17,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
+
 <VBox minHeight="600.0" stylesheets="@styles/inventory-page.css" xmlns="http://javafx.com/javafx/16"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.inventory.InventoryController">
     <children>
