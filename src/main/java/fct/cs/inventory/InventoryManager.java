@@ -50,7 +50,7 @@ public class InventoryManager {
     }
 
     public String getCategoryName(int categoryId) {
-        String query = "SELECT category_name FROM category where category_id = ?";
+        String query = "SELECT category_name FROM book_category where category_id = ?";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
         try {
@@ -101,7 +101,6 @@ public class InventoryManager {
             //inv_id, book_id, list_price, qty, min_qty
             while (rs.next()) {
                 orderList.add(new StockEntry(
-                        rs.getInt("inv_id"),
                         rs.getInt("book_id"),
                         rs.getInt("list_price"),
                         rs.getInt("qty"),
@@ -140,16 +139,15 @@ public class InventoryManager {
     }
 
     public boolean updateSingleEntry(StockEntry entry){
-        String updateQuery = "UPDATE inventory set book_id = ?, list_price = ?, qty = ?, min_qty = ? where inv_id = ?";
+        String updateQuery = "UPDATE inventory set list_price = ?, qty = ?, min_qty = ? where book_id = ?";
         PreparedStatement preparedStatement = null;
         int count = 0;
         try {
             preparedStatement = conn.prepareStatement(updateQuery);
-            preparedStatement.setInt(1,entry.getBook_id());
-            preparedStatement.setInt(2,entry.getList_price());
-            preparedStatement.setInt(3,entry.getQty());
-            preparedStatement.setInt(4,entry.getMin_qty());
-            preparedStatement.setInt(5,entry.getInv_id());
+            preparedStatement.setInt(1,entry.getList_price());
+            preparedStatement.setInt(2,entry.getQty());
+            preparedStatement.setInt(3,entry.getMin_qty());
+            preparedStatement.setInt(4,entry.getBook_id());
             count = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -174,16 +172,15 @@ public class InventoryManager {
     }
 
     public boolean addSingleEntry(StockEntry entry){
-        String addQuery = "insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (?,?,?,?,?)";
+        String addQuery = "insert into INVENTORY (book_id, list_price, qty, min_qty) values (?,?,?,?)";
         PreparedStatement preparedStatement = null;
         int count = 0;
         try {
             preparedStatement = conn.prepareStatement(addQuery);
-            preparedStatement.setInt(1,entry.getInv_id());
-            preparedStatement.setInt(2,entry.getBook_id());
-            preparedStatement.setInt(3,entry.getList_price());
-            preparedStatement.setInt(4,entry.getQty());
-            preparedStatement.setInt(5,entry.getMin_qty());
+            preparedStatement.setInt(1,entry.getBook_id());
+            preparedStatement.setInt(2,entry.getList_price());
+            preparedStatement.setInt(3,entry.getQty());
+            preparedStatement.setInt(4,entry.getMin_qty());
             count = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
