@@ -28,6 +28,7 @@ import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ResourceBundle;
@@ -131,6 +132,7 @@ public class RegisterController implements Initializable {
     private DatabaseConnector databaseConnector;
     private static byte[] salt;
 
+
     @FXML
     public void signOnAction(ActionEvent event) throws NoSuchAlgorithmException{
 
@@ -149,6 +151,7 @@ public class RegisterController implements Initializable {
             String passCheck = passwordCheck.getText().trim();
             String answer = ansField.getText().trim();
             //String question = quesBox.getSelectedValue().toString();
+
 
             /*if (fName.isEmpty() && lName.isEmpty()) {
                 errLabel.setText("Please complete all the fills");
@@ -270,7 +273,9 @@ public class RegisterController implements Initializable {
                     errLabel.setText("Email address already taken, please enter another email address");
                 } else {
 
-                    String sql = "INSERT INTO (fname, lname, telnum, email, password, ques, ans) values(?,?,?,?,?,?,?)";
+                    //sqlManage(fName, lName, pNum, email, passwordEncrypt, answer);
+
+                    String sql = "INSERT INTO login (fname, lname, telnum, email, password, ques, ans) values(?,?,?,?,?,?,?)";
                     PreparedStatement ps_3 = conn.prepareStatement(sql);
 
                     ps_3.setString(1, fName);
@@ -278,7 +283,7 @@ public class RegisterController implements Initializable {
                     ps_3.setString(3, pNum);
                     ps_3.setString(4, email);
                     ps_3.setString(5, passwordEncrypt);
-                    ps_3.setString(6, quesBox.getSelectedValue().toString());
+                    ps_3.setString(6, "esrge");
                     ps_3.setString(7, answer);
 
                     ps_3.execute();
@@ -293,5 +298,38 @@ public class RegisterController implements Initializable {
 
     }
 
+    /*public boolean sqlManage(String fName, String lName, String pNum, String email, String pass, String answer) throws SQLException {
+
+        String sql = "INSERT INTO (fname, lname, telnum, email, password, ques, ans) values(?,?,?,?,?,?,?)";
+                    PreparedStatement ps_3 = conn.prepareStatement(sql);
+
+                    ps_3.setString(1, fName);
+                    ps_3.setString(2, lName);
+                    ps_3.setString(3, pNum);
+                    ps_3.setString(4, email);
+                    ps_3.setString(5, pass);
+                    ps_3.setString(6, "esrge");
+                    ps_3.setString(7, answer);
+
+                    ps_3.execute();
+
+        String addQuery = "insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (?,?,?,?,?)";
+        PreparedStatement preparedStatement = null;
+        int count = 0;
+        try {
+            preparedStatement = conn.prepareStatement(addQuery);
+            preparedStatement.setInt(1,entry.getInv_id());
+            preparedStatement.setInt(2,entry.getBook_id());
+            preparedStatement.setInt(3,entry.getList_price());
+            preparedStatement.setInt(4,entry.getQty());
+            preparedStatement.setInt(5,entry.getMin_qty());
+            count = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count > 0;
+
+    }*/
 
 }
