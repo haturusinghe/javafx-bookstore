@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
-public class SecureUtils {
+public class PasswordSecure {
 
     public static String getSecurePassword(String password, byte[] salt) {
 
@@ -25,14 +25,14 @@ public class SecureUtils {
         return generatedPassword;
     }
 
-    private static byte[] getSalt() throws NoSuchAlgorithmException {
+    static byte[] getSalt() throws NoSuchAlgorithmException {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
         random.nextBytes(salt);
         return salt;
     }
 
-   /* public static void main(String[] args) throws NoSuchAlgorithmException {
+    /*public static void main(String[] args) throws NoSuchAlgorithmException {
 
         // same salt should be passed
         byte[] salt = getSalt();
