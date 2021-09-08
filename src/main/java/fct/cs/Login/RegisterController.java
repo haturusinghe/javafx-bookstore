@@ -135,7 +135,7 @@ public class RegisterController implements Initializable {
     public void signOnAction(ActionEvent event) throws NoSuchAlgorithmException{
 
         DatabaseConnector databaseConnector = new DatabaseConnector();
-        PasswordSecure encrypt = new PasswordSecure();
+
 
 
         try {
@@ -150,7 +150,7 @@ public class RegisterController implements Initializable {
             String answer = ansField.getText().trim();
             //String question = quesBox.getSelectedValue().toString();
 
-            /*if (fName.isEmpty() && lName.isEmpty()){
+            if (fName.isEmpty() && lName.isEmpty()){
                 errLabel.setText("You need to fill All the field");
             }
 
@@ -231,10 +231,10 @@ public class RegisterController implements Initializable {
                         "You need enter same password"
                 );
 
-            }*///else {
+            }else {
 
 
-
+            PasswordSecure encrypt = new PasswordSecure();
                 try{
                     this.salt = encrypt.getSalt();
                     String passwordEncrypt = encrypt.getSecurePassword(passGet, salt);
@@ -278,7 +278,7 @@ public class RegisterController implements Initializable {
                 //System.out.println("Not Found");
                 //errorMsg.setText("Invalid credentials. Please try again");
                 //
-            //}
+            }
 
         }catch(Exception ex){
             System.out.println("error" + ex.toString());
