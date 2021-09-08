@@ -23,6 +23,8 @@ import javafx.fxml.FXML;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -127,11 +129,14 @@ public class RegisterController implements Initializable {
 
     private Connection conn;
     private DatabaseConnector databaseConnector;
+    private static byte[] salt;
 
     @FXML
-    public void signOnAction(ActionEvent event){
+    public void signOnAction(ActionEvent event) throws NoSuchAlgorithmException{
 
         DatabaseConnector databaseConnector = new DatabaseConnector();
+        PasswordSecure encrypt = new PasswordSecure();
+
 
         try {
             this.conn = databaseConnector.getConn();
@@ -143,9 +148,15 @@ public class RegisterController implements Initializable {
             String passGet = passwordGet.getText().trim();
             String passCheck = passwordCheck.getText().trim();
             String answer = ansField.getText().trim();
-            String question = quesBox.getSelectedValue().toString();
+            //String question = quesBox.getSelectedValue().toString();
 
-            if (fName.isEmpty() || lName.isEmpty() || pNum.isEmpty() || email.isEmpty() || passGet.isEmpty() || passCheck.isEmpty() || question.isEmpty() || answer.isEmpty()){
+            /*if (fName.isEmpty() && lName.isEmpty()){
+                errLabel.setText("You need to fill All the field");
+            }
+
+            else if (fName.isEmpty() || lName.isEmpty() || pNum.isEmpty() || email.isEmpty() || passGet.isEmpty() || passCheck.isEmpty() || answer.isEmpty()){
+
+                errLabel.setText("");
 
                 ansField.setValidated(true);
                 ansField.getValidator().add(
@@ -220,15 +231,30 @@ public class RegisterController implements Initializable {
                         "You need enter same password"
                 );
 
-            }
-            else
-            {
+            }*///else {
+
+
+
+                try{
+                    this.salt = encrypt.getSalt();
+                    String passwordEncrypt = encrypt.getSecurePassword(passGet, salt);
+                    System.out.println(passwordEncrypt);
+
+                    errLabel.setText(passwordEncrypt);
+                }catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
+
+
+
+
+
                 //sql query for getting username as telnum
                 //PreparedStatement ps_1 = conn.prepareStatement("select * from login where telnum=?"
-                       // " and password=?");
+                // " and password=?");
                 //sql query for getting username as email
                 //PreparedStatement ps_2 = conn.prepareStatement("select * from login where email=?"
-                        //" and password=?");
+                //" and password=?");
 
                 //ps_1.setString(1,txtUsername.getText().trim() );
                 //ps_1.setString(2, txtPass.getText().trim());
@@ -248,12 +274,11 @@ public class RegisterController implements Initializable {
                     window.show();*/
 
 
-                }
-
                 //se {
-                  //System.out.println("Not Found");
-                    //errorMsg.setText("Invalid credentials. Please try again");
-               //
+                //System.out.println("Not Found");
+                //errorMsg.setText("Invalid credentials. Please try again");
+                //
+            //}
 
         }catch(Exception ex){
             System.out.println("error" + ex.toString());
