@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
@@ -20,16 +21,19 @@
                   <ImageView fx:id="imgX" fitHeight="530.0" fitWidth="520.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="720.0" prefWidth="680.0">
+            <VBox prefHeight="720.0" prefWidth="680.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Label text="Logo Placeholder" />
                      </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
                   </HBox>
-                  <VBox>
+                  <VBox prefHeight="630.0" prefWidth="680.0">
                      <children>
-                        <VBox alignment="CENTER">
+                        <VBox alignment="CENTER_LEFT" prefHeight="163.0" prefWidth="680.0">
                            <children>
                               <Label prefHeight="42.0" prefWidth="134.0" text="Login">
                                  <font>
@@ -39,26 +43,38 @@
                               <Label prefHeight="21.0" prefWidth="134.0" text="Login to your account" />
                            </children>
                         </VBox>
-                        <VBox fx:id="login_form_vbox" alignment="CENTER" spacing="20.0">
+                        <VBox alignment="CENTER_LEFT" prefHeight="361.0" prefWidth="680.0">
                            <children>
-                              <MFXTextField fx:id="txtUsername" prefHeight="33.0" prefWidth="265.0" promptText="Phone Number or Email" />
-                              <MFXPasswordField fx:id="txtPass" prefHeight="33.0" prefWidth="231.0" promptText="Password" />
-                              <Hyperlink text="Fogot Password?" />
-                           </children>
-                        </VBox>
-                        <HBox alignment="CENTER">
-                           <children>
-                              <Label prefHeight="21.0" prefWidth="145.0" text="Don't have an account yet?" />
-                              <Hyperlink prefHeight="0.0" prefWidth="98.0" text="Register now" />
-                           </children>
-                        </HBox>
-                        <VBox alignment="CENTER">
-                           <children>
-                              <JFXButton fx:id="loginBtn" buttonType="RAISED" onAction="#loginOnAction" prefHeight="33.0" prefWidth="265.0" ripplerFill="#723fff" text="Sign In">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </JFXButton>
+                              <VBox fx:id="login_form_vbox" alignment="CENTER_LEFT" prefHeight="163.0" prefWidth="680.0" spacing="20.0">
+                                 <children>
+                                    <HBox minWidth="300.0" prefHeight="34.0" prefWidth="626.0">
+                                       <children>
+                                          <MFXTextField fx:id="txtUsername" prefHeight="33.0" prefWidth="265.0" promptText="Phone Number or Email" />
+                                       </children>
+                                    </HBox>
+                                    <HBox minWidth="300.0" prefWidth="100.0">
+                                       <children>
+                                          <MFXPasswordField fx:id="txtPass" prefHeight="33.0" prefWidth="231.0" promptText="Password" />
+                                       </children>
+                                    </HBox>
+                                    <Hyperlink text="Fogot Password?" />
+                                 </children>
+                              </VBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="680.0">
+                                 <children>
+                                    <Label prefHeight="21.0" prefWidth="145.0" text="Don't have an account yet?" />
+                                    <Hyperlink prefHeight="0.0" prefWidth="98.0" text="Register now" />
+                                 </children>
+                              </HBox>
+                              <VBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="680.0">
+                                 <children>
+                                    <JFXButton fx:id="loginBtn" buttonType="RAISED" onAction="#loginOnAction" prefHeight="33.0" prefWidth="265.0" ripplerFill="#723fff" text="Sign In">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                 </children>
+                              </VBox>
                            </children>
                         </VBox>
                      </children>
