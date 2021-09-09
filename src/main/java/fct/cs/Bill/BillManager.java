@@ -16,10 +16,23 @@ public class BillManager {
         this.conn = databaseConnector.getConn();
     }
 
+    public ResultSet getCustomerFromDatabase(int viewCustomer) {
 
+        String query = "SELECT customer_name FROM customer Order by customer_id DESC LIMIT ?  ";
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet;
+        try {
+            preparedStatement = conn.prepareStatement(query);
 
+            preparedStatement.setInt(1, viewCustomer);
+            resultSet = preparedStatement.executeQuery();
+            return resultSet;
 
-    
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
 
 
