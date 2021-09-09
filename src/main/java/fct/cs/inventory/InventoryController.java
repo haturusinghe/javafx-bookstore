@@ -1,5 +1,6 @@
 package fct.cs.inventory;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.events.JFXDrawerEvent;
 import fct.cs.Books.Book;
@@ -42,6 +43,7 @@ import java.util.logging.Logger;
 
 public class InventoryController implements Initializable {
 
+    public JFXButton m_addNewEntryBtn;
     @FXML
     private MFXFilterComboBox category_combo;
 
@@ -112,6 +114,7 @@ public class InventoryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setUiForRole();
         inventoryManager = new InventoryManager();
         setColumnProperties();
         loadTableData();
@@ -491,6 +494,18 @@ public class InventoryController implements Initializable {
         });
     }
 
+    private void setUiForRole(){
+        if(!isManager){
+            colUpdate.setVisible(false);
+            colDelete.setVisible(false);
+            m_addNewEntryBtn.setVisible(false);
+        }else{
+            colUpdate.setVisible(true);
+            colDelete.setVisible(true);
+            m_addNewEntryBtn.setVisible(true);
+        }
+    }
+
     private void printInventoryList() {
         ArrayList<StockEntry> ls = inventoryManager.getStockItemList(5, 1);
 
@@ -611,5 +626,6 @@ public class InventoryController implements Initializable {
 
     public void setManager(boolean manager) {
         isManager = manager;
+        setUiForRole();
     }
 }
