@@ -15,8 +15,10 @@
       </Label>
       <TableView fx:id="customerTable" layoutX="4.0" layoutY="50.0" prefHeight="618.0" prefWidth="614.0">
         <columns>
-          <TableColumn fx:id="c1" prefWidth="488.00004291534424" />
-          <TableColumn fx:id="c2" prefWidth="125.59991455078125" />
+          <TableColumn fx:id="id" prefWidth="52.80001926422119" text="id" />
+          <TableColumn fx:id="c2" minWidth="0.0" prefWidth="75.99999618530273" text="Name" />
+            <TableColumn prefWidth="146.3999786376953" text="mobile" />
+            <TableColumn prefWidth="337.6000122070312" text="email" />
         </columns>
       </TableView>
    </children>
