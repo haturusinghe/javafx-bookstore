@@ -18,7 +18,7 @@ public class BillManager {
 
     public ResultSet getCustomerFromDatabase(int viewCustomer) {
 
-        String query = "SELECT customer_name FROM customer Order by customer_id DESC LIMIT ?  ";
+        String query = "SELECT customer_id,customer_name,mobile,email FROM customer Order by customer_id DESC LIMIT ?  ";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
         try {
