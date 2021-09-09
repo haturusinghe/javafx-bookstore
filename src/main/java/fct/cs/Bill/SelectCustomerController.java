@@ -45,7 +45,7 @@ public class SelectCustomerController implements Initializable {
                     customerObservableList.add(new BillCustomer(rs.getInt("customer_id") , rs.getString("customer_name"),
                             rs.getString("mobile") ,  rs.getString("email")));
                 }
-                    id.setCellValueFactory(new PropertyValueFactory<>("id"));
+                    id.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
                     name.setCellValueFactory(new PropertyValueFactory<>("customer_name"));
                     mobile.setCellValueFactory(new PropertyValueFactory<>("mobile"));
                     email.setCellValueFactory(new PropertyValueFactory<>("email"));

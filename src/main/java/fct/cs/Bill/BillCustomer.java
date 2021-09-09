@@ -4,7 +4,7 @@ public class BillCustomer {
     private int customer_id ;
     private String customer_name,email,mobile ;
 
-    public BillCustomer(int customer_id, String customer_name, String email, String mobile) {
+    public BillCustomer(int customer_id, String customer_name,String mobile,String email) {
         this.customer_id = customer_id;
         this.customer_name = customer_name;
         this.email = email;
