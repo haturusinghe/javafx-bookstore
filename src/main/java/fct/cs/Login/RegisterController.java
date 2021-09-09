@@ -25,6 +25,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -201,7 +202,7 @@ public class RegisterController implements Initializable {
 
 
     @FXML
-    public void signOnAction(ActionEvent event) throws NoSuchAlgorithmException{
+    public void signOnAction(ActionEvent event) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         DatabaseConnector databaseConnector = new DatabaseConnector();
 
@@ -223,14 +224,8 @@ public class RegisterController implements Initializable {
             /*if (fName.isEmpty() && lName.isEmpty()) {
                 errLabel.setText("Please complete all the fills");
             } else if (fName.isEmpty() || lName.isEmpty() || pNum.isEmpty() || email.isEmpty() || passGet.isEmpty() || passCheck.isEmpty() || answer.isEmpty()) {
-
                 errLabel.setText("");
-
-
-
-
             }else if(passGet.length()<8) {
-
                 passwordGet.setValidated(true);
                 passwordGet.getValidator().add(
                         BindingUtils.toProperty(
@@ -238,9 +233,7 @@ public class RegisterController implements Initializable {
                         ),
                         "Must be at least 8 characters long"
                 );
-
             }else if(passGet != passCheck){
-
                 passwordCheck.setValidated(true);
                 passwordCheck.getValidator().add(
                         BindingUtils.toProperty(
@@ -248,55 +241,54 @@ public class RegisterController implements Initializable {
                         ),
                         "You need enter same password"
                 );
-
             }else {*/
 
 
-                PasswordSecure encrypt = new PasswordSecure();
-                //try {
-                    this.salt = encrypt.getSalt();
-                    String passwordEncrypt = encrypt.getSecurePassword(passGet, salt);
-                    System.out.println(passwordEncrypt);
+            PasswordSecure encrypt = new PasswordSecure();
+            //try {
+            //this.salt = encrypt.getSalt();
+            String passwordEncrypt = encrypt.encryptString(passGet);
+            System.out.println(passwordEncrypt);
 
-                    //errLabel.setText(passwordEncrypt);
+            //errLabel.setText(passwordEncrypt);
                 /*} catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }*/
 
-                //check phone number from database
-                PreparedStatement ps_1 = conn.prepareStatement("select * from login where telnum = ?");
-                ps_1.setString(1, pNum);
+            //check phone number from database
+            PreparedStatement ps_1 = conn.prepareStatement("select * from login where telnum = ?");
+            ps_1.setString(1, pNum);
 
-                //check email address from database
-                PreparedStatement ps_2 = conn.prepareStatement("select * from login where email = ?");
-                ps_2.setString(1, email);
+            //check email address from database
+            PreparedStatement ps_2 = conn.prepareStatement("select * from login where email = ?");
+            ps_2.setString(1, email);
 
-                ResultSet rs_1 = ps_1.executeQuery();
-                ResultSet rs_2 = ps_2.executeQuery();
+            ResultSet rs_1 = ps_1.executeQuery();
+            ResultSet rs_2 = ps_2.executeQuery();
 
-                if (rs_1.next()) {
-                    errLabel.setText("Phone number already taken, please enter another phone number");
-                } else if (rs_2.next()) {
-                    errLabel.setText("Email address already taken, please enter another email address");
-                } else {
+            if (rs_1.next()) {
+                errLabel.setText("Phone number already taken, please enter another phone number");
+            } else if (rs_2.next()) {
+                errLabel.setText("Email address already taken, please enter another email address");
+            } else {
 
-                    //sqlManage(fName, lName, pNum, email, passwordEncrypt, answer);
+                //sqlManage(fName, lName, pNum, email, passwordEncrypt, answer);
 
-                    String sql = "INSERT INTO login (fname, lname, telnum, email, password, ques, ans) values(?,?,?,?,?,?,?)";
-                    PreparedStatement ps_3 = conn.prepareStatement(sql);
+                String sql = "INSERT INTO login (fname, lname, telnum, email, password, ques, ans) values(?,?,?,?,?,?,?)";
+                PreparedStatement ps_3 = conn.prepareStatement(sql);
 
-                    ps_3.setString(1, fName);
-                    ps_3.setString(2, lName);
-                    ps_3.setString(3, pNum);
-                    ps_3.setString(4, email);
-                    ps_3.setString(5, passwordEncrypt);
-                    ps_3.setString(6, "esrge");
-                    ps_3.setString(7, answer);
+                ps_3.setString(1, fName);
+                ps_3.setString(2, lName);
+                ps_3.setString(3, pNum);
+                ps_3.setString(4, email);
+                ps_3.setString(5, passwordEncrypt);
+                ps_3.setString(6, "esrge");
+                ps_3.setString(7, answer);
 
-                    ps_3.execute();
+                ps_3.execute();
 
-                    errLabel.setText("Account successfully registered");
-                }
+                errLabel.setText("Account successfully registered");
+            }
             //}
 
         }catch(Exception ex){
@@ -306,10 +298,8 @@ public class RegisterController implements Initializable {
     }
 
     /*public boolean sqlManage(String fName, String lName, String pNum, String email, String pass, String answer) throws SQLException {
-
         String sql = "INSERT INTO (fname, lname, telnum, email, password, ques, ans) values(?,?,?,?,?,?,?)";
                     PreparedStatement ps_3 = conn.prepareStatement(sql);
-
                     ps_3.setString(1, fName);
                     ps_3.setString(2, lName);
                     ps_3.setString(3, pNum);
@@ -317,9 +307,7 @@ public class RegisterController implements Initializable {
                     ps_3.setString(5, pass);
                     ps_3.setString(6, "esrge");
                     ps_3.setString(7, answer);
-
                     ps_3.execute();
-
         String addQuery = "insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (?,?,?,?,?)";
         PreparedStatement preparedStatement = null;
         int count = 0;
@@ -334,9 +322,7 @@ public class RegisterController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return count > 0;
-
     }*/
 
 }
