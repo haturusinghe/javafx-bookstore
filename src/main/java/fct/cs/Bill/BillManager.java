@@ -1,5 +1,6 @@
 package fct.cs.Bill;
 import fct.cs.dbUtil.DatabaseConnector;
+import fct.cs.data.Customer;
 
 import java.sql.Connection;
 
@@ -13,3 +14,5 @@ public class BillManager {
     }
 
 }
+
+

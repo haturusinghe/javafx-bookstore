@@ -22,7 +22,7 @@
                   <JFXButton fx:id="orderBtn" layoutX="141.0" layoutY="404.0" minWidth="220.0" onAction="#loadOrdersPage" prefHeight="50.0" styleClass="side-nav-button" text="Orders" />
                   <JFXButton layoutX="141.0" layoutY="439.0" minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button" text="Books" />
                   <JFXButton layoutX="141.0" layoutY="475.0" minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button" text="Customers" />
-                  <JFXButton layoutX="141.0" layoutY="509.0" minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button" text="Reports" />
+                  <JFXButton fx:id="Billing" layoutX="141.0" layoutY="509.0" minWidth="220.0" onAction="#loadBillingPage" prefHeight="50.0" styleClass="side-nav-button" text="Billing" />
                   <JFXButton layoutX="140.0" layoutY="521.0" minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button" text="Reports" />
                   <JFXButton layoutX="10.0" layoutY="432.0" minWidth="220.0" onAction="#exit" prefHeight="50.0" styleClass="side-nav-button" text="Close">
                      <graphic>
