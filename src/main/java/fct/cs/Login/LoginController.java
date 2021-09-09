@@ -111,7 +111,7 @@ public class LoginController implements Initializable {
             String password = txtPass.getText().trim();
 
             if(username.isEmpty() || password.isEmpty()){
-                errorMsg.setText("Please insert username and password");
+//                errorMsg.setText("Please insert username and password");
             }
             else
             {
@@ -144,7 +144,7 @@ public class LoginController implements Initializable {
 
                 else {
                     System.out.println("Not Found");
-                    errorMsg.setText("Invalid credentials. Please try again");
+//                    errorMsg.setText("Invalid credentials. Please try again");
                 }
             }
         }catch(Exception ex){
