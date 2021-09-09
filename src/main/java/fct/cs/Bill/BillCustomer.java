@@ -1,7 +1,8 @@
 package fct.cs.Bill;
 
 public class BillCustomer {
-    private String customer_name ;
+    private int customer_id ; 
+    private String customer_name,email,mobile ;
 
     public BillCustomer(String customer_name) {
         this.customer_name = customer_name;
