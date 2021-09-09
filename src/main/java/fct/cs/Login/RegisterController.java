@@ -34,6 +34,8 @@ import java.time.Month;
 import java.util.ResourceBundle;
 
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -42,6 +44,7 @@ import java.awt.*;
 
 public class RegisterController implements Initializable {
 
+    public ImageView imgX;
     ObservableList<String> questionBoxList = FXCollections.observableArrayList("What's your pet's name?","What's your favorite food?","Who was your childhood hero?");
 
 
@@ -84,9 +87,73 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        javafx.scene.image.Image img1 = new Image(String.valueOf(getClass().getResource("/fct/cs/book.png")));
+        imgX.setImage(img1);
 
         //quesBox.s("Choose your question");
         quesBox.setItems(questionBoxList);
+
+        ansField.setValidated(true);
+        ansField.getValidator().add(
+                BindingUtils.toProperty(
+                        ansField.textProperty().length().isNotEqualTo(0)
+                ),
+                "You need enter the Answer"
+        );
+
+        //check firstname validation
+        firstName.setValidated(true);
+        firstName.getValidator().add(
+                BindingUtils.toProperty(
+                        firstName.textProperty().length().isNotEqualTo(0)
+                ),
+                "You need enter your first name"
+        );
+
+        //check lastname validation
+        lastName.setValidated(true);
+        lastName.getValidator().add(
+                BindingUtils.toProperty(
+                        lastName.textProperty().length().isNotEqualTo(0)
+                ),
+                "You need enter your last name"
+        );
+
+        //check telnum validation
+        telNum.setValidated(true);
+        telNum.getValidator().add(
+                BindingUtils.toProperty(
+                        telNum.textProperty().length().isNotEqualTo(0)
+                ),
+                "You need enter your Phone Number"
+        );
+
+        //check email validation
+        emailAddress.setValidated(true);
+        emailAddress.getValidator().add(
+                BindingUtils.toProperty(
+                        emailAddress.textProperty().length().isNotEqualTo(0)
+                ),
+                "You need enter your email address"
+        );
+
+        //check passwaordget validation
+        passwordGet.setValidated(true);
+        passwordGet.getValidator().add(
+                BindingUtils.toProperty(
+                        passwordGet.passwordProperty().length().isNotEqualTo(0)
+                ),
+                "You need enter your password"
+        );
+
+        //check passwaordcheck validation
+        passwordCheck.setValidated(true);
+        passwordCheck.getValidator().add(
+                BindingUtils.toProperty(
+                        passwordCheck.passwordProperty().length().isNotEqualTo(0)
+                ),
+                "You need enter your password Again"
+        );
 
         emailAddress.setValidated(true);
         emailAddress.getValidator().add(BindingUtils.toProperty(
@@ -159,67 +226,7 @@ public class RegisterController implements Initializable {
 
                 errLabel.setText("");
 
-                ansField.setValidated(true);
-                ansField.getValidator().add(
-                        BindingUtils.toProperty(
-                                ansField.textProperty().length().isNotEqualTo(0)
-                        ),
-                        "You need enter the Answer"
-                );
 
-                //check firstname validation
-                firstName.setValidated(true);
-                firstName.getValidator().add(
-                        BindingUtils.toProperty(
-                                firstName.textProperty().length().isNotEqualTo(0)
-                        ),
-                        "You need enter your first name"
-                );
-
-                //check lastname validation
-                lastName.setValidated(true);
-                lastName.getValidator().add(
-                        BindingUtils.toProperty(
-                                lastName.textProperty().length().isNotEqualTo(0)
-                        ),
-                        "You need enter your last name"
-                );
-
-                //check telnum validation
-                telNum.setValidated(true);
-                telNum.getValidator().add(
-                        BindingUtils.toProperty(
-                                telNum.textProperty().length().isNotEqualTo(0)
-                        ),
-                        "You need enter your Phone Number"
-                );
-
-                //check email validation
-                emailAddress.setValidated(true);
-                emailAddress.getValidator().add(
-                        BindingUtils.toProperty(
-                                emailAddress.textProperty().length().isNotEqualTo(0)
-                        ),
-                        "You need enter your email address"
-                );
-
-                //check passwaordget validation
-                passwordGet.setValidated(true);
-                passwordGet.getValidator().add(
-                        BindingUtils.toProperty(
-                                passwordGet.passwordProperty().length().isNotEqualTo(0)
-                        ),
-                        "You need enter your password"
-                );
-
-                //check passwaordcheck validation
-                passwordCheck.setValidated(true);
-                passwordCheck.getValidator().add(
-                        BindingUtils.toProperty(
-                                passwordCheck.passwordProperty().length().isNotEqualTo(0)
-                        ),
-                        "You need enter your password Again"
-                );
 
 
             }else if(passGet.length()<8) {

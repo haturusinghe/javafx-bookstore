@@ -5,7 +5,9 @@ package fct.cs.Login;
 
 
         import java.io.IOException;
+        import java.net.URL;
         import java.sql.*;
+        import java.util.ResourceBundle;
 
         import com.jfoenix.controls.JFXButton;
         import fct.cs.dbUtil.DatabaseConnector;
@@ -15,21 +17,24 @@ package fct.cs.Login;
         import javafx.event.ActionEvent;
         import javafx.fxml.FXML;
         import javafx.fxml.FXMLLoader;
+        import javafx.fxml.Initializable;
         import javafx.scene.Node;
         import javafx.scene.Parent;
         import javafx.scene.Scene;
-        import javafx.scene.control.Button;
-        import javafx.scene.control.Label;
-        import javafx.scene.control.PasswordField;
-        import javafx.scene.control.TextField;
+        import javafx.scene.control.*;
+        import javafx.scene.image.ImageView;
         import javafx.stage.Stage;
+
+        import javafx.scene.image.Image;
+        import javafx.scene.image.ImageView;
 
 /**
  *
  * @author hoxha
  */
-public class LoginController  {
+public class LoginController implements Initializable {
 
+    public ImageView imgX;
     @FXML
     private Label label;
 
@@ -59,6 +64,38 @@ public class LoginController  {
     private DatabaseConnector databaseConnector;
     PreparedStatement pst;
     ResultSet rs;
+
+    public void centerImage() {
+        Image img = imgX.getImage();
+        if (img != null) {
+            double w = 0;
+            double h = 0;
+
+            double ratioX = imgX.getFitWidth() / img.getWidth();
+            double ratioY = imgX.getFitHeight() / img.getHeight();
+
+            double reducCoeff = 0;
+            if(ratioX >= ratioY) {
+                reducCoeff = ratioY;
+            } else {
+                reducCoeff = ratioX;
+            }
+
+            w = img.getWidth() * reducCoeff;
+            h = img.getHeight() * reducCoeff;
+            System.out.println("yo");
+            imgX.setX((imgX.getFitWidth() - w) / 2);
+            imgX.setY((imgX.getFitHeight() - h) / 2);
+
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Image img1 = new Image(String.valueOf(getClass().getResource("/fct/cs/book.png")));
+        imgX.setImage(img1);
+        centerImage();
+    }
 
 
     @FXML
@@ -111,7 +148,8 @@ public class LoginController  {
                 }
             }
         }catch(Exception ex){
-            System.out.println("error" + ex.toString());
+//            System.out.println("error" + ex.toString());
+            ex.printStackTrace();
         }
     }
 
@@ -133,5 +171,22 @@ public class LoginController  {
         window.show();
     }
 
+    private void updateAlert(String user){
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Login successfully.");
+        alert.setHeaderText(null);
+        alert.setContentText(user + " has logged in");
+        alert.showAndWait();
+    }
+
+    private void errorAlert(String e){
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error!.");
+        alert.setHeaderText(null);
+        alert.setContentText(e);
+        alert.showAndWait();
+    }
 
 }
