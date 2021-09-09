@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
@@ -14,55 +12,86 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Login.RegisterController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Login.RegisterController">
    <children>
-      <AnchorPane prefHeight="600.0" prefWidth="241.0">
+      <HBox layoutX="2.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="600.0" fitWidth="241.0" layoutX="-2.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </AnchorPane>
-      <VBox prefHeight="600.0" prefWidth="479.0">
-         <children>
-            <AnchorPane prefHeight="678.0" prefWidth="479.0">
+            <VBox alignment="CENTER" minWidth="600.0" prefHeight="720.0" prefWidth="600.0">
                <children>
-                  <Label layoutX="48.0" layoutY="55.0" prefHeight="36.0" prefWidth="161.0" text="Register">
-                     <font>
-                        <Font name="System Bold" size="25.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="48.0" layoutY="119.0" prefHeight="36.0" prefWidth="161.0" text="mokk hri liyahn methnta">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Label>
-                  <MFXTextField fx:id="firstName" alignment="TOP_LEFT" layoutX="48.0" layoutY="200.0" prefHeight="29.0" prefWidth="197.0" promptText="First Name" />
-                  <MFXTextField fx:id="lastName" alignment="TOP_LEFT" layoutX="262.0" layoutY="200.0" prefHeight="29.0" prefWidth="197.0" promptText="Last Name" />
-                  <MFXTextField fx:id="telNum" alignment="TOP_LEFT" layoutX="48.0" layoutY="272.0" prefHeight="29.0" prefWidth="197.0" promptText="Phone Number" />
-                  <MFXTextField fx:id="emailAddress" alignment="TOP_LEFT" layoutX="48.0" layoutY="337.0" prefHeight="29.0" prefWidth="302.0" promptText="Email" />
-                  <MFXPasswordField fx:id="passwordGet" layoutX="47.0" layoutY="399.0" prefHeight="36.0" prefWidth="163.0" promptText="Password" />
-                  <MFXPasswordField fx:id="passwordCheck" layoutX="262.0" layoutY="399.0" prefHeight="36.0" prefWidth="163.0" promptText="Confirm Password " />
-                  <MFXCheckbox fx:id="checkBox" layoutX="38.0" layoutY="536.0" markType="mfx-variant9-mark" text="mkk hri liynn methntath">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </MFXCheckbox>
-                  <Label layoutX="48.0" layoutY="639.0" prefHeight="20.0" prefWidth="147.0" text="Already have an account?">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Label>
-                  <Hyperlink fx:id="hyperlinkLogin" layoutX="199.0" layoutY="638.0" prefHeight="23.0" prefWidth="46.0" text="Log In" />
-                  <JFXButton fx:id="signBtn" layoutX="48.0" layoutY="593.0" onAction="#signOnAction" prefHeight="36.0" prefWidth="163.0" text="Create Account" />
-                  <Label fx:id="errLabel" layoutX="47.0" layoutY="567.0" prefHeight="20.0" prefWidth="265.0">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Label>
-                  <MFXTextField fx:id="ansField" alignment="TOP_LEFT" layoutX="262.0" layoutY="469.0" prefHeight="29.0" prefWidth="197.0" promptText="Answer" />
-                  <MFXComboBox fx:id="quesBox" layoutX="48.0" layoutY="471.0" prefHeight="27.0" prefWidth="197.0" promptText="Questions" />
+                  <ImageView fx:id="imgX" fitHeight="530.0" fitWidth="520.0" pickOnBounds="true" preserveRatio="true" />
                </children>
-            </AnchorPane>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="720.0" prefWidth="680.0">
+               <children>
+                  <VBox prefHeight="92.0" prefWidth="680.0">
+                     <children>
+                        <Label prefHeight="36.0" prefWidth="161.0" text="Register">
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="36.0" prefWidth="161.0" text="Create an account ">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="509.0" prefWidth="680.0" spacing="40.0">
+                     <children>
+                        <HBox spacing="20.0">
+                           <children>
+                              <MFXTextField fx:id="firstName" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="197.0" promptText="First Name" />
+                              <MFXTextField fx:id="lastName" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="197.0" promptText="Last Name" />
+                           </children>
+                        </HBox>
+                        <VBox>
+                           <children>
+                              <MFXTextField fx:id="telNum" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="197.0" promptText="Phone Number" />
+                           </children>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <MFXTextField fx:id="emailAddress" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="302.0" promptText="Email" />
+                           </children>
+                        </VBox>
+                        <HBox spacing="60.0">
+                           <children>
+                              <MFXPasswordField fx:id="passwordGet" prefHeight="36.0" prefWidth="163.0" promptText="Password" />
+                              <MFXPasswordField fx:id="passwordCheck" prefHeight="36.0" prefWidth="163.0" promptText="Confirm Password " />
+                           </children>
+                        </HBox>
+                        <HBox spacing="20.0">
+                           <children>
+                              <MFXComboBox fx:id="quesBox" prefHeight="27.0" prefWidth="197.0" promptText="Questions" />
+                              <MFXTextField fx:id="ansField" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="197.0" promptText="Answer" />
+                           </children>
+                        </HBox>
+                        <VBox>
+                           <children>
+                              <Label fx:id="errLabel" prefHeight="20.0" prefWidth="265.0">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton fx:id="signBtn" onAction="#signOnAction" prefHeight="36.0" prefWidth="163.0" text="Create Account" />
+                           </children>
+                        </VBox>
+                        <HBox spacing="20.0">
+                           <children>
+                              <Label prefHeight="20.0" prefWidth="147.0" text="Already have an account?">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <Hyperlink fx:id="hyperlinkLogin" prefHeight="23.0" prefWidth="46.0" text="Log In" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
    </children>
-</HBox>
+</AnchorPane>
