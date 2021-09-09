@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.Hyperlink?>
@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Login.RegisterController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Login.RegisterController">
    <children>
       <HBox layoutX="2.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -63,13 +63,13 @@
                         </HBox>
                         <HBox spacing="20.0">
                            <children>
-                              <MFXComboBox fx:id="quesBox" prefHeight="27.0" prefWidth="197.0" promptText="Questions" />
+                              <JFXComboBox fx:id="quesBox" prefHeight="27.0" prefWidth="197.0" promptText="Choose your question" />
                               <MFXTextField fx:id="ansField" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="197.0" promptText="Answer" />
                            </children>
                         </HBox>
                         <VBox>
                            <children>
-                              <Label fx:id="errLabel" prefHeight="20.0" prefWidth="265.0">
+                              <Label fx:id="errLabel" prefHeight="20.0" prefWidth="265.0" textFill="RED">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
@@ -84,7 +84,7 @@
                                     <Font size="13.0" />
                                  </font>
                               </Label>
-                              <Hyperlink fx:id="hyperlinkLogin" prefHeight="23.0" prefWidth="46.0" text="Log In" />
+                              <Hyperlink fx:id="hyperlinkLogin" onAction="#hLoginOnAction" prefHeight="23.0" prefWidth="46.0" text="Log In" />
                            </children>
                         </HBox>
                      </children>
