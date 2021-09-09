@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
@@ -42,25 +43,27 @@ public class BillingController {
     @FXML
     private Button cancel;
     @FXML
-    private AnchorPane content;
+    private VBox content;
 
     private FXMLLoader loader = null;
 
     private String currentPage = "";
 
-    public void loadSelectCustomer(ActionEvent actionEvent) {
+
+    public void initialize() {
+
         if (!currentPage.equals("selectCustomerBill")) {
             loader = new FXMLLoader(getClass().getResource("/fct/cs/selectCustomerBill.fxml"));
             try {
                 content.getChildren().clear();
                 content.getChildren().add(loader.load());
-                currentPage = "Billing";
+                currentPage = "selectCustomerBill";
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }else{
             System.out.println("already loaded");
         }
-    }
 
-}
+
+}}

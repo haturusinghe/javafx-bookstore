@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="619.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.SelectCustomerBill">
+<AnchorPane prefHeight="619.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.SelectCustomerController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="145.0" text="Select a Customer :">
          <font>
