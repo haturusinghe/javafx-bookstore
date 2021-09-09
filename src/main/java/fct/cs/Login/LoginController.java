@@ -16,7 +16,6 @@ import fct.cs.dbUtil.DatabaseConnector;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.utils.BindingUtils;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +28,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 /**
  *
@@ -98,7 +96,7 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Image img1 = new Image(String.valueOf(getClass().getResource("/fct/cs/book.png")));
+        Image img1 = new Image(String.valueOf(getClass().getResource("/images/BookStore.png")));
         imgX.setImage(img1);
         centerImage();
     }
@@ -154,13 +152,13 @@ public class LoginController implements Initializable {
 
                 if(rs_1.next()){
                     String storedPassword = rs_1.getString("password");
-                    boolean matched = decrypt.validatePassword(password, storedPassword );
+                    boolean matched = decrypt.validateString(password, storedPassword );
                     System.out.println(matched);
 
 
                 }else if(rs_2.next()){
                     String storedPassword = rs_2.getString("password");
-                    boolean matched = decrypt.validatePassword(password, storedPassword );
+                    boolean matched = decrypt.validateString(password, storedPassword );
                     System.out.println(matched);
 
                 } else {
