@@ -2,6 +2,7 @@ package fct.cs.Login;
 
 import com.jfoenix.controls.JFXButton;
 //import com.mysql.cj.conf.BooleanProperty;
+import com.jfoenix.controls.JFXComboBox;
 import fct.cs.dbUtil.DatabaseConnector;
 import io.github.palexdev.materialfx.controls.*;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
@@ -68,7 +69,7 @@ public class RegisterController implements Initializable {
     private MFXPasswordField passwordCheck;
 
     @FXML
-    private MFXComboBox quesBox;
+    private JFXComboBox quesBox;
 
     @FXML
     private MFXTextField ansField;
@@ -206,8 +207,6 @@ public class RegisterController implements Initializable {
 
         DatabaseConnector databaseConnector = new DatabaseConnector();
 
-
-
         try {
             this.conn = databaseConnector.getConn();
 
@@ -218,7 +217,7 @@ public class RegisterController implements Initializable {
             String passGet = passwordGet.getText().trim();
             String passCheck = passwordCheck.getText().trim();
             String answer = ansField.getText().trim();
-            //String question = quesBox.getSelectedValue().toString();
+            String question = quesBox.getValue().toString();
 
 
             /*if (fName.isEmpty() && lName.isEmpty()) {
@@ -245,15 +244,14 @@ public class RegisterController implements Initializable {
 
 
             PasswordSecure encrypt = new PasswordSecure();
-            //try {
-            //this.salt = encrypt.getSalt();
-            String passwordEncrypt = encrypt.encryptString(passGet);
-            System.out.println(passwordEncrypt);
 
-            //errLabel.setText(passwordEncrypt);
-                /*} catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
-                }*/
+            //Encrypt password
+            String passwordEncrypt = encrypt.encryptString(passGet);
+            System.out.println("Password Encrypted");
+
+            //Encrypt answer
+            String answerEncrypt = encrypt.encryptString(answer);
+            System.out.println("Answer Encrypted");
 
             //check phone number from database
             PreparedStatement ps_1 = conn.prepareStatement("select * from login where telnum = ?");
@@ -272,7 +270,6 @@ public class RegisterController implements Initializable {
                 errLabel.setText("Email address already taken, please enter another email address");
             } else {
 
-                //sqlManage(fName, lName, pNum, email, passwordEncrypt, answer);
 
                 String sql = "INSERT INTO login (fname, lname, telnum, email, password, ques, ans) values(?,?,?,?,?,?,?)";
                 PreparedStatement ps_3 = conn.prepareStatement(sql);
@@ -282,12 +279,12 @@ public class RegisterController implements Initializable {
                 ps_3.setString(3, pNum);
                 ps_3.setString(4, email);
                 ps_3.setString(5, passwordEncrypt);
-                ps_3.setString(6, "esrge");
-                ps_3.setString(7, answer);
+                ps_3.setString(6, question);
+                ps_3.setString(7, answerEncrypt);
 
                 ps_3.execute();
 
-                errLabel.setText("Account successfully registered");
+                System.out.println("Account successfully registered");
             }
             //}
 
@@ -297,32 +294,15 @@ public class RegisterController implements Initializable {
 
     }
 
-    /*public boolean sqlManage(String fName, String lName, String pNum, String email, String pass, String answer) throws SQLException {
-        String sql = "INSERT INTO (fname, lname, telnum, email, password, ques, ans) values(?,?,?,?,?,?,?)";
-                    PreparedStatement ps_3 = conn.prepareStatement(sql);
-                    ps_3.setString(1, fName);
-                    ps_3.setString(2, lName);
-                    ps_3.setString(3, pNum);
-                    ps_3.setString(4, email);
-                    ps_3.setString(5, pass);
-                    ps_3.setString(6, "esrge");
-                    ps_3.setString(7, answer);
-                    ps_3.execute();
-        String addQuery = "insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (?,?,?,?,?)";
-        PreparedStatement preparedStatement = null;
-        int count = 0;
-        try {
-            preparedStatement = conn.prepareStatement(addQuery);
-            preparedStatement.setInt(1,entry.getInv_id());
-            preparedStatement.setInt(2,entry.getBook_id());
-            preparedStatement.setInt(3,entry.getList_price());
-            preparedStatement.setInt(4,entry.getQty());
-            preparedStatement.setInt(5,entry.getMin_qty());
-            count = preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return count > 0;
-    }*/
+    @FXML
+    public void hLoginOnAction(ActionEvent event)throws IOException{
+        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/login.fxml"));
+        Scene scene = new Scene(view);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+
 
 }
