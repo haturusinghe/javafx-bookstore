@@ -17,23 +17,9 @@ public class BillManager {
     }
 
 
-    private ResultSet getCustomerFromDatabase(int viewCustomer) {
-        
-        String query = "SELECT * FROM customer Order customer_id DESC LIMIT ?  ";
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet;
-        try {
-            preparedStatement = conn.prepareStatement(query);
 
-            preparedStatement.setInt(1, viewCustomer);
-            resultSet = preparedStatement.executeQuery();
-            return resultSet;
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+    
 }
 
 

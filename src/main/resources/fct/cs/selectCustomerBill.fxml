@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="619.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.SelectCustomerController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="145.0" text="Select a Customer :">
@@ -14,10 +13,10 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TableView layoutX="4.0" layoutY="50.0" prefHeight="618.0" prefWidth="614.0">
+      <TableView fx:id="customerTable" layoutX="4.0" layoutY="50.0" prefHeight="618.0" prefWidth="614.0">
         <columns>
-          <TableColumn prefWidth="488.00004291534424" />
-          <TableColumn prefWidth="125.59991455078125" />
+          <TableColumn fx:id="c1" prefWidth="488.00004291534424" />
+          <TableColumn fx:id="c2" prefWidth="125.59991455078125" />
         </columns>
       </TableView>
    </children>
