@@ -33,7 +33,7 @@ public class SelectCustomerController implements Initializable {
 
     @FXML
     private TableColumn<BillCustomer, String> email;
-    
+
     ObservableList<BillCustomer> customerObservableList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL location , ResourceBundle resources){
@@ -45,8 +45,10 @@ public class SelectCustomerController implements Initializable {
                     customerObservableList.add(new BillCustomer(rs.getInt("customer_id") , rs.getString("customer_name"),
                             rs.getString("mobile") ,  rs.getString("email")));
                 }
-
-                c1.setCellValueFactory(new PropertyValueFactory<>("customer_name"));
+                    id.setCellValueFactory(new PropertyValueFactory<>("id"));
+                    name.setCellValueFactory(new PropertyValueFactory<>("customer_name"));
+                    mobile.setCellValueFactory(new PropertyValueFactory<>("mobile"));
+                    email.setCellValueFactory(new PropertyValueFactory<>("email"));
             }catch (SQLException e) {
                 e.printStackTrace();
             }
