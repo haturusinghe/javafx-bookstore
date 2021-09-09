@@ -42,7 +42,7 @@ public class PasswordSecure {
 
 
     //Decryption
-        static boolean validatePassword(String originalPassword, String storedPassword) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        static boolean validateString(String originalPassword, String storedPassword) throws NoSuchAlgorithmException, InvalidKeySpecException {
             String[] parts = storedPassword.split(":");
             int iterations = Integer.parseInt(parts[0]);
             byte[] salt = fromHex(parts[1]);

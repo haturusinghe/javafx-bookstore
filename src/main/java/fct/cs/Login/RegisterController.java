@@ -5,11 +5,9 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import fct.cs.dbUtil.DatabaseConnector;
 import io.github.palexdev.materialfx.controls.*;
-import io.github.palexdev.materialfx.font.MFXFontIcon;
 import io.github.palexdev.materialfx.utils.BindingUtils;
 import io.github.palexdev.materialfx.utils.StringUtils;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.BooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,26 +21,17 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.ResourceBundle;
 
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import javax.swing.*;
-import java.awt.*;
 
 public class RegisterController implements Initializable {
 
@@ -89,10 +78,9 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        javafx.scene.image.Image img1 = new Image(String.valueOf(getClass().getResource("/fct/cs/book.png")));
+        javafx.scene.image.Image img1 = new Image(String.valueOf(getClass().getResource("/images/BookStore.png")));
         imgX.setImage(img1);
 
-        //quesBox.s("Choose your question");
         quesBox.setItems(questionBoxList);
 
         ansField.setValidated(true);
@@ -198,8 +186,8 @@ public class RegisterController implements Initializable {
     }
 
     private Connection conn;
-    private DatabaseConnector databaseConnector;
-    private static byte[] salt;
+    //private DatabaseConnector databaseConnector;
+
 
 
     @FXML
