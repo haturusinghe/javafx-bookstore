@@ -1,6 +1,7 @@
 package fct.cs.NewEmployee;
 
 import fct.cs.dbUtil.DatabaseConnector;
+import fct.cs.dbUtil.DatabaseHandler;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +10,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class EmployeeManager {
-    private static Connection conn = DatabaseConnector.getConn();
+    private static Connection conn;
+
+    static {
+        try {
+            conn = DatabaseHandler.getInstance().getConn();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static ArrayList<EmployeeData> getEmployeeList(int entriesPerPage, int pageNumber) {
         ResultSet rs = getEmployeesFromDatabase(entriesPerPage, pageNumber);

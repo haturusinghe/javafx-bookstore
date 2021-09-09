@@ -3,17 +3,20 @@ package fct.cs.inventory;
 import fct.cs.Author.Author;
 import fct.cs.Books.Book;
 import fct.cs.dbUtil.DatabaseConnector;
+import fct.cs.dbUtil.DatabaseHandler;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class InventoryManager {
-    private DatabaseConnector databaseConnector;
     private Connection conn;
 
     public InventoryManager() {
-        databaseConnector = new DatabaseConnector();
-        this.conn = databaseConnector.getConn();
+        try {
+            this.conn = DatabaseHandler.getInstance().getConn();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getTotalCountInStock() throws SQLException {

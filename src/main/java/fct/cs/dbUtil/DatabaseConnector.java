@@ -13,10 +13,10 @@ public class DatabaseConnector {
     private static Connection conn = null;
 
 
-
     static
     {
         try {
+            System.out.println("connection yolo");
             conn = DriverManager.getConnection(DB_URL,USER,PASS);
         }
         catch (SQLException e) {
@@ -38,7 +38,7 @@ public class DatabaseConnector {
     }*/
 
     public static Connection getConn() {
-        return conn;
+        return null;
     }
 
 

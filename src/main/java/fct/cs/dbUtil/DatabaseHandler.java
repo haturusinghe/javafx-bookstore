@@ -7,17 +7,29 @@ public class DatabaseHandler {
     private static String PASS = "";
     private static String DB_URL = "jdbc:mysql://localhost:3306/bookstore";
 
+    private static DatabaseHandler instance;
+
     private Connection conn;
     private Statement stmt;
 
-    public DatabaseHandler() throws SQLException {
+    private DatabaseHandler() throws SQLException {
         createConnection();
+    }
+
+    public static DatabaseHandler getInstance() throws SQLException {
+        if (instance == null) {
+            instance = new DatabaseHandler();
+        } else if (instance.getConn().isClosed()) {
+            instance = new DatabaseHandler();
+        }
+
+        return instance;
     }
 
     public void createConnection()  {
         try {
-            conn = DriverManager.getConnection(DB_URL,USER,PASS);
-            System.out.println("Connection Created");
+            this.conn = DriverManager.getConnection(DB_URL,USER,PASS);
+            System.out.println("Connection Created xoxo");
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -42,10 +42,18 @@ import java.util.logging.Logger;
 
 public class InventoryController implements Initializable {
 
-    public MFXFilterComboBox category_combo;
-    public MFXTextField m_search_txt;
-    public MFXCheckbox lowStock_checkbox;
-    public MFXCheckbox outStock_checkbox;
+    @FXML
+    private MFXFilterComboBox category_combo;
+
+    @FXML
+    private MFXTextField m_search_txt;
+
+    @FXML
+    private MFXCheckbox lowStock_checkbox;
+
+    @FXML
+    private MFXCheckbox outStock_checkbox;
+
     @FXML
     private VBox drawerBox;
 
@@ -90,6 +98,8 @@ public class InventoryController implements Initializable {
 
     @FXML
     private TableColumn colViewDet;
+
+    private boolean isManager = false;
 
     private InventoryManager inventoryManager;
 
@@ -213,7 +223,7 @@ public class InventoryController implements Initializable {
 
     public void setCategories() throws SQLException {
         String qu = "select * from book_category";
-        DatabaseHandler databaseHandler = new DatabaseHandler();
+        DatabaseHandler databaseHandler = DatabaseHandler.getInstance();
         ResultSet rs = databaseHandler.excecuteQuery(qu);
 
         while (rs.next()){
@@ -599,4 +609,7 @@ public class InventoryController implements Initializable {
         notificationManager.showBottomRight(lowItems);
     }
 
+    public void setManager(boolean manager) {
+        isManager = manager;
+    }
 }
