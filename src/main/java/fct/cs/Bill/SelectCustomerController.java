@@ -36,7 +36,8 @@ public class SelectCustomerController implements Initializable {
             ResultSet rs = customer.getCustomerFromDatabase(2);
             try {
                 while (rs.next()) {
-                    customerObservableList.add(new BillCustomer(rs.getString("customer_name")));
+                    customerObservableList.add(new BillCustomer(rs.getInt("customer_id") , rs.getString("customer_name")
+                            rs.getString("mobile") ,  rs.getString("email")));
                 }
 
                 c1.setCellValueFactory(new PropertyValueFactory<>("customer_name"));

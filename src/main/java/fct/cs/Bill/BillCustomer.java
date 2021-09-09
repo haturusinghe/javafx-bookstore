@@ -43,6 +43,4 @@ public class BillCustomer {
         this.customer_name = customer_name;
     }
 
-
-
 }
