@@ -23,11 +23,17 @@ public class SelectCustomerController implements Initializable {
     private TableView<BillCustomer> customerTable;
 
     @FXML
-    private TableColumn<BillCustomer,String> c1;
+    private TableColumn<BillCustomer, Integer> id;
 
     @FXML
-    private TableColumn<?, ?> c2;
+    private TableColumn<BillCustomer, String> name;
 
+    @FXML
+    private TableColumn<BillCustomer, String> mobile;
+
+    @FXML
+    private TableColumn<BillCustomer, String> email;
+    
     ObservableList<BillCustomer> customerObservableList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL location , ResourceBundle resources){
