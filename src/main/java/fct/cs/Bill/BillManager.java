@@ -51,6 +51,10 @@ public class BillManager {
 
         return CustomerList;
     }
+    public ArrayList<BillCustomer> getCustomerList( int customerView) {
+        ResultSet rs = getCustomerFromDatabase(customerView);
+        return createCustomerList(rs);
+    }
 
 
 
