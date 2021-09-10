@@ -71,14 +71,16 @@ public class SelectCustomerController implements Initializable {
     }
 
     @FXML
-    private void displayCustomerInBill(){
+    private void displayCustomerInBill() throws IOException {
         BillCustomer customer = customerTable.getSelectionModel().getSelectedItem();
         if(customer == null){
             screen.setText("Select Customer");
         }
         else{
             String name = customer.getCustomer_name();
-            screen.setText("name: " + name);
+
+            sendToBillingScene(name);
+            
         }
     }
 
