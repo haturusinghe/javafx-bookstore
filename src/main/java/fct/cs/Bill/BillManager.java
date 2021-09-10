@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class BillManager {
     private DatabaseConnector databaseConnector;
@@ -33,6 +34,26 @@ public class BillManager {
             return null;
         }
     }
+
+    private ArrayList<BillCustomer> createCustomerList(ResultSet rs) {
+        ArrayList<BillCustomer> CustomerList = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                CustomerList.add(new BillCustomer(
+                        rs.getInt("customer_id") ,
+                        rs.getString("customer_name"),
+                        rs.getString("mobile") ,
+                        rs.getString("email")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return CustomerList;
+    }
+
+
+
 }
 
 
