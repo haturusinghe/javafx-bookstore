@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -34,6 +35,9 @@ public class SelectCustomerController implements Initializable {
 
     @FXML
     private TableColumn<BillCustomer, String> email;
+    @FXML
+    private Label screen;
+
 
     private ObservableList<BillCustomer> customerObservableList = FXCollections.observableArrayList();
 
@@ -54,7 +58,6 @@ public class SelectCustomerController implements Initializable {
             customerObservableList.add(currentCustomer);
         }
     }
-
     private void setColumns(){
 
         id.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
@@ -62,6 +65,18 @@ public class SelectCustomerController implements Initializable {
         mobile.setCellValueFactory(new PropertyValueFactory<>("mobile"));
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
 
+    }
+
+    @FXML
+    private void displayCustomerInBill(){
+        BillCustomer customer = customerTable.getSelectionModel().getSelectedItem();
+        if(customer == null){
+            screen.setText("Select Customer");
+        }
+        else{
+            String name = customer.getCustomer_name();
+            screen.setText("name: " + name);
+        }
     }
 }
 

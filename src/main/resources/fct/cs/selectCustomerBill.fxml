@@ -13,7 +13,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TableView fx:id="customerTable" layoutX="4.0" layoutY="50.0" prefHeight="618.0" prefWidth="614.0">
+      <TableView fx:id="customerTable" layoutX="4.0" layoutY="50.0" onMouseClicked="#displayCustomerInBill" prefHeight="618.0" prefWidth="614.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="52.80001926422119" text="id" />
           <TableColumn fx:id="name" minWidth="0.0" prefWidth="75.99999618530273" text="Name" />
@@ -21,5 +21,6 @@
             <TableColumn fx:id="email" prefWidth="337.6000122070312" text="email" />
         </columns>
       </TableView>
+      <Label fx:id="screen" layoutX="190.0" layoutY="24.0" prefHeight="18.0" prefWidth="289.0" />
    </children>
 </AnchorPane>
