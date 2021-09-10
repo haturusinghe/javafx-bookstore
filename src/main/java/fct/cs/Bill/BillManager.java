@@ -34,7 +34,6 @@ public class BillManager {
             return null;
         }
     }
-
     private ArrayList<BillCustomer> createCustomerList(ResultSet rs) {
         ArrayList<BillCustomer> CustomerList = new ArrayList<>();
         try {

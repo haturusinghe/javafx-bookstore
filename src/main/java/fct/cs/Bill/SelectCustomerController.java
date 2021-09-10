@@ -13,6 +13,7 @@ import fct.cs.Bill.BillCustomer;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,7 +40,7 @@ public class SelectCustomerController implements Initializable {
     public void initialize(URL location , ResourceBundle resources){
 
             BillManager customer = new BillManager();
-            ResultSet rs = customer.getCustomerFromDatabase(2);
+
             try {
                 while (rs.next()) {
                     customerObservableList.add(new BillCustomer(rs.getInt("customer_id") , rs.getString("customer_name"),
@@ -54,5 +55,9 @@ public class SelectCustomerController implements Initializable {
             }
         customerTable.setItems(customerObservableList);
     }
-
+    public void loadData(){
+        ArrayList<BillCustomer> CustomerList = BillManager.getCustomerList(3);
+        customerTable.setItems(customerObservableList);
+    }
 }
+
