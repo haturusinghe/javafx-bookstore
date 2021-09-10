@@ -23,7 +23,7 @@ public class BillingController {
     private TextField searchText;
 
     @FXML
-    private Label customer;
+    private Label customerName;
 
     @FXML
     private TableColumn<?, ?> billTable;
@@ -66,5 +66,9 @@ public class BillingController {
         }
 
 
+}
+
+public void displayCustomerName(String name){
+    customerName.setText(name);
 }
 }
