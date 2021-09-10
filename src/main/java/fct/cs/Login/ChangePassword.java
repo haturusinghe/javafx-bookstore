@@ -9,6 +9,7 @@ import io.github.palexdev.materialfx.utils.StringUtils;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -16,6 +17,8 @@ import javafx.scene.image.ImageView;
 
 import java.awt.*;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -101,7 +104,7 @@ public class ChangePassword implements Initializable {
     private Connection conn;
 
     @FXML
-    public void changeOnAction(ActiveEvent event) {
+    public void changeOnAction(ActiveEvent event) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         DatabaseConnector databaseConnector = new DatabaseConnector();
         PasswordSecure decrypt = new PasswordSecure();
@@ -116,94 +119,93 @@ public class ChangePassword implements Initializable {
             String passCheck = fPasswordCheck.getText().trim();
 
 
-
-
-            /*if (fName.isEmpty() && lName.isEmpty()) {
-                errLabel.setText("Please complete all the fills");
-            } else if (fName.isEmpty() || lName.isEmpty() || pNum.isEmpty() || email.isEmpty() || passGet.isEmpty() || passCheck.isEmpty() || answer.isEmpty()) {
-                errLabel.setText("");
-            }else if(passGet.length()<8) {
-                passwordGet.setValidated(true);
-                passwordGet.getValidator().add(
+            /*if (username.isEmpty() || question.isEmpty() || answer.isEmpty() || passGet.isEmpty() || passCheck.isEmpty()) {
+                fErrLabel.setText("");
+            } else if (passGet.length() < 8) {
+                fPasswordGet.setValidated(true);
+                fPasswordGet.getValidator().add(
                         BindingUtils.toProperty(
-                                passwordGet.passwordProperty().length().greaterThanOrEqualTo(8)
+                                fPasswordGet.passwordProperty().length().greaterThanOrEqualTo(8)
                         ),
                         "Must be at least 8 characters long"
                 );
-            }else if(passGet != passCheck){
-                passwordCheck.setValidated(true);
-                passwordCheck.getValidator().add(
+            } else if (passGet != passCheck) {
+                fPasswordCheck.setValidated(true);
+                fPasswordCheck.getValidator().add(
                         BindingUtils.toProperty(
-                                passwordCheck.passwordProperty().isEqualTo(passwordGet.getPassword())
+                                fPasswordCheck.passwordProperty().isEqualTo(fPasswordGet.getPassword())
                         ),
                         "You need enter same password"
                 );
-            }else {*/
+            } else {*/
 
-            //sql query for getting username as telnum
-            PreparedStatement ps1 = conn.prepareStatement("select * from login where telnum=?");
-            //sql query for getting username as email
-            PreparedStatement ps2 = conn.prepareStatement("select * from login where email=?");
+                //sql query for getting username as telnum
+                PreparedStatement ps1 = conn.prepareStatement("select * from login where telnum=?");
+                //sql query for getting username as email
+                PreparedStatement ps2 = conn.prepareStatement("select * from login where email=?");
 
-            ps1.setString(1, username);
-            ps2.setString(1, username);
+                ps1.setString(1, username);
+                ps2.setString(1, username);
 
-            ResultSet rs_1 = ps1.executeQuery();
-            ResultSet rs_2 = ps2.executeQuery();
+                ResultSet rs_1 = ps1.executeQuery();
+                ResultSet rs_2 = ps2.executeQuery();
 
-            if(rs_1.next()){
+                if (rs_1.next()) {
 
-                String storedAnswer = rs_1.getString("ans");
-                Integer id = rs_1.getInt(1);
-                boolean matched = decrypt.validateString(answer, storedAnswer );
-                System.out.println(matched);
-                if(matched == true){
-                    boolean changePass = correctAns(true, id);
-                    System.out.println(changePass + ",Change Password");
-                }else{
-                    fErrLabel.setText("Wrong Answer, Please try again..");
-                    System.out.println("Invalid Input");
+                    String storedAnswer = rs_1.getString("ans");
+                    Integer id = rs_1.getInt(1);
+                    boolean matched = decrypt.validateString(answer, storedAnswer);
+                    System.out.println(matched);
+                    if (matched == true) {
+                        boolean changePass = correctAns(passGet, id);
+                        System.out.println("Change Password, "+ changePass);
+                    } else {
+                        fErrLabel.setText("Wrong Answer, Please try again..");
+                        System.out.println("Invalid Input");
+                    }
+
+                } else if (rs_2.next()) {
+                    String storedAnswer = rs_2.getString("ans");
+                    Integer id = rs_2.getInt(1);
+                    boolean matched = decrypt.validateString(answer, storedAnswer);
+                    System.out.println(matched);
+                    if (matched == true) {
+                        boolean changePass = correctAns(passGet, id);
+                        System.out.println("Change Password, "+ changePass);
+                    } else {
+                        fErrLabel.setText("Wrong Answer, Please try again..");
+                        System.out.println("Invalid Input");
+                    }
+
+                } else {
+                    System.out.println("Not Found");
+                    fErrLabel.setText("Invalid credentials. Please try again..");
                 }
-
-            }else if(rs_2.next()){
-                String storedAnswer = rs_2.getString("ans");
-                Integer id = rs_2.getInt(1);
-                boolean matched = decrypt.validateString(answer, storedAnswer );
-                System.out.println(matched);
-                if(matched == true){
-                    boolean changePass = correctAns(true, id);
-                    System.out.println(changePass + ",Change Password");
-                }else{
-                    fErrLabel.setText("Wrong Answer, Please try again..");
-                    System.out.println("Invalid Input");
-                }
-
-            } else {
-                System.out.println("Not Found");
-                fErrLabel.setText("Invalid credentials. Please try again..");
-            }
-
-
 
             //}
 
         }catch(Exception ex){
             System.out.println("error" + ex.toString());
         }
-
     }
 
+        public boolean correctAns(String password, int iD) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
-    public boolean updatePassword(String updatePassword, int iD){
+
         DatabaseConnector databaseConnector = new DatabaseConnector();
+        PasswordSecure encrypt = new PasswordSecure();
+
         this.conn = databaseConnector.getConn();
+
+        String passwordEncrypt = encrypt.encryptString(password);
+        System.out.println("Password Encrypted");
 
         String updateQuery = "UPDATE login set password = ? where id = ?";
         PreparedStatement preparedStatement = null;
         int count = 0;
         try {
             preparedStatement = conn.prepareStatement(updateQuery);
-            preparedStatement.setString(1,updatePassword);
+            preparedStatement.setString(1,passwordEncrypt);
             preparedStatement.setInt(2,iD);
             count = preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -213,48 +215,6 @@ public class ChangePassword implements Initializable {
         return count > 0;
     }
 
-
-    private boolean correctAns(boolean matched, int id) {
-
-        Integer iD = id;
-
-
-        PasswordSecure encrypt = new PasswordSecure();
-
-        String passGet = fPasswordGet.getText().trim();
-        String passCheck = fPasswordCheck.getText().trim();
-
-        try {
-
-            if(passGet == passCheck){
-
-                //Encrypt password
-                String passwordEncrypt = encrypt.encryptString(passGet);
-                System.out.println("Password Encrypted");
-
-                boolean update  = updatePassword(passwordEncrypt, iD);
-                String eg = update.
-                return update > 0;
-
-            }else{
-                fPasswordCheck.setValidated(true);
-                fPasswordCheck.getValidator().add(
-                        BindingUtils.toProperty(
-                                fPasswordCheck.passwordProperty().isEqualTo(fPasswordGet.getPassword())
-                        ),
-                        "You need enter same password"
-                );
-            }
-        }catch(Exception ex){
-            System.out.println("error" + ex.toString());
-        }
-
-
-
-
-
-
-    }
 
 
 }

@@ -208,7 +208,7 @@ public class RegisterController implements Initializable {
             String question = quesBox.getValue().toString();
 
 
-            /*if (fName.isEmpty() && lName.isEmpty()) {
+            if (fName.isEmpty() && lName.isEmpty()) {
                 errLabel.setText("Please complete all the fills");
             } else if (fName.isEmpty() || lName.isEmpty() || pNum.isEmpty() || email.isEmpty() || passGet.isEmpty() || passCheck.isEmpty() || answer.isEmpty()) {
                 errLabel.setText("");
@@ -228,7 +228,7 @@ public class RegisterController implements Initializable {
                         ),
                         "You need enter same password"
                 );
-            }else {*/
+            }else {
 
 
             PasswordSecure encrypt = new PasswordSecure();
@@ -274,7 +274,7 @@ public class RegisterController implements Initializable {
 
                 System.out.println("Account successfully registered");
             }
-            //}
+            }
 
         }catch(Exception ex){
             System.out.println("error" + ex.toString());
