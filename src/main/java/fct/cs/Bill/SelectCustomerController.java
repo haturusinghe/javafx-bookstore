@@ -58,6 +58,16 @@ public class SelectCustomerController implements Initializable {
     public void loadData(){
         ArrayList<BillCustomer> CustomerList = BillManager.getCustomerList(3);
         customerTable.setItems(customerObservableList);
+        customerObservableList.clear();
+    }
+    
+    public void SetColumns(){
+
+        id.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
+        name.setCellValueFactory(new PropertyValueFactory<>("customer_name"));
+        mobile.setCellValueFactory(new PropertyValueFactory<>("mobile"));
+        email.setCellValueFactory(new PropertyValueFactory<>("email"));
+
     }
 }
 
