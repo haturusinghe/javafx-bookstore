@@ -35,33 +35,27 @@ public class SelectCustomerController implements Initializable {
     @FXML
     private TableColumn<BillCustomer, String> email;
 
-    ObservableList<BillCustomer> customerObservableList = FXCollections.observableArrayList();
+    private ObservableList<BillCustomer> customerObservableList = FXCollections.observableArrayList();
+
+    private BillManager BillManager;
     @Override
-    public void initialize(URL location , ResourceBundle resources){
+    public void initialize(URL location , ResourceBundle resources) {
 
-            BillManager customer = new BillManager();
-
-            try {
-                while (rs.next()) {
-                    customerObservableList.add(new BillCustomer(rs.getInt("customer_id") , rs.getString("customer_name"),
-                            rs.getString("mobile") ,  rs.getString("email")));
-                }
-                    id.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
-                    name.setCellValueFactory(new PropertyValueFactory<>("customer_name"));
-                    mobile.setCellValueFactory(new PropertyValueFactory<>("mobile"));
-                    email.setCellValueFactory(new PropertyValueFactory<>("email"));
-            }catch (SQLException e) {
-                e.printStackTrace();
-            }
-        customerTable.setItems(customerObservableList);
+        BillManager = new BillManager();
+        setColumns();
+        loadDataTable();
     }
-    public void loadData(){
-        ArrayList<BillCustomer> CustomerList = BillManager.getCustomerList(3);
+    public void loadDataTable(){
+        ArrayList<BillCustomer> CustomerList = BillManager.getCustomerList(2);
         customerTable.setItems(customerObservableList);
         customerObservableList.clear();
+
+        for (BillCustomer currentCustomer : CustomerList) {
+            customerObservableList.add(currentCustomer);
+        }
     }
-    
-    public void SetColumns(){
+
+    private void setColumns(){
 
         id.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
         name.setCellValueFactory(new PropertyValueFactory<>("customer_name"));
