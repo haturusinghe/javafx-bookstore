@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
@@ -32,6 +33,7 @@ public class DashController implements Initializable {
     public VBox stockItem_vbox;
     public VBox revanue_vbox;
     public VBox StockItemList_vbox;
+    public Label stockItemsLabel;
     @FXML
     private TextField totalItems;
 
@@ -167,25 +169,36 @@ public class DashController implements Initializable {
 
     private VBox createBookListItem(BookSale e) {
         VBox vBox = new VBox();
-        vBox.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
-        HBox hBox1 = new HBox();
-        HBox hBox2 = new HBox();
-        HBox hBox3 = new HBox();
+//        vBox.setStyle("-fx-padding: 10px 15px;");
+//        vBox.setStyle("-fx-background-radius: 10px;");
+        vBox.setBackground(new Background(new BackgroundFill(ColorUtils.getRandomColor(),CornerRadii.EMPTY, Insets.EMPTY)));
+        vBox.setPadding(new Insets(5, 0, 5, 10));
+        HBox titleHbox = new HBox();
+        HBox orderHbox = new HBox();
+        HBox amountHbox = new HBox();
 
 
 
         FontIcon bookIcon = new FontIcon("cil-book");
         bookIcon.setIconColor(Color.BLACK);
-        bookIcon.setIconSize(12);
-        Label label1 = new Label("Title " + e.getTitle(), bookIcon);
-        hBox1.getChildren().addAll(label1);
+        bookIcon.setIconSize(18);
 
-        Label label3 = new Label("Number of Orders: " + e.getNumOrders());
-        hBox2.getChildren().addAll(label3);
-        Label label2 = new Label("Amount Sold: " + e.getTotalQtySold());
-        hBox3.getChildren().addAll(label2);
+        Label titleLabel = new Label("Title: " + e.getTitle(), bookIcon);
+        //font-family: 'Josefin Sans', sans-serif;
+//        titleLabel.setStyle("-fx-font-size: 20;");
+//        titleLabel.setStyle("-fx-padding: 10px 15px;");
+        titleHbox.getChildren().addAll(titleLabel);
 
-        vBox.getChildren().addAll(hBox1, hBox2,hBox3);
+        Label amountLabel = new Label("Amount Sold: " + e.getTotalQtySold());
+//        amountLabel.setStyle("-fx-padding: 10px 15px;");
+        Label orderLabel = new Label("Number of Orders: " + e.getNumOrders());
+        amountHbox.getChildren().addAll(amountLabel);
+        orderHbox.getChildren().addAll(orderLabel);
+
+        titleLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 20;");
+        amountLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 16;");
+        orderLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 14;");
+        vBox.getChildren().addAll(titleHbox,amountHbox,orderHbox);
         return vBox;
     }
 

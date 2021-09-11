@@ -124,6 +124,7 @@ public class mainPageController implements Initializable {
 
     public void setHeaderText(String string){
         pageHeaderLabel.setText(string);
+        pageHeaderLabel.setStyle("-fx-font-family: Montserrat;");
     }
 
     public void loadHome(ActionEvent actionEvent) {
