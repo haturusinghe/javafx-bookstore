@@ -12,16 +12,15 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<?import io.github.palexdev.materialfx.controls.MFXFlowlessListView?>
-<VBox alignment="CENTER" prefHeight="685.0" prefWidth="1030.0" spacing="5.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Dash.DashController">
+<VBox alignment="CENTER" maxWidth="1030.0" prefHeight="685.0" prefWidth="1030.0" spacing="5.0" stylesheets="@styles/overviewPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Dash.DashController">
    <children>
-      <HBox alignment="CENTER_LEFT" minWidth="320.0" prefHeight="320.0" prefWidth="1030.0" spacing="20.0" style="-fx-background-color: white;">
+      <HBox alignment="CENTER" minWidth="1030.0" prefHeight="310.0" prefWidth="1000.0" spacing="10.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="320.0" prefWidth="551.0">
+            <HBox alignment="CENTER" maxHeight="310.0" minWidth="500.0" prefWidth="500.0" spacing="10.0" style="-fx-background-color: transparent;" styleClass="custom-hbox">
                <children>
-                  <HBox alignment="CENTER" prefHeight="164.0" prefWidth="519.0" spacing="20.0">
+                  <VBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: transparent;">
                      <children>
-                        <HBox fx:id="card1"  prefHeight="164.0" prefWidth="258.0" style="-fx-background-color: white;" stylesheets="@styles/overview.css">
+                        <HBox fx:id="card1" alignment="CENTER" maxHeight="200.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="cardCustom" stylesheets="@styles/overview.css">
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="69.0">
                                  <children>
@@ -30,7 +29,7 @@
                               </VBox>
                               <VBox alignment="CENTER_LEFT">
                                  <children>
-                                    <TextField fx:id="totalItems" />
+                                    <TextField fx:id="totalItems" prefHeight="30.0" prefWidth="37.0" />
                                     <Label text="Total Items in Stock">
                                        <font>
                                           <Font size="18.0" />
@@ -40,7 +39,7 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox fx:id="card2" prefHeight="164.0" prefWidth="258.0" style="-fx-background-color: white;" styleClass="cardCustom" stylesheets="@styles/overview.css">
+                        <HBox fx:id="card2" alignment="CENTER" maxHeight="200.0" prefHeight="150.0" prefWidth="240.0" style="-fx-background-color: white;" styleClass="cardCustom" stylesheets="@styles/overview.css">
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="69.0">
                                  <children>
@@ -49,7 +48,7 @@
                               </VBox>
                               <VBox alignment="CENTER_LEFT">
                                  <children>
-                                    <TextField fx:id="totalSales" />
+                                    <TextField fx:id="totalSales" prefHeight="30.0" prefWidth="0.0" />
                                     <Label text="Total Sales">
                                        <font>
                                           <Font size="18.0" />
@@ -60,10 +59,10 @@
                            </children>
                         </HBox>
                      </children>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="70.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                  </VBox>
+                  <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: transparent;">
                      <children>
-                        <HBox fx:id="card3" prefHeight="164.0" prefWidth="258.0" style="-fx-background-color: white;" stylesheets="@styles/overview.css" styleClass="cardCustom">
+                        <HBox fx:id="card3" alignment="CENTER" maxHeight="200.0" prefHeight="150.0" prefWidth="240.0" style="-fx-background-color: white;" styleClass="cardCustom" stylesheets="@styles/overview.css">
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="69.0">
                                  <children>
@@ -72,7 +71,7 @@
                               </VBox>
                               <VBox alignment="CENTER_LEFT">
                                  <children>
-                                    <TextField fx:id="totalOrders" />
+                                    <TextField fx:id="totalOrders" prefHeight="30.0" prefWidth="99.0" />
                                     <Label text="Total Orders Completed">
                                        <font>
                                           <Font size="18.0" />
@@ -82,16 +81,16 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox fx:id="card4" stylesheets="@styles/overview.css" prefHeight="164.0" prefWidth="258.0" style="-fx-background-color: white;" styleClass="cardCustom">
+                        <HBox fx:id="card4" alignment="CENTER" maxHeight="200.0" prefHeight="150.0" prefWidth="240.0" styleClass="cardCustom" stylesheets="@styles/overview.css">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="69.0">
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="70.0">
                                  <children>
                                     <FontIcon iconLiteral="met-graphs" iconSize="50" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER_LEFT">
                                  <children>
-                                    <TextField fx:id="itemsSold" />
+                                    <TextField fx:id="itemsSold" prefHeight="30.0" prefWidth="33.0" />
                                     <Label text="Total Items Sold">
                                        <font>
                                           <Font size="18.0" />
@@ -102,13 +101,10 @@
                            </children>
                         </HBox>
                      </children>
-                  </HBox>
+                  </VBox>
                </children>
-               <padding>
-                  <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
-               </padding>
-            </VBox>
-            <VBox fx:id="revanue_vbox" prefHeight="320.0" prefWidth="481.0">
+            </HBox>
+            <VBox fx:id="revanue_vbox" prefHeight="320.0" prefWidth="500.0" style="-fx-background-color: white;" styleClass="itemContainer">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="422.0">
                      <children>
@@ -133,9 +129,9 @@
             </VBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" minWidth="320.0" prefHeight="352.0" prefWidth="1030.0" spacing="20.0" style="-fx-background-color: white;">
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" minWidth="320.0" prefHeight="310.0" prefWidth="1000.0" spacing="10.0">
          <children>
-            <VBox>
+            <VBox prefWidth="500.0" style="-fx-background-color: white;" styleClass="itemContainer">
                <children>
                   <HBox alignment="CENTER_LEFT" minHeight="50.0" prefHeight="50.0" prefWidth="523.0">
                      <children>
@@ -156,7 +152,7 @@
                   <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
                </padding>
             </VBox>
-            <VBox layoutX="10.0" layoutY="10.0" prefHeight="352.0" prefWidth="453.0">
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="352.0" prefWidth="500.0" style="-fx-background-color: white;" styleClass="itemContainer">
                <children>
                   <HBox alignment="CENTER_LEFT" minHeight="50.0" prefHeight="50.0" prefWidth="422.0">
                      <children>
@@ -166,7 +162,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </HBox>
-                  <MFXListView fx:id="popularItemsList" depthLevel="LEVEL0" prefHeight="268.0" prefWidth="426.0" />
+                  <MFXListView fx:id="popularItemsList" depthLevel="LEVEL0" prefHeight="285.0" prefWidth="479.0" />
                </children>
                <padding>
                   <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
