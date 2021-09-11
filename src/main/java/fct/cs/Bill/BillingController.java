@@ -44,13 +44,16 @@ public class BillingController {
     private Button cancel;
     @FXML
     private VBox content;
+    @FXML
+    private AnchorPane Bill;
 
     private FXMLLoader loader = null;
 
     private String currentPage = "";
+    public static Label static_label ;
 
 
-    public void initialize() {
+    public void initialize(){
 
         if (!currentPage.equals("selectCustomerBill")) {
             loader = new FXMLLoader(getClass().getResource("/fct/cs/selectCustomerBill.fxml"));
@@ -65,10 +68,15 @@ public class BillingController {
             System.out.println("already loaded");
         }
 
-
+        static_label = customerName ;
 }
 
 public void displayCustomerName(String name){
-    customerName.setText(name);
+   customerName.setText(name);
+    System.out.printf(name);
+
 }
+
+
 }
+
