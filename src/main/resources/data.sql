@@ -254,3 +254,6 @@ create table category (
 
 insert into category (category_id, category_name,low_value,up_value) values (1, 'Less than 25k',0,25000);
 insert into category (category_id, category_name,low_value,up_value) values (2, 'greater than 25k',25000,150000);
+
+
+
