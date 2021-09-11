@@ -1,5 +1,6 @@
 package fct.cs.Bill;
 
+import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,7 +57,7 @@ public class BillingController {
     public void initialize(){
 
         if (!currentPage.equals("selectCustomerBill")) {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/selectCustomerBill.fxml"));
+          loader = new FXMLLoader(getClass().getResource("/fct/cs/selectCustomerBill.fxml"));
             try {
                 content.getChildren().clear();
                 content.getChildren().add(loader.load());
@@ -77,6 +78,19 @@ public void displayCustomerName(String name){
 
 }
 
-
+public void MovetoBooks(ActionEvent action){
+    if (!currentPage.equals("selectItemsBill")) {
+        loader = new FXMLLoader(getClass().getResource("/fct/cs/selectItemsForBill.fxml"));
+        try {
+            content.getChildren().clear();
+            content.getChildren().add(loader.load());
+            currentPage = "selectItemsBill";
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }else{
+        System.out.println("already loaded");
+    }
+}
 }
 
