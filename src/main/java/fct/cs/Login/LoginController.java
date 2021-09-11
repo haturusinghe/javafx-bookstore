@@ -63,6 +63,9 @@ public class LoginController implements Initializable {
     @FXML
     private Hyperlink registerOnAction;
 
+    @FXML
+    private Hyperlink fgwPass;
+
 
     private Connection conn;
     private DatabaseConnector databaseConnector;
@@ -184,11 +187,11 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    public void forgotPsw(ActionEvent event)throws IOException{
-        Parent view4=FXMLLoader.load(getClass().getResource("GetPassword.fxml"));
-        Scene scene4=new Scene(view4);
-        Stage window =(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene4);
+    public void forgotOnAction(ActionEvent event)throws IOException{
+        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/ChangePassword.fxml"));
+        Scene scene = new Scene(view);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(scene);
         window.show();
     }
 

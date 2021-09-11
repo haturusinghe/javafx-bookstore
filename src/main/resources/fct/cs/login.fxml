@@ -57,7 +57,7 @@
                                           <MFXPasswordField fx:id="txtPass" prefHeight="33.0" prefWidth="231.0" promptText="Password" />
                                        </children>
                                     </HBox>
-                                    <Hyperlink text="Fogot Password?" />
+                                    <Hyperlink fx:id="fgwPass" onAction="#forgotOnAction" text="Forgot Password?" />
                                  </children>
                               </VBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="680.0">
