@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<?import io.github.palexdev.materialfx.controls.MFXFlowlessListView?>
+<VBox alignment="CENTER" prefHeight="685.0" prefWidth="1030.0" spacing="5.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Dash.DashController">
+   <children>
+      <HBox alignment="CENTER_LEFT" minWidth="320.0" prefHeight="320.0" prefWidth="1030.0" spacing="20.0" style="-fx-background-color: white;">
+         <children>
+            <VBox alignment="CENTER" prefHeight="320.0" prefWidth="551.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="164.0" prefWidth="519.0" spacing="20.0">
+                     <children>
+                        <HBox fx:id="card1"  prefHeight="164.0" prefWidth="258.0" style="-fx-background-color: white;" stylesheets="@styles/overview.css">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="69.0">
+                                 <children>
+                                    <FontIcon iconLiteral="met-bag" iconSize="50" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <TextField fx:id="totalItems" />
+                                    <Label text="Total Items in Stock">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="card2" prefHeight="164.0" prefWidth="258.0" style="-fx-background-color: white;" styleClass="cardCustom" stylesheets="@styles/overview.css">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="69.0">
+                                 <children>
+                                    <FontIcon iconLiteral="met-dollar" iconSize="50" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <TextField fx:id="totalSales" />
+                                    <Label text="Total Sales">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="70.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                     <children>
+                        <HBox fx:id="card3" prefHeight="164.0" prefWidth="258.0" style="-fx-background-color: white;" stylesheets="@styles/overview.css" styleClass="cardCustom">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="69.0">
+                                 <children>
+                                    <FontIcon iconLiteral="met-cube" iconSize="50" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <TextField fx:id="totalOrders" />
+                                    <Label text="Total Orders Completed">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="card4" stylesheets="@styles/overview.css" prefHeight="164.0" prefWidth="258.0" style="-fx-background-color: white;" styleClass="cardCustom">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="69.0">
+                                 <children>
+                                    <FontIcon iconLiteral="met-graphs" iconSize="50" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <TextField fx:id="itemsSold" />
+                                    <Label text="Total Items Sold">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+               </padding>
+            </VBox>
+            <VBox fx:id="revanue_vbox" prefHeight="320.0" prefWidth="481.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="422.0">
+                     <children>
+                        <Label text="Monthly Revenue" />
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+                  <AreaChart fx:id="revenueChart" prefHeight="259.0" prefWidth="422.0">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis minorTickVisible="false" side="LEFT" />
+                    </yAxis>
+                  </AreaChart>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" minWidth="320.0" prefHeight="352.0" prefWidth="1030.0" spacing="20.0" style="-fx-background-color: white;">
+         <children>
+            <VBox>
+               <children>
+                  <HBox alignment="CENTER_LEFT" minHeight="50.0" prefHeight="50.0" prefWidth="523.0">
+                     <children>
+                        <Label text="Stock" />
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="241.0" prefWidth="523.0">
+                     <children>
+                        <VBox fx:id="stockItem_vbox" prefHeight="242.0" prefWidth="339.0" />
+                        <VBox fx:id="StockItemList_vbox" alignment="CENTER" prefHeight="242.0" prefWidth="194.0" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="352.0" prefWidth="453.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" minHeight="50.0" prefHeight="50.0" prefWidth="422.0">
+                     <children>
+                        <Label text="Popular items" />
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+                  <MFXListView fx:id="popularItemsList" depthLevel="LEVEL0" prefHeight="268.0" prefWidth="426.0" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>
