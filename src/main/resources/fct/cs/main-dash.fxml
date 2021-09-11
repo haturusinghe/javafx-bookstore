@@ -33,6 +33,18 @@
                         </HBox>
                         <VBox fx:id="nav_btn_container" alignment="CENTER">
                             <children>
+                                <JFXButton fx:id="homePage" minWidth="220.0" onAction="#loadHome"
+                                           prefHeight="50.0" styleClass="side-nav-button" text="Home">
+                                    <graphic>
+                                        <FontIcon fill="WHITE" iconLiteral="anto-home" iconSize="20"/>
+                                    </graphic>
+                                </JFXButton>
+                                <JFXButton fx:id="billingPage" minWidth="220.0" onAction="#loadBilling"
+                                           prefHeight="50.0" styleClass="side-nav-button" text="Billing">
+                                    <graphic>
+                                        <FontIcon fill="WHITE" iconLiteral="anto-credit-card" iconSize="20"/>
+                                    </graphic>
+                                </JFXButton>
                                 <JFXButton fx:id="inventoryPage" minWidth="220.0" onAction="#loadInventoryPage"
                                            prefHeight="50.0" styleClass="side-nav-button" text="Inventroy">
                                     <graphic>
