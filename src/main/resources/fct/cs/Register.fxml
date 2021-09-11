@@ -41,30 +41,30 @@
                      <children>
                         <HBox spacing="20.0">
                            <children>
-                              <MFXTextField fx:id="firstName" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="197.0" promptText="First Name" />
-                              <MFXTextField fx:id="lastName" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="197.0" promptText="Last Name" />
+                              <MFXTextField fx:id="firstName" alignment="TOP_LEFT" focusTraversable="false" prefHeight="29.0" prefWidth="197.0" promptText="First Name" />
+                              <MFXTextField fx:id="lastName" alignment="TOP_LEFT" focusTraversable="false" prefHeight="29.0" prefWidth="197.0" promptText="Last Name" />
                            </children>
                         </HBox>
                         <VBox>
                            <children>
-                              <MFXTextField fx:id="telNum" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="197.0" promptText="Phone Number" />
+                              <MFXTextField fx:id="telNum" alignment="TOP_LEFT" focusTraversable="false" prefHeight="29.0" prefWidth="197.0" promptText="Phone Number" />
                            </children>
                         </VBox>
                         <VBox>
                            <children>
-                              <MFXTextField fx:id="emailAddress" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="302.0" promptText="Email" />
+                              <MFXTextField fx:id="emailAddress" alignment="TOP_LEFT" focusTraversable="false" prefHeight="29.0" prefWidth="302.0" promptText="Email" />
                            </children>
                         </VBox>
                         <HBox spacing="60.0">
                            <children>
-                              <MFXPasswordField fx:id="passwordGet" prefHeight="36.0" prefWidth="163.0" promptText="Password" />
-                              <MFXPasswordField fx:id="passwordCheck" prefHeight="36.0" prefWidth="163.0" promptText="Confirm Password " />
+                              <MFXPasswordField fx:id="passwordGet" focusTraversable="false" prefHeight="36.0" prefWidth="163.0" promptText="Password" />
+                              <MFXPasswordField fx:id="passwordCheck" focusTraversable="false" prefHeight="36.0" prefWidth="163.0" promptText="Confirm Password " />
                            </children>
                         </HBox>
-                        <HBox spacing="20.0">
+                        <HBox spacing="23.0">
                            <children>
-                              <JFXComboBox fx:id="quesBox" prefHeight="27.0" prefWidth="197.0" promptText="Choose your question" />
-                              <MFXTextField fx:id="ansField" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="197.0" promptText="Answer" />
+                              <JFXComboBox fx:id="quesBox" focusTraversable="false" prefHeight="27.0" prefWidth="197.0" promptText="Choose your question" />
+                              <MFXTextField fx:id="ansField" alignment="TOP_LEFT" focusTraversable="false" prefHeight="29.0" prefWidth="197.0" promptText="Answer" />
                            </children>
                         </HBox>
                         <VBox>
@@ -74,17 +74,17 @@
                                     <Font size="13.0" />
                                  </font>
                               </Label>
-                              <JFXButton fx:id="signBtn" onAction="#signOnAction" prefHeight="36.0" prefWidth="163.0" text="Create Account" />
+                              <JFXButton fx:id="signBtn" onAction="#signOnAction" prefHeight="36.0" prefWidth="163.0" style="-fx-background-color: #1473e8;" text="Create Account" />
                            </children>
                         </VBox>
                         <HBox spacing="20.0">
                            <children>
-                              <Label prefHeight="20.0" prefWidth="147.0" text="Already have an account?">
+                              <Label prefHeight="20.0" prefWidth="147.0" text="Already have an account?" wrapText="true">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
                               </Label>
-                              <Hyperlink fx:id="hyperlinkLogin" onAction="#hLoginOnAction" prefHeight="23.0" prefWidth="46.0" text="Log In" />
+                              <Hyperlink fx:id="hyperlinkLogin" focusTraversable="false" onAction="#hLoginOnAction" prefHeight="23.0" prefWidth="46.0" text="Log In" />
                            </children>
                         </HBox>
                      </children>
