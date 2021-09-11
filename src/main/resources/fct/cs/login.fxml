@@ -24,14 +24,21 @@
             </VBox>
             <VBox prefHeight="720.0" prefWidth="680.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="643.0">
                      <padding>
                         <Insets left="20.0" />
                      </padding>
+                     <children>
+                        <JFXButton prefHeight="25.0" prefWidth="28.0">
+                           <HBox.margin>
+                              <Insets left="620.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                     </children>
                   </HBox>
                   <VBox prefHeight="630.0" prefWidth="680.0">
                      <children>
-                        <VBox alignment="CENTER_LEFT" prefHeight="163.0" prefWidth="680.0">
+                        <VBox alignment="CENTER_LEFT" prefHeight="208.0" prefWidth="680.0">
                            <children>
                               <Label prefHeight="42.0" prefWidth="134.0" text="Login">
                                  <font>

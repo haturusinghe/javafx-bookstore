@@ -240,7 +240,7 @@
     -fx-padding: 0.0em;
 }
 
-.table-row-cell: highlighted {
+.table-row-cell:highlighted {
     -fx-background-color: -primary;
     -fx-background-radius: 5px;
     -fx-background-insets: 2px;
