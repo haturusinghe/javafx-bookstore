@@ -1,9 +1,5 @@
 package fct.cs.Login;
 
-
-
-
-
 import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
@@ -90,7 +86,7 @@ public class LoginController implements Initializable {
 
             w = img.getWidth() * reducCoeff;
             h = img.getHeight() * reducCoeff;
-            System.out.println("yo");
+            System.out.println("Load image");
             imgX.setX((imgX.getFitWidth() - w) / 2);
             imgX.setY((imgX.getFitHeight() - h) / 2);
 
@@ -154,18 +150,74 @@ public class LoginController implements Initializable {
                 ResultSet rs_2 = ps_2.executeQuery();
 
                 if(rs_1.next()){
-                    String storedPassword = rs_1.getString("password");
-                    boolean matched = decrypt.validateString(password, storedPassword );
-                    System.out.println(matched);
 
+                    String storedPassword = rs_1.getString("password");
+                    boolean isManger = rs_1.getBoolean("isManager");
+                    boolean matchedPassword = decrypt.validateString(password, storedPassword );
+
+
+
+                    if(matchedPassword == true) {
+
+                        System.out.println("Login successful\nisManager " + isManger);
+
+                        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/main-dash.fxml"));
+                        Scene scene = new Scene(view);
+                        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        window.setScene(scene);
+                        window.show();
+
+                    }else{
+
+
+                        txtPass.setValidated(true);
+                        txtPass.getValidator().add(
+                                BindingUtils.toProperty(
+                                        txtPass.textProperty().length().isEqualTo(0)
+                                ),
+                                "Invalid Password"
+                        );
+
+                    }
 
                 }else if(rs_2.next()){
+
                     String storedPassword = rs_2.getString("password");
-                    boolean matched = decrypt.validateString(password, storedPassword );
-                    System.out.println(matched);
+                    boolean isManger = rs_2.getBoolean("isManager");
+                    boolean matchedPassword = decrypt.validateString(password, storedPassword );
+
+                    if(matchedPassword == true) {
+
+                        System.out.println("Login successful\nisManager " + isManger);
+
+                        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/main-dash.fxml"));
+                        Scene scene = new Scene(view);
+                        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        window.setScene(scene);
+                        window.show();
+
+                    }else{
+
+                        txtPass.setValidated(true);
+                        txtPass.getValidator().add(
+                                BindingUtils.toProperty(
+                                        txtPass.textProperty().length().isEqualTo(0)
+                                ),
+                                "Invalid Password"
+                        );
+
+                    }
 
                 } else {
                     System.out.println("Not Found");
+
+                    txtUsername.setValidated(true);
+                    txtUsername.getValidator().add(
+                            BindingUtils.toProperty(
+                                    txtUsername.textProperty().length().isNotEqualTo(0)
+                            ),
+                            "Invalid User"
+                    );
 //                    errorMsg.setText("Invalid credentials. Please try again");
                 }
             }
@@ -175,6 +227,7 @@ public class LoginController implements Initializable {
         }
 
     }
+
 
     //Load register.fxml
     @FXML
@@ -186,6 +239,7 @@ public class LoginController implements Initializable {
         window.show();
     }
 
+    //Load ChangePassword.fxml
     @FXML
     public void forgotOnAction(ActionEvent event)throws IOException{
         Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/ChangePassword.fxml"));
