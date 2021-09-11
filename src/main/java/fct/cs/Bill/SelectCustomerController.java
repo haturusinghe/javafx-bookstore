@@ -89,6 +89,7 @@ public class SelectCustomerController extends BillingController implements Initi
             displayCustomerName(name);
         }
     }
+
     @FXML
     private void sendToBillingScene(String name) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/selectItemsForBill.fxml"));
@@ -98,11 +99,9 @@ public class SelectCustomerController extends BillingController implements Initi
 
 
     }
-
     public void displayCustomerName(String name){
         static_label.setText(name);
         System.out.printf(name);
-
     }
 
 

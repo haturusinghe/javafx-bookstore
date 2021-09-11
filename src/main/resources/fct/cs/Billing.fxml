@@ -23,7 +23,16 @@
                         <Button fx:id="button" layoutX="445.0" layoutY="17.0" mnemonicParsing="false" text="view" />
                      </children>
                   </AnchorPane>
-                  <VBox fx:id="content" layoutX="-2.0" layoutY="61.0" prefHeight="622.0" prefWidth="624.0" />
+                  <VBox layoutX="1.0" layoutY="64.0" prefHeight="622.0" prefWidth="624.0">
+                     <children>
+                        <VBox fx:id="content" prefHeight="553.0" prefWidth="624.0" />
+                        <AnchorPane prefHeight="70.0" prefWidth="624.0">
+                           <children>
+                              <Button layoutX="177.0" layoutY="16.0" mnemonicParsing="false" onAction="#MovetoBooks" prefHeight="44.0" prefWidth="262.0" text="Select Customer" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
                </children></AnchorPane>
             <AnchorPane prefHeight="686.0" prefWidth="402.0">
                <children>
