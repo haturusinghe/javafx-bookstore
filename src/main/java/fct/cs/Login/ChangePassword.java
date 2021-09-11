@@ -10,12 +10,20 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import java.awt.*;
+import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -189,7 +197,7 @@ public class ChangePassword implements Initializable {
         }
     }
 
-        public boolean correctAns(String password, int iD) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public boolean correctAns(String password, int iD) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
 
         DatabaseConnector databaseConnector = new DatabaseConnector();
@@ -213,6 +221,15 @@ public class ChangePassword implements Initializable {
         }
 
         return count > 0;
+    }
+
+    @FXML
+    public void registerOnAction(ActionEvent event)throws IOException {
+        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/Register.fxml"));
+        Scene scene = new Scene(view);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 
 
