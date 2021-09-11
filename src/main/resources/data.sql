@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS bookstore;
+-- DROP DATABASE IF EXISTS bookstore;
 
 CREATE DATABASE bookstore;
 
