@@ -214,7 +214,7 @@ public class LoginController implements Initializable {
                     txtUsername.setValidated(true);
                     txtUsername.getValidator().add(
                             BindingUtils.toProperty(
-                                    txtUsername.textProperty().length().isNotEqualTo(0)
+                                    txtUsername.textProperty().length().isEqualTo(0)
                             ),
                             "Invalid User"
                     );
