@@ -1,6 +1,7 @@
 package fct.cs.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import fct.cs.Dash.DashController;
 import fct.cs.inventory.InventoryController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import java.util.ResourceBundle;
 
 public class mainPageController implements Initializable {
 
+    public JFXButton homePage;
     @FXML
     private Label pageHeaderLabel;
 
@@ -57,7 +59,7 @@ public class mainPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadInventoryPage();
+        loadHomePage();
     }
 
     @FXML
@@ -124,4 +126,29 @@ public class mainPageController implements Initializable {
         pageHeaderLabel.setText(string);
     }
 
+    public void loadHome(ActionEvent actionEvent) {
+        loadHomePage();
+
+    }
+
+    public void loadHomePage() {
+        if (!currentPage.equals("home")) {
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/dash.fxml"));
+            try {
+                mainContent_vbox.getChildren().clear();
+                mainContent_vbox.getChildren().add(loader.load());
+                DashController controller = loader.getController();
+                controller.setManager(isManager);
+                currentPage = "home";
+                setHeaderText("Welcome");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("already loaded");
+        }
+    }
+
+    public void loadBilling(ActionEvent actionEvent) {
+    }
 }
