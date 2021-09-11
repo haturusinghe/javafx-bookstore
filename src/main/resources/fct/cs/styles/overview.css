@@ -11,3 +11,8 @@
 	-fx-padding: 0px 0px 0px 5px;
 	-fx-font-size: 10pt;
 }
+
+.cardCustom{
+    -fx-background-radius: 10px;
+    -fx-background-color: white;
+}
