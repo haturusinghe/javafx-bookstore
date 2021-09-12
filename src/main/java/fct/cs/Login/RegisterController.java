@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 //import com.mysql.cj.conf.BooleanProperty;
 import com.jfoenix.controls.JFXComboBox;
 import fct.cs.dbUtil.DatabaseConnector;
+import fct.cs.dbUtil.DatabaseHandler;
 import io.github.palexdev.materialfx.controls.*;
 import io.github.palexdev.materialfx.controls.base.AbstractMFXDialog;
 import io.github.palexdev.materialfx.controls.enums.DialogType;
@@ -78,6 +79,8 @@ public class RegisterController implements Initializable {
 
     @FXML
     private Hyperlink hyperlinkLogin;
+
+    private Connection conn;
 
 
     @Override
@@ -189,8 +192,7 @@ public class RegisterController implements Initializable {
 
     }
 
-    private Connection conn;
-    //private DatabaseConnector databaseConnector;
+
 
     @FXML
     public void signOnAction(ActionEvent event) throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -324,8 +326,12 @@ public class RegisterController implements Initializable {
             System.out.println(passwordGet.passwordProperty().getValue());
             System.out.println(passwordGet.passwordProperty().getValueSafe());
             System.out.println("Form OK!");
-            DatabaseConnector databaseConnector = new DatabaseConnector();
-            this.conn = databaseConnector.getConn();
+
+            try {
+                this.conn = DatabaseHandler.getInstance().getConn();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             PasswordSecure encrypt = new PasswordSecure();
             String passwordEncrypt = null, answerEncrypt = null;
             //Encrypt password
