@@ -18,7 +18,7 @@
                     <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="95.0" prefWidth="1030.0">
                             <children>
-                                <JFXButton fx:id="m_addNewEntryBtn" minHeight="25.0" minWidth="100.0" onAction="#addNewEntry" styleClass="custom-buttons-1" text="Add New Employee">
+                                <JFXButton fx:id="m_addNewEntryBtn" minHeight="25.0" minWidth="100.0" onAction="#addNewEntry" styleClass="custom-buttons-1" text="Add New Book">
                                     <graphic>
                                         <FontIcon fill="WHITE" iconLiteral="anto-plus-circle" iconSize="20" />
                                     </graphic>
