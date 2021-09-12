@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import fct.cs.Bill.BillCustomer;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import net.sf.jasperreports.web.actions.Action;
 
@@ -53,14 +54,19 @@ public class SelectCustomerController extends BillingController implements Initi
 
     private BillManager BillManager;
 
+    @FXML
+    private GridPane grid;
+
     @Override
     public void initialize(URL location , ResourceBundle resources) {
 
         BillManager = new BillManager();
         setColumns();
         loadDataTable();
+
+
     }
-    public void loadDataTable(){
+    public void loadDataTable() {
         ArrayList<BillCustomer> CustomerList = BillManager.getCustomerList(2);
         customerTable.setItems(customerObservableList);
         customerObservableList.clear();
@@ -69,6 +75,7 @@ public class SelectCustomerController extends BillingController implements Initi
             customerObservableList.add(currentCustomer);
         }
     }
+
     private void setColumns(){
 
         id.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
