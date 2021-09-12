@@ -20,7 +20,15 @@ public class CustomerBoxController {
         private Label email;
 
 
-       
+    public void setData(BillCustomer Customer){
+
+        id.setText(Integer.toString(Customer.getCustomer_id()));
+        name.setText(Customer.getCustomer_name());
+        mobile.setText(Customer.getMobile());
+        email.setText(Customer.getEmail());
+    }
+
+
 
 }
 
