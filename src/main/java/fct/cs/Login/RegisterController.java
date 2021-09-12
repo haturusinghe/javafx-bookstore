@@ -368,4 +368,8 @@ public class RegisterController implements Initializable {
         }
 
     }
+
+    public void close(ActionEvent actionEvent) {
+        System.exit(0);
+    }
 }
