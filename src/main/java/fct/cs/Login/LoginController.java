@@ -62,7 +62,6 @@ public class LoginController implements Initializable {
     @FXML
     private Hyperlink fgwPass;
 
-
     private Connection conn;
     private DatabaseConnector databaseConnector;
     PreparedStatement pst;
@@ -100,22 +99,15 @@ public class LoginController implements Initializable {
         centerImage();
     }
 
-
     @FXML
     void loginOnAction(ActionEvent event) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-
-
         DatabaseConnector databaseConnector = new DatabaseConnector();
         PasswordSecure decrypt = new PasswordSecure();
 
         try {
             this.conn = databaseConnector.getConn();
-
             String username = txtUsername.getText().trim();
             String password = txtPass.getText().trim();
-
-
-
 
             if (username.isEmpty() || password.isEmpty()) {
 
@@ -150,12 +142,9 @@ public class LoginController implements Initializable {
                 ResultSet rs_2 = ps_2.executeQuery();
 
                 if(rs_1.next()){
-
                     String storedPassword = rs_1.getString("password");
                     boolean isManger = rs_1.getBoolean("isManager");
                     boolean matchedPassword = decrypt.validateString(password, storedPassword );
-
-
 
                     if(matchedPassword == true) {
 
@@ -227,7 +216,6 @@ public class LoginController implements Initializable {
         }
 
     }
-
 
     //Load register.fxml
     @FXML

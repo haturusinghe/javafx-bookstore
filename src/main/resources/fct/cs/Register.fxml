@@ -74,7 +74,7 @@
                                     <Font size="13.0" />
                                  </font>
                               </Label>
-                              <JFXButton fx:id="signBtn" onAction="#signOnAction" prefHeight="36.0" prefWidth="163.0" style="-fx-background-color: #1473e8;" text="Create Account" />
+                              <JFXButton fx:id="signBtn" onAction="#createAccount" prefHeight="36.0" prefWidth="163.0" style="-fx-background-color: #1473e8;" text="Create Account" />
                            </children>
                         </VBox>
                         <HBox spacing="20.0">
