@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
+import fct.cs.controllers.mainPageController;
 import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
@@ -148,9 +149,13 @@ public class LoginController implements Initializable {
 
                     if(matchedPassword == true) {
 
-                        System.out.println("Login successful\nisManager " + isManger);
+//                        System.out.println("Login successful\nisManager " + isManger);
 
-                        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/main-dash.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/main-dash.fxml"));
+                        mainPageController controller = loader.getController();
+                        controller.setManager(isManger);
+                        System.out.println("check");
+                        Parent view = loader.load();
                         Scene scene = new Scene(view);
                         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         window.setScene(scene);
@@ -177,9 +182,11 @@ public class LoginController implements Initializable {
 
                     if(matchedPassword == true) {
 
-                        System.out.println("Login successful\nisManager " + isManger);
-
-                        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/main-dash.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/main-dash.fxml"));
+                        Parent view = loader.load();
+                        mainPageController controller = loader.getController();
+                        controller.setManager(isManger);
+                        System.out.println("check");
                         Scene scene = new Scene(view);
                         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         window.setScene(scene);
