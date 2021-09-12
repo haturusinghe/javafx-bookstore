@@ -255,4 +255,7 @@ public class LoginController implements Initializable {
         alert.showAndWait();
     }
 
+    public void close(ActionEvent actionEvent) {
+        System.exit(0);
+    }
 }
