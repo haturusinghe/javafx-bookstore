@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import fct.cs.dbUtil.DatabaseConnector;
+import fct.cs.dbUtil.DatabaseHandler;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.utils.BindingUtils;
@@ -101,11 +102,10 @@ public class LoginController implements Initializable {
 
     @FXML
     void loginOnAction(ActionEvent event) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-        DatabaseConnector databaseConnector = new DatabaseConnector();
         PasswordSecure decrypt = new PasswordSecure();
 
         try {
-            this.conn = databaseConnector.getConn();
+            this.conn = DatabaseHandler.getInstance().getConn();
             String username = txtUsername.getText().trim();
             String password = txtPass.getText().trim();
 
