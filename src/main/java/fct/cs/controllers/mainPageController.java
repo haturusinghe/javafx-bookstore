@@ -54,7 +54,9 @@ public class mainPageController implements Initializable {
     private boolean isManager = true;
 
     public void setManager(boolean manager) {
-        isManager = manager;
+        this.isManager = manager;
+        System.out.println("Is manager" + manager);
+//        loadHomePage();
     }
 
     @Override
