@@ -152,10 +152,10 @@ public class LoginController implements Initializable {
 //                        System.out.println("Login successful\nisManager " + isManger);
 
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/main-dash.fxml"));
+                        Parent view = loader.load();
                         mainPageController controller = loader.getController();
                         controller.setManager(isManger);
                         System.out.println("check");
-                        Parent view = loader.load();
                         Scene scene = new Scene(view);
                         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         window.setScene(scene);
