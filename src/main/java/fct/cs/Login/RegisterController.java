@@ -301,7 +301,12 @@ public class RegisterController implements Initializable {
         String passGet = passwordGet.getText().trim();
         String passCheck = passwordCheck.getText().trim();
         String answer = ansField.getText().trim();
-        String question = quesBox.getValue().toString();
+        String question = null;
+        try {
+            question = quesBox.getValue().toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         passwordCheck.setValidated(true);
         passwordCheck.getValidator().add(
@@ -314,7 +319,7 @@ public class RegisterController implements Initializable {
 
         if (firstName.isValid() && lastName.isValid() && telNum.isValid() && emailAddress.isValid() &&
                 passwordGet.isValid() && passwordCheck.isValid() &&
-                ansField.isValid() && quesBox.getValue().toString().length() > 5
+                ansField.isValid() && question !=null
         ) {
             System.out.println(passwordGet.passwordProperty().getValue());
             System.out.println(passwordGet.passwordProperty().getValueSafe());
@@ -358,6 +363,8 @@ public class RegisterController implements Initializable {
 
         } else {
             System.out.println("Check Again");
+            MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Fill Registration Form", "Please fill all the fields in the above form");
+            dialog.show();
         }
 
     }
