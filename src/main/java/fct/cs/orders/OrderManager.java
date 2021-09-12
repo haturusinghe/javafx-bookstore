@@ -2,7 +2,6 @@ package fct.cs.orders;
 
 import fct.cs.data.Order;
 import fct.cs.data.OrderDetailEntry;
-import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
 
 import java.sql.*;
@@ -123,5 +122,4 @@ public class OrderManager {
             return null;
         }
     }
-
 }
