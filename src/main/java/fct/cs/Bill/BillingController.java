@@ -106,7 +106,24 @@ public class BillingController {
         displaySelectCustomer();
 
     }
+    public void loadDataTable() {
+        ArrayList<BillCustomer> CustomerList = BillManager.getCustomerList(2);
+        customerTable.setItems(customerObservableList);
+        customerObservableList.clear();
 
+        for (BillCustomer currentCustomer : CustomerList) {
+            customerObservableList.add(currentCustomer);
+        }
+    }
+
+    private void setColumns() {
+
+        bookID.setCellValueFactory(new PropertyValueFactory<>("bookID"));
+        item.setCellValueFactory(new PropertyValueFactory<>("item"));
+        unitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+        qty.setCellValueFactory(new PropertyValueFactory<>("qty"));
+        totalPrice.setCellValueFactory(new PropertyValueFactory<>("Total"));
+    }
 
 
 
