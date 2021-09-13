@@ -27,12 +27,14 @@ public class BillItemController {
     private Label name;
 
     @FXML
-    private TableColumn<?, ?> additem;
+    private TableColumn additem;
 
 
     private ObservableList<BillItem> customerObservableList = FXCollections.observableArrayList();
     private BillManager BillManager;
     private BillItemController thisController = this;
+
+
 
 
 

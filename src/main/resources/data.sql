@@ -262,3 +262,8 @@ create table customer(
 INSERT into customer VALUES ('01','Nimal','Colombo' , '0714331372','nimal1998@gmail.com');
 INSERT into customer VALUES ('02','Kamal','Kelaniya' , '0714345672','kamal1997@gmail.com');
 INSERT into customer VALUES ('03','Rayan','Matara' , '0714331372','nimal1993@gmail.com');
+
+ALTER TABLE inventory
+    add CONSTRAINT foreignkey FOREIGN KEY(book_id) REFERENCES book(book_id)
+        ON DELETE CASCADE ;
+
