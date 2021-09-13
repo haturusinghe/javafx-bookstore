@@ -62,11 +62,13 @@ public class BillingController {
     public static Label static_label;
     public static FXMLLoader load;
 
-    private ObservableList<BillCustomer> BillingObservableList = FXCollections.observableArrayList();
+    private ObservableList<Billdetails> BillingObservableList = FXCollections.observableArrayList();
 
     private SelectCustomerController parentController;
-    private OrderDetailEntry getOrderDetails ;
 
+    private static int orderDetailId ;
+    private ArrayList<Billdetails> BillitemsList ;
+    private  boolean alreadyAdded = false;
     public void initialize() {
         displaySelectCustomer();
 
@@ -120,9 +122,38 @@ public class BillingController {
             static_label = customerName;
         }
 
-    public OrderDetailEntry getOrderDetails(int book_id){
-        getOrderDetails.setBook_id(book_id);
-        getOrderDetails.setBook_id(bookname);
+    public void getOrderDetails(int book_id , String book_name , int unit_price ){
+
+        for (Billdetails currentItem : BillingObservableList) {
+
+            if(currentItem.getBook_id() == book_id){
+                currentItem.setQuantity(currentItem.getQuantity() + 1);
+                currentItem.setTotalForItem(currentItem.getQuantity()*currentItem.getUnit_price());
+                alreadyAdded = true ;
+                break;
+
+            }
+        }
+        if (alreadyAdded  == false){
+
+            Billdetails getOrderDetail  = new Billdetails(orderDetailId , book_id , book_name , 1,unit_price,unit_price);
+            getOrderDetail.setOrder_id(orderDetailId);
+            orderDetailId++ ;
+            getOrderDetail.setBook_id(book_id);
+            getOrderDetail.setBook_name(book_name);
+            getOrderDetail.setQuantity(1);
+            getOrderDetail.setUnit_price(unit_price);
+
+            BillingObservableList.add(getOrderDetail);
+
+        }
+
+
+
+
+
+
+
     }
 
 

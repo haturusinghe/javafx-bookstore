@@ -9,13 +9,13 @@ public class Billdetails {
         private String book_name;
         private int totalForItem;
 
-        public Billdetails(int order_id, int book_id, String book_name, int quantity, int unit_price, int discount) {
+        public Billdetails(int order_id, int book_id, String book_name, int quantity, int unit_price , int totalForItem) {
             this.book_id = book_id;
             this.order_id = order_id;
             this.book_name = book_name ;
             this.quantity = quantity;
             this.unit_price = unit_price;
-            this.totalForItem = (unit_price*quantity) - discount;
+            this.totalForItem =  totalForItem;
         }
 
 
@@ -36,7 +36,17 @@ public class Billdetails {
             this.order_id = order_id;
         }
 
-        public int getQuantity() {
+
+          public String getBook_name() {
+                return book_name;
+            }
+
+          public void setBook_name(String book_name) {
+                this.book_name = book_name;
+          }
+
+
+    public int getQuantity() {
             return quantity;
         }
 
@@ -60,13 +70,7 @@ public class Billdetails {
             this.unit_price = unit_price;
         }
 
-        public int getDiscount() {
-            return discount;
-        }
 
-        public void setDiscount(int discount) {
-            this.discount = discount;
-        }
 
         @Override
         public String toString() {
@@ -75,7 +79,6 @@ public class Billdetails {
                     ", order_id=" + order_id +
                     ", quantity=" + quantity +
                     ", unit_price=" + unit_price +
-                    ", discount=" + discount +
                     ", totalForItem=" + totalForItem +
                     '}';
         }
