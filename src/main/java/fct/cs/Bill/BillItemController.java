@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class BillItemController {
 
     @FXML
@@ -34,7 +37,15 @@ public class BillItemController {
     private BillManager BillManager;
     private BillItemController thisController = this;
 
+    @Override
+    public void initialize(URL location , ResourceBundle resources) {
 
+        BillManager = new BillManager();
+        setColumns();
+        loadDataItemTable();
+
+
+    }
 
 
 
