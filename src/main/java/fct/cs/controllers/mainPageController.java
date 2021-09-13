@@ -154,4 +154,22 @@ public class mainPageController implements Initializable {
 
     public void loadBilling(ActionEvent actionEvent) {
     }
+
+    public void reportsPage(ActionEvent actionEvent) {
+
+        if (!currentPage.equals("reports")) {
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/generate-reports.fxml"));
+            try {
+                mainContent_vbox.getChildren().clear();
+                mainContent_vbox.getChildren().add(loader.load());
+                currentPage = "reports";
+                setHeaderText("View Reports");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("already loaded");
+        }
+
+    }
 }

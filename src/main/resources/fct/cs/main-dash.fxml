@@ -75,7 +75,7 @@
                                     </graphic>
                                 </JFXButton>
                                 <JFXButton minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button"
-                                           text="Reports">
+                                           text="Reports" onAction="#reportsPage">
                                     <graphic>
                                         <FontIcon fill="WHITE" iconLiteral="cil-taxi" iconSize="20"/>
                                     </graphic>
