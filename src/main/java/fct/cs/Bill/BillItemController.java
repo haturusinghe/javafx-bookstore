@@ -92,8 +92,7 @@ public class BillItemController implements Initializable {
                 else{
 
                     btnAdd.setOnAction(e ->{
-
-
+                        
 
                     });
                     btnAdd.setStyle("-fx-background-color: transparent;");

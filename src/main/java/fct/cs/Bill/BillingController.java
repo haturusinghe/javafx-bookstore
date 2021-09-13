@@ -100,20 +100,18 @@ public class BillingController {
     private SelectCustomerController parentController;
 
     private static int orderDetailId ;
-    private ArrayList<Billdetails> BillitemsList ;
+//    private ArrayList<Billdetails> BillitemsList;
     private  boolean alreadyAdded = false;
+
     public void initialize() {
+
         displaySelectCustomer();
-
+        setColumns();
+        loadDataTable();
     }
-    public void loadDataTable() {
-        ArrayList<BillCustomer> CustomerList = BillManager.getCustomerList(2);
-        customerTable.setItems(customerObservableList);
-        customerObservableList.clear();
 
-        for (BillCustomer currentCustomer : CustomerList) {
-            customerObservableList.add(currentCustomer);
-        }
+    public void loadDataTable() {
+        BillTable.setItems(BillingObservableList);
     }
 
     private void setColumns() {
@@ -125,22 +123,11 @@ public class BillingController {
         totalPrice.setCellValueFactory(new PropertyValueFactory<>("Total"));
     }
 
-
-
-
-
-
-
-
-
-
     public void displayCustomerName(String name) {
         customerName.setText(name);
         System.out.printf(name);
 
     }
-
-
 
     public void MovetoBooks() {
         if (!currentPage.equals("selectItemsBill")) {
