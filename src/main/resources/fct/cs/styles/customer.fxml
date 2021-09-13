@@ -37,7 +37,7 @@
                             <columns>
                                 <TableColumn fx:id="colcustomer_id" prefWidth="75.0" text="Customer ID" />
                                 <TableColumn fx:id="colcustomer_name" prefWidth="75.0" text="Customer Name" />
-                                <TableColumn fx:id="collocation" prefWidth="75.0" text="Customer Location" />
+                                <TableColumn fx:id="collocation" prefWidth="75.0" text="Location" />
                                 <TableColumn fx:id="colmobile" prefWidth="75.0" text="Phone Number" />
                                 <TableColumn fx:id="colemail" prefWidth="75.0" text="Email" />
                                 <TableColumn fx:id="colEdit" prefWidth="75.0" text="Edit" visible="false" />
@@ -82,8 +82,18 @@
                                                 <TextField fx:id="customer_name_txtField" onKeyTyped="#showUpdateBtn" />
                                             </children>
                                         </VBox>
-                                        <Separator orientation="VERTICAL" prefHeight="200.0" />
-                                        </children>
+                                    </children>
+                                </HBox>
+                                <Separator prefWidth="200.0" />
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                        <VBox alignment="CENTER_LEFT">
+                                            <children>
+                                                <Label text="Customer Email" />
+                                                <TextField fx:id="email_txtField" onKeyTyped="#showUpdateBtn" />
+                                            </children>
+                                        </VBox>
+                                    </children>
                                 </HBox>
                                 <Separator prefWidth="200.0" />
                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
@@ -92,13 +102,6 @@
                                             <children>
                                                 <Label text="Email" />
                                                 <TextField fx:id="email_txtField" onKeyTyped="#showUpdateBtn" />
-                                            </children>
-                                        </VBox>
-                                        <Separator orientation="VERTICAL" prefHeight="200.0" />
-                                        <VBox alignment="CENTER_LEFT">
-                                            <children>
-                                                <Label text="Phone Number" />
-                                                <TextField fx:id="mobile_txtField" onKeyTyped="#showUpdateBtn" />
                                             </children>
                                         </VBox>
                                     </children>
@@ -112,7 +115,6 @@
                                                 <TextField fx:id="location_txtField" onKeyTyped="#showUpdateBtn" />
                                             </children>
                                         </VBox>
-                                        <Separator orientation="VERTICAL" prefHeight="200.0" />
                                     </children>
                                 </HBox>
                             </children>
