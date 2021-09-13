@@ -6,3 +6,13 @@
 /shade/
 /dependency-reduced-pom.xml
 /src/main/resources/fct/cs/sql/db.sql
+/src/main/resources/fct/cs/reports/monthly_report.jasper
+/jasper_files/.classpath
+/jasper_files/.project
+/jasper_files/banner2x.jpg
+/jasper_files/bannerx.jpg
+/jasper_files/FormatFactoryleaf_banner_red.png
+/jasper_files/leaf_banner_red.png
+/jasper_files/monthly_report.jasper
+/jasper_files/monthly_report.jrxml
+/jasper_files/.settings/org.eclipse.core.resources.prefs
