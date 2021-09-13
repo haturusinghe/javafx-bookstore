@@ -58,7 +58,7 @@
                         </MFXButton>
                      </children>
                         </HBox>
-                        <MFXTableView fx:id="MFXtblOrderTable" fixedRowsHeight="40.0" maxHeight="600.0" maxRowsPerPage="10" minHeight="600.0" minWidth="1030.0" />
+                        <MFXTableView fx:id="MFXtblOrderTable" fixedRowsHeight="40.0" maxHeight="600.0" maxRowsPerPage="10" minHeight="600.0" minWidth="1500.0" />
                     </children>
                 </VBox>
             </children>
