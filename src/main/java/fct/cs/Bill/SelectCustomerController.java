@@ -8,17 +8,26 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import fct.cs.Bill.BillCustomer;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import net.sf.jasperreports.web.actions.Action;
+import org.kordamp.ikonli.javafx.FontIcon;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -34,16 +43,16 @@ public class SelectCustomerController extends BillingController implements Initi
     private TableView<BillCustomer> customerTable;
 
     @FXML
-    private TableColumn<BillCustomer, Integer> id;
+    private TableColumn <BillCustomer,Integer>id;
 
     @FXML
-    private TableColumn<BillCustomer, String> name;
+    private TableColumn <BillCustomer,String> name;
 
     @FXML
-    private TableColumn<BillCustomer, String> mobile;
+    private TableColumn <BillCustomer,String> mobile;
 
     @FXML
-    private TableColumn<BillCustomer, String> email;
+    private TableColumn <BillCustomer,String>  email;
     @FXML
     private Label screen;
 
@@ -53,9 +62,14 @@ public class SelectCustomerController extends BillingController implements Initi
     private ObservableList<BillCustomer> customerObservableList = FXCollections.observableArrayList();
 
     private BillManager BillManager;
+    private SelectCustomerController thisController = this;
+
 
     @FXML
-    private GridPane grid;
+    private TableColumn SelectCustomer;
+
+    @FXML
+    private AnchorPane rootPane;
 
     @Override
     public void initialize(URL location , ResourceBundle resources) {
@@ -76,6 +90,7 @@ public class SelectCustomerController extends BillingController implements Initi
         }
     }
 
+
     private void setColumns(){
 
         id.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
@@ -83,17 +98,68 @@ public class SelectCustomerController extends BillingController implements Initi
         mobile.setCellValueFactory(new PropertyValueFactory<>("mobile"));
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
 
+
+        SelectCustomer.setCellFactory((tableColumn) -> {
+            TableCell<BillCustomer, Integer> tableCell = new TableCell<>() {
+                javafx.scene.image.Image imgSelect = new Image(getClass().getResourceAsStream("/images/book.png"));
+                final javafx.scene.control.Button btnSelect = new Button();
+                FontIcon icon3 = new FontIcon("antf-book");
+
+
+                @Override
+                protected void updateItem(Integer customer_id, boolean empty) {
+                    super.updateItem(customer_id, empty);
+
+                    if(empty)
+                    {
+                        this.setText(null);
+                        this.setGraphic(null);
+                    }
+                    else{
+
+
+
+
+                        btnSelect.setStyle("-fx-background-color: transparent;");
+                        icon3.setIconColor(Color.RED);
+                        icon3.setIconSize(30);
+
+                        ImageView iv = new ImageView();
+                        iv.setImage(imgSelect);
+                        iv.setPreserveRatio(true);
+                        iv.setSmooth(true);
+                        iv.setCache(true);
+                        btnSelect.setGraphic(icon3);
+
+                        this.setGraphic(btnSelect);
+                        this.setAlignment(Pos.CENTER);
+
+
+                    }
+
+
+                }
+
+            };
+            return tableCell;
+        });
+
+
     }
+
+
     @FXML
     private void displayCustomerInBill() throws IOException {
         BillCustomer customer = customerTable.getSelectionModel().getSelectedItem();
-        if(customer == null){
+        if (customer == null) {
             screen.setText("Select Customer");
-        }
-        else{
-             String name = customer.getCustomer_name();
+        } else {
+            String name = customer.getCustomer_name();
             screen.setText("name:" + name);
             displayCustomerName(name);
+
+
+
         }
     }
 
@@ -105,11 +171,13 @@ public class SelectCustomerController extends BillingController implements Initi
 
 
 
+
     }
     public void displayCustomerName(String name){
         static_label.setText(name);
         System.out.printf(name);
     }
+
 
 
 
