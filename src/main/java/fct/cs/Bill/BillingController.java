@@ -50,14 +50,20 @@ public class BillingController {
 
     private FXMLLoader loader = null;
 
+
     private String currentPage = "";
     public static Label static_label ;
+    public static FXMLLoader load ;
+
+    private SelectCustomerController parentController ;
 
 
     public void initialize(){
 
         if (!currentPage.equals("selectCustomerBills")) {
+
           loader = new FXMLLoader(getClass().getResource("/fct/cs/SelectCustomerBill.fxml"));
+
             try {
                 content.getChildren().clear();
                 content.getChildren().add(loader.load());
@@ -78,7 +84,7 @@ public void displayCustomerName(String name){
 
 }
 
-public void MovetoBooks(ActionEvent action){
+public void MovetoBooks(){
     if (!currentPage.equals("selectItemsBill")) {
         loader = new FXMLLoader(getClass().getResource("/fct/cs/selectItemsForBill.fxml"));
         try {
@@ -92,5 +98,12 @@ public void MovetoBooks(ActionEvent action){
         System.out.println("already loaded");
     }
 }
+
+    public void setParentController(SelectCustomerController parentController) {
+        this.parentController = parentController;
+    }
+
 }
+
+
 

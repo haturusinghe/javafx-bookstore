@@ -116,8 +116,24 @@ public class SelectCustomerController extends BillingController implements Initi
                         this.setGraphic(null);
                     }
                     else{
+                        
+                        btnSelect.setOnAction(e ->{
+                                    System.out.println("Clicked Select");
+                                    BillCustomer entry = getTableView().getItems().get(getIndex());
+                                    displayCustomerName(entry.getCustomer_name());
+
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/selectItemsForBill.fxml"));
+
+                            try {
+                                rootPane.getChildren().clear();
+                                rootPane.getChildren().add(loader.load());
+
+                            } catch (IOException ioException) {
+                                ioException.printStackTrace();
+                            }
 
 
+                        });
 
 
                         btnSelect.setStyle("-fx-background-color: transparent;");
