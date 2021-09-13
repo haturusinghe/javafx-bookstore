@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ItemManager extends BillManager{
 
@@ -34,6 +35,21 @@ public class ItemManager extends BillManager{
             return null;
         }
     }
+    private ArrayList<BillItem> createItemList(ResultSet rs) {
+        ArrayList<BillItem> ItemList = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                ItemList.add(new BillItem(
+                        rs.getInt("book_id") ,
+                        rs.getString("title"),
+                        rs.getString("isbn") ,
+                        rs.getString("unit_price")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
+        return ItemList;
+    }
 
 }
