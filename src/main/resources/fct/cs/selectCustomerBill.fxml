@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="553.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.SelectCustomerController">
+<AnchorPane fx:id="rootPane" prefHeight="553.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.SelectCustomerController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="145.0" text="Select a Customer :">
          <font>
@@ -19,7 +19,8 @@
           <TableColumn fx:id="id" prefWidth="52.80001926422119" text="id" />
           <TableColumn fx:id="name" minWidth="0.0" prefWidth="75.99999618530273" text="Name" />
             <TableColumn fx:id="mobile" prefWidth="146.3999786376953" text="mobile" />
-            <TableColumn fx:id="email" prefWidth="337.6000122070312" text="email" />
+            <TableColumn fx:id="email" prefWidth="155.20001220703125" text="email" />
+            <TableColumn fx:id="SelectCustomer" prefWidth="189.5999755859375" text="Select Customer" />
         </columns>
       </TableView>
       <Label fx:id="screen" layoutX="190.0" layoutY="24.0" prefHeight="18.0" prefWidth="289.0" />
