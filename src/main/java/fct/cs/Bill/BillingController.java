@@ -7,10 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -55,6 +52,42 @@ public class BillingController {
     @FXML
     private AnchorPane Bill;
 
+    @FXML
+    private AnchorPane Bill;
+
+    @FXML
+    private Button search;
+
+    @FXML
+    private TextField searchText;
+
+    @FXML
+    private Button button;
+
+    @FXML
+    private VBox content;
+
+    @FXML
+    private Label customerName;
+
+    @FXML
+    private TableView<Billdetails> BillTable;
+
+    @FXML
+    private TableColumn<Billdetails, Integer> bookID;
+
+    @FXML
+    private TableColumn<Billdetails, String> item;
+
+    @FXML
+    private TableColumn<Billdetails, String> unitPrice;
+
+    @FXML
+    private TableColumn<Billdetails, String> qty;
+
+    @FXML
+    private TableColumn<Billdetails, String> totalPrice;
+
     private FXMLLoader loader = null;
 
 
@@ -73,6 +106,15 @@ public class BillingController {
         displaySelectCustomer();
 
     }
+
+
+
+
+
+
+
+
+
 
 
     public void displayCustomerName(String name) {
