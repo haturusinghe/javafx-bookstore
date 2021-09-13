@@ -90,7 +90,6 @@ public class SelectCustomerController extends BillingController implements Initi
         }
     }
 
-
     private void setColumns(){
 
         id.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
