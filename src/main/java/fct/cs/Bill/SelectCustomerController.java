@@ -174,7 +174,6 @@ public class SelectCustomerController extends BillingController implements Initi
             displayCustomerName(name);
 
 
-
         }
     }
 

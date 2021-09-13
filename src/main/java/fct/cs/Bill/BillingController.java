@@ -12,6 +12,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 public class BillingController {
@@ -52,58 +55,63 @@ public class BillingController {
 
 
     private String currentPage = "";
-    public static Label static_label ;
-    public static FXMLLoader load ;
+    public static Label static_label;
+    public static FXMLLoader load;
 
-    private SelectCustomerController parentController ;
+    private SelectCustomerController parentController;
 
 
-    public void initialize(){
+    public void initialize() {
+        displaySelectCustomer();
 
-        if (!currentPage.equals("selectCustomerBills")) {
+    }
 
-          loader = new FXMLLoader(getClass().getResource("/fct/cs/SelectCustomerBill.fxml"));
+    public void displayCustomerName(String name) {
+        customerName.setText(name);
+        System.out.printf(name);
 
+    }
+
+    public void MovetoBooks() {
+        if (!currentPage.equals("selectItemsBill")) {
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/selectItemsForBill.fxml"));
             try {
                 content.getChildren().clear();
                 content.getChildren().add(loader.load());
-                currentPage = "selectCustomerBills";
+                currentPage = "selectItemsBill";
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             System.out.println("already loaded");
         }
-
-        static_label = customerName ;
-}
-
-public void displayCustomerName(String name){
-   customerName.setText(name);
-    System.out.printf(name);
-
-}
-
-public void MovetoBooks(){
-    if (!currentPage.equals("selectItemsBill")) {
-        loader = new FXMLLoader(getClass().getResource("/fct/cs/selectItemsForBill.fxml"));
-        try {
-            content.getChildren().clear();
-            content.getChildren().add(loader.load());
-            currentPage = "selectItemsBill";
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }else{
-        System.out.println("already loaded");
     }
-}
 
     public void setParentController(SelectCustomerController parentController) {
         this.parentController = parentController;
     }
 
-}
+
+    public void displaySelectCustomer( ){
+            if (!currentPage.equals("selectCustomerBills")) {
+
+                loader = new FXMLLoader(getClass().getResource("/fct/cs/SelectCustomerBill.fxml"));
+
+                try {
+                    content.getChildren().clear();
+                    content.getChildren().add(loader.load());
+                    currentPage = "selectCustomerBills";
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("already loaded");
+            }
+
+            static_label = customerName;
+        }
+    }
+
 
 
 

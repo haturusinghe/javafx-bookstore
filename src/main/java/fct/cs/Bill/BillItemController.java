@@ -96,8 +96,6 @@ public class BillItemController implements Initializable {
 
 
                     });
-
-
                     btnAdd.setStyle("-fx-background-color: transparent;");
 
                     icon3.setIconColor(Color.RED);
@@ -113,10 +111,7 @@ public class BillItemController implements Initializable {
                     this.setGraphic(btnAdd);
                     this.setAlignment(Pos.CENTER);
 
-
                 }
-
-
             }
 
         };
@@ -125,4 +120,5 @@ public class BillItemController implements Initializable {
 
 
 }
+
 }
