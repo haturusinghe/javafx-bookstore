@@ -1,6 +1,9 @@
 package fct.cs.Bill;
 
+import fct.cs.data.OrderDetailEntry;
 import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -58,19 +62,24 @@ public class BillingController {
     public static Label static_label;
     public static FXMLLoader load;
 
-    private SelectCustomerController parentController;
+    private ObservableList<BillCustomer> BillingObservableList = FXCollections.observableArrayList();
 
+    private SelectCustomerController parentController;
+    private OrderDetailEntry getOrderDetails ;
 
     public void initialize() {
         displaySelectCustomer();
 
     }
 
+
     public void displayCustomerName(String name) {
         customerName.setText(name);
         System.out.printf(name);
 
     }
+
+
 
     public void MovetoBooks() {
         if (!currentPage.equals("selectItemsBill")) {
@@ -92,7 +101,7 @@ public class BillingController {
     }
 
 
-    public void displaySelectCustomer( ){
+    public void displaySelectCustomer(){
             if (!currentPage.equals("selectCustomerBills")) {
 
                 loader = new FXMLLoader(getClass().getResource("/fct/cs/SelectCustomerBill.fxml"));
@@ -110,6 +119,15 @@ public class BillingController {
 
             static_label = customerName;
         }
+
+    public OrderDetailEntry getOrderDetails(int book_id){
+        getOrderDetails.setBook_id(book_id);
+        getOrderDetails.setBook_id(bookname);
+    }
+
+
+
+
     }
 
 

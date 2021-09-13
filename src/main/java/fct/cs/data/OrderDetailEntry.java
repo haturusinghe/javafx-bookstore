@@ -13,7 +13,6 @@ public class OrderDetailEntry {
         this.order_id = order_id;
         this.quantity = quantity;
         this.unit_price = unit_price;
-        this.discount = discount;
         this.totalForItem = (unit_price*quantity) - discount;
     }
 
