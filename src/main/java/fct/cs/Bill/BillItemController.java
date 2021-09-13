@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,7 +25,7 @@ public class BillItemController {
     private TableColumn<BillItem, String>  isbn;
 
     @FXML
-    private TableColumn<BillItem, String>  unit_price;
+    private TableColumn<BillItem, Integer>  unit_price;
 
     @FXML
     private Label name;
@@ -44,9 +45,16 @@ public class BillItemController {
         setColumns();
         loadDataItemTable();
 
-
     }
 
+    private void setColumns() {
+
+        itemId.setCellValueFactory(new PropertyValueFactory<>("book_id"));
+        itemName.setCellValueFactory(new PropertyValueFactory<>("title"));
+        isbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        unit_price.setCellValueFactory(new PropertyValueFactory<>("unit_price"));
+
+    }
 
 
 
