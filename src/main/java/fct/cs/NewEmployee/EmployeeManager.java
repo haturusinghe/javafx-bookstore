@@ -32,7 +32,6 @@ public class EmployeeManager {
         ResultSet resultSet;
         try {
             preparedStatement = conn.prepareStatement(query);
-
             preparedStatement.setInt(1, entriesPerPage);
             preparedStatement.setInt(2, offset);
             resultSet = preparedStatement.executeQuery();
@@ -41,6 +40,8 @@ public class EmployeeManager {
             e.printStackTrace();
             return null;
         }
+
+
     }
 
     private static ArrayList<EmployeeData> createEmployeeList(ResultSet rs) {

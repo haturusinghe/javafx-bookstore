@@ -1,108 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.kordamp.ikonli.javafx.*?>
 
-<AnchorPane fx:id="mainAnchor" maxHeight="720.0" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0"
-            stylesheets="@styles/navigator.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="fct.cs.controllers.mainPageController">
+<AnchorPane fx:id="mainAnchor" maxHeight="720.0" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" stylesheets="@styles/navigator.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.controllers.mainPageController">
     <children>
-        <HBox fx:id="main_hbox" maxWidth="720.0" minHeight="720.0" AnchorPane.bottomAnchor="0.0"
-              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <HBox fx:id="main_hbox" maxWidth="720.0" minHeight="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <VBox fx:id="side_vbox" alignment="TOP_CENTER" minWidth="245.0" prefHeight="720.0" prefWidth="253.0"
-                      spacing="20.0" styleClass="side-VBox">
+                <VBox fx:id="side_vbox" alignment="TOP_CENTER" minWidth="245.0" prefHeight="720.0" prefWidth="253.0" spacing="20.0" styleClass="side-VBox">
                     <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
                                 <Label text="Bookstore" textFill="WHITE">
                                     <graphic>
-                                        <FontIcon iconColor="WHITE" iconLiteral="cil-book"/>
+                                        <FontIcon iconColor="WHITE" iconLiteral="cil-book" />
                                     </graphic>
                                     <font>
-                                        <Font size="30.0"/>
+                                        <Font size="30.0" />
                                     </font>
                                 </Label>
                             </children>
                         </HBox>
                         <VBox fx:id="nav_btn_container" alignment="CENTER">
                             <children>
-                                <JFXButton fx:id="homePage" minWidth="220.0" onAction="#loadHome"
-                                           prefHeight="50.0" styleClass="side-nav-button" text="Home">
+                                <JFXButton fx:id="homePage" minWidth="220.0" onAction="#loadHome" prefHeight="50.0" styleClass="side-nav-button" text="Home">
                                     <graphic>
-                                        <FontIcon fill="WHITE" iconLiteral="anto-home" iconSize="20"/>
+                                        <FontIcon fill="WHITE" iconLiteral="anto-home" iconSize="20" />
                                     </graphic>
                                 </JFXButton>
-                                <JFXButton fx:id="billingPage" minWidth="220.0" onAction="#loadBilling"
-                                           prefHeight="50.0" styleClass="side-nav-button" text="Billing">
+                                <JFXButton fx:id="billingPage" minWidth="220.0" onAction="#loadBilling" prefHeight="50.0" styleClass="side-nav-button" text="Billing">
                                     <graphic>
-                                        <FontIcon fill="WHITE" iconLiteral="anto-credit-card" iconSize="20"/>
+                                        <FontIcon fill="WHITE" iconLiteral="anto-credit-card" iconSize="20" />
                                     </graphic>
                                 </JFXButton>
-                                <JFXButton fx:id="inventoryPage" minWidth="220.0" onAction="#loadInventoryPage"
-                                           prefHeight="50.0" styleClass="side-nav-button" text="Inventroy">
+                                <JFXButton fx:id="inventoryPage" minWidth="220.0" onAction="#loadInventoryPage" prefHeight="50.0" styleClass="side-nav-button" text="Inventroy">
                                     <graphic>
-                                        <FontIcon fill="WHITE" iconLiteral="anto-shop" iconSize="20"/>
+                                        <FontIcon fill="WHITE" iconLiteral="anto-shop" iconSize="20" />
                                     </graphic>
                                 </JFXButton>
-                                <JFXButton fx:id="employeePage" minWidth="220.0" onAction="#loadEmployeePage"
-                                           prefHeight="50.0" styleClass="side-nav-button" text="Employees">
+                                <JFXButton fx:id="employeePage" minWidth="220.0" onAction="#loadEmployeePage" prefHeight="50.0" styleClass="side-nav-button" text="Employees">
                                     <graphic>
-                                        <FontIcon fill="WHITE" iconLiteral="anto-idcard" iconSize="20"/>
+                                        <FontIcon fill="WHITE" iconLiteral="anto-idcard" iconSize="20" />
                                     </graphic>
                                 </JFXButton>
-                                <JFXButton fx:id="orderBtn" minWidth="220.0" onAction="#loadOrdersPage"
-                                           prefHeight="50.0" styleClass="side-nav-button" text="Orders">
+                                <JFXButton fx:id="orderBtn" minWidth="220.0" onAction="#loadOrdersPage" prefHeight="50.0" styleClass="side-nav-button" text="Orders">
                                     <graphic>
-                                        <FontIcon fill="WHITE" iconLiteral="anto-dollar-circle" iconSize="20"/>
+                                        <FontIcon fill="WHITE" iconLiteral="anto-dollar-circle" iconSize="20" />
                                     </graphic>
                                 </JFXButton>
-                                <JFXButton minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button" text="Books">
+                                <JFXButton fx:id="BookPage" minWidth="220.0" onAction="#loadBook" prefHeight="50.0" styleClass="side-nav-button" text="Books">
                                     <graphic>
-                                        <FontIcon fill="WHITE" iconLiteral="anto-read" iconSize="20"/>
+                                        <FontIcon fill="WHITE" iconLiteral="anto-read" iconSize="20" />
                                     </graphic>
                                 </JFXButton>
-                                <JFXButton minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button"
-                                           text="Customers">
+                                <JFXButton minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button" text="Customers">
                                     <graphic>
-                                        <FontIcon fill="WHITE" iconLiteral="anto-team" iconSize="20"/>
+                                        <FontIcon fill="WHITE" iconLiteral="anto-team" iconSize="20" />
                                     </graphic>
                                 </JFXButton>
-                                <JFXButton minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button"
-                                           text="Reports">
+                                <JFXButton minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button" text="Reports">
                                     <graphic>
-                                        <FontIcon fill="WHITE" iconLiteral="cil-taxi" iconSize="20"/>
+                                        <FontIcon fill="WHITE" iconLiteral="cil-taxi" iconSize="20" />
                                     </graphic>
                                 </JFXButton>
-                                <JFXButton minWidth="220.0" onAction="#exit" prefHeight="50.0"
-                                           styleClass="side-nav-button" text="Close">
+                                <JFXButton minWidth="220.0" onAction="#exit" prefHeight="50.0" styleClass="side-nav-button" text="Close">
                                     <graphic>
-                                        <FontIcon fill="WHITE" iconLiteral="anto-close-square" iconSize="20"/>
+                                        <FontIcon fill="WHITE" iconLiteral="anto-close-square" iconSize="20" />
                                     </graphic>
                                 </JFXButton>
                             </children>
                         </VBox>
                     </children>
                 </VBox>
-                <VBox fx:id="contentPanel_vbox" minWidth="922.0" prefHeight="738.0" prefWidth="1030.0"
-                      styleClass="content-vbox">
+                <VBox fx:id="contentPanel_vbox" minWidth="922.0" prefHeight="738.0" prefWidth="1030.0" styleClass="content-vbox">
                     <children>
-                        <HBox fx:id="header_hbox" alignment="CENTER_LEFT" prefHeight="124.0" prefWidth="1030.0"
-                              styleClass="content-header">
+                        <HBox fx:id="header_hbox" alignment="CENTER_LEFT" prefHeight="124.0" prefWidth="1030.0" styleClass="content-header">
                             <children>
-                                <Label fx:id="pageHeaderLabel" id="header_label" text="Dashboard"/>
+                                <Label id="header_label" fx:id="pageHeaderLabel" text="Dashboard" />
                             </children>
                         </HBox>
-                        <Separator prefWidth="200.0"/>
+                        <Separator prefWidth="200.0" />
                             <VBox fx:id="contentAnchor" prefHeight="685.0" prefWidth="1030.0" styleClass="holder-vbox">
                             <children>
-                                <VBox fx:id="mainContent_vbox" alignment="CENTER" styleClass="loaded-vbox"/>
+                                <VBox fx:id="mainContent_vbox" alignment="CENTER" styleClass="loaded-vbox" />
                             </children>
                         </VBox>
                     </children>

@@ -77,8 +77,9 @@ public class mainPageController implements Initializable {
         }else{
             System.out.println("already loaded");
         }
-//        EmployeeController childController = loader.getController();
     }
+
+
 
     public void loadOrdersPage(ActionEvent actionEvent) {
         if (!currentPage.equals("orders")) {
@@ -151,4 +152,22 @@ public class mainPageController implements Initializable {
 
     public void loadBilling(ActionEvent actionEvent) {
     }
+
+     /*@FXML
+   void loadBook(ActionEvent event) {
+        if (currentPage != "book") {
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/new-book.fxml"));
+            try {
+                mainContent_vbox.getChildren().clear();
+                mainContent_vbox.getChildren().add(loader.load());
+                currentPage = "book";
+                setHeaderText("Book");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("already loaded");
+        }
+    }*/
+
 }
