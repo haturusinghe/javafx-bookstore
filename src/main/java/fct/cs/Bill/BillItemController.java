@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class BillItemController {
@@ -33,18 +34,28 @@ public class BillItemController {
     @FXML
     private TableColumn additem;
 
+    private ItemManager ItemManager ;
 
-    private ObservableList<BillItem> customerObservableList = FXCollections.observableArrayList();
-    private BillManager BillManager;
+
+    private ObservableList<BillItem> itemObservableList = FXCollections.observableArrayList();
     private BillItemController thisController = this;
 
     @Override
     public void initialize(URL location , ResourceBundle resources) {
 
-        BillManager = new BillManager();
+        ItemManager = new ItemManager();
         setColumns();
         loadDataItemTable();
 
+    }
+    public void loadDataItemTable() {
+        ArrayList<BillItem> ItemList = ItemManager.getItemList(8);
+       itemTable.setItems(itemObservableList);
+        itemObservableList.clear();
+
+        for (BillItem currentItem : ItemList) {
+            itemObservableList.add(currentItem);
+        }
     }
 
     private void setColumns() {

@@ -1,10 +1,10 @@
 package fct.cs.Bill;
 
 public class BillItem {
-    private int item_id ;
-    private String item_name,isbn , unit_price ;
+    private int item_id ,unit_price;
+    private String item_name,isbn;
 
-    public BillItem(int item_id, String item_name, String isbn, String unit_price) {
+    public BillItem(int item_id, String item_name, String isbn, Integer unit_price) {
         this.item_id = item_id;
         this.item_name = item_name;
         this.isbn = isbn;
@@ -35,11 +35,11 @@ public class BillItem {
         this.isbn = isbn;
     }
 
-    public String getUnit_price() {
+    public Integer getUnit_price() {
         return unit_price;
     }
 
-    public void setUnit_price(String unit_price) {
+    public void setUnit_price(int unit_price) {
         this.unit_price = unit_price;
     }
 }
