@@ -116,7 +116,7 @@ public class SelectCustomerController extends BillingController implements Initi
                         this.setGraphic(null);
                     }
                     else{
-                        
+
                         btnSelect.setOnAction(e ->{
                                     System.out.println("Clicked Select");
                                     BillCustomer entry = getTableView().getItems().get(getIndex());
