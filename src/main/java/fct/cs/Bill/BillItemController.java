@@ -3,6 +3,7 @@ package fct.cs.Bill;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -12,7 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class BillItemController {
+public class BillItemController implements Initializable {
 
     @FXML
     private TableView<BillItem> itemTable;
@@ -60,14 +61,10 @@ public class BillItemController {
 
     private void setColumns() {
 
-        itemId.setCellValueFactory(new PropertyValueFactory<>("book_id"));
-        itemName.setCellValueFactory(new PropertyValueFactory<>("title"));
+        itemId.setCellValueFactory(new PropertyValueFactory<>("item_id"));
+        itemName.setCellValueFactory(new PropertyValueFactory<>("item_name"));
         isbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         unit_price.setCellValueFactory(new PropertyValueFactory<>("unit_price"));
 
     }
-
-
-
-
 }

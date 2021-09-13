@@ -43,7 +43,7 @@ public class ItemManager extends BillManager{
                         rs.getInt("book_id") ,
                         rs.getString("title"),
                         rs.getString("isbn") ,
-                        rs.getInt("unit_price")));
+                        rs.getInt("list_price")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
