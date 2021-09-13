@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.Insets?>
+<VBox alignment="TOP_CENTER" prefHeight="685.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/16"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.GenReport.GenerateReportController">
+    <children>
+        <VBox alignment="BOTTOM_CENTER">
+            <children>
+                <JFXButton fx:id="generateMonthlyBtn" minHeight="25.0" minWidth="100.0" onAction="#generateMonthly"
+                           styleClass="custom-buttons-1" text="Generate Monthly Report">
+                    <graphic>
+                        <FontIcon fill="WHITE" iconLiteral="anto-plus-circle" iconSize="20"/>
+                    </graphic>
+                </JFXButton>
+            </children>
+        </VBox>
+    </children>
+</VBox>
