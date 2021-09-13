@@ -13,12 +13,13 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TableView layoutX="4.0" layoutY="50.0" onSort="#itemTable" prefHeight="520.0" prefWidth="614.0">
+      <TableView fx:id="itemTable" layoutX="4.0" layoutY="50.0" prefHeight="520.0" prefWidth="614.0">
          <columns>
-            <TableColumn prefWidth="140.80001544952393" text="ID" />
-            <TableColumn prefWidth="222.3999786376953" text="Item" />
-            <TableColumn prefWidth="123.20001220703125" text="ISBN" />
-            <TableColumn prefWidth="127.199951171875" text="Unit_Price" />
+            <TableColumn fx:id="itemId" prefWidth="64.80001544952393" text="ID" />
+            <TableColumn fx:id="itemName" prefWidth="244.0000762939453" text="Item" />
+            <TableColumn fx:id="isbn" prefWidth="101.59991455078125" text="ISBN" />
+            <TableColumn fx:id="unit_price" minWidth="0.0" prefWidth="99.199951171875" text="Unit_Price" />
+            <TableColumn fx:id="additem" prefWidth="104.79998779296875" text="Add" />
          </columns>
       </TableView>
       <Label fx:id="name" layoutX="236.0" layoutY="24.0" text="Label" />

@@ -1,6 +1,6 @@
 package fct.cs.Bill;
 
-public class BiillItems {
+public class BillItem {
 
 
 
