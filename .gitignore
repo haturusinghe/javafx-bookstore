@@ -1,8 +1,7 @@
 /target/
 /desktop.ini
 /src/main/resources/reference/main.css
-/src/main/resources/login table.txt
-/.idea/shelf/Uncommitted_changes_before_Checkout_at_2021-09-11_3_15_PM_[Changes]/shelved.patch
-/.idea/shelf/
-/src/main/resources/fct/cs/styles/fonts/
 /key.txt
+/src/main/resources/fct/cs/styles/fonts/
+/shade/
+/dependency-reduced-pom.xml
