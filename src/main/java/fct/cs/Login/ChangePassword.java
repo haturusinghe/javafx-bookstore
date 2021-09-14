@@ -136,17 +136,32 @@ public class ChangePassword implements Initializable {
                 "Passwords dont match"
         );
 
-        try {
-            this.conn = DatabaseHandler.getInstance().getConn();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
         if (fUsername.isValid() && fAns.isValid() && fPasswordGet.isValid() && fPasswordCheck.isValid() && question != null) {
 
             System.out.println(fPasswordGet.passwordProperty().getValue());
             System.out.println(fPasswordGet.passwordProperty().getValueSafe());
             System.out.println("Form OK!");
+
+            try {
+                this.conn = DatabaseHandler.getInstance().getConn();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            PasswordSecure encrypt = new PasswordSecure();
+            String passwordEncrypt = null, answerEncrypt = null;
+
+            //Encrypt password
+            try {
+                passwordEncrypt = encrypt.encryptString(passGet);
+                System.out.println("Password Encrypted");
+                answerEncrypt = encrypt.encryptString(answer);
+                System.out.println("Answer Encrypted");
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (InvalidKeySpecException e) {
+                e.printStackTrace();
+            }
 
         } else {
 
