@@ -3,7 +3,6 @@ package fct.cs.Customer;
 import com.jfoenix.controls.JFXButton;
 import fct.cs.commonUtil.AppUtils;
 import fct.cs.data.Category;
-import fct.cs.Employee.Employee;
 import fct.cs.data.Customer;
 import fct.cs.dbUtil.DatabaseHandler;
 import javafx.collections.FXCollections;
@@ -28,7 +27,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class CustomController implements Initializable{
+public class CustomController implements Initializable {
 
         @FXML
         private TextField search_txtField;
@@ -46,55 +45,38 @@ public class CustomController implements Initializable{
         private Button addBtn;
         @FXML
         private TableView customerTable;
-
         @FXML
-        private TableColumn colCustId;
-
+        private TableColumn colcustomer_id;
         @FXML
         private TableColumn colcustomer_name;
-
-        @FXML
-        private TableColumn colemail;
-
-        @FXML
-        private TableColumn colmobile;
-
         @FXML
         private TableColumn collocation;
-
+        @FXML
+        private TableColumn colemail;
+        @FXML
+        private TableColumn colmobile;
         @FXML
         private TableColumn colEdit;
-
         @FXML
         private TableColumn colRemove;
-
         @FXML
         private Label headerLabel;
-
         @FXML
         private JFXButton editBtn;
-
         @FXML
         private TextField customer_id_txtField;
-
         @FXML
         private TextField customer_name_txtField;
-
-        @FXML
-        private TextField email_txtField;
-
-        @FXML
-        private TextField mobile_txtField;
-
         @FXML
         private TextField location_txtField;
-
+        @FXML
+        private TextField email_txtField;
+        @FXML
+        private TextField mobile_txtField;
         @FXML
         private Button updateBtn;
-
         @FXML
         private Button removeBtn;
-
         private boolean isAddingNew = false;
 
         /* Lists for Customer Details Table */
@@ -109,11 +91,11 @@ public class CustomController implements Initializable{
         /*Set Table Columns and ComboBox values , then */
         public void initialize(URL url, ResourceBundle resourceBundle) {
                 setColumnProperties();
-                /*try {
+                try {
                         setCategories();
                 } catch (SQLException e) {
                         e.printStackTrace();
-                }*/
+                }
                 try {
                         getResults();
                 } catch (SQLException e) {
@@ -123,7 +105,7 @@ public class CustomController implements Initializable{
 
         public void selectCustomer(MouseEvent mouseEvent) {
 
-                selectedCustomer = (Customer) customerTable.getSelectionModel().getSelectedItem();
+                selectedCustomer = (Customer)customerTable.getSelectionModel().getSelectedItem();
 
                 if (selectedCustomer != null) {
                         customer_details_vbox.setDisable(true);
@@ -133,10 +115,12 @@ public class CustomController implements Initializable{
 
                         customer_id_txtField.setText(String.valueOf(selectedCustomer.getCustomer_id()));
                         customer_name_txtField.setText(selectedCustomer.getCustomer_name());
-                        email_txtField.setText(selectedCustomer.getEmail());
                         location_txtField.setText(selectedCustomer.getLocation());
+                        email_txtField.setText(selectedCustomer.getEmail());
                         mobile_txtField.setText(selectedCustomer.getMobile());
                 }
+
+
         }
 
         private void resetCustomerDetailsSidebar() {
@@ -150,7 +134,7 @@ public class CustomController implements Initializable{
                         customerTable.setDisable(false);
                 }
 
-//        selectedCustomer = null;
+//        selectedEmployee = null;
                 customer_id_txtField.setText("");
                 customer_name_txtField.setText("");
                 location_txtField.setText("");
@@ -175,15 +159,15 @@ public class CustomController implements Initializable{
 
                 DatabaseHandler databaseHandler = null;
                 try {
-                        databaseHandler = new DatabaseHandler();
+                        databaseHandler =  new DatabaseHandler();
                 } catch (SQLException e) {
                         e.printStackTrace();
                         errorAlert(e.getLocalizedMessage());
                 }
                 Connection connection = databaseHandler.getConn();
-                //customer_id, customer_name, email, location, mobile
+                //customer_id, customer_name, location, email, mobile
                 String tableName = "customer";
-                String sql = "UPDATE "+tableName+" set customer_id = ? , customer_name = ? , email = ?, location = ?, mobile = ?  where customer_id = ?";
+                String sql = "UPDATE "+tableName+" set customer_id = ? , customer_name = ? , location = ? , email = ?, mobile = ? where customer_id = ?";
                 PreparedStatement preparedStatement = null;
                 try {
                         preparedStatement = connection.prepareStatement(sql);
@@ -206,6 +190,9 @@ public class CustomController implements Initializable{
                         e.printStackTrace();
                 }
                 resetCustomerDetailsSidebar();
+
+
+
         }
 
         public void removeCustomer(ActionEvent actionEvent) throws SQLException {
@@ -253,12 +240,15 @@ public class CustomController implements Initializable{
 
 
                         } else if (type == noButton) {
+
                         }
                 });
+
+
         }
 
         private void getResults() throws SQLException {
-                String qu = "select * from employee";
+                String qu = "select * from customer";
                 DatabaseHandler databaseHandler = new DatabaseHandler();
                 ResultSet rs = databaseHandler.excecuteQuery(qu);
 
@@ -273,19 +263,19 @@ public class CustomController implements Initializable{
                         ));
                 }
 
-                loadcustomerTable();
+                loadCustomerTable();
         }
 
-        private void loadcustomerTable() {
+        private void loadCustomerTable() {
                 customerTable.setItems(customerObservableList);
         }
 
         private void setColumnProperties() {
-                colCustId.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
-                colcustomer_name.setCellValueFactory(new PropertyValueFactory<>("customer_name"));
-                collocation.setCellValueFactory(new PropertyValueFactory<>("location"));
+                colcustomer_id.setCellValueFactory(new PropertyValueFactory<>("employee_id"));
+                colcustomer_name.setCellValueFactory(new PropertyValueFactory<>("first_name"));
+                collocation.setCellValueFactory(new PropertyValueFactory<>("last_name"));
                 colemail.setCellValueFactory(new PropertyValueFactory<>("email"));
-                colmobile.setCellValueFactory(new PropertyValueFactory<>("mobile"));
+                colmobile.setCellValueFactory(new PropertyValueFactory<>("gender"));
 
                 colEdit.setCellFactory((tableColumn) -> {
                         TableCell<Customer, Integer> tableCell = new TableCell<>() {
@@ -293,8 +283,8 @@ public class CustomController implements Initializable{
                                 final Button btnEdit = new Button();
 
                                 @Override
-                                protected void updateItem(Integer custid, boolean empty) {
-                                        super.updateItem(custid, empty);
+                                protected void updateItem(Integer customer_id, boolean empty) {
+                                        super.updateItem(customer_id, empty);
 
                                         if(empty)
                                         {
@@ -328,13 +318,13 @@ public class CustomController implements Initializable{
                 });
 
                 colRemove.setCellFactory((tableColumn) -> {
-                        TableCell<Employee, Integer> tableCell = new TableCell<>() {
+                        TableCell<Customer, Integer> tableCell = new TableCell<>() {
                                 Image imgRemove = new Image(getClass().getResourceAsStream("/images/remove.png"));
                                 final Button btnRemove = new Button();
 
                                 @Override
-                                protected void updateItem(Integer empid, boolean empty) {
-                                        super.updateItem(empid, empty);
+                                protected void updateItem(Integer customer_id, boolean empty) {
+                                        super.updateItem(customer_id, empty);
 
                                         if(empty)
                                         {
@@ -357,12 +347,9 @@ public class CustomController implements Initializable{
 
                                                 this.setGraphic(btnRemove);
                                                 this.setAlignment(Pos.CENTER);
-
                                         }
-
                                 }
                         };
-
                         return tableCell;
                 });
         }
@@ -376,7 +363,7 @@ public class CustomController implements Initializable{
                 }
         }
 
-        public void editCustomer(ActionEvent actionEvent) {
+        public void editEmployee(ActionEvent actionEvent) {
                 if (selectedCustomer != null) {
                         customer_details_vbox.setDisable(false);
                         removeBtn.setVisible(true);
@@ -386,9 +373,9 @@ public class CustomController implements Initializable{
         private void saveAlert(Customer user){
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Customer saved successfully.");
+                alert.setTitle("User saved successfully.");
                 alert.setHeaderText(null);
-                alert.setContentText("The Customer "+user.getCustomer_name()+ ".");
+                alert.setContentText("The customer "+user.getCustomer_name()+ ".");
                 alert.showAndWait();
         }
 
@@ -404,7 +391,7 @@ public class CustomController implements Initializable{
         private void updateAlert(String user){
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Customer updated successfully.");
+                alert.setTitle("User updated successfully.");
                 alert.setHeaderText(null);
                 alert.setContentText("The customer "+user+" has been updated.");
                 alert.showAndWait();
@@ -419,9 +406,9 @@ public class CustomController implements Initializable{
                         errorAlert(e.getLocalizedMessage());
                 }
                 Connection connection = databaseHandler.getConn();
-                //employee_id, first_name, last_name, email, gender, phone_number, salary
+                //customer_id, customer_name, location, email, mobile
                 String tableName = "customer";
-                String sql_old = "UPDATE "+tableName+" set employee_id = ? , customer_name = ? , location = ? , email = ?, mobile = ? where customer_id = ?";
+                String sql_old = "UPDATE "+tableName+" set customer_id = ? , customer_name = ? , location = ? , email = ?, mobile = ? where customer_id = ?";
                 String sql = "insert into customer (customer_id, customer_name, location, email, mobile) values (?, ?, ?, ?, ?, ?, ?);";
                 PreparedStatement preparedStatement = null;
                 try {
@@ -454,40 +441,44 @@ public class CustomController implements Initializable{
                 resetCustomerDetailsSidebar();
         }
 
-        public void searchCustomers(KeyEvent keyEvent) {
+        public void searchCustomer(KeyEvent keyEvent) {
                 filterList();
                 customerTable.setItems(customerFilteredList);
         }
 
-        public void filterCustomers(ActionEvent actionEvent) {
+        public void filterCustomer(ActionEvent actionEvent) {
                 customerTable.setItems(customerFilteredList);
                 System.out.println(categoryCombo.getValue());
                 Category category = (Category)categoryCombo.getSelectionModel().getSelectedItem();
-
-                }
+        }
 
         public void filterList() {
                 System.out.println("Searching ...");
                 customerFilteredList.setPredicate(customer -> {
                         String filter = search_txtField.getText().toLowerCase();
-                        boolean title_matches =customer.getCustomer_name().toLowerCase().contains(filter) ;
-
-            /*
-            boolean creator_matches = (employee.getTitle() != null
-                    && employee.getPrice().toLowerCase().contains(filter))
-                    || (employee.getAuthor() != null && employee.getPublisher.toLowerCase().contains(filter));*/
-
-                        // check that the series has the selected category
-
-            /*boolean category_matches = false;
-
-            if (categoryCombo.getSelectionModel().getSelectedItem() != null) {
-
-            }*/
+                        boolean title_matches = customer.getCustomer_name().toLowerCase().contains(filter) ;
 
                         return title_matches; //&& category_matches;
                 });
         }
 
+        public void setCategories() throws SQLException {
+                String qu = "select * from category";
+                DatabaseHandler databaseHandler = new DatabaseHandler();
+                ResultSet rs = databaseHandler.excecuteQuery(qu);
+
+                while (rs.next()){
+                        categoryList.add(new Category(
+                                rs.getString("category_id"),
+                                rs.getString("category_name"),
+                                rs.getInt("low_value"),
+                                rs.getInt("up_value")
+                        ));
+                }
+
+                categoryCombo.setItems(categoryList);
         }
+
+}
+
 
