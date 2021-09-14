@@ -5,6 +5,7 @@ import fct.cs.Dash.DashManager;
 import fct.cs.Dash.MonthlyEntry;
 import fct.cs.NewEmployee.EmployeeData;
 import fct.cs.dbUtil.DatabaseHandler;
+import io.github.palexdev.materialfx.controls.MFXStepper;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.cell.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
@@ -37,6 +38,7 @@ public class GenerateReportController implements Initializable {
 
     public MFXTableView reportsTable;
     public JFXButton generateBtn;
+    public MFXStepper stepper;
     private ObservableList<MonthlyEntry> monthlyObservableList = FXCollections.observableArrayList();
 
     public void generateMonthly(ActionEvent actionEvent) {

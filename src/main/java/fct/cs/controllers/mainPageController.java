@@ -158,7 +158,7 @@ public class mainPageController implements Initializable {
     public void reportsPage(ActionEvent actionEvent) {
 
         if (!currentPage.equals("reports")) {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/generate-reports.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/report-generate.fxml"));
             try {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());
