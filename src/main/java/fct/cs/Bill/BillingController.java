@@ -1,10 +1,8 @@
 package fct.cs.Bill;
 
-import fct.cs.data.OrderDetailEntry;
-import javafx.beans.Observable;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -13,9 +11,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.sql.Array;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -32,7 +27,7 @@ public class BillingController {
     private Label customerName;
 
     @FXML
-    private Label total;
+    private Label  total;
 
     @FXML
     private TextField discount;
@@ -96,7 +91,8 @@ public class BillingController {
     private ObservableList<Billdetails> BillingObservableList = FXCollections.observableArrayList();
     private ArrayList<Billdetails> billDetails ;
     private BillItemController parentController;
-    private int Pricetotal ;
+
+//    private int subTotal;
 
     private  int orderDetailId = 1 ;
 //    private ArrayList<Billdetails> BillitemsList;
@@ -119,7 +115,7 @@ public class BillingController {
                 BillingObservableList.add(currentItem);
             }
         }
-
+        total.setText(String.valueOf(getTotal(billDetails)));
         BillTable.setItems(BillingObservableList);
     }
 
@@ -209,12 +205,13 @@ public class BillingController {
         }
 
     }
-    public void getTotal(){
-            for (Billdetails currentItem : billDetails) {
+    public int getTotal(ArrayList<Billdetails> array){
+            int subTotal = 0;
+            for (Billdetails currentItem : array) {
 
-                Pricetotal += currentItem.getTotalForItem();
+                subTotal += currentItem.getTotalForItem();
                 }
-           
+           return subTotal ;
             }
 
 
@@ -228,7 +225,7 @@ public class BillingController {
 
 
 
-    }
+
 
 
 
