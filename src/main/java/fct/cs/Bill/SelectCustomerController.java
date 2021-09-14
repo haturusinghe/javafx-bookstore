@@ -18,9 +18,11 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TextField ;
 import fct.cs.Bill.BillCustomer;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -39,6 +41,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SelectCustomerController implements Initializable {
+
 
     @FXML
     private TableView<BillCustomer> customerTable;
@@ -66,6 +69,9 @@ public class SelectCustomerController implements Initializable {
     private SelectCustomerController thisController = this;
     private BillingController parentController;
     private FilteredList<BillCustomer> customerFilteredList = new FilteredList<>(customerObservableList);
+
+    @FXML
+    private TextField searchCustomer;
 
 
     @FXML
@@ -206,6 +212,12 @@ public class SelectCustomerController implements Initializable {
     }
 
 
+    @FXML
+    void searchCustomer(ActionEvent actionEvent) {
+        String key = searchCustomer.getText();
+        searchTable(key);
+        customerTable.setItems(customerFilteredList);
+    }
 
     public void switchBilling(ActionEvent action ) throws IOException {
 
