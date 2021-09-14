@@ -127,8 +127,7 @@ public class SelectCustomerController implements Initializable {
                         btnSelect.setOnAction(e ->{
                                     System.out.println("Clicked Select");
                                     BillCustomer entry = getTableView().getItems().get(getIndex());
-
-                                    parentController.displayCustomerName(entry.getCustomer_name());
+                                    parentController.displayCustomerDetails(entry);
                                     parentController.MovetoBooks();
                         });
 

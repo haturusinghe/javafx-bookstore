@@ -87,6 +87,8 @@ public class BillingController {
 
     @FXML
     private TableColumn<Billdetails, String> totalPrice;
+    @FXML
+    private Label customerID;
 
     @FXML
     private TableColumn remove;
@@ -207,9 +209,10 @@ public class BillingController {
 
     }
 
-    public void displayCustomerName(String name) {
-        static_label.setText(name);
-        System.out.printf(name);
+    public void displayCustomerDetails(BillCustomer customer) {
+
+        customerName.setText(customer.getCustomer_name());
+        customerID.setText(String.valueOf(customer.getCustomer_id()));
 
     }
 

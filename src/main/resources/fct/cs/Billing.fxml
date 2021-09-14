@@ -30,7 +30,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="customerName" layoutX="108.0" layoutY="40.0" prefHeight="26.0" prefWidth="127.0">
+                  <Label fx:id="customerName" layoutX="108.0" layoutY="65.0" prefHeight="26.0" prefWidth="127.0">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -74,7 +74,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="customerName1" layoutX="108.0" layoutY="65.0" prefHeight="26.0" prefWidth="127.0">
+                  <Label fx:id="customerID" layoutX="108.0" layoutY="40.0" prefHeight="26.0" prefWidth="127.0">
                      <font>
                         <Font size="16.0" />
                      </font>
