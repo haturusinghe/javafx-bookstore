@@ -103,23 +103,28 @@ public class BillingController {
     private  boolean alreadyAdded = false;
 
     public void initialize() {
-        static_label  = customerName;
-
+        static_label = customerName;
+        billDetails = new ArrayList<Billdetails>();
         displaySelectCustomer();
         setColumns();
-       loadBillTable();
+        loadBillTable();
 
     }
 
     public void loadBillTable()  {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/selectItemsForBill.fxml"));
-        BillTable.setItems(BillingObservableList);
-//        BillItemController controller = loader.getController();
-//        controller.setParentController(thisController);
 
+        BillingObservableList.clear();
+        if(billDetails.size() > 0) {
+            for (Billdetails currentItem : billDetails) {
+                BillingObservableList.add(currentItem);
+            }
+        }
+
+        BillTable.setItems(BillingObservableList);
     }
+
     public void refreshTable(){
-//        BillTable.refresh();
+      BillTable.refresh();
     }
 
     private void setColumns() {
@@ -174,7 +179,7 @@ public class BillingController {
 
         }
 
-    public ArrayList<Billdetails> getOrderDetails(int book_id , String book_name , int unit_price ){
+    public void getOrderDetails(int book_id , String book_name , int unit_price ){
         alreadyAdded  = false ;
 
         if(billDetails.size() > 0 ) {
@@ -201,10 +206,8 @@ public class BillingController {
 
             billDetails.add(getOrderDetail);
 
-
         }
-        System.out.println(BillingObservableList);
-        return billDetails ;
+
 
 
 
