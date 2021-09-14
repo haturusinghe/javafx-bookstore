@@ -6,10 +6,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -82,6 +87,9 @@ public class BillingController {
     @FXML
     private TableColumn<Billdetails, String> totalPrice;
 
+    @FXML
+    private TableColumn remove;
+
     private FXMLLoader loader = null;
 
     private BillingController thisController = this;
@@ -133,6 +141,69 @@ public class BillingController {
         unitPrice.setCellValueFactory(new PropertyValueFactory<Billdetails, String>("unit_price"));
         qty.setCellValueFactory(new PropertyValueFactory<Billdetails, String>("quantity"));
         totalPrice.setCellValueFactory(new PropertyValueFactory<Billdetails, String>("totalForItem"));
+
+        remove.setCellFactory((tableColumn) -> {
+            TableCell<Billdetails, Integer> tableCell = new TableCell<>() {
+                javafx.scene.image.Image imgSelect = new Image(getClass().getResourceAsStream("/images/remove.png"));
+                final javafx.scene.control.Button btnRemove = new Button();
+                FontIcon icon3 = new FontIcon("antf-delete");
+
+
+                @Override
+                protected void updateItem(Integer customer_id, boolean empty) {
+                    super.updateItem(customer_id, empty);
+
+                    if(empty)
+                    {
+                        this.setText(null);
+                        this.setGraphic(null);
+                    }
+                    else{
+
+                        btnRemove.setOnAction(e ->{
+                            System.out.println("Clicked Remove");
+                            Billdetails entry = getTableView().getItems().get(getIndex());
+                            getTableView().getSelectionModel().select(getIndex());
+                            System.out.println(getTableView().getSelectionModel().getSelectedItem().toString());
+
+                            for ( Billdetails currentItem: billDetails){
+                                if(entry.getBook_id() == currentItem.getBook_id()){
+
+                                    billDetails.remove(currentItem);
+                                }
+                            }
+
+                            loadBillTable();
+
+                        });
+
+
+                        btnRemove.setStyle("-fx-background-color: transparent;");
+                        icon3.setIconColor(Color.RED);
+                        icon3.setIconSize(30);
+
+                        ImageView iv = new ImageView();
+                        iv.setImage(imgSelect);
+                        iv.setPreserveRatio(true);
+                        iv.setSmooth(true);
+                        iv.setCache(true);
+                        btnRemove.setGraphic(icon3);
+
+                        this.setGraphic(btnRemove);
+                        this.setAlignment(Pos.CENTER);
+
+
+                    }
+
+
+                }
+
+            };
+            return tableCell;
+        });
+
+
+
     }
 
     public void displayCustomerName(String name) {

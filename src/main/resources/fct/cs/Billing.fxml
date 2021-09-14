@@ -42,7 +42,7 @@
                         <TableColumn fx:id="unitPrice" prefWidth="56.0" text="unitPrice" />
                         <TableColumn fx:id="qty" minWidth="0.0" prefWidth="33.5999755859375" text="qty" />
                         <TableColumn fx:id="totalPrice" prefWidth="56.800048828125" text="total" />
-                        <TableColumn prefWidth="36.0" text="X" />
+                        <TableColumn fx:id="remove" prefWidth="36.0" text="X" />
                     </columns>
                   </TableView>
                   <Label layoutX="245.0" layoutY="373.0" prefHeight="30.0" prefWidth="56.0" text="Total :" textAlignment="RIGHT">
