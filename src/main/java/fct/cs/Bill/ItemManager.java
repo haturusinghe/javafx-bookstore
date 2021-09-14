@@ -18,15 +18,15 @@ public class ItemManager extends BillManager{
         this.conn = databaseConnector.getConn();
     }
 
-    public ResultSet getItemFromDatabase(int viewitem) {
+    public ResultSet getItemFromDatabase() {
 
-        String query = "SELECT book.book_id, book.title, book.isbn , inventory.list_price FROM book JOIN inventory ON book.book_id=inventory.book_id order by book_id LIMIT ? ;";
+        String query = "SELECT book.book_id, book.title, book.isbn , inventory.list_price FROM book JOIN inventory ON book.book_id=inventory.book_id order by book_id  ;";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
         try {
             preparedStatement = conn.prepareStatement(query);
-
-            preparedStatement.setInt(1, viewitem);
+//
+//            preparedStatement.setInt(1, viewitem);
             resultSet = preparedStatement.executeQuery();
             return resultSet;
 
@@ -52,8 +52,8 @@ public class ItemManager extends BillManager{
         return ItemList;
     }
 
-    public ArrayList<BillItem> getItemList(int viewitem) {
-        ResultSet rs = getItemFromDatabase(viewitem);
+    public ArrayList<BillItem> getItemList() {
+        ResultSet rs = getItemFromDatabase();
         return createItemList(rs);
     }
 

@@ -89,7 +89,7 @@ public class SelectCustomerController implements Initializable {
 
     }
     public void loadDataTable() {
-        ArrayList<BillCustomer> CustomerList = BillManager.getCustomerList(2);
+        ArrayList<BillCustomer> CustomerList = BillManager.getCustomerList();
         customerTable.setItems(customerObservableList);
         customerObservableList.clear();
 

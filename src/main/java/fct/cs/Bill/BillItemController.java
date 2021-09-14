@@ -64,7 +64,7 @@ public class BillItemController implements Initializable {
     }
 
     public void loadDataItemTable() {
-        ArrayList<BillItem> ItemList = ItemManager.getItemList(8);
+        ArrayList<BillItem> ItemList = ItemManager.getItemList();
        itemTable.setItems(itemObservableList);
         itemObservableList.clear();
 

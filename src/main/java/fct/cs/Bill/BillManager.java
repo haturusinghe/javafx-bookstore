@@ -17,15 +17,15 @@ public class BillManager {
         this.conn = databaseConnector.getConn();
     }
 
-    public ResultSet getCustomerFromDatabase(int viewCustomer) {
+    public ResultSet getCustomerFromDatabase() {
 
-        String query = "SELECT customer_id,customer_name,mobile,email FROM customer Order by customer_id DESC LIMIT ?  ";
+        String query = "SELECT customer_id,customer_name,mobile,email FROM customer Order by customer_id DESC   ";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
         try {
             preparedStatement = conn.prepareStatement(query);
 
-            preparedStatement.setInt(1, viewCustomer);
+//            preparedStatement.setInt(1, viewCustomer);
             resultSet = preparedStatement.executeQuery();
             return resultSet;
 
@@ -50,8 +50,8 @@ public class BillManager {
 
         return CustomerList;
     }
-    public ArrayList<BillCustomer> getCustomerList(int customerView) {
-        ResultSet rs = getCustomerFromDatabase(customerView);
+    public ArrayList<BillCustomer> getCustomerList() {
+        ResultSet rs = getCustomerFromDatabase();
         return createCustomerList(rs);
     }
 
