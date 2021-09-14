@@ -1,6 +1,7 @@
 package fct.cs.Login;
 
 import com.jfoenix.controls.JFXComboBox;
+import fct.cs.controllers.mainPageController;
 import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
@@ -149,20 +150,68 @@ public class ChangePassword implements Initializable {
             }
 
             PasswordSecure encrypt = new PasswordSecure();
-            String passwordEncrypt = null, answerEncrypt = null;
+            PasswordSecure decrypt = new PasswordSecure();
+            String passwordEncrypt = null, answerDecrypt = null;
 
             //Encrypt password
             try {
                 passwordEncrypt = encrypt.encryptString(passGet);
                 System.out.println("Password Encrypted");
-                answerEncrypt = encrypt.encryptString(answer);
-                System.out.println("Answer Encrypted");
+
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             } catch (InvalidKeySpecException e) {
                 e.printStackTrace();
             }
 
+            try {
+
+                //sql query for getting username as telnum
+                PreparedStatement ps_1 = conn.prepareStatement("select * from login where telnum=?");
+                //sql query for getting username as email
+                PreparedStatement ps_2 = conn.prepareStatement("select * from login where email=?");
+
+                ps_1.setString(1, username);
+                ps_2.setString(1, username);
+
+                ResultSet rs_1 = ps_1.executeQuery();
+                ResultSet rs_2 = ps_2.executeQuery();
+
+                if (rs_1.next()) {
+                    String storedAnswer = rs_1.getString("ans");
+                    Integer id = rs_1.getInt(1);
+                    boolean matchedAnswer = decrypt.validateString(answer, storedAnswer);
+                    boolean changePass = correctAns(passwordEncrypt, id);
+
+                    if (matchedAnswer == true) {
+
+                        if(changePass == true) {
+
+                            try {
+
+                                Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/login.fxml"));
+                                Scene scene = new Scene(view);
+                                System.out.println("Load Login Page");
+                                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                window.setScene(scene);
+                                window.show();
+
+                            }
+                        }
+
+
+                    } else {
+
+
+                    }
+
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }catch (IOException e) {
+                e.printStackTrace();
+
+            }
         } else {
 
             System.out.println("Check Again");
@@ -172,7 +221,31 @@ public class ChangePassword implements Initializable {
         }
     }
 
-    @FXML
+    public boolean correctAns(String password, int iD) throws NoSuchAlgorithmException, InvalidKeySpecException {
+
+
+        try {
+            this.conn = DatabaseHandler.getInstance().getConn();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String updateQuery = "UPDATE login set password = ? where id = ?";
+        PreparedStatement preparedStatement = null;
+        int count = 0;
+        try {
+            preparedStatement = conn.prepareStatement(updateQuery);
+            preparedStatement.setString(1,password);
+            preparedStatement.setInt(2,iD);
+            count = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count > 0;
+    }
+
+            @FXML
     public void hyperlinkRegister(ActionEvent event)throws IOException {
         Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/Register.fxml"));
         Scene scene = new Scene(view);

@@ -72,15 +72,6 @@ public class RegisterController implements Initializable {
     @FXML
     private MFXCheckbox checkBox;
 
-    @FXML
-    private Label errLabel;
-
-    @FXML
-    private JFXButton signBtn;
-
-    @FXML
-    private Hyperlink hyperlinkLogin;
-
     private Connection conn;
 
 
@@ -193,104 +184,11 @@ public class RegisterController implements Initializable {
 
     }
 
-
-
-/*    @FXML
-    public void signOnAction(ActionEvent event) throws NoSuchAlgorithmException, InvalidKeySpecException {
-
-        DatabaseConnector databaseConnector = new DatabaseConnector();
-
-        try {
-            this.conn = databaseConnector.getConn();
-
-            String fName = firstName.getText().trim();
-            String lName = lastName.getText().trim();
-            String pNum = telNum.getText().trim();
-            String email = emailAddress.getText().trim();
-            String passGet = passwordGet.getText().trim();
-            String passCheck = passwordCheck.getText().trim();
-            String answer = ansField.getText().trim();
-            String question = quesBox.getValue().toString();
-
-
-            if (fName.isEmpty() && lName.isEmpty()) {
-                errLabel.setText("Please complete all the fills");
-            } else if (fName.isEmpty() || lName.isEmpty() || pNum.isEmpty() || email.isEmpty() || passGet.isEmpty() || passCheck.isEmpty() || answer.isEmpty()) {
-                errLabel.setText("");
-            }else if(passGet.length()<8) {
-                passwordGet.setValidated(true);
-                passwordGet.getValidator().add(
-                        BindingUtils.toProperty(
-                                passwordGet.passwordProperty().length().greaterThanOrEqualTo(8)
-                        ),
-                        "Must be at least 8 characters long"
-                );
-            }else if(passGet != passCheck){
-                passwordCheck.setValidated(true);
-                passwordCheck.getValidator().add(
-                        BindingUtils.toProperty(
-                                passwordCheck.passwordProperty().isEqualTo(passwordGet.getPassword())
-                        ),
-                        "You need enter same password"
-                );
-            }else {
-
-
-            PasswordSecure encrypt = new PasswordSecure();
-
-            //Encrypt password
-            String passwordEncrypt = encrypt.encryptString(passGet);
-            System.out.println("Password Encrypted");
-
-            //Encrypt answer
-            String answerEncrypt = encrypt.encryptString(answer);
-            System.out.println("Answer Encrypted");
-
-            //check phone number from database
-            PreparedStatement ps_1 = conn.prepareStatement("select * from login where telnum = ?");
-            ps_1.setString(1, pNum);
-
-            //check email address from database
-            PreparedStatement ps_2 = conn.prepareStatement("select * from login where email = ?");
-            ps_2.setString(1, email);
-
-            ResultSet rs_1 = ps_1.executeQuery();
-            ResultSet rs_2 = ps_2.executeQuery();
-
-            if (rs_1.next()) {
-                errLabel.setText("Phone number already taken, please enter another phone number");
-            } else if (rs_2.next()) {
-                errLabel.setText("Email address already taken, please enter another email address");
-            } else {
-
-
-                String sql = "INSERT INTO login (fname, lname, telnum, email, password, ques, ans) values(?,?,?,?,?,?,?)";
-                PreparedStatement ps_3 = conn.prepareStatement(sql);
-
-                ps_3.setString(1, fName);
-                ps_3.setString(2, lName);
-                ps_3.setString(3, pNum);
-                ps_3.setString(4, email);
-                ps_3.setString(5, passwordEncrypt);
-                ps_3.setString(6, question);
-                ps_3.setString(7, answerEncrypt);
-
-                ps_3.execute();
-
-                System.out.println("Account successfully registered");
-            }
-            }
-
-        }catch(Exception ex){
-            System.out.println("error" + ex.toString());
-        }
-
-    }*/
-
     @FXML
     public void hLoginOnAction(ActionEvent event)throws IOException{
         Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/login.fxml"));
         Scene scene = new Scene(view);
+        System.out.println("Load Register Page");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
@@ -349,63 +247,37 @@ public class RegisterController implements Initializable {
 
             try {
 
-                //check phone number from database
-                PreparedStatement ps_1 = conn.prepareStatement("select * from login where telnum = ?");
-                ps_1.setString(1, pNum);
+                String sql = "INSERT INTO login (fname, lname, telnum, email, password, ques, ans) values(?,?,?,?,?,?,?)";
+                PreparedStatement ps_3 = conn.prepareStatement(sql);
 
-                //check email address from database
-                PreparedStatement ps_2 = conn.prepareStatement("select * from login where email = ?");
-                ps_2.setString(1, email);
+                ps_3.setString(1, fName);
+                ps_3.setString(2, lName);
+                ps_3.setString(3, pNum);
+                ps_3.setString(4, email);
+                ps_3.setString(5, passwordEncrypt);
+                ps_3.setString(6, question);
+                ps_3.setString(7, answerEncrypt);
 
-                ResultSet rs_1 = ps_1.executeQuery();
-                ResultSet rs_2 = ps_2.executeQuery();
+                ps_3.execute();
 
-                if (rs_1.next()) {
 
-                    System.out.println("Check Again");
-                    MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Fill Registration Form", "Phone number already taken, please enter another Phone Number");
-                    dialog.show();
 
-                } else if (rs_2.next()) {
+                Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/login.fxml"));
+                Scene scene = new Scene(view);
+                System.out.println("Load Login Page");
+                Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+                window.setScene(scene);
+                window.show();
 
-                    System.out.println("Check Again");
-                    MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Fill Registration Form", "Email address already taken, please enter another email address");
-                    dialog.show();
 
-                } else {
-                    try {
+            } catch (SQLException e) {
+                e.printStackTrace();
 
-                        String sql = "INSERT INTO login (fname, lname, telnum, email, password, ques, ans) values(?,?,?,?,?,?,?)";
-                        PreparedStatement ps_3 = conn.prepareStatement(sql);
+            }catch (IOException e) {
+                e.printStackTrace();
 
-                        ps_3.setString(1, fName);
-                        ps_3.setString(2, lName);
-                        ps_3.setString(3, pNum);
-                        ps_3.setString(4, email);
-                        ps_3.setString(5, passwordEncrypt);
-                        ps_3.setString(6, question);
-                        ps_3.setString(7, answerEncrypt);
-
-                        ps_3.execute();
-
-                        System.out.println("Account successfully registered");
-
-                        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/login.fxml"));
-                        Scene scene = new Scene(view);
-                        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-                        window.setScene(scene);
-                        window.show();
-
-                    }catch (SQLException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
             }
+            System.out.println("Account successfully registered");
 
 
         }else {
