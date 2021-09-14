@@ -1,7 +1,7 @@
 package fct.cs.NewEmployee;
 
-import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
+import fct.cs.inventory.NotificationCreator;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -94,8 +94,10 @@ public class EmployeeManager {
             preparedStatement.setInt(6,entry.getSalary());
             preparedStatement.setInt(7, Integer.parseInt(entry.getEmployee_id()));
             count = preparedStatement.executeUpdate();
+            NotificationCreator.showSuccessBottomRight("Operation Successfully Completed","Employee Updated Successfully");
         } catch (SQLException e) {
             e.printStackTrace();
+            NotificationCreator.showErrorBottomRight("Error Updating Employee",e.getMessage());
         }
 
         return count > 0;
@@ -109,8 +111,10 @@ public class EmployeeManager {
             preparedStatement = conn.prepareStatement(updateQuery);
             preparedStatement.setInt(1, Integer.parseInt(entry.getEmployee_id()));
             count = preparedStatement.executeUpdate();
+            NotificationCreator.showSuccessBottomRight("Operation Successfully Completed","Employee Deleted Successfully");
         } catch (SQLException e) {
             e.printStackTrace();
+            NotificationCreator.showErrorBottomRight("Error Deleting Employee",e.getMessage());
         }
 
         return count > 0;
@@ -130,10 +134,11 @@ public class EmployeeManager {
             preparedStatement.setString(6,entry.getPhone_number());
             preparedStatement.setInt(7,entry.getSalary());
             count = preparedStatement.executeUpdate();
+            NotificationCreator.showSuccessBottomRight("Operation Successfully Completed","Employee Added Successfully");
         } catch (SQLException e) {
             e.printStackTrace();
+            NotificationCreator.showErrorBottomRight("Error Adding New Employee",e.getMessage());
         }
-
         return count > 0;
     }
 
