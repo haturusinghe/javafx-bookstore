@@ -29,17 +29,22 @@ import java.util.Comparator;
 import java.util.ResourceBundle;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 public class NewEmployeeController implements Initializable {
     public MFXTableView empTable;
     public JFXDrawer drawer;
+
     private NewEmployeeController thisController = this;
+
     private ObservableList<EmployeeData> employeeObservableList = FXCollections.observableArrayList();
     private FilteredList<EmployeeData> employeeFilteredList = new FilteredList<>(employeeObservableList);
+
     private static EmployeeData selectedEmployee = null;
     private final MFXTextField searchField = new MFXTextField();
-    private ObservableList<Category> categoryList = FXCollections.observableArrayList();
     private final MFXComboBox<String> searchCombo = new MFXComboBox<>();
+
+    private ObservableList<Category> categoryList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         empTable.setHeaderSupplier(() -> {
@@ -65,6 +70,11 @@ public class NewEmployeeController implements Initializable {
             searchField.setIconInsets(new Insets(0,0,10,0));
             searchField.setMinHeight(50);
             searchField.setStyle("-fx-font-size: 18px;");
+            searchField.setOnAction(actionEvent -> {
+                System.out.println("Searching...");
+                thisController.searchTableFromText(searchField.getText());
+                empTable.setItems(employeeFilteredList);
+            });
 
             searchCombo.setItems(FXCollections.observableArrayList("Name", "Salary", "Gender"));
             searchCombo.setPromptText("Select Category");
@@ -237,5 +247,15 @@ public class NewEmployeeController implements Initializable {
 
             System.out.println("close");
         }
+    }
+
+    public void searchTableFromText(String key) {
+        System.out.println("Searching ...");
+        employeeFilteredList.setPredicate(employeeData -> {
+            String filter = key.toLowerCase();
+            boolean nameMatches = String.valueOf(employeeData.getFirst_name()).toLowerCase().contains(filter)
+                    || String.valueOf(employeeData.getLast_name()).toLowerCase().contains(filter);
+            return nameMatches;
+        });
     }
 }
