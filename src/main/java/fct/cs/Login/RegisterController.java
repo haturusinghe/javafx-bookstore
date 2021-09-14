@@ -6,9 +6,7 @@ import com.jfoenix.controls.JFXComboBox;
 import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
 import io.github.palexdev.materialfx.controls.*;
-import io.github.palexdev.materialfx.controls.base.AbstractMFXDialog;
 import io.github.palexdev.materialfx.controls.enums.DialogType;
-import io.github.palexdev.materialfx.controls.factories.MFXDialogFactory;
 import io.github.palexdev.materialfx.utils.BindingUtils;
 import io.github.palexdev.materialfx.utils.StringUtils;
 import javafx.beans.binding.Bindings;
@@ -288,7 +286,7 @@ public class RegisterController implements Initializable {
 
     @FXML
     public void hLoginOnAction(ActionEvent event)throws IOException{
-        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/login.fxml"));
+        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/fxml/login/login.fxml"));
         Scene scene = new Scene(view);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);

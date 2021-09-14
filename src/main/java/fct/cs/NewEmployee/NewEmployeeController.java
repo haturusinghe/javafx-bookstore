@@ -5,13 +5,9 @@ import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.events.JFXDrawerEvent;
 import fct.cs.data.Category;
 import io.github.palexdev.materialfx.controls.MFXTableView;
-import io.github.palexdev.materialfx.controls.base.AbstractMFXDialog;
 import io.github.palexdev.materialfx.controls.cell.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
-import io.github.palexdev.materialfx.controls.enums.DialogType;
-import io.github.palexdev.materialfx.controls.factories.MFXDialogFactory;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -91,7 +87,7 @@ public class NewEmployeeController implements Initializable {
                 System.out.println("Update");
 
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/employee-form.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/employee/employee-form.fxml"));
                     VBox box = loader.load();
                      EmployeeFormController controller = loader.getController();
 
@@ -162,7 +158,7 @@ public class NewEmployeeController implements Initializable {
 
     public void addNewEntry(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/employee-form.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/employee/employee-form.fxml"));
             VBox box = loader.load();
             EmployeeFormController controller = loader.getController();
 

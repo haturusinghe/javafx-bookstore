@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox prefWidth="300.0" stylesheets="@styles/side-panel.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.inventory.BookPanelController">
+<VBox prefWidth="300.0" stylesheets="@../../styles/side-panel.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.inventory.BookPanelController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="500.0">
          <children>

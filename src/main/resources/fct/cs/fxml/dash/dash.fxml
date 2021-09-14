@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox alignment="CENTER" maxWidth="1030.0" prefHeight="685.0" prefWidth="1030.0" spacing="10.0" style="-fx-background-color: white;" stylesheets="@styles/overviewPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Dash.DashController">
+<VBox alignment="CENTER" maxWidth="1030.0" prefHeight="685.0" prefWidth="1030.0" spacing="10.0" style="-fx-background-color: white;" stylesheets="@../../styles/overviewPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Dash.DashController">
    <children>
       <HBox alignment="CENTER" minWidth="1030.0" prefHeight="310.0" prefWidth="1000.0" spacing="10.0">
          <children>
@@ -20,7 +20,7 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefWidth="250.0" spacing="10.0" style="-fx-background-color: transparent;">
                      <children>
-                        <HBox fx:id="card1" alignment="CENTER" maxHeight="200.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="cardCustom" stylesheets="@styles/overview.css">
+                        <HBox fx:id="card1" alignment="CENTER" maxHeight="200.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="cardCustom" stylesheets="@../../styles/overview.css">
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="69.0">
                                  <children>
@@ -39,7 +39,7 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox fx:id="card2" alignment="CENTER" maxHeight="200.0" prefHeight="150.0" prefWidth="240.0" style="-fx-background-color: white;" styleClass="cardCustom" stylesheets="@styles/overview.css">
+                        <HBox fx:id="card2" alignment="CENTER" maxHeight="200.0" prefHeight="150.0" prefWidth="240.0" style="-fx-background-color: white;" styleClass="cardCustom" stylesheets="@../../styles/overview.css">
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="69.0">
                                  <children>
@@ -62,7 +62,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefWidth="250.0" spacing="10.0" style="-fx-background-color: transparent;">
                      <children>
-                        <HBox fx:id="card3" alignment="CENTER" maxHeight="200.0" prefHeight="150.0" prefWidth="240.0" style="-fx-background-color: white;" styleClass="cardCustom" stylesheets="@styles/overview.css">
+                        <HBox fx:id="card3" alignment="CENTER" maxHeight="200.0" prefHeight="150.0" prefWidth="240.0" style="-fx-background-color: white;" styleClass="cardCustom" stylesheets="@../../styles/overview.css">
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="69.0">
                                  <children>
@@ -81,7 +81,7 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox fx:id="card4" alignment="CENTER" maxHeight="200.0" prefHeight="150.0" prefWidth="240.0" styleClass="cardCustom" stylesheets="@styles/overview.css">
+                        <HBox fx:id="card4" alignment="CENTER" maxHeight="200.0" prefHeight="150.0" prefWidth="240.0" styleClass="cardCustom" stylesheets="@../../styles/overview.css">
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="70.0">
                                  <children>

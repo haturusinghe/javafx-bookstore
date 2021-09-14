@@ -9,7 +9,6 @@ import fct.cs.dbUtil.DatabaseHandler;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -29,17 +28,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
 
 public class InventoryController implements Initializable {
 
@@ -273,7 +269,7 @@ public class InventoryController implements Initializable {
                             System.out.println(currentBook.toString());
 
                             try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/show-book.fxml"));
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/inventory/show-book.fxml"));
                                 VBox box = loader.load();
                                 BookPanelController controller = loader.getController();
 
@@ -356,7 +352,7 @@ public class InventoryController implements Initializable {
                             System.out.println(getTableView().getSelectionModel().getSelectedItem().toString());
 
                             try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/edit-inventory.fxml"));
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/inventory/edit-inventory.fxml"));
                                 VBox box = loader.load();
                                 EditInventoryController controller = loader.getController();
 
@@ -588,7 +584,7 @@ public class InventoryController implements Initializable {
     public void addNewEntry(ActionEvent actionEvent) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/edit-inventory.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/inventory/edit-inventory.fxml"));
             VBox box = loader.load();
             EditInventoryController controller = loader.getController();
 

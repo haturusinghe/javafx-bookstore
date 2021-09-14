@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -67,7 +66,7 @@ public class mainPageController implements Initializable {
     @FXML
     void loadEmployeePage(ActionEvent event) {
         if (currentPage != "employees") {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/new-employee-page.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/employee/new-employee-page.fxml"));
             try {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());
@@ -84,7 +83,7 @@ public class mainPageController implements Initializable {
 
     public void loadOrdersPage(ActionEvent actionEvent) {
         if (!currentPage.equals("orders")) {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/orders.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/old/orders.fxml"));
             try {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());
@@ -104,7 +103,7 @@ public class mainPageController implements Initializable {
 
     public void loadInventoryPage() {
         if (!currentPage.equals("inventory")) {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/inventory.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/inventory/inventory.fxml"));
             try {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());
@@ -136,7 +135,7 @@ public class mainPageController implements Initializable {
 
     public void loadHomePage() {
         if (!currentPage.equals("home")) {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/dash.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/dash/dash.fxml"));
             try {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());
@@ -158,7 +157,7 @@ public class mainPageController implements Initializable {
     public void reportsPage(ActionEvent actionEvent) {
 
         if (!currentPage.equals("reports")) {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/report-generate.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/report/report-generate.fxml"));
             try {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());
