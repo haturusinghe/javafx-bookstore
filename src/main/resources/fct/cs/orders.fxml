@@ -14,9 +14,9 @@
 
 <VBox alignment="TOP_CENTER" prefHeight="685.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.orders.ordersController">
     <children>
-        <StackPane fx:id="stackPane" prefHeight="684.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+        <StackPane fx:id="stackPane" prefHeight="684.0" prefWidth="1030.0" VBox.vgrow="ALWAYS">
             <children>
-                <JFXDrawer fx:id="JFXDrawerdrawer" defaultDrawerSize="500.0" direction="RIGHT" />
+                <JFXDrawer fx:id="JFXDrawerdrawer" defaultDrawerSize="800.0" direction="RIGHT" />
                 <VBox alignment="BOTTOM_CENTER">
                     <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="95.0" prefWidth="1030.0" spacing="20.0">

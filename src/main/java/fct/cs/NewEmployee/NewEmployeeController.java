@@ -87,36 +87,36 @@ public class NewEmployeeController implements Initializable {
         updateColumn.setRowCellFunction(employeeData -> {
             MFXTableRowCell rowCell = new MFXTableRowCell("Update");
             rowCell.setGraphicTextGap(5);
-//            rowCell.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-//                System.out.println("Update");
-//
-//                try {
-//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/employee-form.fxml"));
-//                    VBox box = loader.load();
-//                     EmployeeFormController controller = loader.getController();
-//
-//                    controller.setParentController(thisController);
-//                    controller.setDrawer(drawer);
-////                    controller.setInventoryManager(inventoryManager);
-//                    controller.setEntry(employeeData);
-//                    controller.setAddingNew(false);
-//                    drawer.setSidePane(box);
-//                } catch (IOException ex) {
-//                    ex.printStackTrace();
-//                }
-//
-//                if (drawer.isHidden()) {
-//                    drawer.open();
-//                    drawer.toFront();
-//                    System.out.println("open");
-//                } else {
-//                    drawer.toBack();
-//                    drawer.close();
-//
-//                    System.out.println("close");
-//                }
-//
-//            });
+            rowCell.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+                System.out.println("Update");
+
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/employee-form.fxml"));
+                    VBox box = loader.load();
+                     EmployeeFormController controller = loader.getController();
+
+                    controller.setParentController(thisController);
+                    controller.setDrawer(drawer);
+//                    controller.setInventoryManager(inventoryManager);
+                    controller.setEntry(employeeData);
+                    controller.setAddingNew(false);
+                    drawer.setSidePane(box);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+
+                if (drawer.isHidden()) {
+                    drawer.open();
+                    drawer.toFront();
+                    System.out.println("open");
+                } else {
+                    drawer.toBack();
+                    drawer.close();
+
+                    System.out.println("close");
+                }
+
+            });
             MFXFontIcon icon = new MFXFontIcon("mfx-file", 25);
 //            FontIcon icon = new FontIcon("antf-edit");
 //            icon.setIconSize(10);
@@ -170,7 +170,6 @@ public class NewEmployeeController implements Initializable {
             controller.setDrawer(drawer);
 //                    controller.setInventoryManager(inventoryManager);
 //            controller.setEntry(employeeData);
-            controller.setAddingNew(true);
             drawer.setSidePane(box);
         } catch (IOException ex) {
             ex.printStackTrace();

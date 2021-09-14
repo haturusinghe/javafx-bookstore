@@ -101,119 +101,119 @@ create table order_details (
 	order_id INT,
 	quantity INT,
 	unit_price INT,
-	discount INT,
+	price INT,
 	PRIMARY KEY (order_detail_id,book_id,order_id)
 );
 
-create table order_details (
-	order_id INT,
-	book_id INT,
-	quantity INT,
-	unit_price INT,
-	discount INT,
-	PRIMARY KEY (book_id,order_id)
-);
+-- create table order_details (
+-- 	order_id INT,
+-- 	book_id INT,
+-- 	quantity INT,
+-- 	unit_price INT,
+-- 	discount INT,
+-- 	PRIMARY KEY (book_id,order_id)
+-- );
 
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (1, 5, 1, 2, 840, 441);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (2, 1, 4, 5, 481, 339);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (3, 7, 1, 2, 231, 485);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (4, 5, 4, 4, 585, 439);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (5, 5, 2, 2, 1157, 262);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (6, 4, 2, 5, 1730, 430);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (7, 10, 2, 5, 814, 88);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (8, 2, 2, 3, 1180, 58);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (9, 10, 2, 1, 1667, 485);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (10, 1, 5, 3, 837, 145);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (11, 1, 2, 4, 110, 433);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (12, 10, 5, 2, 1688, 68);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (13, 2, 2, 2, 458, 95);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (14, 10, 5, 1, 981, 223);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (15, 9, 4, 1, 1773, 230);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (16, 8, 1, 3, 335, 292);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (17, 1, 5, 3, 1015, 168);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (18, 1, 3, 3, 986, 421);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (19, 7, 2, 1, 1613, 180);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (20, 6, 4, 5, 1404, 170);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (21, 4, 3, 4, 588, 314);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (22, 5, 5, 5, 1862, 284);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (23, 8, 2, 3, 1112, 489);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (24, 6, 4, 2, 224, 324);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (25, 2, 2, 4, 1489, 285);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (26, 1, 3, 4, 549, 493);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (27, 8, 5, 4, 1753, 403);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (28, 9, 5, 2, 582, 177);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (29, 9, 3, 3, 1734, 121);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (30, 10, 5, 4, 1554, 272);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (31, 7, 1, 1, 1421, 495);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (32, 10, 3, 5, 1234, 470);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (33, 1, 5, 2, 1650, 435);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (34, 9, 3, 3, 275, 58);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (35, 6, 5, 5, 244, 393);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (36, 5, 3, 1, 844, 64);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (37, 3, 5, 2, 497, 252);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (38, 1, 5, 3, 475, 150);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (39, 7, 4, 5, 374, 67);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (40, 6, 5, 1, 851, 99);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (41, 8, 2, 1, 1706, 293);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (42, 2, 2, 5, 846, 195);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (43, 10, 2, 2, 1799, 157);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (44, 1, 3, 4, 1468, 278);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (45, 4, 4, 2, 1045, 381);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (46, 6, 5, 3, 216, 125);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (47, 4, 4, 2, 267, 258);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (48, 7, 4, 2, 1049, 496);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (49, 3, 4, 3, 1347, 488);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (50, 9, 5, 4, 1757, 183);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (51, 8, 1, 3, 377, 273);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (52, 5, 3, 5, 1764, 66);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (53, 10, 1, 4, 103, 80);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (54, 7, 5, 3, 1395, 307);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (55, 10, 4, 2, 375, 458);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (56, 1, 2, 5, 1091, 499);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (57, 4, 3, 3, 1644, 195);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (58, 8, 5, 5, 1942, 281);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (59, 4, 4, 4, 1080, 447);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (60, 2, 1, 1, 1602, 174);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (61, 3, 4, 5, 967, 417);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (62, 6, 5, 3, 445, 303);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (63, 5, 4, 4, 768, 351);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (64, 8, 5, 2, 939, 131);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (65, 5, 4, 3, 1764, 208);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (66, 1, 2, 2, 391, 398);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (67, 8, 3, 5, 1335, 360);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (68, 2, 3, 3, 891, 429);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (69, 4, 4, 3, 1418, 461);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (70, 8, 5, 4, 1236, 244);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (71, 3, 3, 1, 547, 127);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (72, 6, 5, 2, 349, 385);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (73, 8, 1, 1, 1074, 206);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (74, 4, 5, 3, 1309, 323);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (75, 5, 3, 2, 888, 114);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (76, 8, 2, 5, 1221, 499);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (77, 9, 1, 1, 1520, 463);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (78, 6, 2, 5, 319, 310);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (79, 4, 4, 3, 783, 205);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (80, 8, 5, 5, 1036, 197);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (81, 7, 2, 4, 1160, 468);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (82, 1, 1, 2, 954, 237);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (83, 8, 1, 1, 928, 238);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (84, 9, 1, 1, 1423, 393);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (85, 7, 5, 1, 231, 393);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (86, 7, 4, 1, 565, 203);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (87, 1, 5, 1, 1749, 454);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (88, 3, 3, 1, 1429, 192);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (89, 9, 1, 3, 929, 464);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (90, 4, 1, 5, 614, 200);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (91, 8, 3, 4, 1550, 406);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (92, 6, 4, 4, 392, 72);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (93, 1, 3, 4, 580, 473);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (94, 6, 1, 2, 281, 423);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (95, 10, 4, 3, 390, 221);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (96, 9, 2, 5, 522, 61);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (97, 10, 1, 3, 870, 224);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (98, 4, 3, 3, 431, 300);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (99, 3, 2, 5, 167, 256);
-insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (100, 7, 4, 3, 1755, 68);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (1, 5, 1, 2, 840, 1680);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (2, 1, 4, 5, 481, 2405);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (3, 7, 1, 2, 231, 462);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (4, 5, 4, 4, 585, 439);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (5, 5, 2, 2, 1157, 262);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (6, 4, 2, 5, 1730, 430);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (7, 10, 2, 5, 814, 88);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (8, 2, 2, 3, 1180, 58);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (9, 10, 2, 1, 1667, 485);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (10, 1, 5, 3, 837, 145);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (11, 1, 2, 4, 110, 433);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (12, 10, 5, 2, 1688, 68);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (13, 2, 2, 2, 458, 95);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (14, 10, 5, 1, 981, 223);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (15, 9, 4, 1, 1773, 230);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (16, 8, 1, 3, 335, 292);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (17, 1, 5, 3, 1015, 168);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (18, 1, 3, 3, 986, 421);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (19, 7, 2, 1, 1613, 180);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (20, 6, 4, 5, 1404, 170);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (21, 4, 3, 4, 588, 314);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (22, 5, 5, 5, 1862, 284);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (23, 8, 2, 3, 1112, 489);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (24, 6, 4, 2, 224, 324);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (25, 2, 2, 4, 1489, 285);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (26, 1, 3, 4, 549, 493);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (27, 8, 5, 4, 1753, 403);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (28, 9, 5, 2, 582, 177);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (29, 9, 3, 3, 1734, 121);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (30, 10, 5, 4, 1554, 272);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (31, 7, 1, 1, 1421, 495);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (32, 10, 3, 5, 1234, 470);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (33, 1, 5, 2, 1650, 435);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (34, 9, 3, 3, 275, 58);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (35, 6, 5, 5, 244, 393);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (36, 5, 3, 1, 844, 64);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (37, 3, 5, 2, 497, 252);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (38, 1, 5, 3, 475, 150);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (39, 7, 4, 5, 374, 67);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (40, 6, 5, 1, 851, 99);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (41, 8, 2, 1, 1706, 293);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (42, 2, 2, 5, 846, 195);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (43, 10, 2, 2, 1799, 157);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (44, 1, 3, 4, 1468, 278);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (45, 4, 4, 2, 1045, 381);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (46, 6, 5, 3, 216, 125);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (47, 4, 4, 2, 267, 258);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (48, 7, 4, 2, 1049, 496);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (49, 3, 4, 3, 1347, 488);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (50, 9, 5, 4, 1757, 183);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (51, 8, 1, 3, 377, 273);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (52, 5, 3, 5, 1764, 66);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (53, 10, 1, 4, 103, 80);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (54, 7, 5, 3, 1395, 307);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (55, 10, 4, 2, 375, 458);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (56, 1, 2, 5, 1091, 499);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (57, 4, 3, 3, 1644, 195);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (58, 8, 5, 5, 1942, 281);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (59, 4, 4, 4, 1080, 447);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (60, 2, 1, 1, 1602, 174);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (61, 3, 4, 5, 967, 417);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (62, 6, 5, 3, 445, 303);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (63, 5, 4, 4, 768, 351);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (64, 8, 5, 2, 939, 131);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (65, 5, 4, 3, 1764, 208);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (66, 1, 2, 2, 391, 398);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (67, 8, 3, 5, 1335, 360);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (68, 2, 3, 3, 891, 429);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (69, 4, 4, 3, 1418, 461);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (70, 8, 5, 4, 1236, 244);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (71, 3, 3, 1, 547, 127);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (72, 6, 5, 2, 349, 385);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (73, 8, 1, 1, 1074, 206);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (74, 4, 5, 3, 1309, 323);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (75, 5, 3, 2, 888, 114);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (76, 8, 2, 5, 1221, 499);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (77, 9, 1, 1, 1520, 463);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (78, 6, 2, 5, 319, 310);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (79, 4, 4, 3, 783, 205);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (80, 8, 5, 5, 1036, 197);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (81, 7, 2, 4, 1160, 468);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (82, 1, 1, 2, 954, 237);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (83, 8, 1, 1, 928, 238);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (84, 9, 1, 1, 1423, 393);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (85, 7, 5, 1, 231, 393);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (86, 7, 4, 1, 565, 203);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (87, 1, 5, 1, 1749, 454);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (88, 3, 3, 1, 1429, 192);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (89, 9, 1, 3, 929, 464);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (90, 4, 1, 5, 614, 200);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (91, 8, 3, 4, 1550, 406);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (92, 6, 4, 4, 392, 72);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (93, 1, 3, 4, 580, 473);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (94, 6, 1, 2, 281, 423);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (95, 10, 4, 3, 390, 221);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (96, 9, 2, 5, 522, 61);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (97, 10, 1, 3, 870, 224);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (98, 4, 3, 3, 431, 300);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (99, 3, 2, 5, 167, 256);
+insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, price) values (100, 7, 4, 3, 1755, 68);
 
 create table book_category (
 	category_id INT PRIMARY KEY,
