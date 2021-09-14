@@ -96,7 +96,7 @@ public class BillingController {
     private ObservableList<Billdetails> BillingObservableList = FXCollections.observableArrayList();
     private ArrayList<Billdetails> billDetails ;
     private BillItemController parentController;
-
+    private int Pricetotal ;
 
     private  int orderDetailId = 1 ;
 //    private ArrayList<Billdetails> BillitemsList;
@@ -194,7 +194,7 @@ public class BillingController {
                 }
             }
         }
-        if (alreadyAdded  == false){
+        if (!alreadyAdded){
 
             Billdetails getOrderDetail  = new Billdetails(orderDetailId , book_id , book_name , 1,unit_price,unit_price);
             getOrderDetail.setOrder_id(orderDetailId);
@@ -208,7 +208,14 @@ public class BillingController {
 
         }
 
+    }
+    public void getTotal(){
+            for (Billdetails currentItem : billDetails) {
 
+                Pricetotal += currentItem.getTotalForItem();
+                }
+           
+            }
 
 
 
