@@ -7,7 +7,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class EmployeeData implements IFilterable {
-    //
     //employee_id
     //first_name
     //last_name

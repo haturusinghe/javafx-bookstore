@@ -54,13 +54,10 @@ public class EmployeeFormController {
     private JFXDrawer drawer;
     private boolean isAddingNew = false;
 
-
     @FXML
     void cancel(ActionEvent event) {
         drawer.close();
     }
-
-
 
     public void setParentController(NewEmployeeController thisController) {
         this.parentController = thisController;
