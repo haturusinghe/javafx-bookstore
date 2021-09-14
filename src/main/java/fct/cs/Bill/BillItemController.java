@@ -2,6 +2,7 @@ package fct.cs.Bill;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,6 +40,9 @@ public class BillItemController implements Initializable {
     private Label name;
 
     @FXML
+    private TextField searchItem;
+
+    @FXML
     private TableColumn additem;
 
     private ItemManager ItemManager ;
@@ -46,6 +50,7 @@ public class BillItemController implements Initializable {
     private BillingController parentController;
 
     private ObservableList<BillItem> itemObservableList = FXCollections.observableArrayList();
+    private FilteredList<BillItem> itemFilteredList = new FilteredList<>(itemObservableList);
     private BillItemController thisControl = this;
 
     @Override
@@ -147,8 +152,23 @@ public class BillItemController implements Initializable {
         return tableCell;
     });
 
-
 }
+    public void searchItemTable(String key) {
+        System.out.println("Searching ...");
+            itemFilteredList.setPredicate(billItem-> {
+            String filter = key.toLowerCase();
+            boolean title_matches = String.valueOf(billItem.getItem_id()).toLowerCase().contains(filter);
+            return title_matches;
+        });
+    }
+
+
+            @FXML
+        void searchItem(ActionEvent actionEvent) {
+            String key = searchItem.getText();
+            searchItemTable(key);
+            itemTable.setItems(itemFilteredList);
+        }
 public void goToSelectCustomer(ActionEvent action){
         parentController.moveToSelectCustomer();
 
