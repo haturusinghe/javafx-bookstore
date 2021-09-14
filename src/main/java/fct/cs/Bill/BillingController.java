@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -93,7 +94,7 @@ public class BillingController {
     public static FXMLLoader load;
 
     private ObservableList<Billdetails> BillingObservableList = FXCollections.observableArrayList();
-
+    private ArrayList<Billdetails> billDetails ;
     private BillItemController parentController;
 
 
@@ -173,19 +174,18 @@ public class BillingController {
 
         }
 
-    public void getOrderDetails(int book_id , String book_name , int unit_price ){
+    public ArrayList<Billdetails> getOrderDetails(int book_id , String book_name , int unit_price ){
         alreadyAdded  = false ;
 
-        if(BillingObservableList.size() > 0 ) {
-            for (Billdetails currentItem : BillingObservableList) {
+        if(billDetails.size() > 0 ) {
+            for (Billdetails currentItem : billDetails) {
 
                 if (currentItem.getBook_id() == book_id) {
                     currentItem.setQuantity(currentItem.getQuantity() + 1);
                     currentItem.setTotalForItem(currentItem.getQuantity() * currentItem.getUnit_price());
                     alreadyAdded = true;
-                    loadBillTable();
+                    System.out.println("1");
                     break;
-
                 }
             }
         }
@@ -199,12 +199,13 @@ public class BillingController {
             getOrderDetail.setQuantity(1);
             getOrderDetail.setUnit_price(unit_price);
 
-            BillingObservableList.add(getOrderDetail);
+            billDetails.add(getOrderDetail);
 
 
         }
-
         System.out.println(BillingObservableList);
+        return billDetails ;
+
 
 
 

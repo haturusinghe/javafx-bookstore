@@ -42,9 +42,10 @@ public class BillItemController implements Initializable {
 
     private ItemManager ItemManager ;
 
+    private BillingController parentController;
 
     private ObservableList<BillItem> itemObservableList = FXCollections.observableArrayList();
-    private BillItemController thisController = this;
+    private BillItemController thisControl = this;
 
     @Override
     public void initialize(URL location , ResourceBundle resources) {
@@ -53,7 +54,9 @@ public class BillItemController implements Initializable {
         setColumns();
         loadDataItemTable();
 
+
     }
+
     public void loadDataItemTable() {
         ArrayList<BillItem> ItemList = ItemManager.getItemList(8);
        itemTable.setItems(itemObservableList);
@@ -61,9 +64,12 @@ public class BillItemController implements Initializable {
 
         for (BillItem currentItem : ItemList) {
             itemObservableList.add(currentItem);
+
         }
     }
-
+    public void setParentController(BillingController parentController) {
+        this.parentController = parentController;
+    }
     private void setColumns() {
 
         itemId.setCellValueFactory(new PropertyValueFactory<>("item_id"));
@@ -74,7 +80,7 @@ public class BillItemController implements Initializable {
 
 
      additem.setCellFactory((tableColumn) -> {
-        TableCell<BillCustomer, Integer> tableCell = new TableCell<>() {
+        TableCell<BillItem, Integer> tableCell = new TableCell<>() {
             javafx.scene.image.Image imgSelect = new Image(getClass().getResourceAsStream("/images/book.png"));
             final javafx.scene.control.Button btnAdd = new Button();
             FontIcon icon3 = new FontIcon("antf-book");
@@ -92,9 +98,20 @@ public class BillItemController implements Initializable {
                 else{
 
                     btnAdd.setOnAction(e ->{
-                        
+                        System.out.println("Clicked Select");
+                        BillItem entry = getTableView().getItems().get(getIndex());
+//                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/Billing.fxml"));
+//
+//                        BillingController controller = loader.getController() ;
+//                        controller.setParentController(thisControl);
+
+                        parentController.getOrderDetails(entry.getItem_id(), entry.getItem_name() , entry.getUnit_price());
+                        parentController.loadBillTable();
+
 
                     });
+
+
                     btnAdd.setStyle("-fx-background-color: transparent;");
 
                     icon3.setIconColor(Color.RED);
