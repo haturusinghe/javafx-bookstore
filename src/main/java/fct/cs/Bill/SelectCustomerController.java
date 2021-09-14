@@ -1,7 +1,5 @@
 package fct.cs.Bill;
-import fct.cs.Bill.BillManager;
 import fct.cs.controllers.mainPageController;
-import fct.cs.data.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -11,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -19,26 +16,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextField ;
-import fct.cs.Bill.BillCustomer;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import net.sf.jasperreports.web.actions.Action;
-import org.kordamp.ikonli.javafx.FontIcon;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class SelectCustomerController implements Initializable {
 
@@ -65,7 +49,7 @@ public class SelectCustomerController implements Initializable {
 
     private ObservableList<BillCustomer> customerObservableList = FXCollections.observableArrayList();
 
-    private BillManager BillManager;
+    private CustomerManager CustomerManager;
     private SelectCustomerController thisController = this;
     private BillingController parentController;
     private FilteredList<BillCustomer> customerFilteredList = new FilteredList<>(customerObservableList);
@@ -83,13 +67,13 @@ public class SelectCustomerController implements Initializable {
     @Override
     public void initialize(URL location , ResourceBundle resources) {
 
-        BillManager = new BillManager();
+        CustomerManager = new CustomerManager();
         setColumns();
         loadDataTable();
 
     }
     public void loadDataTable() {
-        ArrayList<BillCustomer> CustomerList = BillManager.getCustomerList();
+        ArrayList<BillCustomer> CustomerList = CustomerManager.getCustomerList();
         customerTable.setItems(customerObservableList);
         customerObservableList.clear();
 
