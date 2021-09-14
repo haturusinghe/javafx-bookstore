@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Customer.CustomController" style="-fx-background-color: #fff;">
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Customer.CustomerController" style="-fx-background-color: #fff;">
     <children>
         <HBox alignment="CENTER" prefHeight="124.0" prefWidth="846.0" >
             <children>

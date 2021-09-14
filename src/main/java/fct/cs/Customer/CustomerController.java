@@ -27,7 +27,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class CustomController implements Initializable {
+public class CustomerController implements Initializable {
 
         @FXML
         private TextField search_txtField;
@@ -52,9 +52,9 @@ public class CustomController implements Initializable {
         @FXML
         private TableColumn collocation;
         @FXML
-        private TableColumn colemail;
-        @FXML
         private TableColumn colmobile;
+        @FXML
+        private TableColumn colemail;
         @FXML
         private TableColumn colEdit;
         @FXML
@@ -70,9 +70,9 @@ public class CustomController implements Initializable {
         @FXML
         private TextField location_txtField;
         @FXML
-        private TextField email_txtField;
-        @FXML
         private TextField mobile_txtField;
+        @FXML
+        private TextField email_txtField;
         @FXML
         private Button updateBtn;
         @FXML
@@ -116,8 +116,8 @@ public class CustomController implements Initializable {
                         customer_id_txtField.setText(String.valueOf(selectedCustomer.getCustomer_id()));
                         customer_name_txtField.setText(selectedCustomer.getCustomer_name());
                         location_txtField.setText(selectedCustomer.getLocation());
-                        email_txtField.setText(selectedCustomer.getEmail());
                         mobile_txtField.setText(selectedCustomer.getMobile());
+                        email_txtField.setText(selectedCustomer.getEmail());
                 }
 
 
@@ -134,12 +134,12 @@ public class CustomController implements Initializable {
                         customerTable.setDisable(false);
                 }
 
-//        selectedEmployee = null;
+//        selectedCustomer = null;
                 customer_id_txtField.setText("");
                 customer_name_txtField.setText("");
                 location_txtField.setText("");
-                email_txtField.setText("");
                 mobile_txtField.setText("");
+                email_txtField.setText("");
         }
 
         public void prepareAddCustomer(ActionEvent actionEvent) {
@@ -165,17 +165,17 @@ public class CustomController implements Initializable {
                         errorAlert(e.getLocalizedMessage());
                 }
                 Connection connection = databaseHandler.getConn();
-                //customer_id, customer_name, location, email, mobile
+                //customer_id, customer_name, location, mobile, email
                 String tableName = "customer";
-                String sql = "UPDATE "+tableName+" set customer_id = ? , customer_name = ? , location = ? , email = ?, mobile = ? where customer_id = ?";
+                String sql = "UPDATE "+tableName+" set customer_id = ? , customer_name = ? , location = ? , mobile = ? , email = ? where customer_id = ?";
                 PreparedStatement preparedStatement = null;
                 try {
                         preparedStatement = connection.prepareStatement(sql);
                         preparedStatement.setInt(1, Integer.parseInt(customer_id_txtField.getText()));
                         preparedStatement.setString(2,customer_name_txtField.getText());
                         preparedStatement.setString(3,location_txtField.getText());
-                        preparedStatement.setString(4,email_txtField.getText());
-                        preparedStatement.setString(5,mobile_txtField.getText());
+                        preparedStatement.setString(4,mobile_txtField.getText());
+                        preparedStatement.setString(5,email_txtField.getText());
                         preparedStatement.setInt(6,selectedCustomer.getCustomer_id());
                         preparedStatement.executeUpdate();
                         updateAlert(selectedCustomer.getCustomer_name());
@@ -258,8 +258,8 @@ public class CustomController implements Initializable {
                                 rs.getInt("customer_id"),
                                 rs.getString("customer_name"),
                                 rs.getString("location"),
-                                rs.getString("email"),
-                                rs.getString("mobile")
+                                rs.getString("mobile"),
+                                rs.getString("email")
                         ));
                 }
 
@@ -271,11 +271,12 @@ public class CustomController implements Initializable {
         }
 
         private void setColumnProperties() {
-                colcustomer_id.setCellValueFactory(new PropertyValueFactory<>("employee_id"));
-                colcustomer_name.setCellValueFactory(new PropertyValueFactory<>("first_name"));
-                collocation.setCellValueFactory(new PropertyValueFactory<>("last_name"));
+                colcustomer_id.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
+                colcustomer_name.setCellValueFactory(new PropertyValueFactory<>("customer_name"));
+                collocation.setCellValueFactory(new PropertyValueFactory<>("location"));
+                colmobile.setCellValueFactory(new PropertyValueFactory<>("mobile"));
                 colemail.setCellValueFactory(new PropertyValueFactory<>("email"));
-                colmobile.setCellValueFactory(new PropertyValueFactory<>("gender"));
+
 
                 colEdit.setCellFactory((tableColumn) -> {
                         TableCell<Customer, Integer> tableCell = new TableCell<>() {
@@ -406,18 +407,18 @@ public class CustomController implements Initializable {
                         errorAlert(e.getLocalizedMessage());
                 }
                 Connection connection = databaseHandler.getConn();
-                //customer_id, customer_name, location, email, mobile
+                //customer_id, customer_name, location, mobile, email
                 String tableName = "customer";
-                String sql_old = "UPDATE "+tableName+" set customer_id = ? , customer_name = ? , location = ? , email = ?, mobile = ? where customer_id = ?";
-                String sql = "insert into customer (customer_id, customer_name, location, email, mobile) values (?, ?, ?, ?, ?, ?, ?);";
+                String sql_old = "UPDATE "+tableName+" set customer_id = ? , customer_name = ? , location = ? , mobile = ?, email = ?  where customer_id = ?";
+                String sql = "insert into customer (customer_id, customer_name, location, mobile , email) values (?, ?, ?, ?, ?, ?, ?);";
                 PreparedStatement preparedStatement = null;
                 try {
                         preparedStatement = connection.prepareStatement(sql);
                         preparedStatement.setInt(1, Integer.parseInt(customer_id_txtField.getText()));
                         preparedStatement.setString(2,customer_name_txtField.getText());
                         preparedStatement.setString(3,location_txtField.getText());
-                        preparedStatement.setString(4,email_txtField.getText());
-                        preparedStatement.setString(5,mobile_txtField.getText());
+                        preparedStatement.setString(4,mobile_txtField.getText());
+                        preparedStatement.setString(5,email_txtField.getText());
                         preparedStatement.executeUpdate();
                         updateAlert(customer_name_txtField.getText());
                 } catch (SQLException e) {
