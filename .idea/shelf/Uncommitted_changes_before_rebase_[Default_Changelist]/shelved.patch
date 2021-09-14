@@ -1,0 +1,218 @@
+Index: .idea/dataSources.local.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"dataSourceStorageLocal\" created-in=\"IU-212.5080.55\">\r\n    <data-source name=\"@localhost\" uuid=\"c495b94a-dcc9-4b1e-a49d-95528901ec13\">\r\n      <database-info product=\"\" version=\"\" jdbc-version=\"\" driver-name=\"\" driver-version=\"\" dbms=\"MYSQL\" exact-version=\"0\" />\r\n      <secret-storage>master_key</secret-storage>\r\n      <schema-mapping />\r\n    </data-source>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
+--- a/.idea/dataSources.local.xml	(revision 435a8650be8584784736269b0c4ec7f9cbbb8616)
++++ b/.idea/dataSources.local.xml	(date 1631531556099)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="dataSourceStorageLocal" created-in="IU-212.5080.55">
++  <component name="dataSourceStorageLocal">
+     <data-source name="@localhost" uuid="c495b94a-dcc9-4b1e-a49d-95528901ec13">
+       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+       <secret-storage>master_key</secret-storage>
+Index: src/main/resources/fct/cs/main-dash.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import com.jfoenix.controls.JFXButton?>\r\n<?import javafx.scene.control.Label?>\r\n<?import javafx.scene.control.Separator?>\r\n<?import javafx.scene.layout.AnchorPane?>\r\n<?import javafx.scene.layout.HBox?>\r\n<?import javafx.scene.layout.VBox?>\r\n<?import javafx.scene.text.Font?>\r\n<?import org.kordamp.ikonli.javafx.FontIcon?>\r\n\r\n<AnchorPane fx:id=\"mainAnchor\" maxHeight=\"720.0\" maxWidth=\"-Infinity\" minHeight=\"720.0\" minWidth=\"1280.0\"\r\n            stylesheets=\"@styles/navigator.css\" xmlns=\"http://javafx.com/javafx/16\" xmlns:fx=\"http://javafx.com/fxml/1\"\r\n            fx:controller=\"fct.cs.controllers.mainPageController\">\r\n    <children>\r\n        <HBox fx:id=\"main_hbox\" maxWidth=\"720.0\" minHeight=\"720.0\" AnchorPane.bottomAnchor=\"0.0\"\r\n              AnchorPane.leftAnchor=\"0.0\" AnchorPane.rightAnchor=\"0.0\" AnchorPane.topAnchor=\"0.0\">\r\n            <children>\r\n                <VBox fx:id=\"side_vbox\" alignment=\"TOP_CENTER\" minWidth=\"245.0\" prefHeight=\"720.0\" prefWidth=\"253.0\"\r\n                      spacing=\"20.0\" styleClass=\"side-VBox\">\r\n                    <children>\r\n                        <HBox alignment=\"CENTER\" prefHeight=\"100.0\" prefWidth=\"200.0\">\r\n                            <children>\r\n                                <Label text=\"Bookstore\" textFill=\"WHITE\">\r\n                                    <graphic>\r\n                                        <FontIcon iconColor=\"WHITE\" iconLiteral=\"cil-book\"/>\r\n                                    </graphic>\r\n                                    <font>\r\n                                        <Font size=\"30.0\"/>\r\n                                    </font>\r\n                                </Label>\r\n                            </children>\r\n                        </HBox>\r\n                        <VBox fx:id=\"nav_btn_container\" alignment=\"CENTER\">\r\n                            <children>\r\n                                <JFXButton fx:id=\"homePage\" minWidth=\"220.0\" onAction=\"#loadHome\"\r\n                                           prefHeight=\"50.0\" styleClass=\"side-nav-button\" text=\"Home\">\r\n                                    <graphic>\r\n                                        <FontIcon fill=\"WHITE\" iconLiteral=\"anto-home\" iconSize=\"20\"/>\r\n                                    </graphic>\r\n                                </JFXButton>\r\n                                <JFXButton fx:id=\"billingPage\" minWidth=\"220.0\" onAction=\"#loadBilling\"\r\n                                           prefHeight=\"50.0\" styleClass=\"side-nav-button\" text=\"Billing\">\r\n                                    <graphic>\r\n                                        <FontIcon fill=\"WHITE\" iconLiteral=\"anto-credit-card\" iconSize=\"20\"/>\r\n                                    </graphic>\r\n                                </JFXButton>\r\n                                <JFXButton fx:id=\"inventoryPage\" minWidth=\"220.0\" onAction=\"#loadInventoryPage\"\r\n                                           prefHeight=\"50.0\" styleClass=\"side-nav-button\" text=\"Inventroy\">\r\n                                    <graphic>\r\n                                        <FontIcon fill=\"WHITE\" iconLiteral=\"anto-shop\" iconSize=\"20\"/>\r\n                                    </graphic>\r\n                                </JFXButton>\r\n                                <JFXButton fx:id=\"employeePage\" minWidth=\"220.0\" onAction=\"#loadEmployeePage\"\r\n                                           prefHeight=\"50.0\" styleClass=\"side-nav-button\" text=\"Employees\">\r\n                                    <graphic>\r\n                                        <FontIcon fill=\"WHITE\" iconLiteral=\"anto-idcard\" iconSize=\"20\"/>\r\n                                    </graphic>\r\n                                </JFXButton>\r\n                                <JFXButton fx:id=\"orderBtn\" minWidth=\"220.0\" onAction=\"#loadOrdersPage\"\r\n                                           prefHeight=\"50.0\" styleClass=\"side-nav-button\" text=\"Orders\">\r\n                                    <graphic>\r\n                                        <FontIcon fill=\"WHITE\" iconLiteral=\"anto-dollar-circle\" iconSize=\"20\"/>\r\n                                    </graphic>\r\n                                </JFXButton>\r\n                                <JFXButton minWidth=\"220.0\" prefHeight=\"50.0\" styleClass=\"side-nav-button\" text=\"Books\">\r\n                                    <graphic>\r\n                                        <FontIcon fill=\"WHITE\" iconLiteral=\"anto-read\" iconSize=\"20\"/>\r\n                                    </graphic>\r\n                                </JFXButton>\r\n                                <JFXButton minWidth=\"220.0\" prefHeight=\"50.0\" styleClass=\"side-nav-button\"\r\n                                           text=\"Customers\">\r\n                                    <graphic>\r\n                                        <FontIcon fill=\"WHITE\" iconLiteral=\"anto-team\" iconSize=\"20\"/>\r\n                                    </graphic>\r\n                                </JFXButton>\r\n                                <JFXButton minWidth=\"220.0\" prefHeight=\"50.0\" styleClass=\"side-nav-button\"\r\n                                           text=\"Reports\" onAction=\"#reportsPage\">\r\n                                    <graphic>\r\n                                        <FontIcon fill=\"WHITE\" iconLiteral=\"cil-taxi\" iconSize=\"20\"/>\r\n                                    </graphic>\r\n                                </JFXButton>\r\n                                <JFXButton minWidth=\"220.0\" onAction=\"#exit\" prefHeight=\"50.0\"\r\n                                           styleClass=\"side-nav-button\" text=\"Close\">\r\n                                    <graphic>\r\n                                        <FontIcon fill=\"WHITE\" iconLiteral=\"anto-close-square\" iconSize=\"20\"/>\r\n                                    </graphic>\r\n                                </JFXButton>\r\n                            </children>\r\n                        </VBox>\r\n                    </children>\r\n                </VBox>\r\n                <VBox fx:id=\"contentPanel_vbox\" minWidth=\"922.0\" prefHeight=\"738.0\" prefWidth=\"1030.0\"\r\n                      styleClass=\"content-vbox\">\r\n                    <children>\r\n                        <HBox fx:id=\"header_hbox\" alignment=\"CENTER_LEFT\" prefHeight=\"124.0\" prefWidth=\"1030.0\"\r\n                              styleClass=\"content-header\">\r\n                            <children>\r\n                                <Label fx:id=\"pageHeaderLabel\" id=\"header_label\" text=\"Dashboard\"/>\r\n                            </children>\r\n                        </HBox>\r\n                        <Separator prefWidth=\"200.0\"/>\r\n                            <VBox fx:id=\"contentAnchor\" prefHeight=\"685.0\" prefWidth=\"1030.0\" styleClass=\"holder-vbox\">\r\n                            <children>\r\n                                <VBox fx:id=\"mainContent_vbox\" alignment=\"CENTER\" styleClass=\"loaded-vbox\"/>\r\n                            </children>\r\n                        </VBox>\r\n                    </children>\r\n                </VBox>\r\n            </children>\r\n        </HBox>\r\n    </children>\r\n</AnchorPane>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/fct/cs/main-dash.fxml b/src/main/resources/fct/cs/main-dash.fxml
+--- a/src/main/resources/fct/cs/main-dash.fxml	(revision 435a8650be8584784736269b0c4ec7f9cbbb8616)
++++ b/src/main/resources/fct/cs/main-dash.fxml	(date 1631601803999)
+@@ -9,100 +9,86 @@
+ <?import javafx.scene.text.Font?>
+ <?import org.kordamp.ikonli.javafx.FontIcon?>
+ 
+-<AnchorPane fx:id="mainAnchor" maxHeight="720.0" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0"
+-            stylesheets="@styles/navigator.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+-            fx:controller="fct.cs.controllers.mainPageController">
++<AnchorPane fx:id="mainAnchor" maxHeight="720.0" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" stylesheets="@styles/navigator.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.controllers.mainPageController">
+     <children>
+-        <HBox fx:id="main_hbox" maxWidth="720.0" minHeight="720.0" AnchorPane.bottomAnchor="0.0"
+-              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
++        <HBox fx:id="main_hbox" maxWidth="720.0" minHeight="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+             <children>
+-                <VBox fx:id="side_vbox" alignment="TOP_CENTER" minWidth="245.0" prefHeight="720.0" prefWidth="253.0"
+-                      spacing="20.0" styleClass="side-VBox">
++                <VBox fx:id="side_vbox" alignment="TOP_CENTER" minWidth="245.0" prefHeight="720.0" prefWidth="253.0" spacing="20.0" styleClass="side-VBox">
+                     <children>
+                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                             <children>
+                                 <Label text="Bookstore" textFill="WHITE">
+                                     <graphic>
+-                                        <FontIcon iconColor="WHITE" iconLiteral="cil-book"/>
++                                        <FontIcon iconColor="WHITE" iconLiteral="cil-book" />
+                                     </graphic>
+                                     <font>
+-                                        <Font size="30.0"/>
++                                        <Font size="30.0" />
+                                     </font>
+                                 </Label>
+                             </children>
+                         </HBox>
+                         <VBox fx:id="nav_btn_container" alignment="CENTER">
+                             <children>
+-                                <JFXButton fx:id="homePage" minWidth="220.0" onAction="#loadHome"
+-                                           prefHeight="50.0" styleClass="side-nav-button" text="Home">
++                                <JFXButton fx:id="homePage" minWidth="220.0" onAction="#loadHome" prefHeight="50.0" styleClass="side-nav-button" text="Home">
+                                     <graphic>
+-                                        <FontIcon fill="WHITE" iconLiteral="anto-home" iconSize="20"/>
++                                        <FontIcon fill="WHITE" iconLiteral="anto-home" iconSize="20" />
+                                     </graphic>
+                                 </JFXButton>
+-                                <JFXButton fx:id="billingPage" minWidth="220.0" onAction="#loadBilling"
+-                                           prefHeight="50.0" styleClass="side-nav-button" text="Billing">
++                                <JFXButton fx:id="billingPage" minWidth="220.0" onAction="#loadBilling" prefHeight="50.0" styleClass="side-nav-button" text="Billing">
+                                     <graphic>
+-                                        <FontIcon fill="WHITE" iconLiteral="anto-credit-card" iconSize="20"/>
++                                        <FontIcon fill="WHITE" iconLiteral="anto-credit-card" iconSize="20" />
+                                     </graphic>
+                                 </JFXButton>
+-                                <JFXButton fx:id="inventoryPage" minWidth="220.0" onAction="#loadInventoryPage"
+-                                           prefHeight="50.0" styleClass="side-nav-button" text="Inventroy">
++                                <JFXButton fx:id="inventoryPage" minWidth="220.0" onAction="#loadInventoryPage" prefHeight="50.0" styleClass="side-nav-button" text="Inventroy">
+                                     <graphic>
+-                                        <FontIcon fill="WHITE" iconLiteral="anto-shop" iconSize="20"/>
++                                        <FontIcon fill="WHITE" iconLiteral="anto-shop" iconSize="20" />
+                                     </graphic>
+                                 </JFXButton>
+-                                <JFXButton fx:id="employeePage" minWidth="220.0" onAction="#loadEmployeePage"
+-                                           prefHeight="50.0" styleClass="side-nav-button" text="Employees">
++                                <JFXButton fx:id="employeePage" minWidth="220.0" onAction="#loadEmployeePage" prefHeight="50.0" styleClass="side-nav-button" text="Employees">
+                                     <graphic>
+-                                        <FontIcon fill="WHITE" iconLiteral="anto-idcard" iconSize="20"/>
++                                        <FontIcon fill="WHITE" iconLiteral="anto-idcard" iconSize="20" />
+                                     </graphic>
+                                 </JFXButton>
+-                                <JFXButton fx:id="orderBtn" minWidth="220.0" onAction="#loadOrdersPage"
+-                                           prefHeight="50.0" styleClass="side-nav-button" text="Orders">
++                                <JFXButton fx:id="orderBtn" minWidth="220.0" onAction="#loadOrdersPage" prefHeight="50.0" styleClass="side-nav-button" text="Orders">
+                                     <graphic>
+-                                        <FontIcon fill="WHITE" iconLiteral="anto-dollar-circle" iconSize="20"/>
++                                        <FontIcon fill="WHITE" iconLiteral="anto-dollar-circle" iconSize="20" />
+                                     </graphic>
+                                 </JFXButton>
+-                                <JFXButton minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button" text="Books">
++                                <JFXButton fx:id="bookPage" minWidth="220.0" onAction="#loadBookPage" prefHeight="50.0" styleClass="side-nav-button" text="Books">
+                                     <graphic>
+-                                        <FontIcon fill="WHITE" iconLiteral="anto-read" iconSize="20"/>
++                                        <FontIcon fill="WHITE" iconLiteral="anto-read" iconSize="20" />
+                                     </graphic>
+                                 </JFXButton>
+-                                <JFXButton minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button"
+-                                           text="Customers">
++                                <JFXButton minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button" text="Customers">
+                                     <graphic>
+-                                        <FontIcon fill="WHITE" iconLiteral="anto-team" iconSize="20"/>
++                                        <FontIcon fill="WHITE" iconLiteral="anto-team" iconSize="20" />
+                                     </graphic>
+                                 </JFXButton>
+-                                <JFXButton minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button"
+-                                           text="Reports" onAction="#reportsPage">
++                                <JFXButton minWidth="220.0" onAction="#reportsPage" prefHeight="50.0" styleClass="side-nav-button" text="Reports">
+                                     <graphic>
+-                                        <FontIcon fill="WHITE" iconLiteral="cil-taxi" iconSize="20"/>
++                                        <FontIcon fill="WHITE" iconLiteral="cil-taxi" iconSize="20" />
+                                     </graphic>
+                                 </JFXButton>
+-                                <JFXButton minWidth="220.0" onAction="#exit" prefHeight="50.0"
+-                                           styleClass="side-nav-button" text="Close">
++                                <JFXButton minWidth="220.0" onAction="#exit" prefHeight="50.0" styleClass="side-nav-button" text="Close">
+                                     <graphic>
+-                                        <FontIcon fill="WHITE" iconLiteral="anto-close-square" iconSize="20"/>
++                                        <FontIcon fill="WHITE" iconLiteral="anto-close-square" iconSize="20" />
+                                     </graphic>
+                                 </JFXButton>
+                             </children>
+                         </VBox>
+                     </children>
+                 </VBox>
+-                <VBox fx:id="contentPanel_vbox" minWidth="922.0" prefHeight="738.0" prefWidth="1030.0"
+-                      styleClass="content-vbox">
++                <VBox fx:id="contentPanel_vbox" minWidth="922.0" prefHeight="738.0" prefWidth="1030.0" styleClass="content-vbox">
+                     <children>
+-                        <HBox fx:id="header_hbox" alignment="CENTER_LEFT" prefHeight="124.0" prefWidth="1030.0"
+-                              styleClass="content-header">
++                        <HBox fx:id="header_hbox" alignment="CENTER_LEFT" prefHeight="124.0" prefWidth="1030.0" styleClass="content-header">
+                             <children>
+-                                <Label fx:id="pageHeaderLabel" id="header_label" text="Dashboard"/>
++                                <Label id="header_label" fx:id="pageHeaderLabel" text="Dashboard" />
+                             </children>
+                         </HBox>
+-                        <Separator prefWidth="200.0"/>
++                        <Separator prefWidth="200.0" />
+                             <VBox fx:id="contentAnchor" prefHeight="685.0" prefWidth="1030.0" styleClass="holder-vbox">
+                             <children>
+-                                <VBox fx:id="mainContent_vbox" alignment="CENTER" styleClass="loaded-vbox"/>
++                                <VBox fx:id="mainContent_vbox" alignment="CENTER" styleClass="loaded-vbox" />
+                             </children>
+                         </VBox>
+                     </children>
+Index: .idea/runConfigurations.xml
+===================================================================
+diff --git a/.idea/runConfigurations.xml b/.idea/runConfigurations.xml
+deleted file mode 100644
+--- a/.idea/runConfigurations.xml	(revision 435a8650be8584784736269b0c4ec7f9cbbb8616)
++++ /dev/null	(revision 435a8650be8584784736269b0c4ec7f9cbbb8616)
+@@ -1,10 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="RunConfigurationProducerService">
+-    <option name="ignoredProducers">
+-      <set>
+-        <option value="com.android.tools.idea.compose.preview.runconfiguration.ComposePreviewRunConfigurationProducer" />
+-      </set>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: src/main/java/fct/cs/controllers/mainPageController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package fct.cs.controllers;\r\n\r\nimport com.jfoenix.controls.JFXButton;\r\nimport fct.cs.Dash.DashController;\r\nimport fct.cs.inventory.InventoryController;\r\nimport javafx.event.ActionEvent;\r\nimport javafx.fxml.FXML;\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.fxml.Initializable;\r\nimport javafx.scene.Node;\r\nimport javafx.scene.control.Label;\r\nimport javafx.scene.layout.AnchorPane;\r\nimport javafx.scene.layout.HBox;\r\nimport javafx.scene.layout.VBox;\r\n\r\nimport java.io.IOException;\r\nimport java.net.URL;\r\nimport java.util.ResourceBundle;\r\n\r\npublic class mainPageController implements Initializable {\r\n\r\n    public JFXButton homePage;\r\n    @FXML\r\n    private Label pageHeaderLabel;\r\n\r\n    @FXML\r\n    private HBox header_hbox;\r\n\r\n    @FXML\r\n    private JFXButton inventoryPage;\r\n\r\n    @FXML\r\n    private JFXButton orderBtn;\r\n\r\n    @FXML\r\n    private VBox mainContent_vbox;\r\n\r\n    @FXML\r\n    private AnchorPane mainAnchor;\r\n\r\n    @FXML\r\n    private JFXButton employeePage;\r\n\r\n    @FXML\r\n    private VBox contentPanel_vbox;\r\n\r\n    @FXML\r\n    private VBox contentAnchor;\r\n\r\n    private FXMLLoader loader = null;\r\n\r\n    private String currentPage = \"\";\r\n\r\n    private boolean isManager = true;\r\n\r\n    public void setManager(boolean manager) {\r\n        this.isManager = manager;\r\n        System.out.println(\"Is manager\" + manager);\r\n//        loadHomePage();\r\n    }\r\n\r\n    @Override\r\n    public void initialize(URL url, ResourceBundle resourceBundle) {\r\n        loadHomePage();\r\n    }\r\n\r\n    @FXML\r\n    void loadEmployeePage(ActionEvent event) {\r\n        if (currentPage != \"employees\") {\r\n            loader = new FXMLLoader(getClass().getResource(\"/fct/cs/new-employee-page.fxml\"));\r\n            try {\r\n                mainContent_vbox.getChildren().clear();\r\n                mainContent_vbox.getChildren().add(loader.load());\r\n                currentPage = \"employees\";\r\n                setHeaderText(\"Manage Employees\");\r\n            } catch (IOException e) {\r\n                e.printStackTrace();\r\n            }\r\n        }else{\r\n            System.out.println(\"already loaded\");\r\n        }\r\n//        EmployeeController childController = loader.getController();\r\n    }\r\n\r\n    public void loadOrdersPage(ActionEvent actionEvent) {\r\n        if (!currentPage.equals(\"orders\")) {\r\n            loader = new FXMLLoader(getClass().getResource(\"/fct/cs/orders.fxml\"));\r\n            try {\r\n                mainContent_vbox.getChildren().clear();\r\n                mainContent_vbox.getChildren().add(loader.load());\r\n                setHeaderText(\"Manage Orders\");\r\n                currentPage = \"orders\";\r\n            } catch (IOException e) {\r\n                e.printStackTrace();\r\n            }\r\n        }else{\r\n            System.out.println(\"already loaded\");\r\n        }\r\n    }\r\n\r\n    public void loadInventoryPage(ActionEvent actionEvent) {\r\n       loadInventoryPage();\r\n    }\r\n\r\n    public void loadInventoryPage() {\r\n        if (!currentPage.equals(\"inventory\")) {\r\n            loader = new FXMLLoader(getClass().getResource(\"/fct/cs/inventory.fxml\"));\r\n            try {\r\n                mainContent_vbox.getChildren().clear();\r\n                mainContent_vbox.getChildren().add(loader.load());\r\n                InventoryController inventoryController = loader.getController();\r\n                inventoryController.setManager(isManager);\r\n                currentPage = \"inventory\";\r\n                setHeaderText(\"Manage Inventory\");\r\n            } catch (IOException e) {\r\n                e.printStackTrace();\r\n            }\r\n        }else{\r\n            System.out.println(\"already loaded\");\r\n        }\r\n    }\r\n\r\n    public void exit(ActionEvent actionEvent) {\r\n        System.exit(0);\r\n    }\r\n\r\n    public void setHeaderText(String string){\r\n        pageHeaderLabel.setText(string);\r\n        pageHeaderLabel.setStyle(\"-fx-font-family: Montserrat;\");\r\n    }\r\n\r\n    public void loadHome(ActionEvent actionEvent) {\r\n        loadHomePage();\r\n\r\n    }\r\n\r\n    public void loadHomePage() {\r\n        if (!currentPage.equals(\"home\")) {\r\n            loader = new FXMLLoader(getClass().getResource(\"/fct/cs/dash.fxml\"));\r\n            try {\r\n                mainContent_vbox.getChildren().clear();\r\n                mainContent_vbox.getChildren().add(loader.load());\r\n                DashController controller = loader.getController();\r\n                controller.setManager(isManager);\r\n                currentPage = \"home\";\r\n                setHeaderText(\"Welcome\");\r\n            } catch (IOException e) {\r\n                e.printStackTrace();\r\n            }\r\n        }else{\r\n            System.out.println(\"already loaded\");\r\n        }\r\n    }\r\n\r\n    public void loadBilling(ActionEvent actionEvent) {\r\n    }\r\n\r\n    public void reportsPage(ActionEvent actionEvent) {\r\n\r\n        if (!currentPage.equals(\"reports\")) {\r\n            loader = new FXMLLoader(getClass().getResource(\"/fct/cs/generate-reports.fxml\"));\r\n            try {\r\n                mainContent_vbox.getChildren().clear();\r\n                mainContent_vbox.getChildren().add(loader.load());\r\n                currentPage = \"reports\";\r\n                setHeaderText(\"View Reports\");\r\n            } catch (IOException e) {\r\n                e.printStackTrace();\r\n            }\r\n        }else{\r\n            System.out.println(\"already loaded\");\r\n        }\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/fct/cs/controllers/mainPageController.java b/src/main/java/fct/cs/controllers/mainPageController.java
+--- a/src/main/java/fct/cs/controllers/mainPageController.java	(revision 435a8650be8584784736269b0c4ec7f9cbbb8616)
++++ b/src/main/java/fct/cs/controllers/mainPageController.java	(date 1631601766632)
+@@ -29,6 +29,9 @@
+     @FXML
+     private JFXButton inventoryPage;
+ 
++    @FXML
++    private JFXButton bookBtn;
++
+     @FXML
+     private JFXButton orderBtn;
+ 
+@@ -171,5 +174,21 @@
+             System.out.println("already loaded");
+         }
+ 
++    }
++
++    public void loadBookPage(ActionEvent actionEvent) {
++        if (!currentPage.equals("books")) {
++            loader = new FXMLLoader(getClass().getResource("/fct/cs/mainbook.fxml"));
++            try {
++                mainContent_vbox.getChildren().clear();
++                mainContent_vbox.getChildren().add(loader.load());
++                setHeaderText("Manage Books");
++                currentPage = "books";
++            } catch (IOException e) {
++                e.printStackTrace();
++            }
++        }else{
++            System.out.println("already loaded");
++        }
+     }
+ }
+\ No newline at end of file
