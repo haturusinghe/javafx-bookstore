@@ -66,7 +66,7 @@ public class BookFormController{
 
     @FXML
     private MFXButton submitBtn;
-
+    @FXML
     private MFXButton cancelBtn;
     private BookController parentBookController;
     private JFXDrawer drawer;
@@ -84,6 +84,35 @@ public class BookFormController{
 
     public void setDrawer(JFXDrawer bookdrawer) {
         this.drawer = bookdrawer;
+    }
+
+    public void setEntry(BookData bookData) {
+        resetForm();
+        bookTitle_txtField.setText(bookData.getTitle());
+        isbn_txtField.setText(bookData.getIsbn());
+        //author_txtField.setText(bookData.getLast_name());
+        bookID_txtField.setText(String.valueOf(bookData.getBook_id()));
+        Category_txtField.setText(String.valueOf(bookData.getCategory()));
+        Bookyear_txtField.setText(bookData.getBook_year());
+        Publisher_txtField.setText(bookData.getPublisher());
+    }
+    private void resetForm() {
+        bookTitle_txtField.clear();
+        isbn_txtField.clear();
+       // author_txtField.clear();
+        bookID_txtField.clear();
+        Category_txtField.clear();
+        Bookyear_txtField.clear();
+        Publisher_txtField.clear();
+    }
+
+    public void setAddingNew(boolean b) {
+        this.isAddingNew = b;
+        if(b){
+            bookTitle_txtField.setEditable(true);
+        }else{
+            bookTitle_txtField.setEditable(false);
+        }
     }
 
     @FXML

@@ -23,6 +23,8 @@ import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.util.Comparator;
 
+import java.util.ArrayList;
+
 public class BookController {
     public MFXTableView bookTable;
     public JFXDrawer bookdrawer;
@@ -35,40 +37,40 @@ public class BookController {
 
     private void setColumnProps() {
 
-        MFXTableColumn<BookData> TitleColumn = new MFXTableColumn<>("Book Title", Comparator.comparing(BookData::getTitle));
+        MFXTableColumn<BookData> TitleColumn = new MFXTableColumn<>("Book descripte", Comparator.comparing(BookData::getDescription));
         MFXTableColumn<BookData> publisherColumn = new MFXTableColumn<>("Publisher", Comparator.comparing(BookData::getPublisher));
-        MFXTableColumn<BookData> AuthorColumn = new MFXTableColumn<>("Author Id", Comparator.comparing(BookData::getAuthor_id));
-        MFXTableColumn<BookData> YearColumn = new MFXTableColumn<>("Year", Comparator.comparing(BookData::getBook_year));
+        MFXTableColumn<BookData> IsbnColumn = new MFXTableColumn<>("Author Id", Comparator.comparing(BookData::getIsbn));
+        //MFXTableColumn<BookData> YearColumn = new MFXTableColumn<>("Year", Comparator.comparing(BookData::getBook_year));
 
-        MFXTableColumn<BookData> updateColumn = new MFXTableColumn<>("", Comparator.comparing(BookData::getTitle));
-        MFXTableColumn<BookData> deleteColumn = new MFXTableColumn<>("", Comparator.comparing(BookData::getTitle));
+        MFXTableColumn<BookData> updateColumn = new MFXTableColumn<>("", Comparator.comparing(BookData::getDescription));
+        MFXTableColumn<BookData> deleteColumn = new MFXTableColumn<>("", Comparator.comparing(BookData::getDescription));
 
-        TitleColumn.setRowCellFunction(book -> new MFXTableRowCell(String.valueOf(book.getTitle())));
+        TitleColumn.setRowCellFunction(book -> new MFXTableRowCell(String.valueOf(book.getDescription())));
         publisherColumn.setRowCellFunction(book -> new MFXTableRowCell(String.valueOf(book.getPublisher())));
-        AuthorColumn.setRowCellFunction(book -> new MFXTableRowCell(String.valueOf(book.getAuthor_id())));
-        YearColumn.setRowCellFunction(book -> new MFXTableRowCell(String.valueOf(book.getBook_year())));
+        IsbnColumn.setRowCellFunction(book -> new MFXTableRowCell(String.valueOf(book.getIsbn())));
+       // YearColumn.setRowCellFunction(book -> new MFXTableRowCell(String.valueOf(book.getBook_year())));
 
 //        updateColumn.setRowCellFunction(employee -> new MFXTableRowCell(String.valueOf(employee.getEmployee_id())));
 //        deleteColumn.setRowCellFunction(employee -> new MFXTableRowCell(String.valueOf(employee.getEmployee_id())));
 
         updateColumn.setMinWidth(100);
         updateColumn.setShowLockIcon(false);
-        updateColumn.setRowCellFunction(employeeData -> {
+        updateColumn.setRowCellFunction(bookData -> {
             MFXTableRowCell rowCell = new MFXTableRowCell("Update");
             rowCell.setGraphicTextGap(5);
             rowCell.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
                 System.out.println("Update");
 
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/employee-form.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/new-book-form.fxml"));
                     VBox box = loader.load();
-                   BookFormController controller = loader.getController();
+                   BookFormController bcontroller = loader.getController();
 
-                    controller.setParentController(thisController);
-                    controller.setDrawer(bookdrawer);
+                    bcontroller.setParentBookController(thisController);
+                    bcontroller.setDrawer(bookdrawer);
 //                    controller.setInventoryManager(inventoryManager);
-                    controller.setEntry(employeeData);
-                    controller.setAddingNew(false);
+                    bcontroller.setEntry(bookData);
+                    bcontroller.setAddingNew(false);
                     bookdrawer.setSidePane(box);
                 } catch (IOException ex) {
                     ex.printStackTrace();
@@ -99,13 +101,13 @@ public class BookController {
 
         deleteColumn.setMinWidth(100);
         deleteColumn.setShowLockIcon(false);
-        deleteColumn.setRowCellFunction(employeeData -> {
+        deleteColumn.setRowCellFunction(bookData -> {
             MFXTableRowCell rowCell = new MFXTableRowCell("Delete");
             rowCell.setGraphicTextGap(5);
 //            rowCell.setStyle("-fx-background-color:grey");
             rowCell.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
                 System.out.println("Delete");
-                BookManager.deleteSingleEmployee(employeeData);
+                BookManager.deleteSingleBook(bookData);
                 getEmployeeData();
             });
             MFXFontIcon icon = new MFXFontIcon("mfx-minus-circle", 25);
@@ -122,7 +124,22 @@ public class BookController {
 //        updateColumn.setMaxWidth(20);
 
 
-        bookTable.getTableColumns().addAll(TitleColumn,publisherColumn,AuthorColumn, YearColumn,updateColumn,deleteColumn);
+        bookTable.getTableColumns().addAll(TitleColumn,publisherColumn,IsbnColumn,updateColumn,deleteColumn);
+    }
+
+    public void getEmployeeData() {
+        ArrayList<BookData> bList = BookManager.getEmployeeList(100, 1);
+        bookObservableList.clear();
+        for (BookData e:
+                bList) {
+            bookObservableList.add(e);
+
+        }
+        setDataData();
+    }
+
+    private void setDataData() {
+        bookTable.setItems(bookObservableList);
     }
 
 
