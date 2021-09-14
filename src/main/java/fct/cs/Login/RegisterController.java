@@ -3,6 +3,7 @@ package fct.cs.Login;
 import com.jfoenix.controls.JFXButton;
 //import com.mysql.cj.conf.BooleanProperty;
 import com.jfoenix.controls.JFXComboBox;
+import fct.cs.controllers.mainPageController;
 import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
 import io.github.palexdev.materialfx.controls.*;
@@ -194,7 +195,7 @@ public class RegisterController implements Initializable {
 
 
 
-    @FXML
+/*    @FXML
     public void signOnAction(ActionEvent event) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         DatabaseConnector databaseConnector = new DatabaseConnector();
@@ -284,7 +285,7 @@ public class RegisterController implements Initializable {
             System.out.println("error" + ex.toString());
         }
 
-    }
+    }*/
 
     @FXML
     public void hLoginOnAction(ActionEvent event)throws IOException{
@@ -347,27 +348,67 @@ public class RegisterController implements Initializable {
             }
 
             try {
-                if (passwordEncrypt != null && answerEncrypt != null) {
-                    String sql = "INSERT INTO login (fname, lname, telnum, email, password, ques, ans) values(?,?,?,?,?,?,?)";
-                    PreparedStatement ps_3 = conn.prepareStatement(sql);
 
-                    ps_3.setString(1, fName);
-                    ps_3.setString(2, lName);
-                    ps_3.setString(3, pNum);
-                    ps_3.setString(4, email);
-                    ps_3.setString(5, passwordEncrypt);
-                    ps_3.setString(6, question);
-                    ps_3.setString(7, answerEncrypt);
+                //check phone number from database
+                PreparedStatement ps_1 = conn.prepareStatement("select * from login where telnum = ?");
+                ps_1.setString(1, pNum);
 
-                    ps_3.execute();
+                //check email address from database
+                PreparedStatement ps_2 = conn.prepareStatement("select * from login where email = ?");
+                ps_2.setString(1, email);
+
+                ResultSet rs_1 = ps_1.executeQuery();
+                ResultSet rs_2 = ps_2.executeQuery();
+
+                if (rs_1.next()) {
+
+                    System.out.println("Check Again");
+                    MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Fill Registration Form", "Phone number already taken, please enter another Phone Number");
+                    dialog.show();
+
+                } else if (rs_2.next()) {
+
+                    System.out.println("Check Again");
+                    MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Fill Registration Form", "Email address already taken, please enter another email address");
+                    dialog.show();
+
+                } else {
+                    try {
+
+                        String sql = "INSERT INTO login (fname, lname, telnum, email, password, ques, ans) values(?,?,?,?,?,?,?)";
+                        PreparedStatement ps_3 = conn.prepareStatement(sql);
+
+                        ps_3.setString(1, fName);
+                        ps_3.setString(2, lName);
+                        ps_3.setString(3, pNum);
+                        ps_3.setString(4, email);
+                        ps_3.setString(5, passwordEncrypt);
+                        ps_3.setString(6, question);
+                        ps_3.setString(7, answerEncrypt);
+
+                        ps_3.execute();
+
+                        System.out.println("Account successfully registered");
+
+                        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/login.fxml"));
+                        Scene scene = new Scene(view);
+                        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+                        window.setScene(scene);
+                        window.show();
+
+                    }catch (SQLException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
 
-            System.out.println("Account successfully registered");
 
-        } else {
+        }else {
             System.out.println("Check Again");
             MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Fill Registration Form", "Please fill all the fields in the above form");
             dialog.show();
