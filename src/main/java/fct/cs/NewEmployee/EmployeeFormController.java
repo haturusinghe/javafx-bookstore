@@ -74,6 +74,7 @@ public class EmployeeFormController {
         } else {
             EmployeeManager.updateEmployee(employeeData);
         }
+        submitBtn.setDisable(true);
         parentController.getEmployeeData();
         drawer.close();
 
@@ -117,6 +118,7 @@ public class EmployeeFormController {
     }
 
     public void setAddingNew(boolean b) {
+        submitBtn.setDisable(false);
         this.isAddingNew = b;
         if(b){
             emp_id_txtField.setEditable(true);

@@ -9,6 +9,7 @@ import io.github.palexdev.materialfx.controls.cell.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
 import io.github.palexdev.materialfx.controls.enums.Styles;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -38,7 +39,7 @@ public class NewEmployeeController implements Initializable {
     private NewEmployeeController thisController = this;
 
     private ObservableList<EmployeeData> employeeObservableList = FXCollections.observableArrayList();
-    private FilteredList<EmployeeData> employeeFilteredList = new FilteredList<>(employeeObservableList);
+    private FilteredList<EmployeeData> employeeFilteredList;
 
     private static EmployeeData selectedEmployee = null;
     private final MFXTextField searchField = new MFXTextField();
@@ -47,6 +48,11 @@ public class NewEmployeeController implements Initializable {
     private ObservableList<Category> categoryList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        setColumnProps();
+
+        getEmployeeData();
+
         empTable.setHeaderSupplier(() -> {
             HBox mainContainer = new HBox();
             mainContainer.setPrefHeight(50);
@@ -55,23 +61,24 @@ public class NewEmployeeController implements Initializable {
             mainContainer.setPadding(new Insets(10,0,5,5));
 
             HBox spanMid = new HBox();
-            spanMid.setMinWidth(430);
+            spanMid.setMinWidth(610);
             spanMid.setMinHeight(50);
 
             HBox spanEnd = new HBox();
             spanEnd.setMinHeight(50);
-            spanEnd.setMinWidth(70);
+            spanEnd.setMaxWidth(10);
 
             HBox searchContainer = new HBox(10);
             searchContainer.setMinHeight(50);
             searchContainer.setAlignment(Pos.CENTER_RIGHT);
-            searchField.setPromptText("Search Employees...");
+            searchField.setPromptText("Search Employees");
             searchField.setIcon(new MFXIconWrapper(new MFXFontIcon("mfx-search", 28, Color.web("#4D4D4D")), 24));
             searchField.setIconInsets(new Insets(0,0,10,0));
             searchField.setMinHeight(50);
             searchField.setStyle("-fx-font-size: 18px;");
-            searchField.setOnAction(actionEvent -> {
-                System.out.println("Searching...");
+
+            searchField.setOnKeyTyped(actionEvent -> {
+                employeeFilteredList = new FilteredList<EmployeeData>(employeeObservableList);
                 thisController.searchTableFromText(searchField.getText());
                 empTable.setItems(employeeFilteredList);
             });
@@ -83,12 +90,12 @@ public class NewEmployeeController implements Initializable {
             searchCombo.setStyle("-fx-font-size: 30px;");
 
             FontIcon addIcon = new FontIcon("anto-plus-circle");
-            addIcon.setIconColor(Color.BLACK);
+            addIcon.setIconColor(Color.WHITE);
             addIcon.setIconSize(25);
 
             MFXButton addBtn = new MFXButton();
             addBtn.setText("Add Employee");
-            addBtn.setStyle("-fx-font-size: 20px; -fx-background-color:red;");
+            addBtn.setStyle("-fx-background-color: #2B2B2B;-fx-font-size: 20px;-fx-background-radius: 9,8,5,4,3;-fx-text-fill: #fff;");
             addBtn.setGraphic(addIcon);
             addBtn.setOnAction(actionEvent -> {
                 thisController.addNewEntry();
@@ -102,23 +109,26 @@ public class NewEmployeeController implements Initializable {
             VBox box = new VBox(holderHbox);
             box.setAlignment(Pos.CENTER_RIGHT);*/
 
-            searchContainer.getChildren().addAll(searchCombo,searchField);
+            searchContainer.getChildren().addAll(searchField);
             mainContainer.getChildren().addAll(searchContainer,spanMid,addBtn,spanEnd);
             return mainContainer;
         });
-        getEmployeeData();
-        setColumnProps();
+
     }
 
     public void getEmployeeData() {
         ArrayList<EmployeeData> eList = EmployeeManager.getEmployeeList(100, 1);
-        employeeObservableList.clear();
-        for (EmployeeData e:
-             eList) {
-            employeeObservableList.add(e);
+        Platform.runLater(() -> {
+            System.out.println("Later");
+            employeeObservableList.clear();
+            for (EmployeeData e:
+                    eList) {
+                employeeObservableList.add(e);
 
-        }
-        setDataData();
+            }
+            empTable.setItems(employeeObservableList);
+        });
+
     }
 
     private void setDataData() {
