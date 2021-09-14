@@ -7,6 +7,7 @@ import fct.cs.dbUtil.DatabaseHandler;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class BillManager {
@@ -37,6 +38,23 @@ public class BillManager {
         }
 
         return count > 0;
+    }
+
+
+        private int getLastOrderId() {
+            String query = "SELECT order_id FROM Order order by order_id desc limit 1";
+            PreparedStatement preparedStatement = null;
+            ResultSet resultSet;
+            try {
+                preparedStatement = conn.prepareStatement(query);
+                resultSet = preparedStatement.executeQuery();
+                return resultSet.getInt("order_id");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return 0;
+            }
+        }
+
     }
 
 }
