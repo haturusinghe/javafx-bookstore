@@ -35,7 +35,7 @@
         </HBox>
         <VBox alignment="CENTER" minWidth="400.0" prefHeight="358.0" prefWidth="500.0" spacing="2.5" styleClass="info-container">
             <children>
-                <HBox fx:id="emp_id_hbox" alignment="CENTER_LEFT" layoutX="50.0" layoutY="362.0" spacing="20.0">
+                <HBox fx:id="customer_id_hbox" alignment="CENTER_LEFT" layoutX="50.0" layoutY="362.0" spacing="20.0">
                     <children>
                         <VBox>
                             <children>
@@ -54,11 +54,15 @@
                                 <TextField fx:id="customer_name_txtField"  />
                             </children>
                         </VBox>
-                        <Separator orientation="VERTICAL" styleClass="vSeparator" />
+                    </children>
+                </HBox>
+                <Separator prefWidth="200.0" />
+                <HBox fx:id="location_hbox" alignment="CENTER" layoutX="50.0" layoutY="383.0" spacing="20.0">
+                    <children>
                         <VBox>
                             <children>
                                 <Label styleClass="textLabel" text="Location" />
-                                <TextField fx:id="location_txtField" />
+                                <TextField fx:id="location_txtField"  />
                             </children>
                         </VBox>
                     </children>
