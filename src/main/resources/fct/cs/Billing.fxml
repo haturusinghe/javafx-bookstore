@@ -16,23 +16,7 @@
          <children>
             <AnchorPane prefHeight="502.0" prefWidth="624.0">
                <children>
-                  <AnchorPane layoutY="2.0" prefHeight="66.0" prefWidth="624.0">
-                     <children>
-                        <Button fx:id="search" layoutX="291.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="78.0" text="Search" />
-                        <TextField fx:id="searchText" layoutX="47.0" layoutY="14.0" prefHeight="30.0" prefWidth="219.0" />
-                        <Button fx:id="button" layoutX="445.0" layoutY="17.0" mnemonicParsing="false" text="view" />
-                     </children>
-                  </AnchorPane>
-                  <VBox layoutX="1.0" layoutY="64.0" prefHeight="622.0" prefWidth="624.0">
-                     <children>
-                        <VBox fx:id="content" prefHeight="553.0" prefWidth="624.0" />
-                        <AnchorPane prefHeight="70.0" prefWidth="624.0">
-                           <children>
-                              <Button layoutX="177.0" layoutY="16.0" mnemonicParsing="false" onAction="#MovetoBooks" prefHeight="44.0" prefWidth="262.0" text="Select Customer" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </VBox>
+                  <VBox fx:id="content" layoutX="1.0" layoutY="1.0" prefHeight="685.0" prefWidth="624.0" />
                </children></AnchorPane>
             <AnchorPane prefHeight="686.0" prefWidth="402.0">
                <children>
@@ -51,13 +35,14 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="BillTable" layoutX="-1.0" layoutY="129.0" prefHeight="229.0" prefWidth="394.0">
+                  <TableView fx:id="BillTable" layoutX="4.0" layoutY="129.0" prefHeight="238.0" prefWidth="394.0">
                     <columns>
-                      <TableColumn fx:id="bookID" prefWidth="49.599977016448975" text="bookID" />
-                      <TableColumn fx:id="item" prefWidth="168.00005340576172" text="item" />
-                        <TableColumn fx:id="unitPrice" prefWidth="70.39996337890625" text="unitPrice" />
-                        <TableColumn fx:id="qty" minWidth="0.0" prefWidth="28.7999267578125" text="qty" />
-                        <TableColumn fx:id="totalPrice" prefWidth="78.4000244140625" text="total" />
+                      <TableColumn fx:id="bookID" prefWidth="48.799989342689514" text="bookID" />
+                      <TableColumn fx:id="item" prefWidth="163.19988250732422" text="item" />
+                        <TableColumn fx:id="unitPrice" prefWidth="56.0" text="unitPrice" />
+                        <TableColumn fx:id="qty" minWidth="0.0" prefWidth="33.5999755859375" text="qty" />
+                        <TableColumn fx:id="totalPrice" prefWidth="56.800048828125" text="total" />
+                        <TableColumn prefWidth="36.0" text="X" />
                     </columns>
                   </TableView>
                   <Label layoutX="245.0" layoutY="373.0" prefHeight="30.0" prefWidth="56.0" text="Total :" textAlignment="RIGHT">
@@ -70,24 +55,20 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="223.0" layoutY="403.0" prefHeight="30.0" prefWidth="64.0" text="Discount :" textAlignment="RIGHT">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="discount" layoutX="301.0" layoutY="405.0" prefHeight="24.0" prefWidth="56.0" text="10%" />
+                  <TextField fx:id="discount" layoutX="226.0" layoutY="404.0" prefHeight="24.0" prefWidth="56.0" text="0" />
                   <Label layoutX="215.0" layoutY="433.0" prefHeight="30.0" prefWidth="77.0" text="Final total :" textAlignment="RIGHT">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="finalTotal" layoutX="301.0" layoutY="433.0" prefHeight="30.0" prefWidth="77.0" text="12345" textAlignment="RIGHT">
+                  <Label fx:id="finalTotal" layoutX="301.0" layoutY="433.0" prefHeight="30.0" prefWidth="77.0" textAlignment="RIGHT">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
                   <Button fx:id="chargeCustomer" layoutX="14.0" layoutY="531.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="262.0" text="Charge Customer" />
                   <Button fx:id="cancel" layoutX="288.0" layoutY="531.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="104.0" text="Cancel" />
+                  <Button layoutX="288.0" layoutY="404.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" text="\% ADD Discount" />
                </children>
             </AnchorPane>
          </children>
