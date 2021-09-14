@@ -4,6 +4,7 @@ import fct.cs.controllers.mainPageController;
 import fct.cs.data.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,6 +65,8 @@ public class SelectCustomerController implements Initializable {
     private BillManager BillManager;
     private SelectCustomerController thisController = this;
     private BillingController parentController;
+    private FilteredList<BillCustomer> customerFilteredList = new FilteredList<>(customerObservableList);
+
 
     @FXML
     private TableColumn SelectCustomer;
@@ -193,7 +196,14 @@ public class SelectCustomerController implements Initializable {
 
     }
 
-
+    public void searchTable(String key) {
+        System.out.println("Searching ...");
+        customerFilteredList.setPredicate(billCustomer-> {
+            String filter = key.toLowerCase();
+            boolean title_matches = String.valueOf(billCustomer.getCustomer_id()).toLowerCase().contains(filter);
+            return title_matches;
+        });
+    }
 
 
 

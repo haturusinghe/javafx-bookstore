@@ -30,6 +30,6 @@
          </font></Label>
       <TextField fx:id="searchField" layoutX="270.0" layoutY="82.0" prefHeight="32.0" prefWidth="174.0" text="bookID" />
       <Button layoutX="465.0" layoutY="82.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="89.0" text="Search" />
-      <Button fx:id="moveToCustomer" layoutX="14.0" layoutY="639.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="194.0" text="Move to Select Customer" />
+      <Button fx:id="moveToCustomer" layoutX="14.0" layoutY="639.0" mnemonicParsing="false" onAction="#goToSelectCustomer" prefHeight="32.0" prefWidth="194.0" text="Move to Select Customer" />
    </children>
 </AnchorPane>
