@@ -4,9 +4,10 @@ package fct.cs.NewEmployee;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.events.JFXDrawerEvent;
 import fct.cs.data.Category;
-import io.github.palexdev.materialfx.controls.MFXTableView;
+import io.github.palexdev.materialfx.controls.*;
 import io.github.palexdev.materialfx.controls.cell.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
+import io.github.palexdev.materialfx.controls.enums.Styles;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import javafx.geometry.Pos;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,12 +37,65 @@ public class NewEmployeeController implements Initializable {
     private ObservableList<EmployeeData> employeeObservableList = FXCollections.observableArrayList();
     private FilteredList<EmployeeData> employeeFilteredList = new FilteredList<>(employeeObservableList);
     private static EmployeeData selectedEmployee = null;
-
+    private final MFXTextField searchField = new MFXTextField();
     private ObservableList<Category> categoryList = FXCollections.observableArrayList();
-
-
+    private final MFXComboBox<String> searchCombo = new MFXComboBox<>();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        empTable.setHeaderSupplier(() -> {
+            HBox mainContainer = new HBox();
+            mainContainer.setPrefHeight(50);
+            mainContainer.setPrefWidth(1030);
+            mainContainer.setAlignment(Pos.CENTER_LEFT);
+            mainContainer.setPadding(new Insets(10,0,5,5));
+
+            HBox spanMid = new HBox();
+            spanMid.setMinWidth(430);
+            spanMid.setMinHeight(50);
+
+            HBox spanEnd = new HBox();
+            spanEnd.setMinHeight(50);
+            spanEnd.setMinWidth(70);
+
+            HBox searchContainer = new HBox(10);
+            searchContainer.setMinHeight(50);
+            searchContainer.setAlignment(Pos.CENTER_RIGHT);
+            searchField.setPromptText("Search Employees...");
+            searchField.setIcon(new MFXIconWrapper(new MFXFontIcon("mfx-search", 28, Color.web("#4D4D4D")), 24));
+            searchField.setIconInsets(new Insets(0,0,10,0));
+            searchField.setMinHeight(50);
+            searchField.setStyle("-fx-font-size: 18px;");
+
+            searchCombo.setItems(FXCollections.observableArrayList("Name", "Salary", "Gender"));
+            searchCombo.setPromptText("Select Category");
+            searchCombo.setMinHeight(50);
+            searchCombo.setComboStyle(Styles.ComboBoxStyles.STYLE2);
+            searchCombo.setStyle("-fx-font-size: 30px;");
+
+            FontIcon addIcon = new FontIcon("anto-plus-circle");
+            addIcon.setIconColor(Color.BLACK);
+            addIcon.setIconSize(25);
+
+            MFXButton addBtn = new MFXButton();
+            addBtn.setText("Add Employee");
+            addBtn.setStyle("-fx-font-size: 20px; -fx-background-color:red;");
+            addBtn.setGraphic(addIcon);
+            addBtn.setOnAction(actionEvent -> {
+                thisController.addNewEntry();
+            });
+
+
+            /*MFXLabel testLabel = new MFXLabel("Header");
+            HBox holderHbox = new HBox();
+            holderHbox.getChildren().addAll(testLabel);
+            holderHbox.setMaxWidth(Region.USE_PREF_SIZE);
+            VBox box = new VBox(holderHbox);
+            box.setAlignment(Pos.CENTER_RIGHT);*/
+
+            searchContainer.getChildren().addAll(searchCombo,searchField);
+            mainContainer.getChildren().addAll(searchContainer,spanMid,addBtn,spanEnd);
+            return mainContainer;
+        });
         getEmployeeData();
         setColumnProps();
     }
@@ -156,7 +211,7 @@ public class NewEmployeeController implements Initializable {
         drawer.toBack();
     }
 
-    public void addNewEntry(ActionEvent actionEvent) {
+    public void addNewEntry() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/employee/employee-form.fxml"));
             VBox box = loader.load();
