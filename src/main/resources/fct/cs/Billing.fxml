@@ -68,7 +68,7 @@
                   </Label>
                   <Button fx:id="chargeCustomer" layoutX="14.0" layoutY="531.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="262.0" text="Charge Customer" />
                   <Button fx:id="cancel" layoutX="288.0" layoutY="531.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="104.0" text="Cancel" />
-                  <Button layoutX="288.0" layoutY="404.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" text="\% ADD Discount" />
+                  <Button layoutX="288.0" layoutY="404.0" mnemonicParsing="false" onAction="#addDiscount" prefHeight="26.0" prefWidth="104.0" text="\% ADD Discount" />
                </children>
             </AnchorPane>
          </children>

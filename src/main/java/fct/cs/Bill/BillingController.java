@@ -3,6 +3,7 @@ package fct.cs.Bill;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -104,6 +105,7 @@ public class BillingController {
         displaySelectCustomer();
         setColumns();
         loadBillTable();
+        finalTotal.setText(String.valueOf(getFinalTotal(Integer.parseInt(total.getText()))));
 
     }
 
@@ -116,6 +118,7 @@ public class BillingController {
             }
         }
         total.setText(String.valueOf(getTotal(billDetails)));
+       finalTotal.setText(String.valueOf(getFinalTotal(Integer.parseInt(total.getText()))));
         BillTable.setItems(BillingObservableList);
     }
 
@@ -205,17 +208,28 @@ public class BillingController {
         }
 
     }
-    public int getTotal(ArrayList<Billdetails> array){
-            int subTotal = 0;
-            for (Billdetails currentItem : array) {
+    public int getTotal(ArrayList<Billdetails> array) {
+        int subTotal = 0;
+        for (Billdetails currentItem : array) {
 
-                subTotal += currentItem.getTotalForItem();
-                }
-           return subTotal ;
-            }
+            subTotal += currentItem.getTotalForItem();
+        }
+        return subTotal;
+    }
+    public int getFinalTotal(int total){
+        int disc = Integer.parseInt(discount.getText()) ;
+
+        return (total - (total*disc)/100 ) ;
 
 
+    }
 
+
+public void addDiscount(ActionEvent action){
+
+    finalTotal.setText(String.valueOf(getFinalTotal(Integer.parseInt(total.getText()))));
+
+}
 
 
     }
