@@ -2,6 +2,7 @@ package fct.cs.Bill;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -148,5 +149,8 @@ public class BillItemController implements Initializable {
 
 
 }
+public void goToSelectCustomer(ActionEvent action){
+        parentController.moveToSelectCustomer();
 
+}
 }
