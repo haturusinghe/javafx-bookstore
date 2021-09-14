@@ -72,7 +72,22 @@ public class BillManager {
         }
     }
 
+    public boolean updateQuantity(Billdetails entry){
+        String updateQuery = "UPDATE inventory set qty = ? - qty,  where book_id = ?";
+        PreparedStatement preparedStatement = null;
+        int count = 0;
+        try {
+            preparedStatement = conn.prepareStatement(updateQuery);
+            preparedStatement.setInt(1,entry.getQuantity());
+            preparedStatement.setInt(2,entry.getBook_id());
 
+            count = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count > 0;
+    }
     }
 
 
