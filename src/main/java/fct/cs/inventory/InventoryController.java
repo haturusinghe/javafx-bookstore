@@ -610,14 +610,13 @@ public class InventoryController implements Initializable {
         }
     }
 
-    public void showNotification(ActionEvent actionEvent) {
+/*    public void showNotification(ActionEvent actionEvent) {
         NotificationManager notificationManager = new NotificationManager();
         notificationManager.showBottomRight();
-    }
+    }*/
 
     private void showNotification(ArrayList<StockEntry> lowItems) {
-        NotificationManager notificationManager = new NotificationManager();
-        notificationManager.showBottomRight(lowItems);
+        NotificationCreator.showBottomRight(lowItems);
     }
 
     public void setManager(boolean manager) {
