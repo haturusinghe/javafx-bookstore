@@ -146,7 +146,7 @@ public class BillingController {
             TableCell<Billdetails, Integer> tableCell = new TableCell<>() {
                 javafx.scene.image.Image imgSelect = new Image(getClass().getResourceAsStream("/images/remove.png"));
                 final javafx.scene.control.Button btnRemove = new Button();
-                FontIcon icon3 = new FontIcon("antf-delete");
+                FontIcon icon3 = new FontIcon("antf-close-square");
 
 
                 @Override
