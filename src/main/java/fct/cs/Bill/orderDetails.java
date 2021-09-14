@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class orderDetails {
 
-    public class OrderDetailEntry {
+
         private int book_id;
         private int order_id;
         private int quantity;
@@ -92,5 +92,5 @@ public class orderDetails {
                     ", totalForItem=" + totalForItem +
                     '}';
         }
-    }
+    
 }

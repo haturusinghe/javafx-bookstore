@@ -4,7 +4,7 @@ import fct.cs.data.Order;
 import fct.cs.data.OrderDetailEntry;
 import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
-
+import fct.cs.Bill.orderDetails ;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +20,7 @@ public class BillManager {
         this.conn = databaseConnector.getConn();
     }
 
-    public boolean addSingleEntry(OrderDetailEntry entry){
+    public boolean addSingleEntry(orderDetails entry){
         String addQuery = "insert into order_details (order_id, book_id, quantity, unit_price, total_price , order_date) values (?,?,?,?,?,?)";
         PreparedStatement preparedStatement = null;
         int count = 0;
