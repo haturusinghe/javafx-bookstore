@@ -31,9 +31,6 @@ public class BillingController {
     private Label customerName;
 
     @FXML
-    private TableColumn<?, ?> billTable;
-
-    @FXML
     private Label total;
 
     @FXML
@@ -52,23 +49,23 @@ public class BillingController {
     @FXML
     private AnchorPane Bill;
 
-    @FXML
-    private AnchorPane Bill;
-
-    @FXML
-    private Button search;
-
-    @FXML
-    private TextField searchText;
+//    @FXML
+//    private AnchorPane Bill;
+//
+//    @FXML
+//    private Button search;
+//
+//    @FXML
+//    private TextField searchText;
 
     @FXML
     private Button button;
 
-    @FXML
-    private VBox content;
-
-    @FXML
-    private Label customerName;
+//    @FXML
+//    private VBox content;
+//
+//    @FXML
+//    private Label customerName;
 
     @FXML
     private TableView<Billdetails> BillTable;
@@ -90,41 +87,51 @@ public class BillingController {
 
     private FXMLLoader loader = null;
 
-
+    private BillingController thisController = this;
     private String currentPage = "";
-    public static Label static_label;
+    public  static Label static_label;
     public static FXMLLoader load;
 
     private ObservableList<Billdetails> BillingObservableList = FXCollections.observableArrayList();
 
-    private SelectCustomerController parentController;
+    private BillItemController parentController;
 
-    private static int orderDetailId ;
+
+    private  int orderDetailId = 1 ;
 //    private ArrayList<Billdetails> BillitemsList;
     private  boolean alreadyAdded = false;
 
     public void initialize() {
+        static_label  = customerName;
 
         displaySelectCustomer();
         setColumns();
-        loadDataTable();
+       loadBillTable();
+
     }
 
-    public void loadDataTable() {
+    public void loadBillTable()  {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/selectItemsForBill.fxml"));
         BillTable.setItems(BillingObservableList);
+//        BillItemController controller = loader.getController();
+//        controller.setParentController(thisController);
+
+    }
+    public void refreshTable(){
+//        BillTable.refresh();
     }
 
     private void setColumns() {
 
-        bookID.setCellValueFactory(new PropertyValueFactory<>("bookID"));
-        item.setCellValueFactory(new PropertyValueFactory<>("item"));
-        unitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
-        qty.setCellValueFactory(new PropertyValueFactory<>("qty"));
-        totalPrice.setCellValueFactory(new PropertyValueFactory<>("Total"));
+        bookID.setCellValueFactory(new PropertyValueFactory<Billdetails, Integer>("book_id"));
+        item.setCellValueFactory(new PropertyValueFactory<Billdetails, String>("book_name"));
+        unitPrice.setCellValueFactory(new PropertyValueFactory<Billdetails, String>("unit_price"));
+        qty.setCellValueFactory(new PropertyValueFactory<Billdetails, String>("quantity"));
+        totalPrice.setCellValueFactory(new PropertyValueFactory<Billdetails, String>("totalForItem"));
     }
 
     public void displayCustomerName(String name) {
-        customerName.setText(name);
+        static_label.setText(name);
         System.out.printf(name);
 
     }
@@ -142,18 +149,14 @@ public class BillingController {
         } else {
             System.out.println("already loaded");
         }
+        BillItemController controller = loader.getController();
+        controller.setParentController(this);
     }
-
-    public void setParentController(SelectCustomerController parentController) {
-        this.parentController = parentController;
-    }
-
 
     public void displaySelectCustomer(){
             if (!currentPage.equals("selectCustomerBills")) {
 
                 loader = new FXMLLoader(getClass().getResource("/fct/cs/SelectCustomerBill.fxml"));
-
                 try {
                     content.getChildren().clear();
                     content.getChildren().add(loader.load());
@@ -164,20 +167,26 @@ public class BillingController {
             } else {
                 System.out.println("already loaded");
             }
+        SelectCustomerController controller = loader.getController();
+        controller.setParentController(this);
 
-            static_label = customerName;
+
         }
 
     public void getOrderDetails(int book_id , String book_name , int unit_price ){
+        alreadyAdded  = false ;
 
-        for (Billdetails currentItem : BillingObservableList) {
+        if(BillingObservableList.size() > 0 ) {
+            for (Billdetails currentItem : BillingObservableList) {
 
-            if(currentItem.getBook_id() == book_id){
-                currentItem.setQuantity(currentItem.getQuantity() + 1);
-                currentItem.setTotalForItem(currentItem.getQuantity()*currentItem.getUnit_price());
-                alreadyAdded = true ;
-                break;
+                if (currentItem.getBook_id() == book_id) {
+                    currentItem.setQuantity(currentItem.getQuantity() + 1);
+                    currentItem.setTotalForItem(currentItem.getQuantity() * currentItem.getUnit_price());
+                    alreadyAdded = true;
+                    loadBillTable();
+                    break;
 
+                }
             }
         }
         if (alreadyAdded  == false){
@@ -192,15 +201,18 @@ public class BillingController {
 
             BillingObservableList.add(getOrderDetail);
 
+
         }
 
-
+        System.out.println(BillingObservableList);
 
 
 
 
 
     }
+
+
 
 
 
