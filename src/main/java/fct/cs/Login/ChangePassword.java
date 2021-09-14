@@ -2,6 +2,7 @@ package fct.cs.Login;
 
 import com.jfoenix.controls.JFXComboBox;
 import fct.cs.dbUtil.DatabaseConnector;
+import fct.cs.dbUtil.DatabaseHandler;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXStageDialog;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -135,6 +136,11 @@ public class ChangePassword implements Initializable {
                 "Passwords dont match"
         );
 
+        try {
+            this.conn = DatabaseHandler.getInstance().getConn();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         if (fUsername.isValid() && fAns.isValid() && fPasswordGet.isValid() && fPasswordCheck.isValid() && question != null) {
 
