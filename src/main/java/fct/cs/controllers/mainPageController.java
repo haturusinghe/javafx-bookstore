@@ -31,6 +31,9 @@ public class mainPageController implements Initializable {
     private JFXButton inventoryPage;
 
     @FXML
+    private JFXButton bookBtn;
+
+    @FXML
     private JFXButton orderBtn;
 
     @FXML
@@ -226,5 +229,21 @@ public class mainPageController implements Initializable {
             System.out.println("already loaded");
         }
 
+    }
+
+    public void loadBookPage(ActionEvent actionEvent) {
+        if (!currentPage.equals("books")) {
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/mainbook.fxml"));
+            try {
+                mainContent_vbox.getChildren().clear();
+                mainContent_vbox.getChildren().add(loader.load());
+                setHeaderText("Manage Books");
+                currentPage = "books";
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("already loaded");
+        }
     }
 }

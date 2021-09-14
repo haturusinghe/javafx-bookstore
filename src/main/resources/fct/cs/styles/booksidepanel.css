@@ -1,0 +1,57 @@
+.root{
+    -fx-background-color: #FAFAFA;
+}
+
+.info-container{
+    -fx-background-color: white;
+    -fx-background-insets: 20px;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+
+}
+
+.text-field{
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-padding: 2px 10px 2px 10px;
+    -fx-font-size: 15pt
+}
+
+.headerTitle{
+    -fx-font-size: 12pt ;
+    -fx-padding: 0px 10px 0px 10px;
+    -fx-text-fill: black;
+    -fx-font-family: "Helvetica";
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+
+.textLabel{
+    -fx-font-size: 12pt ;
+    -fx-padding: 0px 10px 0px 10px;
+    -fx-text-fill: grey;
+}
+
+.bottomButtons{
+    -fx-background-color: white;
+    -fx-background-insets: 0,1,4,5,6;
+    -fx-background-radius: 9,8,5,4,3;
+    -fx-padding: 10 30 10 30;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #565398;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+.topClose{
+    -fx-background-color: transparent;
+
+}
+
+
+/*
+-fx-border-insets: 5px;
+-fx-background-insets: 5px;
+*/
