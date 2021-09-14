@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="553.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.BillItemController">
+<AnchorPane prefHeight="685.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.BillItemController">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="145.0" text="Select items :">
+      <Label layoutX="1.0" prefHeight="36.0" prefWidth="145.0" text="Billing">
          <font>
-            <Font size="16.0" />
+            <Font size="32.0" />
          </font>
       </Label>
-      <TableView fx:id="itemTable" layoutX="4.0" layoutY="50.0" prefHeight="520.0" prefWidth="614.0">
+      <TableView fx:id="itemTable" layoutX="1.0" layoutY="130.0" prefHeight="493.0" prefWidth="614.0">
          <columns>
             <TableColumn fx:id="itemId" prefWidth="64.80001544952393" text="ID" />
             <TableColumn fx:id="itemName" prefWidth="244.0000762939453" text="Item" />
@@ -22,6 +24,12 @@
             <TableColumn fx:id="additem" prefWidth="104.79998779296875" text="Add" />
          </columns>
       </TableView>
-      <Label fx:id="name" layoutX="236.0" layoutY="24.0" text="Label" />
+      <Label fx:id="name" layoutX="14.0" layoutY="82.0" prefHeight="40.0" prefWidth="100.0" text="Select Item :">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <TextField fx:id="searchField" layoutX="327.0" layoutY="82.0" prefHeight="32.0" prefWidth="174.0" text="bookID" />
+      <Button layoutX="518.0" layoutY="82.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="89.0" text="Search" />
+      <Button fx:id="moveToCustomer" layoutX="14.0" layoutY="639.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="194.0" text="Move to Select Customer" />
    </children>
 </AnchorPane>

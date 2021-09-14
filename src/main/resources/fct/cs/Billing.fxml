@@ -16,9 +16,9 @@
          <children>
             <AnchorPane prefHeight="502.0" prefWidth="624.0">
                <children>
-                  <VBox fx:id="content" layoutX="1.0" layoutY="1.0" prefHeight="685.0" prefWidth="624.0" />
+                  <VBox fx:id="content" layoutX="1.0" layoutY="1.0" prefHeight="685.0" prefWidth="575.0" />
                </children></AnchorPane>
-            <AnchorPane prefHeight="686.0" prefWidth="402.0">
+            <AnchorPane prefHeight="687.0" prefWidth="488.0">
                <children>
                   <Label layoutX="6.0" layoutY="7.0" prefHeight="66.0" prefWidth="104.0" text="Bill">
                      <font>
@@ -35,14 +35,14 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="BillTable" layoutX="4.0" layoutY="129.0" prefHeight="238.0" prefWidth="394.0">
+                  <TableView fx:id="BillTable" layoutX="4.0" layoutY="129.0" prefHeight="238.0" prefWidth="440.0">
                     <columns>
                       <TableColumn fx:id="bookID" prefWidth="48.799989342689514" text="bookID" />
                       <TableColumn fx:id="item" prefWidth="163.19988250732422" text="item" />
                         <TableColumn fx:id="unitPrice" prefWidth="56.0" text="unitPrice" />
                         <TableColumn fx:id="qty" minWidth="0.0" prefWidth="33.5999755859375" text="qty" />
-                        <TableColumn fx:id="totalPrice" prefWidth="56.800048828125" text="total" />
-                        <TableColumn fx:id="remove" prefWidth="36.0" text="X" />
+                        <TableColumn fx:id="totalPrice" prefWidth="83.199951171875" text="total" />
+                        <TableColumn fx:id="remove" prefWidth="50.4000244140625" text="X" />
                     </columns>
                   </TableView>
                   <Label layoutX="245.0" layoutY="373.0" prefHeight="30.0" prefWidth="56.0" text="Total :" textAlignment="RIGHT">
