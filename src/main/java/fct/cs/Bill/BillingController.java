@@ -309,6 +309,8 @@ public void addDiscount(ActionEvent action){
 public void cancelOrder(ActionEvent action){
     billDetails.clear();
     loadBillTable();
+    customerName.setText(" ");
+    customerID.setText("");
     moveToSelectCustomer();
 
 }
