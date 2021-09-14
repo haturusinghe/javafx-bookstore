@@ -110,7 +110,7 @@ public class BillingController {
     public void initialize() {
         static_label = customerName;
         billDetails = new ArrayList<Billdetails>();
-        displaySelectCustomer();
+        moveToSelectCustomer();
         setColumns();
         loadBillTable();
         finalTotal.setText(String.valueOf(getFinalTotal(Integer.parseInt(total.getText()))));
@@ -179,7 +179,7 @@ public class BillingController {
 
 
                         btnRemove.setStyle("-fx-background-color: transparent;");
-                        icon3.setIconColor(Color.RED);
+                        icon3.setIconColor(Color.BLACK);
                         icon3.setIconSize(30);
 
                         ImageView iv = new ImageView();
@@ -229,7 +229,7 @@ public class BillingController {
         controller.setParentController(this);
     }
 
-    public void displaySelectCustomer(){
+    public void moveToSelectCustomer(){
             if (!currentPage.equals("selectCustomerBills")) {
 
                 loader = new FXMLLoader(getClass().getResource("/fct/cs/SelectCustomerBill.fxml"));
@@ -302,6 +302,12 @@ public void addDiscount(ActionEvent action){
 
 }
 
+public void cancelOrder(ActionEvent action){
+    billDetails.clear();
+    loadBillTable();
+    moveToSelectCustomer();
+
+}
 
     }
 
