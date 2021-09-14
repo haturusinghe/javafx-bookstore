@@ -22,7 +22,7 @@ public class orderDetails {
 
         private Date date;
 
-        public OrderDetailEntry(int order_id, int book_id,  int quantity, int unit_price , Date date) {
+        public orderDetails(int order_id, int book_id,  int quantity, int unit_price , Date date) {
             this.book_id = book_id;
             this.order_id = order_id;
             this.quantity = quantity;
@@ -92,5 +92,5 @@ public class orderDetails {
                     ", totalForItem=" + totalForItem +
                     '}';
         }
-    
+
 }

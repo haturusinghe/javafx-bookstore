@@ -31,7 +31,7 @@ public class BillManager {
             preparedStatement.setInt(3,entry.getQuantity());
             preparedStatement.setInt(4,entry.getUnit_price());
             preparedStatement.setInt(5,entry.getTotalForItem());
-            preparedStatement.setDate(6,entry.);
+            preparedStatement.setDate(6,entry.getDate());
 
             count = preparedStatement.executeUpdate();
         } catch (SQLException e) {
