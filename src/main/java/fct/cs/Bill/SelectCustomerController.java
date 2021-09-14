@@ -37,7 +37,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SelectCustomerController extends BillingController implements Initializable {
+public class SelectCustomerController implements Initializable {
 
     @FXML
     private TableView<BillCustomer> customerTable;
@@ -63,7 +63,7 @@ public class SelectCustomerController extends BillingController implements Initi
 
     private BillManager BillManager;
     private SelectCustomerController thisController = this;
-
+    private BillingController parentController;
 
     @FXML
     private TableColumn SelectCustomer;
@@ -77,7 +77,6 @@ public class SelectCustomerController extends BillingController implements Initi
         BillManager = new BillManager();
         setColumns();
         loadDataTable();
-
 
     }
     public void loadDataTable() {
@@ -119,19 +118,9 @@ public class SelectCustomerController extends BillingController implements Initi
                         btnSelect.setOnAction(e ->{
                                     System.out.println("Clicked Select");
                                     BillCustomer entry = getTableView().getItems().get(getIndex());
-                                    displayCustomerName(entry.getCustomer_name());
 
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/selectItemsForBill.fxml"));
-
-                            try {
-                                rootPane.getChildren().clear();
-                                rootPane.getChildren().add(loader.load());
-
-                            } catch (IOException ioException) {
-                                ioException.printStackTrace();
-                            }
-
-
+                                    parentController.displayCustomerName(entry.getCustomer_name());
+                                    parentController.MovetoBooks();
                         });
 
 
@@ -161,7 +150,9 @@ public class SelectCustomerController extends BillingController implements Initi
 
 
     }
-
+    public void setParentController(BillingController parentController) {
+        this.parentController = parentController;
+    }
 
     @FXML
     private void displayCustomerInBill() throws IOException {
@@ -171,7 +162,7 @@ public class SelectCustomerController extends BillingController implements Initi
         } else {
             String name = customer.getCustomer_name();
             screen.setText("name:" + name);
-            displayCustomerName(name);
+//            displayCustomerName(name);
 
 
         }
@@ -187,10 +178,7 @@ public class SelectCustomerController extends BillingController implements Initi
 
 
     }
-    public void displayCustomerName(String name){
-        static_label.setText(name);
-        System.out.printf(name);
-    }
+
 
 
 
