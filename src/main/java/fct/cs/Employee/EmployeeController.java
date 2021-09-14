@@ -200,7 +200,7 @@ public class EmployeeController implements Initializable {
 
         DatabaseHandler databaseHandler = null;
         try {
-            databaseHandler = new DatabaseHandler();
+            databaseHandler =  DatabaseHandler.getInstance();
         } catch (SQLException e) {
             e.printStackTrace();
             errorAlert(e.getLocalizedMessage());
@@ -254,7 +254,7 @@ public class EmployeeController implements Initializable {
 
                 DatabaseHandler databaseHandler = null;
                 try {
-                    databaseHandler = new DatabaseHandler();
+                    databaseHandler = DatabaseHandler.getInstance();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -292,7 +292,7 @@ public class EmployeeController implements Initializable {
 
     private void getResults() throws SQLException {
         String qu = "select * from employee";
-        DatabaseHandler databaseHandler = new DatabaseHandler();
+        DatabaseHandler databaseHandler = DatabaseHandler.getInstance();
         ResultSet rs = databaseHandler.excecuteQuery(qu);
 
         employeeObservableList.clear();
@@ -450,7 +450,7 @@ public class EmployeeController implements Initializable {
     public void addNewEmployee(ActionEvent actionEvent) {
         DatabaseHandler databaseHandler = null;
         try {
-            databaseHandler = new DatabaseHandler();
+            databaseHandler = DatabaseHandler.getInstance();
         } catch (SQLException e) {
             e.printStackTrace();
             errorAlert(e.getLocalizedMessage());
@@ -537,7 +537,7 @@ public class EmployeeController implements Initializable {
 
     public void setCategories() throws SQLException {
         String qu = "select * from category";
-        DatabaseHandler databaseHandler = new DatabaseHandler();
+        DatabaseHandler databaseHandler = DatabaseHandler.getInstance();
         ResultSet rs = databaseHandler.excecuteQuery(qu);
 
         while (rs.next()){
@@ -551,6 +551,7 @@ public class EmployeeController implements Initializable {
 
         categoryCombo.setItems(categoryList);
     }
+
 }
 
 

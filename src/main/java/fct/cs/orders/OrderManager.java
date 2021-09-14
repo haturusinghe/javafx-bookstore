@@ -3,17 +3,21 @@ package fct.cs.orders;
 import fct.cs.data.Order;
 import fct.cs.data.OrderDetailEntry;
 import fct.cs.dbUtil.DatabaseConnector;
+import fct.cs.dbUtil.DatabaseHandler;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class OrderManager {
 
-    private DatabaseConnector databaseConnector;
     private Connection conn;
     public OrderManager() {
-        databaseConnector = new DatabaseConnector();
-        this.conn = databaseConnector.getConn();
+
+        try {
+            this.conn = DatabaseHandler.getInstance().getConn();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getTotalSalesPrice() throws SQLException {

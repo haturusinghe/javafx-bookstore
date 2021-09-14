@@ -3,6 +3,7 @@ package fct.cs.inventory;
 import com.jfoenix.controls.JFXDrawer;
 import fct.cs.Books.Book;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -48,9 +49,17 @@ public class BookPanelController {
     private InventoryController parentController;
 
     public void loadBookDetails(Book bookDetails) {
-
+        String authorName = bookDetails.getAuthor().getFirst_name() + " " + bookDetails.getAuthor().getLast_name();
         title_txtField.setText(bookDetails.getTitle());
         bookID_txtField.setText(String.valueOf(bookDetails.getBook_id()));
+        isbn_txtField.setText(bookDetails.getIsbn());
+        publisher_txtField.setText(bookDetails.getPublisher());
+        author_txtField.setText(authorName);
+        year_txtField.setText(bookDetails.getB_year().toString());
+        language_txtField.setText(bookDetails.getLang());
+        pages_txtField.setText(String.valueOf(bookDetails.getNum_pages()));
+        description_txtField.setText(bookDetails.getBook_description());
+        category_txtField.setText(bookDetails.getCategoryName());
 
     }
 
@@ -60,6 +69,10 @@ public class BookPanelController {
 
     public void setParentController(InventoryController parentController) {
         this.parentController = parentController;
+    }
+
+    public void cancel(ActionEvent actionEvent) {
+        drawer.close();
     }
 }
 

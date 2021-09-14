@@ -1,19 +1,32 @@
 package fct.cs.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import fct.cs.inventory.InventoryController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class mainPageController {
+public class mainPageController implements Initializable {
 
-    public HBox header_hbox;
-    public JFXButton inventoryPage;
+    @FXML
+    private Label pageHeaderLabel;
+
+    @FXML
+    private HBox header_hbox;
+
+    @FXML
+    private JFXButton inventoryPage;
+
     @FXML
     private JFXButton orderBtn;
 
@@ -28,7 +41,6 @@ public class mainPageController {
 
     @FXML
     private VBox contentPanel_vbox;
-    
 
     @FXML
     private VBox contentAnchor;
@@ -37,14 +49,26 @@ public class mainPageController {
 
     private String currentPage = "";
 
+    private boolean isManager = true;
+
+    public void setManager(boolean manager) {
+        isManager = manager;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadInventoryPage();
+    }
+
     @FXML
     void loadEmployeePage(ActionEvent event) {
         if (currentPage != "employees") {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/employee.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/new-employee-page.fxml"));
             try {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());
                 currentPage = "employees";
+                setHeaderText("Manage Employees");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -54,14 +78,13 @@ public class mainPageController {
 //        EmployeeController childController = loader.getController();
     }
 
-
-
     public void loadOrdersPage(ActionEvent actionEvent) {
         if (!currentPage.equals("orders")) {
             loader = new FXMLLoader(getClass().getResource("/fct/cs/orders.fxml"));
             try {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());
+                setHeaderText("Manage Orders");
                 currentPage = "orders";
             } catch (IOException e) {
                 e.printStackTrace();
@@ -72,12 +95,19 @@ public class mainPageController {
     }
 
     public void loadInventoryPage(ActionEvent actionEvent) {
+       loadInventoryPage();
+    }
+
+    public void loadInventoryPage() {
         if (!currentPage.equals("inventory")) {
             loader = new FXMLLoader(getClass().getResource("/fct/cs/inventory.fxml"));
             try {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());
+                InventoryController inventoryController = loader.getController();
+                inventoryController.setManager(isManager);
                 currentPage = "inventory";
+                setHeaderText("Manage Inventory");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -104,4 +134,9 @@ public class mainPageController {
     public void exit(ActionEvent actionEvent) {
         System.exit(0);
     }
+
+    public void setHeaderText(String string){
+        pageHeaderLabel.setText(string);
+    }
+
 }

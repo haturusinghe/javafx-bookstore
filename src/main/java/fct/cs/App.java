@@ -1,5 +1,6 @@
 package fct.cs;
 
+import fct.cs.commonUtil.AppUtils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,6 +19,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("main-dash"),1280,720);
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
+        AppUtils.enableDrag(scene,stage);
         stage.show();
 
     }

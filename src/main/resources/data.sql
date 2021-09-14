@@ -2,18 +2,18 @@ DROP DATABASE IF EXISTS bookstore;
 
 CREATE DATABASE bookstore;
 
--- create table BOOK (
--- 	book_id INT NOT NULL AUTO_INCREMENT,
--- 	category_id INT,
--- 	publisher_id INT,
--- 	author_id INT,
--- 	title VARCHAR(50) NOT NULL,
--- 	isbn VARCHAR(50) NOT NULL,
--- 	year VARCHAR(50),
--- 	num_pages INT,
--- 	book_description VARCHAR(50),
--- 	PRIMARY KEY (book_id)
--- );
+create table BOOK (
+	book_id INT NOT NULL AUTO_INCREMENT,
+	category_id INT,
+	publisher_id INT,
+	author_id INT,
+	title VARCHAR(50) NOT NULL,
+	isbn VARCHAR(50) NOT NULL,
+	year VARCHAR(50),
+	num_pages INT,
+	book_description VARCHAR(50),
+	PRIMARY KEY (book_id)
+);
 
 /*ALTER TABLE book DROP COLUMN price;*/
 
@@ -62,13 +62,16 @@ insert into book (book_id, isbn, category_id, publisher, author_id, title, b_yea
 insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year, mrp, num_pages, lang, book_description) values (30, '788542204-6', 1, 'West, White and Reichert', 5, 'Threskionis aethiopicus', 2003, 239, 606, 'Hiri Motu', 'Advanced fresh-thinking analyzer');
 
 create table INVENTORY (
-	inv_id INT PRIMARY KEY,
+	inv_id INT NOT NULL AUTO_INCREMENT,
 	book_id INT,
 	list_price INT,
 	qty INT,
-	min_qty INT
+	min_qty INT,
+	PRIMARY KEY (book_id),
+	FOREIGN KEY (book_id) REFERENCES book(book_id)
 );
-insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (1, 1, 865, 9, 10);
+
+insert into INVENTORY (book_id, list_price, qty, min_qty) values (1, 865, 9, 10);
 insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (2, 2, 898, 17, 2);
 insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (3, 3, 767, 5, 6);
 insert into INVENTORY (inv_id, book_id, list_price, qty, min_qty) values (4, 4, 824, 10, 5);
@@ -84,7 +87,7 @@ create table orders (
 	order_date DATE,
 	total_quantity INT,
 	total_price INT,
-	total_discount INT
+	total_discount INT,
 );
 insert into orders (order_id, customer_id, employee_id, order_date, total_quantity, total_price, total_discount) values (1, 4, 4, '2020-11-11 15:06:39', 96, 62, 58);
 insert into orders (order_id, customer_id, employee_id, order_date, total_quantity, total_price, total_discount) values (2, 5, 5, '2020-10-11 23:53:37', 55, 57, 26);
@@ -102,14 +105,14 @@ create table order_details (
 	PRIMARY KEY (order_detail_id,book_id,order_id)
 );
 
--- create table order_details (
--- 	order_id INT,
--- 	book_id INT,
--- 	quantity INT,
--- 	unit_price INT,
--- 	discount INT,
--- 	PRIMARY KEY (book_id,order_id)
--- );
+create table order_details (
+	order_id INT,
+	book_id INT,
+	quantity INT,
+	unit_price INT,
+	discount INT,
+	PRIMARY KEY (book_id,order_id)
+);
 
 insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (1, 5, 1, 2, 840, 441);
 insert into order_details (order_detail_id, book_id, order_id, quantity, unit_price, discount) values (2, 1, 4, 5, 481, 339);
@@ -252,13 +255,5 @@ create table category (
 insert into category (category_id, category_name,low_value,up_value) values (1, 'Less than 25k',0,25000);
 insert into category (category_id, category_name,low_value,up_value) values (2, 'greater than 25k',25000,150000);
 
-create table customer(
-                        customer_id INT PRIMARY KEY,
-                        customer_name VARCHAR(50),
-                        location VARCHAR(50) ,
-                        mobile VARCHAR(12),
-                        email  varchar(60)
-);
-INSERT into customer VALUES ('01','Nimal','Colombo' , '0714331372','nimal1998@gmail.com');
-INSERT into customer VALUES ('02','Kamal','Kelaniya' , '0714345672','kamal1997@gmail.com');
-INSERT into customer VALUES ('03','Rayan','Matara' , '0714331372','nimal1993@gmail.com');
+
+

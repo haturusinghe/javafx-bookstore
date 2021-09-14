@@ -15,6 +15,13 @@ public class StockEntry {
         this.min_qty = min_qty;
     }
 
+    public StockEntry(int book_id, int list_price, int qty, int min_qty) {
+        this.book_id = book_id;
+        this.list_price = list_price;
+        this.qty = qty;
+        this.min_qty = min_qty;
+    }
+
     public int getInv_id() {
         return inv_id;
     }

@@ -15,13 +15,13 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class AppUtils {
-    int i = 1;
-    private double xOffset = 0;
-    private double yOffset = 0;
+    private static int i = 1;
+    private static double xOffset = 0;
+    private static double yOffset = 0;
 
-    public void changeScene(String pathOfFXML) throws IOException {
+    public static void changeScene(String pathOfFXML) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource(pathOfFXML));
+        Parent root = FXMLLoader.load(AppUtils.class.getResource(pathOfFXML));
 
         Stage stage = new Stage();
         Scene scene = new Scene(root);
@@ -36,9 +36,9 @@ public class AppUtils {
 
     }
 
-    public FXMLLoader createStage(String path) throws IOException {
+    public static FXMLLoader createStage(String path) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(path));
+        loader.setLocation(AppUtils.class.getResource(path));
         loader.load();
         //AddBookController addEntryWindow = loader.getController();
         Parent parent = loader.getRoot();
@@ -48,7 +48,7 @@ public class AppUtils {
         return loader;
     }
 
-    public void createDynamicStage(){
+    public static void createDynamicStage(){
 
         GridPane root = new GridPane();
         root.setHgap(10);
@@ -72,7 +72,7 @@ public class AppUtils {
 
     }
 
-    public void enableDrag(Scene scene, Stage stage){
+    public static void enableDrag(Scene scene, Stage stage){
         scene.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
