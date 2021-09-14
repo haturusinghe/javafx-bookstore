@@ -67,7 +67,7 @@ public class CustomerFormController {
                 customer_name_txtField.getText(),
                 location_txtField.getText(),
                 mobile_txtField.getText(),
-                email_txtField.getText(),
+                email_txtField.getText()
         );
         return c;
     }
