@@ -15,21 +15,21 @@
             <Font size="32.0" />
          </font>
       </Label>
-      <TableView fx:id="itemTable" layoutX="1.0" layoutY="130.0" prefHeight="493.0" prefWidth="614.0">
+      <TableView fx:id="itemTable" layoutX="1.0" layoutY="140.0" prefHeight="484.0" prefWidth="554.0">
          <columns>
-            <TableColumn fx:id="itemId" prefWidth="64.80001544952393" text="ID" />
-            <TableColumn fx:id="itemName" prefWidth="244.0000762939453" text="Item" />
-            <TableColumn fx:id="isbn" prefWidth="101.59991455078125" text="ISBN" />
-            <TableColumn fx:id="unit_price" minWidth="0.0" prefWidth="99.199951171875" text="Unit_Price" />
-            <TableColumn fx:id="additem" prefWidth="104.79998779296875" text="Add" />
+            <TableColumn fx:id="itemId" prefWidth="46.40002369880676" text="ID" />
+            <TableColumn fx:id="itemName" prefWidth="240.79997634887695" text="Item" />
+            <TableColumn fx:id="isbn" prefWidth="58.4000244140625" text="ISBN" />
+            <TableColumn fx:id="unit_price" minWidth="0.0" prefWidth="68.0" text="Unit_Price" />
+            <TableColumn fx:id="additem" prefWidth="139.99993896484375" text="Add" />
          </columns>
       </TableView>
       <Label fx:id="name" layoutX="14.0" layoutY="82.0" prefHeight="40.0" prefWidth="100.0" text="Select Item :">
          <font>
             <Font size="16.0" />
          </font></Label>
-      <TextField fx:id="searchField" layoutX="327.0" layoutY="82.0" prefHeight="32.0" prefWidth="174.0" text="bookID" />
-      <Button layoutX="518.0" layoutY="82.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="89.0" text="Search" />
+      <TextField fx:id="searchField" layoutX="270.0" layoutY="82.0" prefHeight="32.0" prefWidth="174.0" text="bookID" />
+      <Button layoutX="465.0" layoutY="82.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="89.0" text="Search" />
       <Button fx:id="moveToCustomer" layoutX="14.0" layoutY="639.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="194.0" text="Move to Select Customer" />
    </children>
 </AnchorPane>
