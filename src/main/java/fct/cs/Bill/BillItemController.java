@@ -46,6 +46,7 @@ public class BillItemController implements Initializable {
     private TableColumn additem;
 
     private ItemManager ItemManager ;
+    private CustomerManager customerManager ;
 
     private BillingController parentController;
 
@@ -57,6 +58,7 @@ public class BillItemController implements Initializable {
     public void initialize(URL location , ResourceBundle resources) {
 
         ItemManager = new ItemManager();
+        customerManager = new CustomerManager();
         setColumns();
         loadDataItemTable();
 
@@ -157,9 +159,14 @@ public class BillItemController implements Initializable {
         System.out.println("Searching ...");
             itemFilteredList.setPredicate(billItem-> {
             String filter = key.toLowerCase();
-            boolean title_matches = String.valueOf(billItem.getItem_id()).toLowerCase().contains(filter);
-            return title_matches;
 
+                if(CustomerManager.StringOrNot(filter)){
+                    boolean id_matches = String.valueOf(billItem.getItem_id()).toLowerCase().contains(filter);
+                    return id_matches;
+                }else{
+                    boolean title_matches = String.valueOf(billItem.getItem_name()).toLowerCase().contains(filter);
+                    return title_matches ;
+                }
         });
     }
             @FXML
@@ -168,14 +175,14 @@ public class BillItemController implements Initializable {
             searchItemTable(key);
             itemTable.setItems(itemFilteredList);
         }
-        public void removeItem(ArrayList<BillItem> ItemList){
+//        public void removeItem(ArrayList<BillItem> ItemList){
+//
+//            for (BillItem currentItem : ItemList) {
+//                itemObservableList.remove(currentItem);
+//            }
 
-            for (BillItem currentItem : ItemList) {
-                itemObservableList.remove(currentItem);
-            }
 
-
-        }
+//        }
 public void goToSelectCustomer(ActionEvent action){
         parentController.moveToSelectCustomer();
 

@@ -188,7 +188,7 @@ public class SelectCustomerController implements Initializable {
         customerFilteredList.setPredicate(billCustomer-> {
             String filter = key.toLowerCase();
 
-            if(StringOrNot( filter)){
+            if(CustomerManager.StringOrNot( filter)){
                 boolean id_matches = String.valueOf(billCustomer.getCustomer_id()).toLowerCase().contains(filter);
                 return id_matches;
             }else{
@@ -197,14 +197,6 @@ public class SelectCustomerController implements Initializable {
             }
 
         });
-    }
-    public boolean StringOrNot(String filter){
-      try {
-          int intValue = Integer.parseInt(filter);
-          return true ;
-      }catch(NumberFormatException e){
-          return false ;
-      }
     }
 
 

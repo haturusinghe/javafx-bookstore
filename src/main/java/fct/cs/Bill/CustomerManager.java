@@ -55,6 +55,15 @@ public class CustomerManager {
         return createCustomerList(rs);
     }
 
+    public static boolean StringOrNot(String filter){
+        try {
+            int intValue = Integer.parseInt(filter);
+            return true ;
+        }catch(NumberFormatException e){
+            return false ;
+        }
+    }
+
 
 
 }
