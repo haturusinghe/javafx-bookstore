@@ -344,6 +344,13 @@ public class BillingController {
         return new Date(millis);
     }
 
+    public void ChargeCustomer(ActionEvent action){
+
+       Order order = getOrderEntryFromBill();
+        System.out.println(order);
+
+    }
+
 }
 
 
