@@ -74,6 +74,29 @@ public class BillManager {
 
         return count > 0;
     }
+
+    int getQtySingleItem(int bookId) {
+        String query = "SELECT qty FROM Inventory where book_id = ?";
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet;
+        int qty = 0 ;
+        try {
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, bookId);
+
+            resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                qty = resultSet.getInt("qty");
+            }
+            return qty ;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+
+
+    }
     }
 
 

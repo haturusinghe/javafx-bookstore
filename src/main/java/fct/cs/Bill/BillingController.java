@@ -16,7 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import org.kordamp.ikonli.javafx.FontIcon;
-
+import fct.cs.Bill.BillManager;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -106,7 +106,7 @@ public class BillingController {
     private ObservableList<Billdetails> BillingObservableList = FXCollections.observableArrayList();
     private ArrayList<Billdetails> billDetails;
     private BillItemController parentController;
-
+    private BillManager billManager;
 //    private int subTotal;
 
     private int orderDetailId = 1;
@@ -115,6 +115,7 @@ public class BillingController {
 
     public void initialize() {
         static_label = customerName;
+        billManager = new BillManager();
         billDetails = new ArrayList<Billdetails>();
         moveToSelectCustomer();
         setColumns();
@@ -255,9 +256,9 @@ public class BillingController {
 
     public void getOrderDetails(int book_id, String book_name, int unit_price) {
         alreadyAdded = false;
-
+        int qty = billManager.getQtySingleItem(book_id);
+        System.out.println(qty);
         if (billDetails.size() > 0) {
-            int qty = getQtySingleItem(book_id);
 
             for (Billdetails currentItem : billDetails) {
 
@@ -266,7 +267,6 @@ public class BillingController {
                         currentItem.setQuantity(currentItem.getQuantity() + 1);
                         currentItem.setTotalForItem(currentItem.getQuantity() * currentItem.getUnit_price());
                         alreadyAdded = true;
-                        System.out.println("1");
                         break;
                     }
                 }

@@ -57,22 +57,6 @@ public class ItemManager extends CustomerManager {
         return createItemList(rs);
     }
 
-    private int getQtySingleItem(int bookId) {
-        String query = "SELECT qty FROM Inventory where book_id = ?";
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet;
-        try {
-            preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setInt(1, bookId);
 
-            resultSet = preparedStatement.executeQuery();
-            return resultSet.getInt("qty");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 0;
-        }
-
-
-    }
 
 }
