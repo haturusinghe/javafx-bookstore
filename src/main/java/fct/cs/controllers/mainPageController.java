@@ -154,7 +154,7 @@ public class mainPageController implements Initializable {
 
     public void loadCustomerPage() {
         if (!currentPage.equals("customer")) {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/new-customer-page.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/customer/new-customer-page.fxml"));
             try {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());

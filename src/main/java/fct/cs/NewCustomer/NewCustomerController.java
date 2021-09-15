@@ -2,18 +2,11 @@ package fct.cs.NewCustomer;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.events.JFXDrawerEvent;
-import fct.cs.NewCustomer.CustomerData;
-import fct.cs.NewCustomer.CustomerFormController;
-import fct.cs.NewCustomer.CustomerManager;
 import fct.cs.data.Category;
 import io.github.palexdev.materialfx.controls.MFXTableView;
-import io.github.palexdev.materialfx.controls.base.AbstractMFXDialog;
 import io.github.palexdev.materialfx.controls.cell.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
-import io.github.palexdev.materialfx.controls.enums.DialogType;
-import io.github.palexdev.materialfx.controls.factories.MFXDialogFactory;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -105,7 +98,7 @@ public class NewCustomerController implements Initializable {
                 System.out.println("Update");
 
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/customer-form.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/customer/customer-form.fxml"));
                     VBox box = loader.load();
                     CustomerFormController controller = loader.getController();
 
@@ -176,7 +169,7 @@ public class NewCustomerController implements Initializable {
 
     public void addNewEntry(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/customer-form.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/customer/customer-form.fxml"));
             VBox box = loader.load();
             CustomerFormController controller = loader.getController();
 
