@@ -289,6 +289,8 @@ public class BillingController {
                         currentItem.setQuantity(currentItem.getQuantity() + 1);
                         currentItem.setTotalForItem(currentItem.getQuantity() * currentItem.getUnit_price());
 
+                    }else{
+                        ErrorShow(currentItem.getBook_name() + "is out of stock!!!");
                     }
                     alreadyAdded = true;
                     break;
@@ -365,7 +367,7 @@ public class BillingController {
     public void ChargeCustomer(ActionEvent action){
 
         if(billDetails.size() == 0 ){
-
+            ErrorShow("No Items in the Bill!!");
 
         }else {
             Order order = getOrderEntryFromBill();
