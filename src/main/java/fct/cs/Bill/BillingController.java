@@ -325,8 +325,6 @@ public class BillingController {
 
     }
 
-
-
     public Order getOrderEntryFromBill(){
 
         int customer_id = Integer.parseInt(customerID.getText());
@@ -350,6 +348,7 @@ public class BillingController {
 
        Order order = getOrderEntryFromBill();
         billManager.updateOrderEntry(order);
+
         System.out.println(order);
 
     }

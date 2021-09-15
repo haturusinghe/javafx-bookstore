@@ -39,8 +39,6 @@ public class BillManager {
         return count > 0;
     }
 
-
-
     public boolean updateOrderDetailsEntry(orderDetails entry){
         String addQuery = "insert into order_details (order_details_id ,  order_id, book_id, quantity, unit_price,price ) values (?,?,?,?,?,?)";
         PreparedStatement preparedStatement = null;
@@ -80,7 +78,15 @@ public class BillManager {
         return OrderDetailsList ;
 
     }
+    public void updateOrderDetailsByArray(ArrayList<orderDetails> OrderDetailsList){
 
+        for(orderDetails currentItem:OrderDetailsList ){
+            updateOrderDetailsEntry(currentItem);
+
+        }
+
+
+    }
 
        public int getLastOrderId() {
             String query = "SELECT order_id FROM Order order by order_id desc limit 1";
