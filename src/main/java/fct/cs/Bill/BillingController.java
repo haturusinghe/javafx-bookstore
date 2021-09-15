@@ -347,6 +347,7 @@ public class BillingController {
     public void ChargeCustomer(ActionEvent action){
 
        Order order = getOrderEntryFromBill();
+        billManager.updateOrderEntry(order);
         System.out.println(order);
 
     }
