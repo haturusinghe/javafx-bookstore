@@ -331,7 +331,7 @@ public class BillingController {
          int employee_id = 1 ;
         Date order_date = getCurrentDate();
         int total_quantity = BillingObservableList.size();
-        int total_discount = Integer.parseInt(total.getText())* Integer.parseInt(discount.getText());
+        int total_discount = (Integer.parseInt(total.getText()) * Integer.parseInt(discount.getText()))/100;
 
         int total_price = Integer.parseInt(finalTotal.getText());
 

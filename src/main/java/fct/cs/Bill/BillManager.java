@@ -5,10 +5,8 @@ import fct.cs.data.OrderDetailEntry;
 import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
 import fct.cs.Bill.orderDetails ;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 
 public class BillManager {
     private DatabaseConnector databaseConnector;
@@ -19,8 +17,29 @@ public class BillManager {
         databaseConnector = new DatabaseConnector();
         this.conn = databaseConnector.getConn();
     }
+    public boolean updateOrderEntry(Order entry){
+        String addQuery = "insert into orders(   customer_id , employee_id,order_date,total_quantity, total_price, total_discount ) values (?,?,?,?,?,?)";
+        PreparedStatement preparedStatement = null;
+        int count = 0;
+        try {
+            preparedStatement = conn.prepareStatement(addQuery);
+            preparedStatement.setInt(1,entry.getCustomer_id());
+            preparedStatement.setInt(2,entry.getEmployee_id());
+            preparedStatement.setDate(3, (Date) entry.getOrder_date());
+            preparedStatement.setInt(4,entry.getTotal_quantity());
+            preparedStatement.setInt(5,entry.getTotal_price());
+            preparedStatement.setInt(6,entry.getTotal_discount());
 
-    public boolean addSingleEntry(orderDetails entry){
+            count = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count > 0;
+    }
+
+
+    public boolean updateOrderDetailsEntry(orderDetails entry){
         String addQuery = "insert into order_details (orderdetails order_id, book_id, quantity, unit_price, total_price ) values (?,?,?,?,?,?)";
         PreparedStatement preparedStatement = null;
         int count = 0;
