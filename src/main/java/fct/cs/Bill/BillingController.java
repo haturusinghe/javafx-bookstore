@@ -290,7 +290,7 @@ public class BillingController {
                         currentItem.setTotalForItem(currentItem.getQuantity() * currentItem.getUnit_price());
 
                     }else{
-                        ErrorShow(currentItem.getBook_name() + "is out of stock!!!");
+                        ErrorShow(currentItem.getBook_name() + " is out of stock!!!");
                     }
                     alreadyAdded = true;
                     break;
