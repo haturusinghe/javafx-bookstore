@@ -44,11 +44,11 @@ public class orderDetailsController implements Initializable {
 
     public MFXTableView MFXtblOrderDet;
     private orderDetailsController thisController = this;
-    private ObservableList<ordersInfo> orderDetObservableList = FXCollections.observableArrayList();
-    private FilteredList<ordersInfo> orderDetFilteredList = new FilteredList<>(orderDetObservableList);
-    private static orderDetailsData selectedOrderDet = null;
-
-    private ObservableList<Category> categoryList = FXCollections.observableArrayList();
+//    private ObservableList<ordersInfo> orderDetObservableList = FXCollections.observableArrayList();
+//    private FilteredList<ordersInfo> orderDetFilteredList = new FilteredList<>(orderDetObservableList);
+//    private static orderDetailsData selectedOrderDet = null;
+//
+//    private ObservableList<Category> categoryList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

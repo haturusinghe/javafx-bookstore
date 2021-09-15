@@ -19,21 +19,17 @@ public class orderDetailsManager {
             }
         }
 
-        public static ArrayList<ordersInfo> getOrderDetList(int entriesPerPage, int pageNumber) {
-            ResultSet rs = getOrderDetFromDatabase(entriesPerPage, pageNumber);
+        public static ArrayList<ordersInfo> getOrderDetList() {
+            ResultSet rs = getOrderDetFromDatabase();
             return createOrderDetList(rs);
         }
 
-    private static ResultSet getOrderDetFromDatabase(int entriesPerPage, int pageNumber) {
-        int offset = entriesPerPage * (pageNumber - 1);
+    private static ResultSet getOrderDetFromDatabase() {
         String query = "SELECT order_details.order_detail_id,order_details.book_id,order_details.order_id, order_details.quantity,order_details.unit_price,order_details.price ,book.title FROM order_details JOIN book ON book.book_id=order_details.book_id WHERE order_id = ?";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
         try {
             preparedStatement = conn.prepareStatement(query);
-
-            preparedStatement.setInt(1, entriesPerPage);
-            preparedStatement.setInt(2, offset);
             resultSet = preparedStatement.executeQuery();
             return resultSet;
         } catch (SQLException e) {
