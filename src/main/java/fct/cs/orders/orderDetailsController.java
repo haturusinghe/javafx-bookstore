@@ -1,7 +1,9 @@
 package fct.cs.orders;
 
 import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.events.JFXDrawerEvent;
 import fct.cs.data.Category;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.cell.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
@@ -11,7 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
+import javafx.scene.control.Button;
 
 
 import java.net.URL;
@@ -19,12 +21,16 @@ import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class orderDetailsController implements Initializable {
-    private ordersController parentController;
-    private JFXDrawer JFXDrawerdrawer;
-    private boolean isAddingNew = false;
 
     @FXML
-    void cancel(ActionEvent event) {
+    private Button cancelBtn;
+
+    private ordersController parentController;
+    private JFXDrawer JFXDrawerdrawer;
+
+
+    @FXML
+    void close(ActionEvent event) {
         JFXDrawerdrawer.close();
     }
 
@@ -39,7 +45,7 @@ public class orderDetailsController implements Initializable {
     public MFXTableView MFXtblOrderDet;
     private orderDetailsController thisController = this;
     private ObservableList<ordersInfo> orderDetObservableList = FXCollections.observableArrayList();
-    private FilteredList<ordersInfo> orderFilteredList = new FilteredList<>(orderDetObservableList);
+    private FilteredList<ordersInfo> orderDetFilteredList = new FilteredList<>(orderDetObservableList);
     private static orderDetailsData selectedOrderDet = null;
 
     private ObservableList<Category> categoryList = FXCollections.observableArrayList();

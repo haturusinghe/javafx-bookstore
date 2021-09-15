@@ -2,6 +2,7 @@ package fct.cs.orders;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.events.JFXDrawerEvent;
+import fct.cs.NewEmployee.EmployeeFormController;
 import fct.cs.data.Category;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.cell.MFXTableColumn;
@@ -87,14 +88,14 @@ public class ordersController implements Initializable {
             rowCell.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/order-details.fxml"));
-                    VBox box = loader.load();
+                    VBox box = loader.
+                            load();
                     orderDetailsController controller = loader.getController();
 
                     controller.setParentController(thisController);
                     controller.setDrawer(JFXDrawerdrawer);
-
-            //       controller.setAddingNew(true);
                     JFXDrawerdrawer.setSidePane(box);
+
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
