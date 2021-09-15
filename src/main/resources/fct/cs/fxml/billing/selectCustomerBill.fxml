@@ -26,5 +26,10 @@
             <Font size="29.0" />
          </font>
       </MFXLabel>
+      <MFXButton layoutX="49.0" layoutY="98.0" text="+ ADD Customer">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </MFXButton>
    </children>
 </AnchorPane>

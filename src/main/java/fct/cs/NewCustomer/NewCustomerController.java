@@ -167,7 +167,11 @@ public class NewCustomerController implements Initializable {
         drawer.toBack();
     }
 
-    public void addNewEntry(ActionEvent actionEvent) {
+    public void addNewEntry(ActionEvent action){
+        addNewCustomer();
+    }
+
+    public void addNewCustomer() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/customer/customer-form.fxml"));
             VBox box = loader.load();
