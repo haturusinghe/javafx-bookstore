@@ -1,6 +1,7 @@
 package fct.cs.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import fct.cs.Bill.BillingController;
 import fct.cs.Dash.DashController;
 import fct.cs.NewCustomer.NewCustomerController;
 import fct.cs.inventory.InventoryController;
@@ -121,7 +122,7 @@ public class mainPageController implements Initializable {
     }
     public void loadBillingPage(ActionEvent actionEvent) {
         if (!currentPage.equals("Billing")) {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/Billing.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/billing/Billing.fxml"));
             try {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());
@@ -186,6 +187,22 @@ public class mainPageController implements Initializable {
     }
 
     public void loadBilling(ActionEvent actionEvent) {
+
+        if (!currentPage.equals("billing")) {
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/billing/Billing.fxml"));
+            try {
+                mainContent_vbox.getChildren().clear();
+                mainContent_vbox.getChildren().add(loader.load());
+                BillingController controller = loader.getController();
+                controller.setManager(isManager);
+                currentPage = "billing";
+                setHeaderText("Create New Bill");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("already loaded");
+        }
 
     }
 
