@@ -111,6 +111,7 @@ public class BillItemController implements Initializable {
 //                        BillingController controller = loader.getController() ;
 //                        controller.setParentController(thisControl);
 
+
                         parentController.getOrderDetails(entry.getItem_id(), entry.getItem_name() , entry.getUnit_price());
                         parentController.loadBillTable();
 

@@ -18,6 +18,9 @@ import javafx.scene.paint.Color;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -34,7 +37,7 @@ public class BillingController {
     private Label customerName;
 
     @FXML
-    private Label  total;
+    private Label total;
 
     @FXML
     private TextField discount;
@@ -97,18 +100,18 @@ public class BillingController {
 
     private BillingController thisController = this;
     private String currentPage = "";
-    public  static Label static_label;
+    public static Label static_label;
     public static FXMLLoader load;
 
     private ObservableList<Billdetails> BillingObservableList = FXCollections.observableArrayList();
-    private ArrayList<Billdetails> billDetails ;
+    private ArrayList<Billdetails> billDetails;
     private BillItemController parentController;
 
 //    private int subTotal;
 
-    private  int orderDetailId = 1 ;
-//    private ArrayList<Billdetails> BillitemsList;
-    private  boolean alreadyAdded = false;
+    private int orderDetailId = 1;
+    //    private ArrayList<Billdetails> BillitemsList;
+    private boolean alreadyAdded = false;
 
     public void initialize() {
         static_label = customerName;
@@ -120,21 +123,21 @@ public class BillingController {
 
     }
 
-    public void loadBillTable()  {
+    public void loadBillTable() {
 
         BillingObservableList.clear();
-        if(billDetails.size() > 0) {
+        if (billDetails.size() > 0) {
             for (Billdetails currentItem : billDetails) {
                 BillingObservableList.add(currentItem);
             }
         }
         total.setText(String.valueOf(getTotal(billDetails)));
-       finalTotal.setText(String.valueOf(getFinalTotal(Integer.parseInt(total.getText()))));
+        finalTotal.setText(String.valueOf(getFinalTotal(Integer.parseInt(total.getText()))));
         BillTable.setItems(BillingObservableList);
     }
 
-    public void refreshTable(){
-      BillTable.refresh();
+    public void refreshTable() {
+        BillTable.refresh();
     }
 
     private void setColumns() {
@@ -156,21 +159,19 @@ public class BillingController {
                 protected void updateItem(Integer customer_id, boolean empty) {
                     super.updateItem(customer_id, empty);
 
-                    if(empty)
-                    {
+                    if (empty) {
                         this.setText(null);
                         this.setGraphic(null);
-                    }
-                    else{
+                    } else {
 
-                        btnRemove.setOnAction(e ->{
+                        btnRemove.setOnAction(e -> {
                             System.out.println("Clicked Remove");
                             Billdetails entry = getTableView().getItems().get(getIndex());
                             getTableView().getSelectionModel().select(getIndex());
                             System.out.println(getTableView().getSelectionModel().getSelectedItem().toString());
 
-                            for ( Billdetails currentItem: billDetails){
-                                if(entry.getBook_id() == currentItem.getBook_id()){
+                            for (Billdetails currentItem : billDetails) {
+                                if (entry.getBook_id() == currentItem.getBook_id()) {
 
                                     billDetails.remove(currentItem);
                                 }
@@ -206,7 +207,6 @@ public class BillingController {
         });
 
 
-
     }
 
     public void displayCustomerDetails(BillCustomer customer) {
@@ -233,46 +233,51 @@ public class BillingController {
         controller.setParentController(this);
     }
 
-    public void moveToSelectCustomer(){
-            if (!currentPage.equals("selectCustomerBills")) {
+    public void moveToSelectCustomer() {
+        if (!currentPage.equals("selectCustomerBills")) {
 
-                loader = new FXMLLoader(getClass().getResource("/fct/cs/SelectCustomerBill.fxml"));
-                try {
-                    content.getChildren().clear();
-                    content.getChildren().add(loader.load());
-                    currentPage = "selectCustomerBills";
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                System.out.println("already loaded");
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/SelectCustomerBill.fxml"));
+            try {
+                content.getChildren().clear();
+                content.getChildren().add(loader.load());
+                currentPage = "selectCustomerBills";
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+        } else {
+            System.out.println("already loaded");
+        }
         SelectCustomerController controller = loader.getController();
         controller.setParentController(this);
 
 
-        }
+    }
 
-    public void getOrderDetails(int book_id , String book_name , int unit_price ){
-        alreadyAdded  = false ;
+    public void getOrderDetails(int book_id, String book_name, int unit_price) {
+        alreadyAdded = false;
 
-        if(billDetails.size() > 0 ) {
+        if (billDetails.size() > 0) {
+            int qty = getQtySingleItem(book_id);
+
             for (Billdetails currentItem : billDetails) {
 
                 if (currentItem.getBook_id() == book_id) {
-                    currentItem.setQuantity(currentItem.getQuantity() + 1);
-                    currentItem.setTotalForItem(currentItem.getQuantity() * currentItem.getUnit_price());
-                    alreadyAdded = true;
-                    System.out.println("1");
-                    break;
+                    if (currentItem.getQuantity() < qty) {
+                        currentItem.setQuantity(currentItem.getQuantity() + 1);
+                        currentItem.setTotalForItem(currentItem.getQuantity() * currentItem.getUnit_price());
+                        alreadyAdded = true;
+                        System.out.println("1");
+                        break;
+                    }
                 }
             }
         }
-        if (!alreadyAdded){
+        if (!alreadyAdded) {
 
-            Billdetails getOrderDetail  = new Billdetails(orderDetailId , book_id , book_name , 1,unit_price,unit_price);
+
+            Billdetails getOrderDetail = new Billdetails(orderDetailId, book_id, book_name, 1, unit_price, unit_price);
             getOrderDetail.setOrder_id(orderDetailId);
-            orderDetailId++ ;
+            orderDetailId++;
             getOrderDetail.setBook_id(book_id);
             getOrderDetail.setBook_name(book_name);
             getOrderDetail.setQuantity(1);
@@ -283,6 +288,7 @@ public class BillingController {
         }
 
     }
+
     public int getTotal(ArrayList<Billdetails> array) {
         int subTotal = 0;
         for (Billdetails currentItem : array) {
@@ -291,33 +297,33 @@ public class BillingController {
         }
         return subTotal;
     }
-    public int getFinalTotal(int total){
-        int disc = Integer.parseInt(discount.getText()) ;
 
-        return (total - (total*disc)/100 ) ;
+    public int getFinalTotal(int total) {
+        int disc = Integer.parseInt(discount.getText());
 
+        return (total - (total * disc) / 100);
+
+
+    }
+
+
+    public void addDiscount(ActionEvent action) {
+
+        finalTotal.setText(String.valueOf(getFinalTotal(Integer.parseInt(total.getText()))));
+
+    }
+
+    public void cancelOrder(ActionEvent action) {
+        billDetails.clear();
+        loadBillTable();
+        customerName.setText("");
+        customerID.setText("");
+        moveToSelectCustomer();
 
     }
 
 
-public void addDiscount(ActionEvent action){
-
-    finalTotal.setText(String.valueOf(getFinalTotal(Integer.parseInt(total.getText()))));
-
 }
-
-public void cancelOrder(ActionEvent action){
-    billDetails.clear();
-    loadBillTable();
-    customerName.setText("");
-    customerID.setText("");
-    moveToSelectCustomer();
-
-}
-
-
-
-    }
 
 
 

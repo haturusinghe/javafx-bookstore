@@ -56,13 +56,14 @@ public class ItemManager extends CustomerManager {
         ResultSet rs = getItemFromDatabase();
         return createItemList(rs);
     }
-    private int getQtySingleItem( int bookId) {
+
+    private int getQtySingleItem(int bookId) {
         String query = "SELECT qty FROM Inventory where book_id = ?";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
         try {
             preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setInt(1,bookId);
+            preparedStatement.setInt(1, bookId);
 
             resultSet = preparedStatement.executeQuery();
             return resultSet.getInt("qty");
@@ -70,6 +71,8 @@ public class ItemManager extends CustomerManager {
             e.printStackTrace();
             return 0;
         }
+
+
     }
 
 }
