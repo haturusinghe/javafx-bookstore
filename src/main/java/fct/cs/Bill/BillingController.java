@@ -178,6 +178,7 @@ public class BillingController {
                                 if (entry.getBook_id() == currentItem.getBook_id()) {
 
                                     billDetails.remove(currentItem);
+                                    break;
                                 }
                             }
 
