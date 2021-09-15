@@ -14,3 +14,4 @@
 /.idea/shelf/
 /src/main/java/fct/cs/orders/orderDetailController.java
 /src/main/resources/fct/cs/order-details.fxml
+/.idea/dataSources.local.xml
