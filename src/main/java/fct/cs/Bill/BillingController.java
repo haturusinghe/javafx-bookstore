@@ -266,11 +266,17 @@ public class BillingController {
                     if (currentItem.getQuantity() < qty) {
                         currentItem.setQuantity(currentItem.getQuantity() + 1);
                         currentItem.setTotalForItem(currentItem.getQuantity() * currentItem.getUnit_price());
-                        alreadyAdded = true;
-                        break;
+
                     }
+                    alreadyAdded = true;
+                    break;
                 }
             }
+        }
+
+        public void removeBook(int bookID){
+
+
         }
         if (!alreadyAdded) {
 

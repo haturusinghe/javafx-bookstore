@@ -170,6 +170,14 @@ public class BillItemController implements Initializable {
             searchItemTable(key);
             itemTable.setItems(itemFilteredList);
         }
+        public void removeItem(ArrayList<BillItem> ItemList){
+
+            for (BillItem currentItem : ItemList) {
+                itemObservableList.remove(currentItem);
+            }
+
+
+        }
 public void goToSelectCustomer(ActionEvent action){
         parentController.moveToSelectCustomer();
 
