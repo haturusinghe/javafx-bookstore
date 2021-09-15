@@ -1,0 +1,19 @@
+.text-field{
+	-fx-background-color: transparent;
+	-fx-text-fill: black;
+	-fx-padding: 0px 0px 0px 5px;
+	-fx-font-size: 15pt;
+}
+
+.label{
+	-fx-background-color: transparent;
+	-fx-text-fill: black;
+	-fx-padding: 0px 0px 0px 5px;
+	-fx-font-size: 10pt;
+}
+
+.cardCustom{
+    -fx-background-radius: 10px;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}

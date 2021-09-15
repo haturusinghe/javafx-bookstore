@@ -1,0 +1,31 @@
+
+.root{
+    -bg-gradient: linear-gradient(from 25px 25px to 500px 300px, #a1ffce, #faffd1);
+    -hlight-gradient: linear-gradient(to bottom, #1dbbdd44, #93f9b944);
+
+    -primary: #81c48355;
+    -secondary: #375FCB;
+    -tertiary: #fcc200;
+    -tertiary-armed: #FDDD71;
+}
+
+.background-pane{
+   -fx-background-color: -bg-gradient;
+   -fx-padding: 10px 15px;
+   -fx-background-radius: 10px;
+}
+
+.itemContainer{
+    -fx-background-color: -bg-gradient;
+   -fx-background-radius: 10px;
+   -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+.custom-hbox{
+}
+
+.boxLabel{
+    -fx-font-size: 20px;
+	-fx-alignment: center;
+    -fx-font-family: 'Montserrat';
+}

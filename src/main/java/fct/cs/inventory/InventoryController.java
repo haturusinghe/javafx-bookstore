@@ -1,11 +1,14 @@
 package fct.cs.inventory;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.events.JFXDrawerEvent;
 import fct.cs.Books.Book;
 import fct.cs.data.Category;
 import fct.cs.dbUtil.DatabaseHandler;
-import javafx.animation.TranslateTransition;
+import io.github.palexdev.materialfx.controls.MFXCheckbox;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -25,19 +28,29 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
 
 public class InventoryController implements Initializable {
+
+    public JFXButton m_addNewEntryBtn;
+    @FXML
+    private MFXFilterComboBox category_combo;
+
+    @FXML
+    private MFXTextField m_search_txt;
+
+    @FXML
+    private MFXCheckbox lowStock_checkbox;
+
+    @FXML
+    private MFXCheckbox outStock_checkbox;
 
     @FXML
     private VBox drawerBox;
@@ -58,7 +71,7 @@ public class InventoryController implements Initializable {
     private TextField search_txt;
 
     @FXML
-    private ComboBox category_combo;
+    private ComboBox category_combo_old;
 
     @FXML
     private Button outStockBtn;
@@ -84,6 +97,8 @@ public class InventoryController implements Initializable {
     @FXML
     private TableColumn colViewDet;
 
+    private boolean isManager = false;
+
     private InventoryManager inventoryManager;
 
     private ObservableList<StockEntry> stockEntryObservableList = FXCollections.observableArrayList();
@@ -95,6 +110,7 @@ public class InventoryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setUiForRole();
         inventoryManager = new InventoryManager();
         setColumnProperties();
         loadTableData();
@@ -169,7 +185,6 @@ public class InventoryController implements Initializable {
 
     }
 
-
     public void searchTableFromText(String key) {
         System.out.println("Searching ...");
         stockEntryFilteredList.setPredicate(stockEntry -> {
@@ -207,7 +222,7 @@ public class InventoryController implements Initializable {
 
     public void setCategories() throws SQLException {
         String qu = "select * from book_category";
-        DatabaseHandler databaseHandler = new DatabaseHandler();
+        DatabaseHandler databaseHandler = DatabaseHandler.getInstance();
         ResultSet rs = databaseHandler.excecuteQuery(qu);
 
         while (rs.next()){
@@ -254,7 +269,7 @@ public class InventoryController implements Initializable {
                             System.out.println(currentBook.toString());
 
                             try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/book-details.fxml"));
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/inventory/show-book.fxml"));
                                 VBox box = loader.load();
                                 BookPanelController controller = loader.getController();
 
@@ -337,7 +352,7 @@ public class InventoryController implements Initializable {
                             System.out.println(getTableView().getSelectionModel().getSelectedItem().toString());
 
                             try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/edit-inventory.fxml"));
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/inventory/edit-inventory.fxml"));
                                 VBox box = loader.load();
                                 EditInventoryController controller = loader.getController();
 
@@ -475,6 +490,18 @@ public class InventoryController implements Initializable {
         });
     }
 
+    private void setUiForRole(){
+        if(!isManager){
+            colUpdate.setVisible(false);
+            colDelete.setVisible(false);
+            m_addNewEntryBtn.setVisible(false);
+        }else{
+            colUpdate.setVisible(true);
+            colDelete.setVisible(true);
+            m_addNewEntryBtn.setVisible(true);
+        }
+    }
+
     private void printInventoryList() {
         ArrayList<StockEntry> ls = inventoryManager.getStockItemList(5, 1);
 
@@ -489,7 +516,7 @@ public class InventoryController implements Initializable {
         Category category = (Category)category_combo.getSelectionModel().getSelectedItem();
 
         if (category != null) {
-            System.out.println("Category Name: " + category_combo.getValue());
+            System.out.println("Category Name: " + ((Category) category_combo.getSelectionModel().getSelectedItem()).getCategory_name());
             System.out.println("Category ID: " +category.getCategory_id());
             ArrayList<String> idList = inventoryManager.getBookIdsForCategory(Integer.parseInt(category.getCategory_id()));
             for (String i:idList
@@ -526,8 +553,27 @@ public class InventoryController implements Initializable {
         inventoryTable.setItems(stockEntryFilteredList);
     }
 
+    public void toggleLowStock(ActionEvent actionEvent) {
+        if(lowStock_checkbox.isSelected()){
+            outStock_checkbox.setSelected(false);
+        }
+        findLowOnStockItems();
+        inventoryTable.setItems(stockEntryFilteredList);
+    }
+
+    public void toggleOutStock(ActionEvent actionEvent) {
+        if(outStock_checkbox.isSelected()){
+            lowStock_checkbox.setSelected(false);
+        }
+        findOutOfStockItems();
+        inventoryTable.setItems(stockEntryFilteredList);
+    }
+
     public void resetFilters(ActionEvent actionEvent) {
         searchTableFromText("");
+        category_combo.setSelectedValue(null);
+        outStock_checkbox.setSelected(false);
+        lowStock_checkbox.setSelected(false);
         inventoryTable.setItems(stockEntryFilteredList);
     }
 
@@ -538,7 +584,7 @@ public class InventoryController implements Initializable {
     public void addNewEntry(ActionEvent actionEvent) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/edit-inventory.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/inventory/edit-inventory.fxml"));
             VBox box = loader.load();
             EditInventoryController controller = loader.getController();
 
@@ -564,13 +610,17 @@ public class InventoryController implements Initializable {
         }
     }
 
-    public void showNotification(ActionEvent actionEvent) {
+/*    public void showNotification(ActionEvent actionEvent) {
         NotificationManager notificationManager = new NotificationManager();
         notificationManager.showBottomRight();
-    }
+    }*/
 
     private void showNotification(ArrayList<StockEntry> lowItems) {
-        NotificationManager notificationManager = new NotificationManager();
-        notificationManager.showBottomRight(lowItems);
+        NotificationCreator.showBottomRight(lowItems);
+    }
+
+    public void setManager(boolean manager) {
+        isManager = manager;
+        setUiForRole();
     }
 }

@@ -3,12 +3,9 @@ package fct.cs.Bill;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
-import com.mysql.cj.x.protobuf.MysqlxCrud;
 import fct.cs.data.Order;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,16 +18,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import org.kordamp.ikonli.javafx.FontIcon;
-import fct.cs.Bill.BillManager;
 
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -241,7 +232,7 @@ public class BillingController {
 
     public void MovetoBooks() {
         if (!currentPage.equals("selectItemsBill")) {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/selectItemsForBill.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/billing/selectItemsForBill.fxml"));
             try {
                 content.getChildren().clear();
                 content.getChildren().add(loader.load());
@@ -259,7 +250,7 @@ public class BillingController {
     public void moveToSelectCustomer() {
         if (!currentPage.equals("selectCustomerBills")) {
 
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/SelectCustomerBill.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/billing/selectCustomerBill.fxml"));
             try {
                 content.getChildren().clear();
                 content.getChildren().add(loader.load());
@@ -393,6 +384,8 @@ public class BillingController {
         dialog.show();
     }
 
+    public void setManager(boolean isManager) {
+    }
 }
 
 

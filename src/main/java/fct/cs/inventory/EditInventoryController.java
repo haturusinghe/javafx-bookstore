@@ -39,7 +39,7 @@ public class EditInventoryController {
 
 
     public void setTextFields(int inv_id ,int bookid,int price,int qty,int min){
-        txtInvId.setText(String.valueOf(inv_id));
+//        txtInvId.setText(String.valueOf(inv_id));
         txtBookId.setText(String.valueOf(bookid));
         txtPrice.setText(String.valueOf(price));
         txtQty.setText(String.valueOf(qty));
@@ -47,7 +47,7 @@ public class EditInventoryController {
     }
 
     public void clearTextFields(){
-        txtInvId.clear();
+//        txtInvId.clear();
         txtBookId.clear();
         txtPrice.setText("");
         txtQty.setText("");
@@ -55,13 +55,13 @@ public class EditInventoryController {
     }
 
     public StockEntry getStockEntryFromForm(){
-        int inv_id = Integer.parseInt(txtInvId.getText());
+//        int inv_id = Integer.parseInt(txtInvId.getText());
         int book_id = Integer.parseInt(txtBookId.getText());
         int price = Integer.parseInt(txtPrice.getText());
         int qty = Integer.parseInt(txtQty.getText());
         int min = Integer.parseInt(txtMin.getText());
 
-        return new StockEntry(inv_id,book_id,price,qty,min);
+        return new StockEntry(0,book_id,price,qty,min);
     }
 
     public void cancel(ActionEvent actionEvent) {
@@ -82,7 +82,8 @@ public class EditInventoryController {
 
     public void setAddingNew(boolean addingNew) {
         isAddingNew = addingNew;
-        txtInvId.setDisable(false);
+//        txtInvId.setDisable(false);
+        txtBookId.setEditable(true);
     }
 
     public void updateInventory(ActionEvent actionEvent) {

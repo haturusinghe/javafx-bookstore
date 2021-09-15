@@ -1,6 +1,7 @@
 package fct.cs.Bill;
 import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.data.Customer;
+import fct.cs.dbUtil.DatabaseHandler;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,8 +14,11 @@ public class CustomerManager {
     private Connection conn;
 
     public CustomerManager() {
-        databaseConnector = new DatabaseConnector();
-        this.conn = databaseConnector.getConn();
+        try {
+            this.conn = DatabaseHandler.getInstance().getConn();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public ResultSet getCustomerFromDatabase() {

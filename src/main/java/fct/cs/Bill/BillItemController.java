@@ -20,6 +20,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -60,7 +61,11 @@ public class BillItemController implements Initializable {
     @Override
     public void initialize(URL location , ResourceBundle resources) {
 
-        ItemManager = new ItemManager();
+        try {
+            ItemManager = new ItemManager();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         customerManager = new CustomerManager();
         setColumns();
         loadDataItemTable();
