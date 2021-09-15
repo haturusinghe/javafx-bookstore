@@ -74,7 +74,6 @@ public class BillManager {
 
 
 //          int price   = currentItem.getTotalForItem();
-
         }
 
         return OrderDetailsList ;
@@ -85,6 +84,7 @@ public class BillManager {
        array = getOrderDetailsEntryArray(billDetailsList);
 
         for(orderDetails currentItem:array ){
+            updateQuantity(currentItem);
             updateOrderDetailsEntry(currentItem);
 
         }
@@ -112,8 +112,8 @@ public class BillManager {
             }
         }
 
-    public boolean updateQuantity(Billdetails entry){
-        String updateQuery = "UPDATE inventory set qty = ? - qty,  where book_id = ?";
+    public boolean updateQuantity(orderDetails entry){
+        String updateQuery = "UPDATE inventory set qty = qty - ?   where book_id = ?";
         PreparedStatement preparedStatement = null;
         int count = 0;
         try {

@@ -159,6 +159,7 @@ public class BillItemController implements Initializable {
             String filter = key.toLowerCase();
             boolean title_matches = String.valueOf(billItem.getItem_id()).toLowerCase().contains(filter);
             return title_matches;
+
         });
     }
             @FXML

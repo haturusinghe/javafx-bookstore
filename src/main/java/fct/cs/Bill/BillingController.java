@@ -351,17 +351,22 @@ public class BillingController {
 
         return new Date(millis);
     }
-
     public void ChargeCustomer(ActionEvent action){
 
-       Order order = getOrderEntryFromBill();
-        billManager.updateOrderEntry(order);
-        billManager.updateOrderDetailsByArray(billDetails);
+        if(billDetails.size() == 0 ){
+            System.out.println("create a order!!");
+        }else {
+            Order order = getOrderEntryFromBill();
+            billManager.updateOrderEntry(order);
+            billManager.updateOrderDetailsByArray(billDetails);
 
-        System.out.println(billDetails);
-        System.out.println(order);
+            System.out.println(billDetails);
+            System.out.println(order);
+        }
 
     }
+
+
 
 }
 

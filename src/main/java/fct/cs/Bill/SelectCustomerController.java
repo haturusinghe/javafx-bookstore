@@ -187,9 +187,24 @@ public class SelectCustomerController implements Initializable {
         System.out.println("Searching ...");
         customerFilteredList.setPredicate(billCustomer-> {
             String filter = key.toLowerCase();
-            boolean title_matches = String.valueOf(billCustomer.getCustomer_id()).toLowerCase().contains(filter);
-            return title_matches;
+
+            if(StringOrNot( filter)){
+                boolean id_matches = String.valueOf(billCustomer.getCustomer_id()).toLowerCase().contains(filter);
+                return id_matches;
+            }else{
+                boolean title_matches = String.valueOf(billCustomer.getCustomer_name()).toLowerCase().contains(filter);
+                return title_matches ;
+            }
+
         });
+    }
+    public boolean StringOrNot(String filter){
+      try {
+          int intValue = Integer.parseInt(filter);
+          return true ;
+      }catch(NumberFormatException e){
+          return false ;
+      }
     }
 
 
