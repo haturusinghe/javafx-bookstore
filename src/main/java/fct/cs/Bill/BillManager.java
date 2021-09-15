@@ -40,7 +40,7 @@ public class BillManager {
     }
 
     public boolean updateOrderDetailsEntry(orderDetails entry){
-        String addQuery = "insert into order_details (order_details_id ,  order_id, book_id, quantity, unit_price,price ) values (?,?,?,?,?,?)";
+        String addQuery = "insert into order_details (order_detail_id ,order_id, book_id, quantity, unit_price,price ) values (?,?,?,?,?,?)";
         PreparedStatement preparedStatement = null;
         int count = 0;
         try {
@@ -62,11 +62,13 @@ public class BillManager {
     }
     public ArrayList<orderDetails> getOrderDetailsEntryArray(ArrayList<Billdetails> array){
         ArrayList<orderDetails> OrderDetailsList = new ArrayList<>();
+        int lastOrder = getLastOrderId();
         for(Billdetails currentItem : array){
 
-            OrderDetailsList.add(new orderDetails(currentItem.getOrder_id(),
+            OrderDetailsList.add(new orderDetails(
+                    currentItem.getOrder_id(),
+                    lastOrder ,
                     currentItem.getBook_id(),
-                    getLastOrderId(),
                     currentItem.getQuantity(),
                     currentItem.getUnit_price()));
 
@@ -87,17 +89,23 @@ public class BillManager {
 
         }
 
+        System.out.println(array);
 
     }
 
        public int getLastOrderId() {
-            String query = "SELECT order_id FROM Order order by order_id desc limit 1";
+            String query = "SELECT order_id FROM orders order by order_id desc limit 1";
             PreparedStatement preparedStatement = null;
             ResultSet resultSet;
+           int lastOrder = 0 ;
             try {
                 preparedStatement = conn.prepareStatement(query);
                 resultSet = preparedStatement.executeQuery();
-                return resultSet.getInt("order_id");
+                while(resultSet.next()){
+                  lastOrder = resultSet.getInt("order_id");
+                    System.out.println(lastOrder);
+                }
+                return lastOrder;
             } catch (SQLException e) {
                 e.printStackTrace();
                 return 0;

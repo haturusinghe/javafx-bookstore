@@ -348,9 +348,9 @@ public class BillingController {
 
        Order order = getOrderEntryFromBill();
         billManager.updateOrderEntry(order);
+        billManager.updateOrderDetailsByArray(billDetails);
 
-
-
+        System.out.println(billDetails);
         System.out.println(order);
 
     }
