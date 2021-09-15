@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -10,26 +10,21 @@
 
 <AnchorPane fx:id="rootPane" prefHeight="685.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.SelectCustomerController">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="145.0" text="Billing">
+      <Label layoutX="2.0" layoutY="14.0" prefHeight="47.0" prefWidth="247.0" text="Select Customer :">
          <font>
-            <Font size="32.0" />
+            <Font size="29.0" />
          </font>
       </Label>
-      <TableView fx:id="customerTable" layoutX="2.0" layoutY="148.0" onMouseClicked="#displayCustomerInBill" prefHeight="503.0" prefWidth="546.0">
+      <TableView fx:id="customerTable" layoutX="14.0" layoutY="150.0" onMouseClicked="#displayCustomerInBill" prefHeight="503.0" prefWidth="526.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="44.0" text="id" />
-          <TableColumn fx:id="name" minWidth="0.0" prefWidth="142.4000244140625" text="Name" />
-            <TableColumn fx:id="mobile" prefWidth="100.0" text="mobile" />
-            <TableColumn fx:id="email" prefWidth="151.199951171875" text="email" />
-            <TableColumn fx:id="SelectCustomer" prefWidth="104.800048828125" text="Select Customer" />
+          <TableColumn fx:id="name" minWidth="0.0" prefWidth="121.60003280639648" text="Name" />
+            <TableColumn fx:id="mobile" prefWidth="102.40003967285156" text="mobile" />
+            <TableColumn fx:id="email" prefWidth="156.79998779296875" text="email" />
+            <TableColumn fx:id="SelectCustomer" prefWidth="96.79998779296875" text="Select Customer" />
         </columns>
       </TableView>
-      <Button fx:id="run" layoutX="496.0" layoutY="104.0" mnemonicParsing="false" onAction="#searchCustomer" text="Search" />
-      <Label layoutX="14.0" layoutY="99.0" prefHeight="36.0" prefWidth="145.0" text="Select a Customer :">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <TextField fx:id="searchCustomer" layoutX="324.0" layoutY="105.0" />
+      <TextField fx:id="searchCustomer" layoutX="249.0" layoutY="98.0" prefHeight="36.0" prefWidth="178.0" />
+      <MFXButton fx:id="search" layoutX="453.0" layoutY="98.0" onAction="#searchCustomer" prefHeight="36.0" prefWidth="94.0" text="Search" />
    </children>
 </AnchorPane>
