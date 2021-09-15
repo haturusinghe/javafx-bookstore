@@ -135,32 +135,32 @@ public class ordersController implements Initializable {
         viewColumn.setRowCellFunction(orderData -> {
             MFXTableRowCell rowCell = new MFXTableRowCell("Order Details");
             rowCell.setGraphicTextGap(1);
-            rowCell.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/order-details.fxml"));
-                    VBox box = loader.load();
-                    orderDetailsController controller = loader.getController();
-
-                    controller.setParentController(thisController);
-                    controller.setDrawer(JFXDrawerdrawer);
-                    JFXDrawerdrawer.setSidePane(box);
-
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-
-                if (JFXDrawerdrawer.isHidden()) {
-                    JFXDrawerdrawer.open();
-                    JFXDrawerdrawer.toFront();
-                    System.out.println("open");
-                } else {
-                    JFXDrawerdrawer.toBack();
-                    JFXDrawerdrawer.close();
-
-                    System.out.println("close");
-                }
-
-            });
+//            rowCell.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+//                try {
+//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/order-details.fxml"));
+//                    VBox box = loader.load();
+//                    orderDetailsController controller = loader.getController();
+//
+//                    controller.setParentController(thisController);
+//                    controller.setDrawer(JFXDrawerdrawer);
+//                    JFXDrawerdrawer.setSidePane(box);
+//
+//                } catch (IOException ex) {
+//                    ex.printStackTrace();
+//                }
+//
+//                if (JFXDrawerdrawer.isHidden()) {
+//                    JFXDrawerdrawer.open();
+//                    JFXDrawerdrawer.toFront();
+//                    System.out.println("open");
+//                } else {
+//                    JFXDrawerdrawer.toBack();
+//                    JFXDrawerdrawer.close();
+//
+//                    System.out.println("close");
+//                }
+//
+//            });
             MFXFontIcon icon = new MFXFontIcon("mfx-file", 25);
 
             rowCell.setRowAlignment(Pos.CENTER);

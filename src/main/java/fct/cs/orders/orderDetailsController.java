@@ -52,31 +52,31 @@ public class orderDetailsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setDetColumnProps();
-        getOrderDetData();
+//        setDetColumnProps();
+//        getOrderDetData();
     }
 
-    private void setDetColumnProps() {
-        MFXTableColumn<orderDetailsData> orderDetIdColumn = new MFXTableColumn<>("Index", Comparator.comparing(orderDetailsData::getOrder_detail_id));
-        MFXTableColumn<orderDetailsData> bookIdColumn = new MFXTableColumn<>("Item ID", Comparator.comparing(orderDetailsData::getBook_id));
-        MFXTableColumn<orderDetailsData> bookTitleColumn = new MFXTableColumn<>("Book Name", Comparator.comparing(orderDetailsData::getTitle));
-        MFXTableColumn<orderDetailsData> quantityColumn = new MFXTableColumn<>("Quantity", Comparator.comparing(orderDetailsData::getQuantity));
-        MFXTableColumn<orderDetailsData> unitPriceColumn = new MFXTableColumn<>("Unit Price", Comparator.comparing(orderDetailsData::getUnit_price));
-        MFXTableColumn<orderDetailsData> priceColumn = new MFXTableColumn<>("Price", Comparator.comparing(orderDetailsData::getPrice));
+//    private void setDetColumnProps() {
+//        MFXTableColumn<orderDetailsData> orderDetIdColumn = new MFXTableColumn<>("Index", Comparator.comparing(orderDetailsData::getOrder_detail_id));
+//        MFXTableColumn<orderDetailsData> bookIdColumn = new MFXTableColumn<>("Item ID", Comparator.comparing(orderDetailsData::getBook_id));
+//        MFXTableColumn<orderDetailsData> bookTitleColumn = new MFXTableColumn<>("Book Name", Comparator.comparing(orderDetailsData::getTitle));
+//        MFXTableColumn<orderDetailsData> quantityColumn = new MFXTableColumn<>("Quantity", Comparator.comparing(orderDetailsData::getQuantity));
+//        MFXTableColumn<orderDetailsData> unitPriceColumn = new MFXTableColumn<>("Unit Price", Comparator.comparing(orderDetailsData::getUnit_price));
+//        MFXTableColumn<orderDetailsData> priceColumn = new MFXTableColumn<>("Price", Comparator.comparing(orderDetailsData::getPrice));
+//
+//        orderDetIdColumn.setRowCellFunction(order -> new MFXTableRowCell(String.valueOf(order.getOrder_detail_id())));
+//        bookIdColumn.setRowCellFunction(order -> new MFXTableRowCell(String.valueOf(order.getBook_id())));
+//        bookTitleColumn.setRowCellFunction(order -> new MFXTableRowCell(String.valueOf(order.getTitle())));
+//        quantityColumn.setRowCellFunction(order -> new MFXTableRowCell(String.valueOf(order.getUnit_price())));
+//        unitPriceColumn.setRowCellFunction(order -> new MFXTableRowCell(String.valueOf(order.getQuantity())));
+//        priceColumn.setRowCellFunction(order -> new MFXTableRowCell(String.valueOf(order.getPrice())));
+//
+//        MFXtblOrderDet.getTableColumns().addAll(orderDetIdColumn, bookIdColumn,bookTitleColumn, quantityColumn,unitPriceColumn,priceColumn);
+//
+//    }
 
-        orderDetIdColumn.setRowCellFunction(order -> new MFXTableRowCell(String.valueOf(order.getOrder_detail_id())));
-        bookIdColumn.setRowCellFunction(order -> new MFXTableRowCell(String.valueOf(order.getBook_id())));
-        bookTitleColumn.setRowCellFunction(order -> new MFXTableRowCell(String.valueOf(order.getTitle())));
-        quantityColumn.setRowCellFunction(order -> new MFXTableRowCell(String.valueOf(order.getUnit_price())));
-        unitPriceColumn.setRowCellFunction(order -> new MFXTableRowCell(String.valueOf(order.getQuantity())));
-        priceColumn.setRowCellFunction(order -> new MFXTableRowCell(String.valueOf(order.getPrice())));
-
-        MFXtblOrderDet.getTableColumns().addAll(orderDetIdColumn, bookIdColumn,bookTitleColumn, quantityColumn,unitPriceColumn,priceColumn);
-
-    }
-
-    private void getOrderDetData() {
-        MFXtblOrderDet.setItems(orderDetObservableList);
-    }
+//    private void getOrderDetData() {
+//        MFXtblOrderDet.setItems(orderDetObservableList);
+//    }
 
 }
