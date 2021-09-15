@@ -226,20 +226,22 @@ public class LoginController implements Initializable {
 
     //Load register.fxml
     @FXML
-    public void registerOnAction(ActionEvent event)throws IOException{
+    public void registerOnAction(ActionEvent event1)throws IOException{
         Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/register.fxml"));
         Scene scene = new Scene(view);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        System.out.println("Load register page");
+        Stage window = (Stage)((Node)event1.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
 
     //Load ChangePassword.fxml
     @FXML
-    public void forgotOnAction(ActionEvent event)throws IOException{
+    public void forgotOnAction(ActionEvent event2)throws IOException{
         Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/change-password.fxml"));
         Scene scene = new Scene(view);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        System.out.println("Load change-password page");
+        Stage window = (Stage)((Node)event2.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
