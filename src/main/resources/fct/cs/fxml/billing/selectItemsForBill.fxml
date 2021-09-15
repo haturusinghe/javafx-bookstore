@@ -1,35 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXLabel?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="685.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.BillItemController">
+<AnchorPane prefHeight="668.0" prefWidth="555.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.BillItemController">
    <children>
-      <Label layoutX="1.0" prefHeight="36.0" prefWidth="145.0" text="Billing">
-         <font>
-            <Font size="32.0" />
-         </font>
-      </Label>
-      <TableView fx:id="itemTable" layoutX="1.0" layoutY="140.0" prefHeight="484.0" prefWidth="554.0">
+      <TableView fx:id="itemTable" layoutX="1.0" layoutY="140.0" prefHeight="451.0" prefWidth="542.0">
          <columns>
             <TableColumn fx:id="itemId" prefWidth="46.40002369880676" text="ID" />
-            <TableColumn fx:id="itemName" prefWidth="240.79997634887695" text="Item" />
-            <TableColumn fx:id="isbn" prefWidth="58.4000244140625" text="ISBN" />
+            <TableColumn fx:id="itemName" prefWidth="200.00000762939453" text="Item" />
+            <TableColumn fx:id="isbn" prefWidth="100.0" text="ISBN" />
             <TableColumn fx:id="unit_price" minWidth="0.0" prefWidth="68.0" text="Unit_Price" />
             <TableColumn fx:id="additem" prefWidth="139.99993896484375" text="Add" />
          </columns>
       </TableView>
-      <Label fx:id="name" layoutX="14.0" layoutY="82.0" prefHeight="40.0" prefWidth="100.0" text="Select Item :">
+      <TextField fx:id="searchItem" layoutX="261.0" layoutY="82.0" prefHeight="32.0" prefWidth="194.0" promptText="bookID/Title" />
+      <MFXButton layoutX="461.0" layoutY="82.0" onAction="#searchItem" prefHeight="32.0" prefWidth="70.0" text="Search" />
+      <MFXButton fx:id="moveToCustomer" layoutX="175.0" layoutY="599.0" onAction="#goToSelectCustomer" prefHeight="47.0" prefWidth="194.0" text="Move To Select Customer" />
+      <MFXLabel layoutX="1.0" layoutY="14.0" prefHeight="47.0" prefWidth="141.0" text=" Select Item :">
          <font>
-            <Font size="16.0" />
-         </font></Label>
-      <TextField fx:id="searchItem" layoutX="270.0" layoutY="82.0" prefHeight="32.0" prefWidth="174.0" promptText="bookID" />
-      <Button layoutX="465.0" layoutY="82.0" mnemonicParsing="false" onAction="#searchItem" prefHeight="32.0" prefWidth="89.0" text="Search" />
-      <Button fx:id="moveToCustomer" layoutX="14.0" layoutY="639.0" mnemonicParsing="false" onAction="#goToSelectCustomer" prefHeight="32.0" prefWidth="194.0" text="Move to Select Customer" />
+            <Font size="29.0" />
+         </font>
+      </MFXLabel>
    </children>
 </AnchorPane>

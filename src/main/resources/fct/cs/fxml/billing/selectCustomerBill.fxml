@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" prefHeight="685.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.SelectCustomerController">
+<AnchorPane fx:id="rootPane" prefHeight="685.0" prefWidth="555.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.SelectCustomerController">
    <children>
       <Label layoutX="2.0" layoutY="14.0" prefHeight="47.0" prefWidth="247.0" text="Select Customer :">
          <font>
@@ -25,6 +25,6 @@
         </columns>
       </TableView>
       <TextField fx:id="searchCustomer" layoutX="249.0" layoutY="98.0" prefHeight="36.0" prefWidth="178.0" />
-      <MFXButton fx:id="search" layoutX="453.0" layoutY="98.0" onAction="#searchCustomer" prefHeight="36.0" prefWidth="94.0" text="Search" />
+      <MFXButton fx:id="search" layoutX="445.0" layoutY="98.0" onAction="#searchCustomer" prefHeight="36.0" prefWidth="94.0" text="Search" />
    </children>
 </AnchorPane>
