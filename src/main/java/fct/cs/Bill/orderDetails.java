@@ -4,34 +4,33 @@ import java.sql.Date;
 
 public class orderDetails {
 
-    public int getOrder_detailedID() {
-        return order_detailedID;
-    }
 
-    public void setOrder_detailedID(int order_detailedID) {
-        this.order_detailedID = order_detailedID;
-    }
-
-    private int order_detailedID ;
+    private int order_detailedId ;
         private int book_id;
         private int order_id;
         private int quantity;
         private int unit_price;
         private int discount;
         private int totalForItem;
-        private Date date;
 
-        public orderDetails(int order_detailedID,int order_id, int book_id,  int quantity, int unit_price , Date date) {
 
-            this.order_detailedID = order_detailedID ;
+        public orderDetails(int order_detailedId,int order_id, int book_id,  int quantity, int unit_price ) {
+
+            this.order_detailedId = order_detailedId ;
             this.book_id = book_id;
             this.order_id = order_id;
             this.quantity = quantity;
             this.unit_price = unit_price;
             this.totalForItem = (unit_price*quantity) ;
-            this.date = date ;
-        }
 
+        }
+    public int getOrder_detailedID() {
+        return order_detailedId;
+    }
+
+    public void setOrder_detailedID(int order_detailedID) {
+        this.order_detailedId = order_detailedID;
+    }
         public int getBook_id() {
             return book_id;
         }
@@ -80,13 +79,8 @@ public class orderDetails {
             this.discount = discount;
         }
 
-        public Date getDate() {
-        return date;
-    }
 
-        public void setDate(Date date) {
-           this.date = date;
-          }
+
 
         @Override
         public String toString() {

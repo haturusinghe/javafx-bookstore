@@ -7,6 +7,7 @@ import fct.cs.dbUtil.DatabaseHandler;
 import fct.cs.Bill.orderDetails ;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class BillManager {
     private DatabaseConnector databaseConnector;
@@ -39,8 +40,9 @@ public class BillManager {
     }
 
 
+
     public boolean updateOrderDetailsEntry(orderDetails entry){
-        String addQuery = "insert into order_details (orderdetails order_id, book_id, quantity, unit_price, total_price ) values (?,?,?,?,?,?)";
+        String addQuery = "insert into order_details (order_details_id ,  order_id, book_id, quantity, unit_price,price ) values (?,?,?,?,?,?)";
         PreparedStatement preparedStatement = null;
         int count = 0;
         try {
@@ -58,6 +60,24 @@ public class BillManager {
         }
 
         return count > 0;
+    }
+    public ArrayList<orderDetails> getOrderDetailsEntryFromBill(ArrayList<Billdetails> array){
+        ArrayList<orderDetails> OrderDetailsList = new ArrayList<>();
+        for(Billdetails currentItem : array){
+
+            OrderDetailsList.add(new orderDetails(currentItem.getOrder_id(),
+                    currentItem.getBook_id(),
+                    getLastOrderId(),
+                    currentItem.getQuantity(),
+                    currentItem.getUnit_price()));
+
+
+//          int price   = currentItem.getTotalForItem();
+
+        }
+
+        return OrderDetailsList ;
+
     }
 
 

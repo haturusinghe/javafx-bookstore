@@ -325,10 +325,12 @@ public class BillingController {
 
     }
 
+
+
     public Order getOrderEntryFromBill(){
 
         int customer_id = Integer.parseInt(customerID.getText());
-         int employee_id = 1 ;
+        int employee_id = 1 ;
         Date order_date = getCurrentDate();
         int total_quantity = BillingObservableList.size();
         int total_discount = (Integer.parseInt(total.getText()) * Integer.parseInt(discount.getText()))/100;
