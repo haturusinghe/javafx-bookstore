@@ -60,7 +60,7 @@ public class BillManager {
 
         return count > 0;
     }
-    public ArrayList<orderDetails> getOrderDetailsEntryFromBill(ArrayList<Billdetails> array){
+    public ArrayList<orderDetails> getOrderDetailsEntryArray(ArrayList<Billdetails> array){
         ArrayList<orderDetails> OrderDetailsList = new ArrayList<>();
         for(Billdetails currentItem : array){
 
@@ -78,9 +78,11 @@ public class BillManager {
         return OrderDetailsList ;
 
     }
-    public void updateOrderDetailsByArray(ArrayList<orderDetails> OrderDetailsList){
+    public void updateOrderDetailsByArray(ArrayList<Billdetails> billDetailsList){
+        ArrayList<orderDetails>  array = new ArrayList<>();
+       array = getOrderDetailsEntryArray(billDetailsList);
 
-        for(orderDetails currentItem:OrderDetailsList ){
+        for(orderDetails currentItem:array ){
             updateOrderDetailsEntry(currentItem);
 
         }
