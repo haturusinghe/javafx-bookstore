@@ -1,5 +1,8 @@
 package fct.cs.Bill;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import com.mysql.cj.x.protobuf.MysqlxCrud;
 import fct.cs.data.Order;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -15,10 +18,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.kordamp.ikonli.javafx.FontIcon;
 import fct.cs.Bill.BillManager;
+
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -28,7 +35,12 @@ import java.util.ArrayList;
 
 
 public class BillingController {
+    @FXML
+    private StackPane stackPane;
 
+
+    @FXML
+    private AnchorPane Bill;
 
     @FXML
     private Button search;
@@ -55,8 +67,7 @@ public class BillingController {
     private Button cancel;
     @FXML
     private VBox content;
-    @FXML
-    private AnchorPane Bill;
+
 
 //    @FXML
 //    private AnchorPane Bill;
@@ -354,7 +365,17 @@ public class BillingController {
     public void ChargeCustomer(ActionEvent action){
 
         if(billDetails.size() == 0 ){
-            System.out.println("create a order!!");
+            JFXDialogLayout DialogLayout = new JFXDialogLayout();
+            JFXButton button = new JFXButton("Okay");
+            JFXDialog dialog = new JFXDialog( stackPane, DialogLayout , JFXDialog.DialogTransition.TOP);
+            button.setOnAction(e ->{
+                dialog.close();
+            });
+
+            DialogLayout.setHeading(new Label("Please Add Books to the Bill."));
+            DialogLayout.setActions(button);
+            dialog.show();
+
         }else {
             Order order = getOrderEntryFromBill();
             billManager.updateOrderEntry(order);
