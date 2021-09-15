@@ -1,5 +1,7 @@
 package fct.cs.Bill;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud;
+import fct.cs.data.Order;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +20,7 @@ import javafx.scene.paint.Color;
 import org.kordamp.ikonli.javafx.FontIcon;
 import fct.cs.Bill.BillManager;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -320,6 +323,20 @@ public class BillingController {
         customerID.setText("");
         moveToSelectCustomer();
 
+    }
+
+    public Order getOrderEntryFromBill(){
+
+        int customer_id = Integer.parseInt(customerID.getText());
+         int employee_id = 1 ;
+         String str = "2010/10/29" ;
+        Date order_date =Date.valueOf(str);
+        int total_quantity = BillingObservableList.size();
+        int total_discount = Integer.parseInt(total.getText())* Integer.parseInt(discount.getText());
+
+        int total_price = Integer.parseInt(finalTotal.getText());
+
+        return new Order(customer_id,employee_id,order_date,qty,total_quantity,total_discount,total_price);
     }
 
 

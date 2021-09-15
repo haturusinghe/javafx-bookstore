@@ -115,7 +115,6 @@ public class BillItemController implements Initializable {
                         parentController.getOrderDetails(entry.getItem_id(), entry.getItem_name() , entry.getUnit_price());
                         parentController.loadBillTable();
 
-
                     });
 
 
@@ -162,8 +161,6 @@ public class BillItemController implements Initializable {
             return title_matches;
         });
     }
-
-
             @FXML
         void searchItem(ActionEvent actionEvent) {
             String key = searchItem.getText();

@@ -21,7 +21,7 @@ public class BillManager {
     }
 
     public boolean addSingleEntry(orderDetails entry){
-        String addQuery = "insert into order_details (order_id, book_id, quantity, unit_price, total_price , order_date) values (?,?,?,?,?,?)";
+        String addQuery = "insert into order_details (orderdetails order_id, book_id, quantity, unit_price, total_price ) values (?,?,?,?,?,?)";
         PreparedStatement preparedStatement = null;
         int count = 0;
         try {
@@ -42,7 +42,7 @@ public class BillManager {
     }
 
 
-        private int getLastOrderId() {
+       public int getLastOrderId() {
             String query = "SELECT order_id FROM Order order by order_id desc limit 1";
             PreparedStatement preparedStatement = null;
             ResultSet resultSet;
@@ -55,8 +55,6 @@ public class BillManager {
                 return 0;
             }
         }
-
-
 
     public boolean updateQuantity(Billdetails entry){
         String updateQuery = "UPDATE inventory set qty = ? - qty,  where book_id = ?";
@@ -94,8 +92,6 @@ public class BillManager {
             e.printStackTrace();
             return 0;
         }
-
-
     }
     }
 
