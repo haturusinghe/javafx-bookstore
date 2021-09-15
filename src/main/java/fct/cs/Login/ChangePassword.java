@@ -58,9 +58,6 @@ public class ChangePassword implements Initializable {
     @FXML
     private MFXPasswordField fPasswordCheck;
 
-    @FXML
-    private Label fErrLabel;
-
     @Override
     public void initialize(URL location, ResourceBundle resources){
 
@@ -172,8 +169,7 @@ public class ChangePassword implements Initializable {
         );
 
         if (fUsername.isValid() && fAns.isValid() && fPasswordGet.isValid() && fPasswordCheck.isValid() && question != null) {
-            System.out.println(fPasswordGet.passwordProperty().getValue());
-            System.out.println(fPasswordGet.passwordProperty().getValueSafe());
+
             System.out.println("Form OK!");
 
             try {
