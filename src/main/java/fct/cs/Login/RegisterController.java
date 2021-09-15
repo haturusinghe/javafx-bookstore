@@ -182,13 +182,15 @@ public class RegisterController implements Initializable {
                 "You need re-enter your password"
         );
 
+
+
     }
 
     @FXML
     public void hLoginOnAction(ActionEvent event)throws IOException{
         Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/login.fxml"));
         Scene scene = new Scene(view);
-        System.out.println("Load Register Page");
+        System.out.println("Load Login Page");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
@@ -209,22 +211,21 @@ public class RegisterController implements Initializable {
             e.printStackTrace();
         }
 
-        passwordCheck.setValidated(true);
-        passwordCheck.getValidator().add(
-                BindingUtils.toProperty(
-                        passwordCheck.passwordProperty().isEqualTo(passwordGet.getPassword())
-                ),
-                "Passwords dont match"
-        );
-
 
         if (firstName.isValid() && lastName.isValid() && telNum.isValid() && emailAddress.isValid() &&
                 passwordGet.isValid() && passwordCheck.isValid() &&
                 ansField.isValid() && question !=null
         ) {
-            System.out.println(passwordGet.passwordProperty().getValue());
-            System.out.println(passwordGet.passwordProperty().getValueSafe());
+
             System.out.println("Form OK!");
+
+            passwordCheck.setValidated(true);
+            passwordCheck.getValidator().add(
+                    BindingUtils.toProperty(
+                            passwordCheck.passwordProperty().isEqualTo(passwordGet.getPassword())
+                    ),
+                    "Passwords dont match"
+            );
 
             try {
                 this.conn = DatabaseHandler.getInstance().getConn();
@@ -260,7 +261,7 @@ public class RegisterController implements Initializable {
 
                 ps_3.execute();
 
-
+                System.out.println("Account successfully registered");
 
                 Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/login.fxml"));
                 Scene scene = new Scene(view);
@@ -270,19 +271,24 @@ public class RegisterController implements Initializable {
                 window.show();
 
 
+
+
             } catch (SQLException e) {
                 e.printStackTrace();
+                System.out.println(e.getMessage());
+                MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Warning", e.getMessage());
+                dialog.show();
 
             }catch (IOException e) {
                 e.printStackTrace();
 
             }
-            System.out.println("Account successfully registered");
+
 
 
         }else {
             System.out.println("Check Again");
-            MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Fill Registration Form", "Please fill all the fields in the above form");
+            MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Warning", "Please fill all the fields in the above form");
             dialog.show();
         }
 
