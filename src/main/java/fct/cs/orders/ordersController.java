@@ -2,11 +2,13 @@ package fct.cs.orders;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.events.JFXDrawerEvent;
+import fct.cs.NewEmployee.EmployeeData;
 import fct.cs.NewEmployee.EmployeeFormController;
 import fct.cs.data.Category;
-import io.github.palexdev.materialfx.controls.MFXTableView;
+import io.github.palexdev.materialfx.controls.*;
 import io.github.palexdev.materialfx.controls.cell.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
+import io.github.palexdev.materialfx.controls.enums.Styles;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +22,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import fct.cs.orders.orderDetailsController;
 import fct.cs.orders.orderDetailsData;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,10 +41,56 @@ public class ordersController implements Initializable {
     private ObservableList<Category> categoryList = FXCollections.observableArrayList();
 
 
+    private final MFXTextField searchField = new MFXTextField();
+    private final MFXComboBox<String> searchCombo = new MFXComboBox<>();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getOrderData();
         setColumnProps();
+
+        MFXtblOrderTable.setHeaderSupplier(() -> {
+            HBox mainContainer = new HBox();
+            mainContainer.setPrefHeight(50);
+            mainContainer.setPrefWidth(1030);
+            mainContainer.setAlignment(Pos.CENTER_LEFT);
+            mainContainer.setPadding(new Insets(10,0,5,5));
+
+            HBox spanMid = new HBox();
+            spanMid.setMinWidth(610);
+            spanMid.setMinHeight(50);
+
+            HBox spanEnd = new HBox();
+            spanEnd.setMinHeight(50);
+            spanEnd.setMaxWidth(10);
+
+            HBox searchContainer = new HBox(10);
+            searchContainer.setMinHeight(50);
+            searchContainer.setAlignment(Pos.CENTER_RIGHT);
+            searchField.setPromptText("Search Employees");
+            searchField.setIcon(new MFXIconWrapper(new MFXFontIcon("mfx-search", 28, Color.web("#4D4D4D")), 24));
+            searchField.setIconInsets(new Insets(0,0,10,0));
+            searchField.setMinHeight(50);
+            searchField.setStyle("-fx-font-size: 18px;");
+
+            searchField.setOnKeyTyped(actionEvent -> {
+                orderFilteredList = new FilteredList<ordersInfo>(orderObservableList);
+                thisController.searchTableFromText(searchField.getText());
+                MFXtblOrderTable.setItems(orderObservableList);
+            });
+
+            /*MFXLabel testLabel = new MFXLabel("Header");
+            HBox holderHbox = new HBox();
+            holderHbox.getChildren().addAll(testLabel);
+            holderHbox.setMaxWidth(Region.USE_PREF_SIZE);
+            VBox box = new VBox(holderHbox);
+            box.setAlignment(Pos.CENTER_RIGHT);*/
+
+            searchContainer.getChildren().addAll(searchField);
+            mainContainer.getChildren().addAll(searchContainer,spanMid,spanEnd);
+            return mainContainer;
+        });
+
     }
 
     public void getOrderData() {
@@ -125,6 +174,16 @@ public class ordersController implements Initializable {
 
     public void hideDrawer(JFXDrawerEvent jfxDrawerEvent) {
         JFXDrawerdrawer.toBack();
+    }
+
+    public void searchTableFromText(String key) {
+        System.out.println("Searching ...");
+        orderFilteredList.setPredicate(orderData -> {
+            String filter = key.toLowerCase();
+            boolean nameMatches = String.valueOf(orderData.getOrder_id()).toLowerCase().contains(filter)
+                    ||String.valueOf(orderData.getOrder_date()).toLowerCase().contains(filter);
+            return nameMatches;
+        });
     }
 
 }
