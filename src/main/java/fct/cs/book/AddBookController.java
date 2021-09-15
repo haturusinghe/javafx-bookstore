@@ -2,11 +2,10 @@ package fct.cs.book;
 
 import com.jfoenix.controls.JFXDrawer;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-
-import java.awt.event.ActionEvent;
 
 public class AddBookController {
 
@@ -26,10 +25,13 @@ public class AddBookController {
     private TextField isbn_txtField;
 
     @FXML
-    private HBox author_hbox;
+    private HBox author_category_hbox;
 
     @FXML
-    private TextField author_txtField;
+    private TextField authorid_txtField;
+
+    @FXML
+    private TextField categoryid_txtField1;
 
     @FXML
     private HBox publisher_hbox;
@@ -38,10 +40,16 @@ public class AddBookController {
     private TextField publisher_txtField;
 
     @FXML
-    private TextField category_txtField;
+    private HBox mrp_lang_hbox;
+
+    @FXML
+    private TextField mrp_txtField;
 
     @FXML
     private TextField language_txtField;
+
+    @FXML
+    private HBox pages_year_hbox;
 
     @FXML
     private TextField pages_txtField;
@@ -75,6 +83,66 @@ public class AddBookController {
 
     public void setDrawer(JFXDrawer drawer) {
         this.drawer = drawer;
+    }
+
+    public void updateBook(ActionEvent actionEvent) {
+        BookData bookData = getEntry();
+        if (isAddingNew) {
+            BookManager.addSingleBook(bookData);
+        } else {
+            BookManager.updateBook(bookData);
+        }
+        parentController.getBookData();
+        drawer.close();
+
+    }
+
+    private BookData getEntry() {
+        BookData e = new BookData(
+                book_title_txtField.getText(),
+                Integer.parseInt(id_txtField.getText()),
+                isbn_txtField.getText(),
+                Integer.parseInt(authorid_txtField.getText()),
+                Integer.parseInt(categoryid_txtField1.getText()),
+                publisher_txtField.getText(),
+                Integer.parseInt(mrp_txtField.getText()),
+                language_txtField.getText(),
+                Integer.parseInt(pages_txtField.getText()),
+                Integer.parseInt(year_txtField.getText()),
+                description_txtField.getText()
+        );
+
+        return e;
+    }
+
+
+    public void setEntry(BookData bookData) {
+        resetForm();
+        book_title_txtField.setText(bookData.getTitle());
+        id_txtField.setText(String.valueOf(bookData.getBook_id()));
+        isbn_txtField.setText(bookData.getIsbn());
+        authorid_txtField.setText(String.valueOf(bookData.getAuthor_id()));
+        categoryid_txtField1.setText(String.valueOf(bookData.getCategory_id()));
+        publisher_txtField.setText(bookData.getPublisher());
+        mrp_txtField.setText(String.valueOf(bookData.getMrp()));
+        language_txtField.setText(bookData.getLang());
+        pages_txtField.setText(String.valueOf(bookData.getNum_pages()));
+        year_txtField.setText(String.valueOf(bookData.getB_year()));
+        description_txtField.setText(bookData.getBook_description());
+    }
+
+    private void resetForm() {
+        book_title_txtField.clear();
+        id_txtField.clear();
+        isbn_txtField.clear();
+        authorid_txtField.clear();
+        categoryid_txtField1.clear();
+        publisher_txtField.clear();
+        mrp_txtField.clear();
+        language_txtField.clear();
+        pages_txtField.clear();
+        year_txtField.clear();
+        description_txtField.clear();
     }
 
     public void setAddingNew(boolean b) {

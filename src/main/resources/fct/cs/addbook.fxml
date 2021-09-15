@@ -63,12 +63,23 @@
                </children>
             </HBox>
             <Separator prefWidth="200.0" />
-            <HBox fx:id="author_hbox">
+            <HBox fx:id="author_category_hbox" alignment="CENTER" layoutX="40.0" layoutY="104.0">
                <children>
                   <VBox>
                      <children>
-                        <Label styleClass="textLabel" text="Author" />
-                        <TextField fx:id="author_txtField" />
+                        <Label styleClass="textLabel" text="Author ID" />
+                        <TextField fx:id="authorid_txtField">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" />
+                  <VBox>
+                     <children>
+                        <Label styleClass="textLabel" text="Category ID" />
+                        <TextField fx:id="categoryid_txtField1" />
                      </children>
                   </VBox>
                </children>
@@ -85,7 +96,7 @@
                </children>
             </HBox>
             <Separator prefWidth="200.0" />
-            <HBox>
+            <HBox fx:id="mrp_lang_hbox">
                <children>
                   <VBox>
                      <HBox.margin>
@@ -94,8 +105,8 @@
                      <children>
                         <VBox>
                            <children>
-                              <Label styleClass="textLabel" text="Category" />
-                              <TextField fx:id="category_txtField" prefHeight="35.0" prefWidth="222.0" />
+                              <Label styleClass="textLabel" text="Mrp" />
+                              <TextField fx:id="mrp_txtField" prefHeight="35.0" prefWidth="222.0" />
                            </children>
                         </VBox>
                      </children>
@@ -120,7 +131,7 @@
                </VBox.margin>
             </HBox>
             <Separator prefWidth="200.0" />
-            <HBox alignment="CENTER" layoutX="50.0" layoutY="383.0">
+            <HBox fx:id="pages_year_hbox" alignment="CENTER" layoutX="50.0" layoutY="383.0">
                <children>
                   <VBox>
                      <children>
@@ -158,7 +169,7 @@
       </VBox>
       <HBox alignment="CENTER" prefHeight="56.0" prefWidth="500.0" spacing="20.0">
          <children>
-            <MFXButton fx:id="submitBtn" styleClass="bottomButtons" text="Submit">
+            <MFXButton fx:id="submitBtn" onAction="#updateBook" styleClass="bottomButtons" text="Submit">
                <graphic>
                   <FontIcon fill="#565398" iconLiteral="cil-taxi" iconSize="20" />
                </graphic></MFXButton>
