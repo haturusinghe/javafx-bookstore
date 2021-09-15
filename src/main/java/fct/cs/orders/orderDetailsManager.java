@@ -26,9 +26,7 @@ public class orderDetailsManager {
 
     private static ResultSet getOrderDetFromDatabase(int entriesPerPage, int pageNumber) {
         int offset = entriesPerPage * (pageNumber - 1);
-        String query = "SELECT order_details.order_detail_id,order_details.book_id,order_details.order_id," +
-                "order_details.quantity,order_details.unit_price,order_details.price" +
-                " ,book.book.title, FROM order_details JOIN book ON book.book_id=order_details.book_id WHERE order_id = ?";
+        String query = "SELECT order_details.order_detail_id,order_details.book_id,order_details.order_id, order_details.quantity,order_details.unit_price,order_details.price ,book.title FROM order_details JOIN book ON book.book_id=order_details.book_id WHERE order_id = ?";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
         try {
@@ -58,10 +56,10 @@ public class orderDetailsManager {
                             String.valueOf(rs.getInt("order_detail_id")),
                             String.valueOf(rs.getInt("book_id")),
                             String.valueOf(rs.getInt("order_id")),
-                            rs.getString("title"),
                             rs.getInt("quantity"),
                             rs.getInt("unit_price"),
-                            rs.getInt("tprice")
+                            rs.getInt("price"),
+                            rs.getString("title")
 
                     ));
                 }

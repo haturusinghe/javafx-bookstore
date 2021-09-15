@@ -33,6 +33,9 @@ public class ordersInfo {
         setTotal_discount(tdiscount);
     }
 
+    public ordersInfo(String order_detail_id, String book_id, String order_id, int quantity, int unit_price, int tprice, String title) {
+    }
+
     public String getOrder_id() {
         return order_id.get();
     }

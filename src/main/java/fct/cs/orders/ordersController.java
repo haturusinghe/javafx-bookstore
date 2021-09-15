@@ -88,8 +88,7 @@ public class ordersController implements Initializable {
             rowCell.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/order-details.fxml"));
-                    VBox box = loader.
-                            load();
+                    VBox box = loader.load();
                     orderDetailsController controller = loader.getController();
 
                     controller.setParentController(thisController);

@@ -52,8 +52,8 @@ public class orderDetailsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        getOrderDetData();
         setDetColumnProps();
+        getOrderDetData();
     }
 
     private void setDetColumnProps() {
