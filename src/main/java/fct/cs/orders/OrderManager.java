@@ -48,7 +48,7 @@ public class OrderManager {
         }
     }
 
-    private static ArrayList<ordersInfo> createOrderList(ResultSet rs) {
+    public static ArrayList<ordersInfo> createOrderList(ResultSet rs) {
         ArrayList<ordersInfo> orderList = new ArrayList<>();
         try {
 //            order_id INT PRIMARY KEY,
