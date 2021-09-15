@@ -13,7 +13,6 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
@@ -30,7 +29,6 @@ import java.util.Comparator;
 import java.util.ResourceBundle;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 public class NewEmployeeController implements Initializable {
     public MFXTableView empTable;
@@ -126,12 +124,12 @@ public class NewEmployeeController implements Initializable {
                 employeeObservableList.add(e);
 
             }
-            empTable.setItems(employeeObservableList);
         });
+        setTableData();
 
     }
 
-    private void setDataData() {
+    private void setTableData() {
         empTable.setItems(employeeObservableList);
     }
 
