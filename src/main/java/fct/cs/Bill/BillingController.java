@@ -336,7 +336,7 @@ public class BillingController {
 
         int total_price = Integer.parseInt(finalTotal.getText());
 
-        return new Order(customer_id,employee_id,order_date,qty,total_quantity,total_discount,total_price);
+        return new Order(customer_id,employee_id,order_date,total_quantity,total_discount,total_price);
     }
 
 
