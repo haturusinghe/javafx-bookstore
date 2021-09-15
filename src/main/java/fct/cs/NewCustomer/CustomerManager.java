@@ -98,7 +98,7 @@ public class CustomerManager {
     }
 
     public static boolean addSingleCustomer(CustomerData entry){
-        String addQuery = "insert into customer (customer_id, customer_name, location, mobile, email) values (?,?,?,?,?,?,?)";
+        String addQuery = "insert into customer (customer_id, customer_name, location, mobile, email) values (?,?,?,?,?)";
         PreparedStatement preparedStatement = null;
         int count = 0;
         try {

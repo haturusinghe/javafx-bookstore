@@ -16,7 +16,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("main-dash"),1280,720);
+        scene = new Scene(loadFXML("new-customer-page"),1280,720);
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
         AppUtils.enableDrag(scene,stage);

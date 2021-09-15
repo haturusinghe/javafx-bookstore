@@ -163,7 +163,7 @@ public class NewCustomerController implements Initializable {
 
         public void addNewEntry(ActionEvent actionEvent) {
                 try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/employee-form.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/customer-form.fxml"));
                         VBox box = loader.load();
                         CustomerFormController controller = loader.getController();
 
