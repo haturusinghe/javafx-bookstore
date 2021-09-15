@@ -274,10 +274,7 @@ public class BillingController {
             }
         }
 
-        public void removeBook(int bookID){
 
-
-        }
         if (!alreadyAdded) {
 
 
@@ -308,10 +305,7 @@ public class BillingController {
         int disc = Integer.parseInt(discount.getText());
 
         return (total - (total * disc) / 100);
-
-
     }
-
 
     public void addDiscount(ActionEvent action) {
 

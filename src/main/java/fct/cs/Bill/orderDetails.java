@@ -4,7 +4,15 @@ import java.sql.Date;
 
 public class orderDetails {
 
+    public int getOrder_detailedID() {
+        return order_detailedID;
+    }
 
+    public void setOrder_detailedID(int order_detailedID) {
+        this.order_detailedID = order_detailedID;
+    }
+
+    private int order_detailedID ;
         private int book_id;
         private int order_id;
         private int quantity;
@@ -13,7 +21,9 @@ public class orderDetails {
         private int totalForItem;
         private Date date;
 
-        public orderDetails(int order_id, int book_id,  int quantity, int unit_price , Date date) {
+        public orderDetails(int order_detailedID,int order_id, int book_id,  int quantity, int unit_price , Date date) {
+
+            this.order_detailedID = order_detailedID ;
             this.book_id = book_id;
             this.order_id = order_id;
             this.quantity = quantity;
