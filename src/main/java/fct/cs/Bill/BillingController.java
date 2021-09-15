@@ -329,8 +329,7 @@ public class BillingController {
 
         int customer_id = Integer.parseInt(customerID.getText());
          int employee_id = 1 ;
-         String str = "2010/10/29" ;
-        Date order_date =Date.valueOf(str);
+        Date order_date = getCurrentDate();
         int total_quantity = BillingObservableList.size();
         int total_discount = Integer.parseInt(total.getText())* Integer.parseInt(discount.getText());
 
@@ -339,6 +338,11 @@ public class BillingController {
         return new Order(customer_id,employee_id,order_date,total_quantity,total_discount,total_price);
     }
 
+    public Date getCurrentDate(){
+        long millis=System.currentTimeMillis();
+
+        return new Date(millis);
+    }
 
 }
 
