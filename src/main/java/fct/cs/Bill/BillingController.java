@@ -175,10 +175,17 @@ public class BillingController {
                             System.out.println(getTableView().getSelectionModel().getSelectedItem().toString());
 
                             for (Billdetails currentItem : billDetails) {
-                                if (entry.getBook_id() == currentItem.getBook_id()) {
 
-                                    billDetails.remove(currentItem);
-                                    break;
+                                if (entry.getBook_id() == currentItem.getBook_id()) {
+                                    if (currentItem.getQuantity() > 1 ) {
+                                        currentItem.setQuantity(currentItem.getQuantity() - 1);
+                                        break;
+                                    }else{
+                                        billDetails.remove(currentItem);
+                                        break;
+                                    }
+
+
                                 }
                             }
 
