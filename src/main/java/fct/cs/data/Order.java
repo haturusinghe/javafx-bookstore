@@ -20,6 +20,15 @@ public class Order {
         this.total_price = total_price;
         this.total_discount = total_discount;
     }
+    public Order(int customer_id, int employee_id, Date order_date, int total_quantity,int total_discount,int total_price) {
+        this.customer_id = customer_id;
+        this.employee_id = employee_id;
+        this.order_date = order_date;
+        this.total_quantity = total_quantity;
+        this.total_discount = total_discount;
+        this.total_price = total_price;
+
+    }
 
     public int getOrder_id() {
         return order_id;

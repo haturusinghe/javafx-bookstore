@@ -119,6 +119,21 @@ public class mainPageController implements Initializable {
             System.out.println("already loaded");
         }
     }
+    public void loadBillingPage(ActionEvent actionEvent) {
+        if (!currentPage.equals("Billing")) {
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/Billing.fxml"));
+            try {
+                mainContent_vbox.getChildren().clear();
+                mainContent_vbox.getChildren().add(loader.load());
+                currentPage = "Billing";
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("already loaded");
+        }
+    }
+
 
     public void exit(ActionEvent actionEvent) {
         System.exit(0);
