@@ -111,6 +111,8 @@ public class ChangePassword implements Initializable {
                 "Must contain at least one among these: ?!@()[]{}-_"
         );
 
+
+
     }
 
     private Connection conn;
@@ -222,22 +224,63 @@ public class ChangePassword implements Initializable {
 
                                 Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/login.fxml"));
                                 Scene scene = new Scene(view);
-                                System.out.println("Load Login Page");
-//                               Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+                                System.out.println("Password changed\nLoad Login Page");
                                 Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                                 window.setScene(scene);
                                 window.show();
 
                             } catch (Exception e) {
-
+                                e.printStackTrace();
                             }
                         }
 
 
                     } else {
 
+                        System.out.println("Check Again");
+                        MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Warning", "Wrong Answer, please try again");
+                        dialog.show();
 
                     }
+
+                }else if (rs_2.next()) {
+                    String storedAnswer = rs_2.getString("ans");
+                    Integer id = rs_2.getInt(1);
+                    boolean matchedAnswer = decrypt.validateString(answer, storedAnswer);
+                    boolean changePass = correctAns(passwordEncrypt, id);
+
+                    if (matchedAnswer == true) {
+
+                        if (changePass == true) {
+
+                            try {
+
+                                Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/login.fxml"));
+                                Scene scene = new Scene(view);
+                                System.out.println("Password changed\nLoad Login Page");
+                                Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                                window.setScene(scene);
+                                window.show();
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+
+                    } else {
+
+                        System.out.println("Check Again");
+                        MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Warning", "Wrong Answer, please try again");
+                        dialog.show();
+
+                    }
+
+                }else {
+
+                    System.out.println("Check Again");
+                    MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Warning", "User doesn't exist");
+                    dialog.show();
 
                 }
             } catch (SQLException | NoSuchAlgorithmException | InvalidKeySpecException throwables) {
@@ -251,4 +294,9 @@ public class ChangePassword implements Initializable {
 
         }
     }
+
+    public void close(ActionEvent actionEvent) {
+        System.exit(0);
+    }
+
 }
