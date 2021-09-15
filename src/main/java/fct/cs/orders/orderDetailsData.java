@@ -21,7 +21,7 @@ public class orderDetailsData {
     private final IntegerProperty unit_price = new SimpleIntegerProperty(0);
     private final IntegerProperty price = new SimpleIntegerProperty(0);
 
-    public orderDetailsData(String orderDetId,String bookId,String orderId,String title,int qty,int unitPrice,int price){
+    public orderDetailsData(String orderDetId, String bookId, String orderId, String title, int qty, int unitPrice, int price){
         setOrder_detail_id(orderDetId);
         setBook_id(bookId);
         setOrder_id(orderId);
