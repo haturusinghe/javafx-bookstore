@@ -49,7 +49,19 @@ public class NewCustomerController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getCustomerData();
         setColumnProps();
-        customerTable.setMaxWidth(1000);
+        setColumnSize();
+    }
+
+    private void setColumnSize() {
+        ObservableList<MFXTableColumn> cols = customerTable.getTableColumns();
+        for (MFXTableColumn col : cols) {
+//            col.setResizable(false);
+
+            if (col.getText() != "") {
+                col.setShowLockIcon(false);
+                col.setMinWidth(50);
+            }
+        }
     }
 
     public void getCustomerData() {
@@ -83,9 +95,9 @@ public class NewCustomerController implements Initializable {
         mobileColumn.setRowCellFunction(customer -> new MFXTableRowCell(String.valueOf(customer.getmobile())));
         emailColumn.setRowCellFunction(customer -> new MFXTableRowCell(String.valueOf(customer.getemail())));
 
-/*
+
                 updateColumn.setMinWidth(100);
-                updateColumn.setShowLockIcon(false);*/
+                updateColumn.setShowLockIcon(false);
         updateColumn.setRowCellFunction(customerData -> {
             MFXTableRowCell rowCell = new MFXTableRowCell("Update");
             rowCell.setGraphicTextGap(5);

@@ -30,7 +30,7 @@
                         </HBox>
                   <VBox alignment="CENTER_RIGHT">
                      <children>
-                              <MFXTableView fx:id="customerTable" fixedRowsHeight="40.0" maxHeight="685.0" maxRowsPerPage="10" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" />
+                              <MFXTableView fx:id="customerTable" fixedRowsHeight="40.0" headerHeight="60.0" maxHeight="685.0" maxRowsPerPage="10" maxWidth="1030.0" minHeight="600.0" minWidth="1030.0" prefHeight="685.0" prefWidth="1030.0" />
                      </children>
                   </VBox>
                     </children>
