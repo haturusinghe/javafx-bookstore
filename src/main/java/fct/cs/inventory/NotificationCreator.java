@@ -25,8 +25,8 @@ public class NotificationCreator {
 
     private static ArrayList<StockEntry> lowItems = new ArrayList<>();
 
-    public static void setLowItems(ArrayList<StockEntry> lowItems) {
-        lowItems = lowItems;
+    public static void setLowItems(ArrayList<StockEntry> items) {
+        lowItems = items;
     }
 
     @FXML
