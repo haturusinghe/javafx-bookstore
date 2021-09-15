@@ -1,7 +1,9 @@
 package fct.cs.Bill;
 
 import fct.cs.dbUtil.DatabaseConnector;
+import fct.cs.dbUtil.DatabaseHandler;
 
+import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,9 +15,8 @@ public class ItemManager extends CustomerManager {
     private DatabaseConnector databaseConnector;
     private Connection conn;
 
-    public ItemManager() {
-        databaseConnector = new DatabaseConnector();
-        this.conn = databaseConnector.getConn();
+    public ItemManager() throws SQLException {
+        this.conn = DatabaseHandler.getInstance().getConn();
     }
 
     public ResultSet getItemFromDatabase() {

@@ -15,8 +15,11 @@ public class BillManager {
 
     public BillManager() {
 
-        databaseConnector = new DatabaseConnector();
-        this.conn = databaseConnector.getConn();
+        try {
+            this.conn = DatabaseHandler.getInstance().getConn();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     public boolean updateOrderEntry(Order entry){
         String addQuery = "insert into orders(   customer_id , employee_id,order_date,total_quantity, total_price, total_discount ) values (?,?,?,?,?,?)";
@@ -40,7 +43,7 @@ public class BillManager {
     }
 
     public boolean updateOrderDetailsEntry(orderDetails entry){
-        String addQuery = "insert into order_details (order_detail_id ,order_id, book_id, quantity, unit_price,price ) values (?,?,?,?,?,?)";
+        String addQuery = "insert into order_details (order_detail_id ,order_id, book_id, quantity, unit_price, price) values (?,?,?,?,?,?)";
         PreparedStatement preparedStatement = null;
         int count = 0;
         try {

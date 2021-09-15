@@ -176,7 +176,7 @@ public class SelectCustomerController implements Initializable {
 
     @FXML
     private void sendToBillingScene(String name) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/selectItemsForBill.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/billing/selectItemsForBill.fxml"));
         Parent root = loader.load();
         BillingController = loader.getController();
 
