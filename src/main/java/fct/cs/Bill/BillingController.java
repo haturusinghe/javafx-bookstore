@@ -365,16 +365,7 @@ public class BillingController {
     public void ChargeCustomer(ActionEvent action){
 
         if(billDetails.size() == 0 ){
-            JFXDialogLayout DialogLayout = new JFXDialogLayout();
-            JFXButton button = new JFXButton("Okay");
-            JFXDialog dialog = new JFXDialog( stackPane, DialogLayout , JFXDialog.DialogTransition.TOP);
-            button.setOnAction(e ->{
-                dialog.close();
-            });
 
-            DialogLayout.setHeading(new Label("Please Add Books to the Bill."));
-            DialogLayout.setActions(button);
-            dialog.show();
 
         }else {
             Order order = getOrderEntryFromBill();
@@ -387,7 +378,18 @@ public class BillingController {
 
     }
 
+    public void ErrorShow(String str){
+        JFXDialogLayout DialogLayout = new JFXDialogLayout();
+        JFXButton button = new JFXButton("Okay");
+        JFXDialog dialog = new JFXDialog( stackPane, DialogLayout , JFXDialog.DialogTransition.TOP);
+        button.setOnAction(e ->{
+            dialog.close();
+        });
 
+        DialogLayout.setHeading(new Label(str));
+        DialogLayout.setActions(button);
+        dialog.show();
+    }
 
 }
 

@@ -1,5 +1,8 @@
 package fct.cs.Bill;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -183,6 +186,8 @@ public class BillItemController implements Initializable {
 
 
 //        }
+
+
 public void goToSelectCustomer(ActionEvent action){
         parentController.moveToSelectCustomer();
 
