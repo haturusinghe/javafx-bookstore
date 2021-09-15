@@ -2,6 +2,7 @@ package fct.cs.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import fct.cs.Dash.DashController;
+import fct.cs.NewCustomer.NewCustomerController;
 import fct.cs.inventory.InventoryController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -151,7 +152,30 @@ public class mainPageController implements Initializable {
         }
     }
 
+    public void loadCustomerPage() {
+        if (!currentPage.equals("customer")) {
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/new-customer-page.fxml"));
+            try {
+                mainContent_vbox.getChildren().clear();
+                mainContent_vbox.getChildren().add(loader.load());
+                NewCustomerController controller = loader.getController();
+                controller.setManager(isManager);
+                currentPage = "customer";
+                setHeaderText("Manage Customers");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("already loaded");
+        }
+    }
+
     public void loadBilling(ActionEvent actionEvent) {
+
+    }
+
+    public void loadCustomer(ActionEvent actionEvent) {
+        loadCustomerPage();
     }
 
     public void reportsPage(ActionEvent actionEvent) {
