@@ -1,64 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXDrawer?>
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
-<?import io.github.palexdev.materialfx.controls.MFXLabel?>
 <?import io.github.palexdev.materialfx.controls.MFXTableView?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <VBox alignment="TOP_CENTER" prefHeight="685.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.orders.ordersController">
     <children>
         <StackPane fx:id="stackPane" prefHeight="684.0" prefWidth="1030.0" VBox.vgrow="ALWAYS">
             <children>
-                <JFXDrawer fx:id="JFXDrawerdrawer" defaultDrawerSize="800.0" direction="RIGHT" minHeight="600.0" minWidth="1500.0" />
+                <JFXDrawer fx:id="JFXDrawerdrawer" defaultDrawerSize="800.0" direction="RIGHT" minHeight="600.0" minWidth="300.0" />
                 <VBox alignment="BOTTOM_CENTER">
                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="95.0" prefWidth="1030.0" spacing="20.0">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                            </padding>
-                     <children>
-                        <MFXLabel text="Search By:">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </MFXLabel>
-                        <TextField fx:id="txtOrderId" prefHeight="40.0" prefWidth="96.0" promptText="Order ID">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="txtEmployeeId" prefHeight="40.0" prefWidth="126.0" promptText="Employee ID">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="txtCustomerId" prefHeight="40.0" prefWidth="122.0" promptText="Customer ID">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </TextField>
-                        <MFXDatePicker fx:id="MFXdatePickDate" lineColor="#0c011eb2" maxHeight="-Infinity" maxWidth="-Infinity" pickerColor="#0a0118" prefHeight="30.0" prefWidth="110.0" />
-                        <MFXButton fx:id="btnAnalyz" alignment="CENTER" prefHeight="26.0" prefWidth="109.0" text="Analyz">
-                           <HBox.margin>
-                              <Insets left="70.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </MFXButton>
-                     </children>
-                        </HBox>
-                        <MFXTableView fx:id="MFXtblOrderTable" fixedRowsHeight="40.0" maxHeight="600.0" maxRowsPerPage="10" minHeight="600.0" minWidth="1500.0" />
+                        <MFXTableView fx:id="MFXtblOrderTable" fixedRowsHeight="40.0" maxHeight="682.0" maxRowsPerPage="10" minHeight="600.0" minWidth="1030.0" prefHeight="682.0" prefWidth="1030.0" />
                     </children>
                 </VBox>
             </children>
