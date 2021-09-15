@@ -47,12 +47,13 @@ public class BillManager {
         int count = 0;
         try {
             preparedStatement = conn.prepareStatement(addQuery);
-            preparedStatement.setInt(1,entry.getOrder_id());
-            preparedStatement.setInt(2,entry.getBook_id());
-            preparedStatement.setInt(3,entry.getQuantity());
-            preparedStatement.setInt(4,entry.getUnit_price());
-            preparedStatement.setInt(5,entry.getTotalForItem());
-            preparedStatement.setDate(6,entry.getDate());
+            preparedStatement.setInt(1,entry.getOrder_detailedID());
+            preparedStatement.setInt(2,entry.getOrder_id());
+            preparedStatement.setInt(3,entry.getBook_id());
+            preparedStatement.setInt(4,entry.getQuantity());
+            preparedStatement.setInt(5,entry.getUnit_price());
+            preparedStatement.setInt(6,entry.getTotalForItem());
+
 
             count = preparedStatement.executeUpdate();
         } catch (SQLException e) {
