@@ -48,6 +48,7 @@ public class ordersController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getOrderData();
         setColumnProps();
+        setColumnSize();
 
         MFXtblOrderTable.setHeaderSupplier(() -> {
             HBox mainContainer = new HBox();
@@ -67,7 +68,7 @@ public class ordersController implements Initializable {
             HBox searchContainer = new HBox(10);
             searchContainer.setMinHeight(50);
             searchContainer.setAlignment(Pos.CENTER_RIGHT);
-            searchField.setPromptText("Search Employees");
+            searchField.setPromptText("Search By Date");
             searchField.setIcon(new MFXIconWrapper(new MFXFontIcon("mfx-search", 28, Color.web("#4D4D4D")), 24));
             searchField.setIconInsets(new Insets(0,0,10,0));
             searchField.setMinHeight(50);
@@ -76,7 +77,7 @@ public class ordersController implements Initializable {
             searchField.setOnKeyTyped(actionEvent -> {
                 orderFilteredList = new FilteredList<ordersInfo>(orderObservableList);
                 thisController.searchTableFromText(searchField.getText());
-                MFXtblOrderTable.setItems(orderObservableList);
+                MFXtblOrderTable.setItems(orderFilteredList);
             });
 
             /*MFXLabel testLabel = new MFXLabel("Header");
@@ -180,10 +181,20 @@ public class ordersController implements Initializable {
         System.out.println("Searching ...");
         orderFilteredList.setPredicate(orderData -> {
             String filter = key.toLowerCase();
-            boolean nameMatches = String.valueOf(orderData.getOrder_id()).toLowerCase().contains(filter)
-                    ||String.valueOf(orderData.getOrder_date()).toLowerCase().contains(filter);
+            boolean nameMatches = /*String.valueOf(orderData.getOrder_id()).toLowerCase().contains(filter) ||*/
+                    String.valueOf(orderData.getOrder_date()).toLowerCase().contains(filter);
             return nameMatches;
         });
+    }
+
+    private void setColumnSize() {
+        ObservableList<MFXTableColumn> cols =  MFXtblOrderTable.getTableColumns();
+        for (MFXTableColumn col : cols) {
+            if (col.getText() != "") {
+                col.setShowLockIcon(false);
+                col.setMinWidth(30);
+            }
+        }
     }
 
 }
