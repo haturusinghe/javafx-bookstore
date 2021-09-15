@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.scene.control.Label?>
+<?import io.github.palexdev.materialfx.controls.MFXLabel?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -10,11 +10,6 @@
 
 <AnchorPane fx:id="rootPane" prefHeight="685.0" prefWidth="555.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.SelectCustomerController">
    <children>
-      <Label layoutX="2.0" layoutY="14.0" prefHeight="47.0" prefWidth="247.0" text="Select Customer :">
-         <font>
-            <Font size="29.0" />
-         </font>
-      </Label>
       <TableView fx:id="customerTable" layoutX="14.0" layoutY="150.0" onMouseClicked="#displayCustomerInBill" prefHeight="503.0" prefWidth="526.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="44.0" text="id" />
@@ -26,5 +21,10 @@
       </TableView>
       <TextField fx:id="searchCustomer" layoutX="249.0" layoutY="98.0" prefHeight="36.0" prefWidth="178.0" />
       <MFXButton fx:id="search" layoutX="445.0" layoutY="98.0" onAction="#searchCustomer" prefHeight="36.0" prefWidth="94.0" text="Search" />
+      <MFXLabel layoutY="14.0" prefHeight="47.0" prefWidth="141.0" text=" Select  Customer :">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </MFXLabel>
    </children>
 </AnchorPane>
