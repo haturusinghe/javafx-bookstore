@@ -63,7 +63,7 @@ public class CustomerManager {
     }
 
     public static boolean updateCustomer(CustomerData entry) {
-        String updateQuery = "UPDATE customer set customer_name = ?, location = ?, mobile = ?,email = ? = ? where customer_id = ?";
+        String updateQuery = "UPDATE customer set customer_name = ?, location = ?, mobile = ?,email = ? where customer_id = ?";
         //customer_id, customer_name ,location , mobile, email
         PreparedStatement preparedStatement = null;
         int count = 0;

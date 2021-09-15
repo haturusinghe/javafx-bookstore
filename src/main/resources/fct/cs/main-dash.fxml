@@ -69,7 +69,7 @@
                                     </graphic>
                                 </JFXButton>
                                 <JFXButton minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button"
-                                           text="Customers">
+                                           text="Customers" onAction="#loadCustomer">
                                     <graphic>
                                         <FontIcon fill="WHITE" iconLiteral="anto-team" iconSize="20"/>
                                     </graphic>

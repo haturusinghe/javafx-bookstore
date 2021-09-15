@@ -188,4 +188,7 @@ public class NewCustomerController implements Initializable {
                         System.out.println("close");
                 }
         }
+
+        public void setManager(boolean isManager) {
+        }
 }
