@@ -115,9 +115,41 @@ public class ChangePassword implements Initializable {
 
     private Connection conn;
 
-    @FXML
-    public void changeOnAction(ActiveEvent event) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public boolean correctAns(String password, int iD) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
+
+        try {
+            this.conn = DatabaseHandler.getInstance().getConn();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String updateQuery = "UPDATE login set password = ? where id = ?";
+        PreparedStatement preparedStatement = null;
+        int count = 0;
+        try {
+            preparedStatement = conn.prepareStatement(updateQuery);
+            preparedStatement.setString(1,password);
+            preparedStatement.setInt(2,iD);
+            count = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count > 0;
+    }
+
+    @FXML
+    public void hyperlinkRegister(ActionEvent event)throws IOException {
+        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/Register.fxml"));
+        Scene scene = new Scene(view);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+
+    public void changeOnAction(ActionEvent actionEvent) {
         String username = fUsername.getText().trim();
         String answer = fAns.getText().trim();
         String passGet = fPasswordGet.getText().trim();
@@ -138,7 +170,6 @@ public class ChangePassword implements Initializable {
         );
 
         if (fUsername.isValid() && fAns.isValid() && fPasswordGet.isValid() && fPasswordCheck.isValid() && question != null) {
-
             System.out.println(fPasswordGet.passwordProperty().getValue());
             System.out.println(fPasswordGet.passwordProperty().getValueSafe());
             System.out.println("Form OK!");
@@ -185,32 +216,35 @@ public class ChangePassword implements Initializable {
 
                     if (matchedAnswer == true) {
 
-                        if(changePass == true) {
+                        if (changePass == true) {
 
                             try {
 
                                 Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/login.fxml"));
                                 Scene scene = new Scene(view);
                                 System.out.println("Load Login Page");
-                                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                                 window.setScene(scene);
                                 window.show();
 
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                System.out.println(e.getMessage());
                             }
                         }
 
 
                     } else {
 
+                        System.out.println("Check Again");
+                        MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Fill Forget-Password Form", "Your Answer wrong, please try again");
+                        dialog.show();
 
                     }
 
                 }
-            } catch (SQLException throwables) {
+            } catch (SQLException | NoSuchAlgorithmException | InvalidKeySpecException throwables) {
                 throwables.printStackTrace();
-            }catch (IOException e) {
-                e.printStackTrace();
-
             }
         } else {
 
@@ -221,39 +255,8 @@ public class ChangePassword implements Initializable {
         }
     }
 
-    public boolean correctAns(String password, int iD) throws NoSuchAlgorithmException, InvalidKeySpecException {
-
-
-        try {
-            this.conn = DatabaseHandler.getInstance().getConn();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        String updateQuery = "UPDATE login set password = ? where id = ?";
-        PreparedStatement preparedStatement = null;
-        int count = 0;
-        try {
-            preparedStatement = conn.prepareStatement(updateQuery);
-            preparedStatement.setString(1,password);
-            preparedStatement.setInt(2,iD);
-            count = preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return count > 0;
+    public void close(ActionEvent actionEvent) {
+        System.exit(0);
     }
-
-            @FXML
-    public void hyperlinkRegister(ActionEvent event)throws IOException {
-        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/Register.fxml"));
-        Scene scene = new Scene(view);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
-
 
 }
