@@ -181,8 +181,6 @@ public class SelectCustomerController implements Initializable {
         BillingController = loader.getController();
 
 
-
-
     }
 
     public void searchTable(String key) {

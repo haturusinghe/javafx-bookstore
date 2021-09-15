@@ -11,15 +11,6 @@ public class orderDetails {
         private int unit_price;
         private int discount;
         private int totalForItem;
-
-        public Date getDate() {
-            return date;
-        }
-
-        public void setDate(Date date) {
-            this.date = date;
-        }
-
         private Date date;
 
         public orderDetails(int order_id, int book_id,  int quantity, int unit_price , Date date) {
@@ -30,8 +21,6 @@ public class orderDetails {
             this.totalForItem = (unit_price*quantity) ;
             this.date = date ;
         }
-
-
 
         public int getBook_id() {
             return book_id;
@@ -81,6 +70,14 @@ public class orderDetails {
             this.discount = discount;
         }
 
+        public Date getDate() {
+        return date;
+    }
+
+        public void setDate(Date date) {
+           this.date = date;
+          }
+
         @Override
         public String toString() {
             return "OrderDetailEntry{" +
@@ -92,5 +89,6 @@ public class orderDetails {
                     ", totalForItem=" + totalForItem +
                     '}';
         }
+
 
 }
