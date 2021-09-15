@@ -1,9 +1,5 @@
 package fct.cs.book;
 
-import fct.cs.Author.Author;
-
-import java.time.Year;
-
 public class BookData {
     private int book_id;
     private String isbn;
@@ -11,7 +7,7 @@ public class BookData {
     private String publisher;
     private int author_id;
     private String title;
-    private Year b_year;
+    private int b_year;
     private int mrp;
     private int num_pages;
     private String lang;
@@ -26,7 +22,7 @@ public class BookData {
         this.publisher = publisher;
         this.author_id = author_id;
         this.title = title;
-        this.b_year = Year.of(b_year);
+        this.b_year = b_year;
         this.mrp = mrp;
         this.num_pages = num_pages;
         this.lang = lang;
@@ -35,17 +31,31 @@ public class BookData {
         this.categoryName = categoryName;
     }
 
-    public BookData(int book_id, String isbn, int category_id, String publisher, int author_id, String title, short b_year, int mrp, int num_pages, String lang, String book_description) {
+    public BookData(int book_id, String isbn, int category_id, String publisher, int author_id, String title, int b_year, int mrp, int num_pages, String lang, String book_description) {
         this.book_id = book_id;
         this.isbn = isbn;
         this.category_id = category_id;
         this.publisher = publisher;
         this.author_id = author_id;
         this.title = title;
-        this.b_year = Year.of(b_year);
+        this.b_year = b_year;
         this.mrp = mrp;
         this.num_pages = num_pages;
         this.lang = lang;
+        this.book_description = book_description;
+    }
+
+    public BookData(String title, int book_id, String isbn, int author_id, int category_id, String publisher, int mrp, String lang, int num_pages, int b_year, String book_description) {
+        this.title = title;
+        this.book_id = book_id;
+        this.isbn = isbn;
+        this.author_id = author_id;
+        this.category_id = category_id;
+        this.publisher = publisher;
+        this.mrp = mrp;
+        this.lang = lang;
+        this.num_pages = num_pages;
+        this.b_year = b_year;
         this.book_description = book_description;
     }
 
@@ -97,11 +107,11 @@ public class BookData {
         this.title = title;
     }
 
-    public Year getB_year() {
+    public int getB_year() {
         return b_year;
     }
 
-    public void setB_year(Year b_year) {
+    public void setB_year(int b_year) {
         this.b_year = b_year;
     }
 
