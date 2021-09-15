@@ -237,7 +237,7 @@ public class LoginController implements Initializable {
     //Load ChangePassword.fxml
     @FXML
     public void forgotOnAction(ActionEvent event)throws IOException{
-        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/ChangePassword.fxml"));
+        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/change-password.fxml"));
         Scene scene = new Scene(view);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);

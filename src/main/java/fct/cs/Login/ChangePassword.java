@@ -139,7 +139,7 @@ public class ChangePassword implements Initializable {
         return count > 0;
     }
 
-    @FXML
+            @FXML
     public void hyperlinkRegister(ActionEvent event)throws IOException {
         Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/Register.fxml"));
         Scene scene = new Scene(view);
@@ -223,22 +223,19 @@ public class ChangePassword implements Initializable {
                                 Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/login.fxml"));
                                 Scene scene = new Scene(view);
                                 System.out.println("Load Login Page");
+//                               Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
                                 Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                                 window.setScene(scene);
                                 window.show();
 
                             } catch (Exception e) {
-                                e.printStackTrace();
-                                System.out.println(e.getMessage());
+
                             }
                         }
 
 
                     } else {
 
-                        System.out.println("Check Again");
-                        MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Fill Forget-Password Form", "Your Answer wrong, please try again");
-                        dialog.show();
 
                     }
 
@@ -254,9 +251,4 @@ public class ChangePassword implements Initializable {
 
         }
     }
-
-    public void close(ActionEvent actionEvent) {
-        System.exit(0);
-    }
-
 }
