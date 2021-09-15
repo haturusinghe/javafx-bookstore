@@ -75,7 +75,8 @@ public class Billdetails {
         @Override
         public String toString() {
             return "OrderDetailEntry{" +
-                    ", book_id=" + book_id +
+                    "book_id=" + book_id +
+                    ", book_name=" + book_name +
                     ", order_id=" + order_id +
                     ", quantity=" + quantity +
                     ", unit_price=" + unit_price +
