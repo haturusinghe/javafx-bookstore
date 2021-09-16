@@ -142,6 +142,7 @@ public class ordersController implements Initializable {
 
                     controller.setParentController(thisController);
                     controller.setDrawer(JFXDrawerdrawer);
+                    controller.setCurrentOrder(orderData); // Passing order data to orderDetails Contoller
                     JFXDrawerdrawer.setSidePane(box);
 
                 } catch (IOException ex) {

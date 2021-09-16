@@ -31,8 +31,9 @@ import java.util.ResourceBundle;
 
 public class orderDetailsController implements Initializable {
 
+    public VBox infoContainerVBox;
     @FXML
-    private MFXListView<VBox> orderItemsList;
+    private MFXListView<VBox> orderItemsList = new MFXListView<>();
 
     private ObservableList<VBox> orderDetObservableList = FXCollections.observableArrayList();
 
@@ -41,6 +42,7 @@ public class orderDetailsController implements Initializable {
 
     private ordersController parentController;
     private JFXDrawer JFXDrawerdrawer;
+    private ordersInfo currentOrder = null;
 
 
     @FXML
@@ -58,36 +60,38 @@ public class orderDetailsController implements Initializable {
 
     public MFXTableView MFXtblOrderDet;
     private orderDetailsController thisController = this;
-//    private ObservableList<ordersInfo> orderDetObservableList = FXCollections.observableArrayList();
+    //    private ObservableList<ordersInfo> orderDetObservableList = FXCollections.observableArrayList();
 //    private FilteredList<ordersInfo> orderDetFilteredList = new FilteredList<>(orderDetObservableList);
-      private static orderDetailsData selectedOrderDet = null;
+    private static orderDetailsData selectedOrderDet = null;
 
-//    private ObservableList<Category> categoryList = FXCollections.observableArrayList();
-private orderDetailsManager orderDetailsManager;
+    //    private ObservableList<Category> categoryList = FXCollections.observableArrayList();
+    private orderDetailsManager orderDetailsManager;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         orderDetailsManager = new orderDetailsManager();
+        infoContainerVBox.getChildren().add(orderItemsList);
 //        setDetColumnProps();
 //        getOrderDetData();
-//        initOrderItemsList();
-    }
-//    ArrayList<orderDetailsData> list = new ArrayList<>();
 
-//    private void initOrderItemsList() {
-////        ArrayList<orderDetailsData> list = new ArrayList<>();
-//       ArrayList<orderDetailsData> list = orderDetailsManager.getOrderDetList(1);
-////        list = orderDetailsManager.getOrderDetList(1);
-//        orderDetObservableList.clear();
-//        System.out.println(list);
-//        for (orderDetailsData e:
-//                list) {
-//
-//            orderDetObservableList.add(createOrderListItem(e));
-//            System.out.println(orderDetObservableList);
-//        }
-//        orderItemsList.setItems(orderDetObservableList);
+    }
+
+    ArrayList<orderDetailsData> list = new ArrayList<>();
+
+    private void initOrderItemsList() {
+//        ArrayList<orderDetailsData> list = new ArrayList<>();
+        System.out.println("init order item list");
+        ArrayList<orderDetailsData> list = orderDetailsManager.getOrderDetList(Integer.parseInt(currentOrder.getOrder_id()));
+//        list = orderDetailsManager.getOrderDetList(1);
+        orderDetObservableList.clear();
+        System.out.println(list);
+        for (orderDetailsData e : list) {
+            orderDetObservableList.add(createOrderListItem(e));
+            System.out.println(e.toString());
+        }
+        orderItemsList.setItems(orderDetObservableList);
 //        System.out.println(orderItemsList);
-//    }
+    }
 
 //    private void setDetColumnProps() {
 //        MFXTableColumn<orderDetailsData> orderDetIdColumn = new MFXTableColumn<>("Index", Comparator.comparing(orderDetailsData::getOrder_detail_id));
@@ -124,7 +128,6 @@ private orderDetailsManager orderDetailsManager;
         HBox priceHbox = new HBox();
 
 
-
         FontIcon fileIcon = new FontIcon("cil-file");
         fileIcon.setIconColor(Color.BLACK);
         fileIcon.setIconSize(18);
@@ -132,21 +135,27 @@ private orderDetailsManager orderDetailsManager;
         Label titleLabel = new Label("Title: " + e.getTitle(), fileIcon);
         titleHbox.getChildren().addAll(titleLabel);
 
-        Label unitPriceLabel = new Label("Amount Sold: " + e.getUnit_price());
+        Label unitPriceLabel = new Label("Unit Price: " + e.getUnit_price());
         unitPriceHbox.getChildren().addAll(unitPriceLabel);
 
-        Label quantityLabel = new Label("Number of Orders: " + e.getQuantity());
+        Label quantityLabel = new Label("Quanitity: " + e.getQuantity());
         quantityHbox.getChildren().addAll(quantityLabel);
 
-        Label priceLabel = new Label("Number of Orders: " + e.getPrice());
+        Label priceLabel = new Label("Total: " + e.getPrice());
         priceHbox.getChildren().addAll(priceLabel);
 
         titleLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 20;");
         unitPriceLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 16;");
         quantityLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 14;");
         priceLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 16;");
-        vBox.getChildren().addAll(titleHbox,unitPriceHbox,quantityHbox,priceHbox);
+        vBox.getChildren().addAll(titleHbox, unitPriceHbox, quantityHbox, priceHbox);
         return vBox;
     }
 
+
+    public void setCurrentOrder(ordersInfo currentOrder) {
+        System.out.println("Order Passed");
+        this.currentOrder = currentOrder;
+        initOrderItemsList();
+    }
 }
