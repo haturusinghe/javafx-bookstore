@@ -9,6 +9,7 @@ public class Billdetails {
         private String book_name;
         private int totalForItem;
 
+
         public Billdetails(int order_id, int book_id, String book_name, int quantity, int unit_price , int totalForItem) {
             this.book_id = book_id;
             this.order_id = order_id;

@@ -3,7 +3,6 @@ package fct.cs.Bill;
 import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +20,7 @@ public class ItemManager extends CustomerManager {
 
     public ResultSet getItemFromDatabase() {
 
-        String query = "SELECT book.book_id, book.title, book.isbn , inventory.list_price FROM book JOIN inventory ON book.book_id=inventory.book_id order by book_id  ;";
+        String query = "SELECT book.book_id, book.title, book.isbn , inventory.list_price , inventory.qty FROM book JOIN inventory ON book.book_id=inventory.book_id order by book_id  ;";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
         try {
@@ -44,7 +43,8 @@ public class ItemManager extends CustomerManager {
                         rs.getInt("book_id") ,
                         rs.getString("title"),
                         rs.getString("isbn") ,
-                        rs.getInt("list_price")));
+                        rs.getInt("list_price"),
+                        rs.getInt("qty")));
             }
         } catch (SQLException e) {
             e.printStackTrace();

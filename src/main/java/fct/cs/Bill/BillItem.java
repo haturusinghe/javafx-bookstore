@@ -1,14 +1,28 @@
 package fct.cs.Bill;
 
 public class BillItem {
-    private int item_id ,unit_price;
+    private int item_id;
+    private int unit_price;
+
+
+
+    private int activeQty;
     private String item_name,isbn;
 
-    public BillItem(int item_id, String item_name, String isbn, Integer unit_price) {
+    public BillItem(int item_id, String item_name, String isbn, Integer unit_price, int activeQty) {
         this.item_id = item_id;
         this.item_name = item_name;
         this.isbn = isbn;
         this.unit_price = unit_price;
+        this.activeQty = activeQty;
+
+    }
+    public int getActiveQty() {
+        return activeQty;
+    }
+
+    public void setActiveQty(int activeQty) {
+        this.activeQty = activeQty;
     }
 
     public int getItem_id() {
