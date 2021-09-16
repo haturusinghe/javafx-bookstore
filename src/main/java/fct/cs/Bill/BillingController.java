@@ -393,6 +393,7 @@ public class BillingController {
             billManager.updateOrderEntry(order);
             billManager.updateOrderDetailsByArray(billDetails);
             ErrorShow("Order is Successfully Charged!");
+            billManager.jasperInvoice();
 
         }
 

@@ -165,10 +165,9 @@ public class BillManager {
         Map param = new HashMap();
 
         try{
-            DatabaseConnector connectDB = new DatabaseConnector();
-            jp = JasperFillManager.fillReport("reports/inventory.jasper" ,
+            jp = JasperFillManager.fillReport("jasper_files/invoice.jasper" ,
                     param,
-                    connectDB.getConn());
+                    conn);
 
             JasperViewer viewer = new JasperViewer(jp,false);
             viewer.setTitle("Report");
