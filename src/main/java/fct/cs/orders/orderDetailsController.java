@@ -31,6 +31,7 @@ import java.util.ResourceBundle;
 
 public class orderDetailsController implements Initializable {
 
+    public VBox infoContainerVBox;
     @FXML
     private MFXListView<VBox> orderItemsList = new MFXListView<>();
     private int orderId = 69;
@@ -69,6 +70,7 @@ public class orderDetailsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         orderDetailsManager = new orderDetailsManager();
+        infoContainerVBox.getChildren().add(orderItemsList);
 //        setDetColumnProps();
 //        getOrderDetData();
 
@@ -88,7 +90,7 @@ public class orderDetailsController implements Initializable {
             orderDetObservableList.add(createOrderListItem(e));
             System.out.println(e.toString());
         }
-//        orderItemsList.setItems(orderDetObservableList);
+        orderItemsList.setItems(orderDetObservableList);
 //        System.out.println(orderItemsList);
     }
 
@@ -134,13 +136,13 @@ public class orderDetailsController implements Initializable {
         Label titleLabel = new Label("Title: " + e.getTitle(), fileIcon);
         titleHbox.getChildren().addAll(titleLabel);
 
-        Label unitPriceLabel = new Label("Amount Sold: " + e.getUnit_price());
+        Label unitPriceLabel = new Label("Unit Price: " + e.getUnit_price());
         unitPriceHbox.getChildren().addAll(unitPriceLabel);
 
-        Label quantityLabel = new Label("Number of Orders: " + e.getQuantity());
+        Label quantityLabel = new Label("Quanitity: " + e.getQuantity());
         quantityHbox.getChildren().addAll(quantityLabel);
 
-        Label priceLabel = new Label("Number of Orders: " + e.getPrice());
+        Label priceLabel = new Label("Total: " + e.getPrice());
         priceHbox.getChildren().addAll(priceLabel);
 
         titleLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 20;");
