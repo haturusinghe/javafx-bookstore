@@ -381,7 +381,10 @@ public class BillingController {
         return new Date(millis);
     }
     public void ChargeCustomer(ActionEvent action){
+        ChargeCustomer();
 
+    }
+    private void ChargeCustomer(){
         if(billDetails.size() == 0 ){
             ErrorShow("No Items in the Bill!!");
 
@@ -389,10 +392,11 @@ public class BillingController {
             Order order = getOrderEntryFromBill();
             billManager.updateOrderEntry(order);
             billManager.updateOrderDetailsByArray(billDetails);
+            ErrorShow("Order is Successfully Charged!");
 
-            System.out.println(billDetails);
-            System.out.println(order);
         }
+
+        cancelOrders();
 
     }
 
