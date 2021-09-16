@@ -83,7 +83,7 @@ public class MainBookController implements Initializable {
             addIcon.setIconSize(25);
 
             MFXButton addBtn = new MFXButton();
-            addBtn.setText("Add Employee");
+            addBtn.setText("Add Book");
             addBtn.setStyle("-fx-background-color: #2B2B2B;-fx-font-size: 20px;-fx-background-radius: 9,8,5,4,3;-fx-text-fill: #fff;");
             addBtn.setGraphic(addIcon);
             addBtn.setOnAction(actionEvent -> {
