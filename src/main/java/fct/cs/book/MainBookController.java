@@ -6,6 +6,7 @@ import io.github.palexdev.materialfx.controls.cell.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
 import io.github.palexdev.materialfx.controls.enums.Styles;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -72,11 +73,11 @@ public class MainBookController implements Initializable {
                 bookTable.setItems(bookFilteredList);
             });
 
-            searchCombo.setItems(FXCollections.observableArrayList("Name", "Salary", "Gender"));
+           /* searchCombo.setItems(FXCollections.observableArrayList("Name", "Salary", "Gender"));
             searchCombo.setPromptText("Select Category");
             searchCombo.setMinHeight(50);
             searchCombo.setComboStyle(Styles.ComboBoxStyles.STYLE2);
-            searchCombo.setStyle("-fx-font-size: 30px;");
+            searchCombo.setStyle("-fx-font-size: 30px;");*/
 
             FontIcon addIcon = new FontIcon("anto-plus-circle");
             addIcon.setIconColor(Color.WHITE);
@@ -106,12 +107,13 @@ public class MainBookController implements Initializable {
 
     public void getBookData() {
         ArrayList<BookData> eList = BookManager.getBookList(100,1);
-        bookObservableList.clear();
-        for (BookData e:
-                eList) {
-            bookObservableList.add(e);
+        Platform.runLater(()->{
+            for (BookData e :
+                    eList) {
+                bookObservableList.add(e);
 
-        }
+            }
+        });
         setDataData();
     }
 

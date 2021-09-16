@@ -92,6 +92,7 @@ public class AddBookController {
         } else {
             BookManager.updateBook(bookData);
         }
+        submitBtn.setDisable(true);
         parentController.getBookData();
         drawer.close();
 
