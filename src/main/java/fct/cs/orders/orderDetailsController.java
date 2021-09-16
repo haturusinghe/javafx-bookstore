@@ -34,7 +34,6 @@ public class orderDetailsController implements Initializable {
     public VBox infoContainerVBox;
     @FXML
     private MFXListView<VBox> orderItemsList = new MFXListView<>();
-    private int orderId = 69;
 
     private ObservableList<VBox> orderDetObservableList = FXCollections.observableArrayList();
 
@@ -43,6 +42,7 @@ public class orderDetailsController implements Initializable {
 
     private ordersController parentController;
     private JFXDrawer JFXDrawerdrawer;
+    private ordersInfo currentOrder = null;
 
 
     @FXML
@@ -81,8 +81,7 @@ public class orderDetailsController implements Initializable {
     private void initOrderItemsList() {
 //        ArrayList<orderDetailsData> list = new ArrayList<>();
         System.out.println("init order item list");
-        ArrayList<orderDetailsData> list = orderDetailsManager.getOrderDetList(orderId);
-
+        ArrayList<orderDetailsData> list = orderDetailsManager.getOrderDetList(Integer.parseInt(currentOrder.getOrder_id()));
 //        list = orderDetailsManager.getOrderDetList(1);
         orderDetObservableList.clear();
         System.out.println(list);
@@ -153,9 +152,10 @@ public class orderDetailsController implements Initializable {
         return vBox;
     }
 
-    public void setOrderId(int orderId) {
-        System.out.println("Order ID Passed");
-        this.orderId = orderId;
+
+    public void setCurrentOrder(ordersInfo currentOrder) {
+        System.out.println("Order Passed");
+        this.currentOrder = currentOrder;
         initOrderItemsList();
     }
 }
