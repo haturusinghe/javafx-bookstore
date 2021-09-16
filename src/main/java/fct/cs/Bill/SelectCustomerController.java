@@ -74,13 +74,17 @@ public class SelectCustomerController implements Initializable {
     }
     public void loadDataTable() {
         ArrayList<BillCustomer> CustomerList = CustomerManager.getCustomerList();
-        customerTable.setItems(customerObservableList);
         customerObservableList.clear();
 
         for (BillCustomer currentCustomer : CustomerList) {
             customerObservableList.add(currentCustomer);
         }
+
+        customerTable.setItems(customerObservableList);
     }
+
+
+
 
     private void setColumns(){
 
@@ -160,19 +164,8 @@ public class SelectCustomerController implements Initializable {
         this.parentController = parentController;
     }
 
-    @FXML
-    private void displayCustomerInBill() throws IOException {
-        BillCustomer customer = customerTable.getSelectionModel().getSelectedItem();
-        if (customer == null) {
-            screen.setText("Select Customer");
-        } else {
-            String name = customer.getCustomer_name();
-            screen.setText("name:" + name);
-//            displayCustomerName(name);
 
 
-        }
-    }
 
     @FXML
     private void sendToBillingScene(String name) throws IOException{
@@ -206,10 +199,25 @@ public class SelectCustomerController implements Initializable {
         searchTable(key);
         customerTable.setItems(customerFilteredList);
     }
+//
+//    public void switchBilling(ActionEvent action ) throws IOException {
+//    }
 
-    public void switchBilling(ActionEvent action ) throws IOException {
+    public void addCustomer(ActionEvent action){
+        parentController.newCustomer();
 
 
     }
+
+//    public void getCustomerData() {
+//        ArrayList<BillCustomer> cList = CustomerManager.getCustomerList(100, 1);
+//        customerObservableList.clear();
+//        for (BillCustomer c :
+//                cList) {
+//            customerObservableList.add(c);
+//        }
+//        customerTable.setItems(customerObservableList);
+//    }
 }
+
 

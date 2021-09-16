@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="rootPane" prefHeight="685.0" prefWidth="555.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.SelectCustomerController">
    <children>
-      <TableView fx:id="customerTable" layoutX="14.0" layoutY="150.0" onMouseClicked="#displayCustomerInBill" prefHeight="503.0" prefWidth="526.0">
+      <TableView fx:id="customerTable" layoutX="14.0" layoutY="150.0"  prefHeight="503.0" prefWidth="526.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="44.0" text="id" />
           <TableColumn fx:id="name" minWidth="0.0" prefWidth="121.60003280639648" text="Name" />
@@ -26,7 +26,7 @@
             <Font size="29.0" />
          </font>
       </MFXLabel>
-      <MFXButton layoutX="49.0" layoutY="98.0" text="+ ADD Customer">
+      <MFXButton layoutX="49.0" layoutY="98.0" onAction="#addCustomer" text="+ ADD Customer">
          <font>
             <Font size="14.0" />
          </font>

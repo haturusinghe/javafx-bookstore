@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXDrawer?>
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXLabel?>
 <?import javafx.scene.control.Button?>
@@ -15,6 +16,7 @@
 
 <StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.BillingController">
    <children>
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="500.0" direction="RIGHT" minHeight="-Infinity" minWidth="-Infinity" onDrawerClosing="#hideDrawer" prefHeight="686.0" prefWidth="441.0" />
       <VBox>
          <children>
             <AnchorPane fx:id="Bill" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="1029.0">
@@ -38,7 +40,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TableView fx:id="BillTable" layoutX="7.0" layoutY="120.0" prefHeight="350.0" prefWidth="434.0">
+                              <TableView fx:id="BillTable" layoutX="-4.0" layoutY="117.0" prefHeight="350.0" prefWidth="434.0">
                                  <columns>
                                     <TableColumn fx:id="bookID" prefWidth="48.799989342689514" text="bookID" />
                                     <TableColumn fx:id="item" prefWidth="163.19988250732422" text="item" />
@@ -85,12 +87,12 @@
                                     <Font size="27.0" />
                                  </font>
                               </MFXLabel>
-                              <MFXButton fx:id="chargeCustomer" layoutX="40.0" layoutY="603.0" onAction="#ChargeCustomer" prefHeight="50.0" prefWidth="174.0" text="Charge Customer">
+                              <MFXButton fx:id="chargeCustomer" layoutX="29.0" layoutY="589.0" onAction="#ChargeCustomer" prefHeight="50.0" prefWidth="174.0" text="Charge Customer">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </MFXButton>
-                              <MFXButton fx:id="cancel" layoutX="243.0" layoutY="603.0" onAction="#cancelOrder" prefHeight="50.0" prefWidth="174.0" text="Cancel">
+                              <MFXButton fx:id="cancel" layoutX="243.0" layoutY="589.0" onAction="#cancelOrder" prefHeight="50.0" prefWidth="174.0" text="Cancel">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

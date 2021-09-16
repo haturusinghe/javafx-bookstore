@@ -51,15 +51,22 @@ public class CustomerFormController {
     }
 
     public void updateCustomer(ActionEvent actionEvent) {
-        CustomerData customerData = getEntry();
-        if (isAddingNew) {
-            CustomerManager.addSingleCustomer(customerData);
-        } else {
-            CustomerManager.updateCustomer(customerData);
-        }
-        parentController.getCustomerData();
-        drawer.close();
+
+        updateCustomers(drawer);
     }
+
+    public void updateCustomers(JFXDrawer drawer){
+            CustomerData customerData = getEntry();
+            if (isAddingNew) {
+                CustomerManager.addSingleCustomer(customerData);
+            } else {
+                CustomerManager.updateCustomer(customerData);
+            }
+            parentController.getCustomerData();
+            drawer.close();
+
+        }
+
 
     private CustomerData getEntry() {
         CustomerData c = new CustomerData(

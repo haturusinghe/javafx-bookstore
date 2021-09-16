@@ -41,6 +41,7 @@ public class NewCustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getCustomerData();
+        setDataCustomer();
         setColumnProps();
         setColumnSize();
     }
@@ -64,11 +65,12 @@ public class NewCustomerController implements Initializable {
                 cList) {
             customerObservableList.add(c);
         }
-        setDataData();
+
     }
 
-    private void setDataData() {
+    private void setDataCustomer() {
         customerTable.setItems(customerObservableList);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -145,6 +147,7 @@ public class NewCustomerController implements Initializable {
                 System.out.println("Delete");
                 CustomerManager.deleteSingleCustomer(customerData);
                 getCustomerData();
+                setDataCustomer();
             });
             MFXFontIcon icon = new MFXFontIcon("mfx-minus-circle", 25);
 //            FontIcon icon = new FontIcon("antf-edit");
@@ -168,10 +171,10 @@ public class NewCustomerController implements Initializable {
     }
 
     public void addNewEntry(ActionEvent action){
-        addNewCustomer();
+        addNewCustomer(drawer);
     }
 
-    public void addNewCustomer() {
+    public void addNewCustomer(JFXDrawer drawer) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/customer/customer-form.fxml"));
             VBox box = loader.load();

@@ -3,6 +3,9 @@ package fct.cs.Bill;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.events.JFXDrawerEvent;
+import fct.cs.NewCustomer.NewCustomerController;
 import fct.cs.data.Order;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -100,6 +103,8 @@ public class BillingController {
 
     @FXML
     private TableColumn remove;
+    @FXML
+    private JFXDrawer drawer;
 
     private FXMLLoader loader = null;
 
@@ -112,6 +117,8 @@ public class BillingController {
     private ArrayList<Billdetails> billDetails;
     private BillItemController parentController;
     private BillManager billManager;
+    private NewCustomerController newCustomerController ;
+    private SelectCustomerController SelectCustomerController ;
 //    private int subTotal;
 
     private int orderDetailId = 1;
@@ -126,6 +133,7 @@ public class BillingController {
         setColumns();
         loadBillTable();
         finalTotal.setText(String.valueOf(getFinalTotal(Integer.parseInt(total.getText()))));
+
 
     }
 
@@ -248,7 +256,7 @@ public class BillingController {
     }
 
     public void moveToSelectCustomer() {
-        if (!currentPage.equals("selectCustomerBills")) {
+
 
             loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/billing/selectCustomerBill.fxml"));
             try {
@@ -258,9 +266,7 @@ public class BillingController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            System.out.println("already loaded");
-        }
+
         SelectCustomerController controller = loader.getController();
         controller.setParentController(this);
 
@@ -385,6 +391,23 @@ public class BillingController {
     }
 
     public void setManager(boolean isManager) {
+    }
+
+    public void newCustomer(){
+        newCustomerController = new NewCustomerController() ;
+        newCustomerController.addNewCustomer(drawer);
+
+
+
+    }
+
+    public void hideDrawer(JFXDrawerEvent jfxDrawerEvent) {
+        moveToSelectCustomer();
+        drawer.toBack();
+
+
+
+
     }
 }
 
