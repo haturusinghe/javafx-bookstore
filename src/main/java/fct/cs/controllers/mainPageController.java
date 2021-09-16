@@ -233,7 +233,7 @@ public class mainPageController implements Initializable {
 
     public void loadBookPage(ActionEvent actionEvent) {
         if (!currentPage.equals("books")) {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/mainbook.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/book/mainbook.fxml"));
             try {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());

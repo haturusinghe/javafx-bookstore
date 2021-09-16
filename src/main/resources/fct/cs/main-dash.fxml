@@ -63,7 +63,7 @@
                                         <FontIcon fill="WHITE" iconLiteral="anto-dollar-circle" iconSize="20"/>
                                     </graphic>
                                 </JFXButton>
-                                <JFXButton minWidth="220.0" prefHeight="50.0" styleClass="side-nav-button" text="Books">
+                                <JFXButton minWidth="220.0" onAction="#loadBookPage" prefHeight="50.0" styleClass="side-nav-button" text="Books">
                                     <graphic>
                                         <FontIcon fill="WHITE" iconLiteral="anto-read" iconSize="20"/>
                                     </graphic>

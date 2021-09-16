@@ -9,7 +9,6 @@ import io.github.palexdev.materialfx.font.MFXFontIcon;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -142,7 +141,7 @@ public class MainBookController implements Initializable {
                 System.out.println("Update");
 
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/addbook.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/book/addbook.fxml"));
                     VBox box = loader.load();
                     AddBookController controller = loader.getController();
 
@@ -211,7 +210,7 @@ public class MainBookController implements Initializable {
 
     public void addNewBook() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/addbook.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/book/addbook.fxml"));
             VBox box = loader.load();
             AddBookController controller = loader.getController();
 
