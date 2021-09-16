@@ -6,6 +6,7 @@ import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
 import fct.cs.Bill.orderDetails ;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
@@ -170,12 +171,22 @@ public class BillManager {
                     conn);
 
             JasperViewer viewer = new JasperViewer(jp,false);
+
             viewer.setTitle("Report");
+//            JasperExportManager.exportReportToPdfFile(jp, "jasper_files/invoice.pdf");
+            viewer.setSize(600 , 800);
+            viewer.setZoomRatio(0.5F);
+
             viewer.setVisible(true);
+
 
         }catch(JRException e){
             System.out.println(e.getMessage());
         }
+
+
+        // Creation of the HTML Jasper Reports
+
 
     }
     }

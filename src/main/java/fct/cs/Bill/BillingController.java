@@ -358,6 +358,7 @@ public class BillingController {
         loadBillTable();
         customerName.setText("");
         customerID.setText("");
+        discount.setText("");
         moveToSelectCustomer();
 
     }
@@ -392,12 +393,12 @@ public class BillingController {
             Order order = getOrderEntryFromBill();
             billManager.updateOrderEntry(order);
             billManager.updateOrderDetailsByArray(billDetails);
-            ErrorShow("Order is Successfully Charged!");
-            billManager.jasperInvoice();
+            confirmationToInvoice();
+            cancelOrders();
 
         }
 
-        cancelOrders();
+
 
     }
 
@@ -411,6 +412,23 @@ public class BillingController {
 
         DialogLayout.setHeading(new Label(str));
         DialogLayout.setActions(button);
+        dialog.show();
+    }
+    public void confirmationToInvoice(){
+        JFXDialogLayout DialogLayout = new JFXDialogLayout();
+        JFXButton yes = new JFXButton("Yes");
+
+        JFXButton no = new JFXButton("No");
+        JFXDialog dialog = new JFXDialog( stackPane, DialogLayout , JFXDialog.DialogTransition.TOP);
+        yes.setOnAction(e->{
+            billManager.jasperInvoice();
+        });
+        no.setOnAction(e ->{
+            dialog.close();
+        });
+
+        DialogLayout.setHeading(new Label("Payment Successful!! \n Do you need a Invoice ?"));
+        DialogLayout.setActions(yes, no);
         dialog.show();
     }
 
