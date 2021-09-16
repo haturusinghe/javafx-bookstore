@@ -2,13 +2,11 @@ package fct.cs.orders;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.events.JFXDrawerEvent;
-import fct.cs.NewEmployee.EmployeeData;
-import fct.cs.NewEmployee.EmployeeFormController;
+
 import fct.cs.data.Category;
 import io.github.palexdev.materialfx.controls.*;
 import io.github.palexdev.materialfx.controls.cell.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
-import io.github.palexdev.materialfx.controls.enums.Styles;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +20,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import fct.cs.orders.orderDetailsController;
 import fct.cs.orders.orderDetailsData;
+import fct.cs.orders.ordersInfo;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
@@ -135,32 +134,32 @@ public class ordersController implements Initializable {
         viewColumn.setRowCellFunction(orderData -> {
             MFXTableRowCell rowCell = new MFXTableRowCell("Order Details");
             rowCell.setGraphicTextGap(1);
-//            rowCell.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-//                try {
-//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/order-details.fxml"));
-//                    VBox box = loader.load();
-//                    orderDetailsController controller = loader.getController();
-//
-//                    controller.setParentController(thisController);
-//                    controller.setDrawer(JFXDrawerdrawer);
-//                    JFXDrawerdrawer.setSidePane(box);
-//
-//                } catch (IOException ex) {
-//                    ex.printStackTrace();
-//                }
-//
-//                if (JFXDrawerdrawer.isHidden()) {
-//                    JFXDrawerdrawer.open();
-//                    JFXDrawerdrawer.toFront();
-//                    System.out.println("open");
-//                } else {
-//                    JFXDrawerdrawer.toBack();
-//                    JFXDrawerdrawer.close();
-//
-//                    System.out.println("close");
-//                }
-//
-//            });
+            rowCell.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/order-details.fxml"));
+                    VBox box = loader.load();
+                    orderDetailsController controller = loader.getController();
+
+                    controller.setParentController(thisController);
+                    controller.setDrawer(JFXDrawerdrawer);
+                    JFXDrawerdrawer.setSidePane(box);
+
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+
+                if (JFXDrawerdrawer.isHidden()) {
+                    JFXDrawerdrawer.open();
+                    JFXDrawerdrawer.toFront();
+                    System.out.println("open");
+                } else {
+                    JFXDrawerdrawer.toBack();
+                    JFXDrawerdrawer.close();
+
+                    System.out.println("close");
+                }
+
+            });
             MFXFontIcon icon = new MFXFontIcon("mfx-file", 25);
 
             rowCell.setRowAlignment(Pos.CENTER);
