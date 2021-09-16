@@ -321,6 +321,15 @@ public class BillingController {
         }
         return subTotal;
     }
+    public int getQuantity(ArrayList<Billdetails> array) {
+        int quantity = 0;
+        for (Billdetails currentItem : array) {
+
+            quantity += currentItem.getQuantity();
+        }
+        return quantity;
+    }
+
 
     public int getFinalTotal(int total) {
         int disc = Integer.parseInt(discount.getText());
