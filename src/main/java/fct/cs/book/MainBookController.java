@@ -60,10 +60,11 @@ public class MainBookController implements Initializable {
             HBox searchContainer = new HBox(10);
             searchContainer.setMinHeight(50);
             searchContainer.setAlignment(Pos.CENTER_RIGHT);
-            searchField.setPromptText("Search Employees");
+            searchField.setPromptText("Search Book Title or Author");
             searchField.setIcon(new MFXIconWrapper(new MFXFontIcon("mfx-search", 28, Color.web("#4D4D4D")), 24));
             searchField.setIconInsets(new Insets(0,0,10,0));
             searchField.setMinHeight(50);
+            searchField.setMinWidth(240);
             searchField.setStyle("-fx-font-size: 18px;");
 
             searchField.setOnKeyTyped(actionEvent -> {
@@ -238,7 +239,8 @@ public class MainBookController implements Initializable {
         System.out.println("Searching ...");
         bookFilteredList.setPredicate(bookData -> {
             String filter = key.toLowerCase();
-            boolean nameMatches = String.valueOf(bookData.getTitle()).toLowerCase().contains(filter);
+            boolean nameMatches = String.valueOf(bookData.getTitle()).toLowerCase().contains(filter)||
+            String.valueOf(bookData.getAuthor()).toLowerCase().contains(filter);
             return nameMatches;
         });
     }
