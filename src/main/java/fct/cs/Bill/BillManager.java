@@ -5,9 +5,15 @@ import fct.cs.data.OrderDetailEntry;
 import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
 import fct.cs.Bill.orderDetails ;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BillManager {
     private DatabaseConnector databaseConnector;
@@ -154,7 +160,25 @@ public class BillManager {
     }
 
 
-    
+    public void jasperInvoice(){
+        JasperPrint jp ;
+        Map param = new HashMap();
+
+        try{
+            DatabaseConnector connectDB = new DatabaseConnector();
+            jp = JasperFillManager.fillReport("reports/inventory.jasper" ,
+                    param,
+                    connectDB.getConn());
+
+            JasperViewer viewer = new JasperViewer(jp,false);
+            viewer.setTitle("Report");
+            viewer.setVisible(true);
+
+        }catch(JRException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
     }
 
 
