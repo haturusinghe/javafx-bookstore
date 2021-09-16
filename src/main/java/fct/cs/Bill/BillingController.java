@@ -277,7 +277,6 @@ public class BillingController {
         alreadyAdded = false;
         int qty = billManager.getQtySingleItem(book_id);
         System.out.println(qty);
-        if (billDetails.size() > 0) {
 
             for (Billdetails currentItem : billDetails) {
 
@@ -293,8 +292,6 @@ public class BillingController {
                     break;
                 }
             }
-        }
-
 
         if (!alreadyAdded) {
 
@@ -357,7 +354,7 @@ public class BillingController {
         int customer_id = Integer.parseInt(customerID.getText());
         int employee_id = 1 ;
         Date order_date = getCurrentDate();
-        int total_quantity = BillingObservableList.size();
+        int total_quantity = getQuantity(billDetails);
         int total_discount = (Integer.parseInt(total.getText()) * Integer.parseInt(discount.getText()))/100;
 
         int total_price = Integer.parseInt(finalTotal.getText());
