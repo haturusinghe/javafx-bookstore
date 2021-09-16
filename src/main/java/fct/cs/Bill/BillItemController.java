@@ -86,15 +86,15 @@ public class BillItemController implements Initializable {
 
         }
     }
-    public void subQty(int book_id , ArrayList<BillItem> itemList){
-
-        for(BillItem item: itemList){
-            if(item.getItem_id() == book_id){
-                item.setActiveQty(item.getActiveQty() - 1 );
-            }
-        }
-
-    }
+//    public void subQty(int book_id , ArrayList<BillItem> itemList){
+//
+//        for(BillItem item: itemList){
+//            if(item.getItem_id() == book_id){
+//                item.setActiveQty(item.getActiveQty() - 1 );
+//            }
+//        }
+//
+//    }
     public void setParentController(BillingController parentController) {
         this.parentController = parentController;
     }

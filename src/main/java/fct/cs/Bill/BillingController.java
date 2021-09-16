@@ -277,6 +277,7 @@ public class BillingController {
         alreadyAdded = false;
         int qty = billManager.getQtySingleItem(book_id);
         System.out.println(qty);
+        if (billDetails.size() > 0) {
 
             for (Billdetails currentItem : billDetails) {
 
@@ -292,21 +293,28 @@ public class BillingController {
                     break;
                 }
             }
-
-        if (!alreadyAdded) {
-
-
-            Billdetails getOrderDetail = new Billdetails(orderDetailId, book_id, book_name, 1, unit_price, unit_price);
-            getOrderDetail.setOrder_id(orderDetailId);
-            orderDetailId++;
-            getOrderDetail.setBook_id(book_id);
-            getOrderDetail.setBook_name(book_name);
-            getOrderDetail.setQuantity(1);
-            getOrderDetail.setUnit_price(unit_price);
-
-            billDetails.add(getOrderDetail);
-
         }
+
+        if (qty > 0){
+            if (!alreadyAdded) {
+
+
+                Billdetails getOrderDetail = new Billdetails(orderDetailId, book_id, book_name, 1, unit_price, unit_price);
+                getOrderDetail.setOrder_id(orderDetailId);
+                orderDetailId++;
+                getOrderDetail.setBook_id(book_id);
+                getOrderDetail.setBook_name(book_name);
+                getOrderDetail.setQuantity(1);
+                getOrderDetail.setUnit_price(unit_price);
+
+                billDetails.add(getOrderDetail);
+
+            }
+
+        }else{
+            ErrorShow(book_name + " is Out of Stock!!! ");
+        }
+
 
     }
 
@@ -341,6 +349,11 @@ public class BillingController {
     }
 
     public void cancelOrder(ActionEvent action) {
+        cancelOrders();
+
+
+    }
+    public void cancelOrders(){
         billDetails.clear();
         loadBillTable();
         customerName.setText("");
