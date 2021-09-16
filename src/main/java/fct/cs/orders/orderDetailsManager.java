@@ -60,7 +60,7 @@ public class orderDetailsManager {
             //	price INT,
             while (rs.next()) {
                 orderList.add(new orderDetailsData(
-                        "test",
+                        "test", // changed this just for testing
                         String.valueOf(rs.getInt("book_id")),
                         String.valueOf(rs.getInt("order_id")),
                         rs.getString("title"),
