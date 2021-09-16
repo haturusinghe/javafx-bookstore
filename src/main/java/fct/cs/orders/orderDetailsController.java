@@ -32,7 +32,8 @@ import java.util.ResourceBundle;
 public class orderDetailsController implements Initializable {
 
     @FXML
-    private MFXListView<VBox> orderItemsList;
+    private MFXListView<VBox> orderItemsList = new MFXListView<>();
+    private int orderId = 69;
 
     private ObservableList<VBox> orderDetObservableList = FXCollections.observableArrayList();
 
@@ -58,36 +59,38 @@ public class orderDetailsController implements Initializable {
 
     public MFXTableView MFXtblOrderDet;
     private orderDetailsController thisController = this;
-//    private ObservableList<ordersInfo> orderDetObservableList = FXCollections.observableArrayList();
+    //    private ObservableList<ordersInfo> orderDetObservableList = FXCollections.observableArrayList();
 //    private FilteredList<ordersInfo> orderDetFilteredList = new FilteredList<>(orderDetObservableList);
-      private static orderDetailsData selectedOrderDet = null;
+    private static orderDetailsData selectedOrderDet = null;
 
-//    private ObservableList<Category> categoryList = FXCollections.observableArrayList();
-private orderDetailsManager orderDetailsManager;
+    //    private ObservableList<Category> categoryList = FXCollections.observableArrayList();
+    private orderDetailsManager orderDetailsManager;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         orderDetailsManager = new orderDetailsManager();
 //        setDetColumnProps();
 //        getOrderDetData();
-//        initOrderItemsList();
-    }
-//    ArrayList<orderDetailsData> list = new ArrayList<>();
 
-//    private void initOrderItemsList() {
-////        ArrayList<orderDetailsData> list = new ArrayList<>();
-//       ArrayList<orderDetailsData> list = orderDetailsManager.getOrderDetList(1);
-////        list = orderDetailsManager.getOrderDetList(1);
-//        orderDetObservableList.clear();
-//        System.out.println(list);
-//        for (orderDetailsData e:
-//                list) {
-//
-//            orderDetObservableList.add(createOrderListItem(e));
-//            System.out.println(orderDetObservableList);
-//        }
+    }
+
+    ArrayList<orderDetailsData> list = new ArrayList<>();
+
+    private void initOrderItemsList() {
+//        ArrayList<orderDetailsData> list = new ArrayList<>();
+        System.out.println("init order item list");
+        ArrayList<orderDetailsData> list = orderDetailsManager.getOrderDetList(orderId);
+
+//        list = orderDetailsManager.getOrderDetList(1);
+        orderDetObservableList.clear();
+        System.out.println(list);
+        for (orderDetailsData e : list) {
+            orderDetObservableList.add(createOrderListItem(e));
+            System.out.println(e.toString());
+        }
 //        orderItemsList.setItems(orderDetObservableList);
 //        System.out.println(orderItemsList);
-//    }
+    }
 
 //    private void setDetColumnProps() {
 //        MFXTableColumn<orderDetailsData> orderDetIdColumn = new MFXTableColumn<>("Index", Comparator.comparing(orderDetailsData::getOrder_detail_id));
@@ -124,7 +127,6 @@ private orderDetailsManager orderDetailsManager;
         HBox priceHbox = new HBox();
 
 
-
         FontIcon fileIcon = new FontIcon("cil-file");
         fileIcon.setIconColor(Color.BLACK);
         fileIcon.setIconSize(18);
@@ -145,8 +147,13 @@ private orderDetailsManager orderDetailsManager;
         unitPriceLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 16;");
         quantityLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 14;");
         priceLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 16;");
-        vBox.getChildren().addAll(titleHbox,unitPriceHbox,quantityHbox,priceHbox);
+        vBox.getChildren().addAll(titleHbox, unitPriceHbox, quantityHbox, priceHbox);
         return vBox;
     }
 
+    public void setOrderId(int orderId) {
+        System.out.println("Order ID Passed");
+        this.orderId = orderId;
+        initOrderItemsList();
+    }
 }

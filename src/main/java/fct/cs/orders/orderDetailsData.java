@@ -114,4 +114,16 @@ public class orderDetailsData {
         this.title.set(title);
     }
 
+    @Override
+    public String toString() {
+        return "orderDetailsData{" +
+                "order_detail_id=" + order_detail_id +
+                ", book_id=" + book_id +
+                ", order_id=" + order_id +
+                ", title=" + title +
+                ", quantity=" + quantity +
+                ", unit_price=" + unit_price +
+                ", price=" + price +
+                '}';
+    }
 }
