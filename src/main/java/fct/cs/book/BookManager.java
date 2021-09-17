@@ -1,5 +1,6 @@
 package fct.cs.book;
 import fct.cs.dbUtil.DatabaseHandler;
+import fct.cs.inventory.NotificationCreator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -203,8 +204,10 @@ public class BookManager {
             preparedStatement.setString(10,entry.getBook_description());
             preparedStatement.setInt(11,entry.getBook_id());
             count = preparedStatement.executeUpdate();
+            NotificationCreator.showSuccessBottomRight("Operation Successfully Completed","Book Updated Successfully");
         } catch (SQLException e) {
             e.printStackTrace();
+            NotificationCreator.showErrorBottomRight("Error Updating Book",e.getMessage());
         }
 
         return count > 0;
@@ -219,8 +222,10 @@ public class BookManager {
             preparedStatement = conn.prepareStatement(updateQuery);
             preparedStatement.setInt(1, entry.getBook_id());
             count = preparedStatement.executeUpdate();
+            NotificationCreator.showSuccessBottomRight("Operation Successfully Completed","Book Deleted Successfully");
         } catch (SQLException e) {
             e.printStackTrace();
+            NotificationCreator.showErrorBottomRight("Error Deleting Book",e.getMessage());
         }
 
         return count > 0;
@@ -244,8 +249,10 @@ public class BookManager {
             preparedStatement.setString(10,entry.getLang());
             preparedStatement.setString(11,entry.getBook_description());
             count = preparedStatement.executeUpdate();
+            NotificationCreator.showSuccessBottomRight("Operation Successfully Completed","Book Added Successfully");
         } catch (SQLException e) {
             e.printStackTrace();
+            NotificationCreator.showErrorBottomRight("Error Adding New Book",e.getMessage());
         }
 
         return count > 0;

@@ -19,7 +19,7 @@
                <graphic>
                   <FontIcon iconColor="RED" iconLiteral="cil-yen" iconSize="20" selectionEnd="0" styleClass="topClose" text="" />
                </graphic></Button>
-            <Label prefHeight="26.0" prefWidth="253.0" styleClass="headerTitle" text="ADD NEW BOOK">
+            <Label prefHeight="26.0" prefWidth="253.0" styleClass="headerTitle" text="BOOK DETAILS">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font></Label>
