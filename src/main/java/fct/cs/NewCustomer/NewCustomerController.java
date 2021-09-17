@@ -3,6 +3,7 @@ package fct.cs.NewCustomer;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.events.JFXDrawerEvent;
 import fct.cs.data.Category;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.cell.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
@@ -19,6 +20,7 @@ import javafx.geometry.Pos;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
 import java.net.URL;
@@ -161,6 +163,18 @@ public class NewCustomerController implements Initializable {
         });
 //        updateColumn.setResizable(false);
 //        updateColumn.setMaxWidth(20);
+
+     /*  FontIcon addIcon = new FontIcon("anto-plus-circle");
+        addIcon.setIconColor(Color.WHITE);
+        addIcon.setIconSize(25);
+
+        MFXButton addBtn = new MFXButton();
+        addBtn.setText("Add Book");
+        addBtn.setStyle("-fx-background-color: #2B2B2B;-fx-font-size: 20px;-fx-background-radius: 9,8,5,4,3;-fx-text-fill: #fff;");
+        addBtn.setGraphic(addIcon);
+        addBtn.setOnAction(actionEvent -> {
+            thisController.addNewCustomer();
+        });*/
 
 
         customerTable.getTableColumns().addAll(customer_idColumn, customer_nameColumn, locationColumn, mobileColumn, emailColumn, updateColumn, deleteColumn);
