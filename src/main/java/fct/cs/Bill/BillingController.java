@@ -398,8 +398,6 @@ public class BillingController {
 
         }
 
-
-
     }
 
     public void ErrorShow(String str){
@@ -422,6 +420,7 @@ public class BillingController {
         JFXDialog dialog = new JFXDialog( stackPane, DialogLayout , JFXDialog.DialogTransition.TOP);
         yes.setOnAction(e->{
             billManager.jasperInvoice();
+            cancelOrders();
         });
         no.setOnAction(e ->{
             dialog.close();
