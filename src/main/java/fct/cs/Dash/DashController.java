@@ -1,13 +1,18 @@
 package fct.cs.Dash;
 
 
+import eu.hansolo.fx.charts.ChartType;
 import eu.hansolo.fx.charts.CoxcombChart;
 import eu.hansolo.fx.charts.data.ChartItem;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.utils.ColorUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -23,15 +28,19 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class DashController implements Initializable {
 
 
     public VBox stockItem_vbox;
-    public VBox revanue_vbox;
+    public VBox revenue_vbox;
     public VBox StockItemList_vbox;
     public Label stockItemsLabel;
+    public MFXComboBox<Long> revYearCombo;
+    public MFXButton chartRefreshBtn;
+
 
     @FXML
     private TextField totalItems;
@@ -57,16 +66,36 @@ public class DashController implements Initializable {
     private MFXListView stockItemListView;
     private ObservableList<VBox> stockObservableList = FXCollections.observableArrayList();
 
+    private ObservableList<Long> yearObservableList = FXCollections.observableArrayList();
+
+    ArrayList<MonthlyEntry> reportData;
+
+    XYChart.Series dataSeries1 = new XYChart.Series();
+    XYChart.Series dataSeries2 = new XYChart.Series();
+    XYChart.Series dataSeries3 = new XYChart.Series();
+
     public void setManager(boolean isManager) {
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        FontIcon refreshIcon = new FontIcon("cil-low-vision");
+        refreshIcon.setIconColor(Color.BLACK);
+        refreshIcon.setIconSize(20);
+
+        chartRefreshBtn.setText("");
+        chartRefreshBtn.setGraphic(refreshIcon);
+        chartRefreshBtn.setOnAction(actionEvent -> {
+            loadChartData();
+        });
+
         initAreaCharts();
         setInfoCards();
         initCoxcombChart();
         initPopularItemsList();
     }
+
 
     private void initPopularItemsList() {
         ArrayList<BookSale> list = new ArrayList<>();
@@ -96,7 +125,7 @@ public class DashController implements Initializable {
                 double d = ((double) w) / v;
 
                 d = Math.round(d * 100);
-                System.out.println(w);
+//                System.out.println(w);
                 Color rColor = ColorUtils.getRandomColor();
                 items.add(new ChartItem(keyVal, w, rColor));
                 stockObservableList.add(createCoxcombLegend(keyVal, w, rColor));
@@ -113,32 +142,52 @@ public class DashController implements Initializable {
     }
 
     private void initAreaCharts() {
-        XYChart.Series dataSeries1 = new XYChart.Series();
-        XYChart.Series dataSeries2 = new XYChart.Series();
-        XYChart.Series dataSeries3 = new XYChart.Series();
-        dataSeries1.setName("Total Sales -  2021");
-        dataSeries2.setName("Discount - 2021");
-        dataSeries3.setName("Profit - 2021");
+        dataSeries1.setName("Total Sales");
+        dataSeries2.setName("Discount");
+        dataSeries3.setName("Profit");
 
-        ArrayList<MonthlyEntry> reportData = null;
         try {
+            Set<Long> years = new HashSet();
             reportData = DashManager.getMonthlyReport();
-
+            System.out.println("OK");
+            for (MonthlyEntry e : reportData) {
+                System.out.println(e.toString());
+                years.add(e.getOrderYear());
+            }
+            years.forEach(year -> {
+                yearObservableList.add(year);
+            });
+            revYearCombo.setItems(yearObservableList);
+            revYearCombo.getSelectionModel().selectFirst();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        for (MonthlyEntry e : reportData) {
-            dataSeries1.getData().add(new XYChart.Data(e.getOrderMonth(), e.getSalesPerMonth()));
-            dataSeries2.getData().add(new XYChart.Data(e.getOrderMonth(), e.getDiscountPerMonth()));
-            dataSeries3.getData().add(new XYChart.Data(e.getOrderMonth(), e.getProfitPerMonth()));
-        }
+        loadChartData();
+
         revenueChart.getData().addAll(dataSeries1);
         revenueChart.getData().addAll(dataSeries2);
         revenueChart.getData().addAll(dataSeries3);
         revenueChart.setLegendVisible(true);
         revenueChart.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
         revenueChart.getYAxis().setTickMarkVisible(false);
+    }
+
+    private void loadChartData() {
+        dataSeries1.getData().clear();
+        dataSeries2.getData().clear();
+        dataSeries3.getData().clear();
+        for (MonthlyEntry e : reportData) {
+            if(e.getOrderYear() == revYearCombo.getSelectionModel().getSelectedItem()){
+                dataSeries1.getData().add(new XYChart.Data(e.getOrderMonth(), e.getSalesPerMonth()));
+                dataSeries2.getData().add(new XYChart.Data(e.getOrderMonth(), e.getDiscountPerMonth()));
+                dataSeries3.getData().add(new XYChart.Data(e.getOrderMonth(), e.getProfitPerMonth()));
+            }
+        }
+    }
+
+    private void setYearCombo() {
+
     }
 
     private void setInfoCards() {
@@ -183,7 +232,7 @@ public class DashController implements Initializable {
         HBox amountHbox = new HBox();
 
         Color textColor = null;
-        if ((color.getRed()*0.299 + color.getGreen()*0.587 + color.getBlue()*0.114) > 186){
+        if ((color.getRed()*0.299 + color.getGreen()*0.587 + color.getBlue()*0.114) > 150){
             textColor = Color.BLACK;
         }else{
             textColor = Color.WHITE;
@@ -226,7 +275,7 @@ public class DashController implements Initializable {
 
     private VBox createCoxcombLegend(String bookName, int count, Color color) {
         Color textColor = null;
-        if ((color.getRed()*0.299 + color.getGreen()*0.587 + color.getBlue()*0.114) > 186){
+        if ((color.getRed()*0.299 + color.getGreen()*0.587 + color.getBlue()*0.114) > 150){
             textColor = Color.BLACK;
         }else{
             textColor = Color.WHITE;

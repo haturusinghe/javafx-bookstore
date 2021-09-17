@@ -76,4 +76,17 @@ public class MonthlyEntry {
     public void setOrdersPerMonth(int ordersPerMonth) {
         this.ordersPerMonth = ordersPerMonth;
     }
+
+    @Override
+    public String toString() {
+        return "MonthlyEntry{" +
+                "orderYear=" + orderYear +
+                ", orderMonth='" + orderMonth + '\'' +
+                ", salesPerMonth=" + salesPerMonth +
+                ", quantityPerMonth=" + quantityPerMonth +
+                ", discountPerMonth=" + discountPerMonth +
+                ", profitPerMonth=" + profitPerMonth +
+                ", ordersPerMonth=" + ordersPerMonth +
+                '}';
+    }
 }
