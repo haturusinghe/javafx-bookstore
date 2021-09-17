@@ -1,0 +1,33 @@
+--
+-- Database: `bookstore`
+
+Table structure for table `login`
+--
+
+CREATE TABLE `login` (
+
+ 	`id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT ,
+	`fname` varchar(50) NOT NULL,
+	`lname` varchar(50) NOT NULL,
+	`telnum` varchar(15) NOT NULL,
+	`email` varchar(100) NOT NULL,
+	`password` varchar(512) NOT NULL,
+	`ques` varchar(75) NOT NULL,
+	`ans` varchar(512) NOT NULL,
+	`isManager` BOOLEAN NOT NULL DEFAULT FALSE)
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Indexes for dumped tables
+
+Indexes for table `login'
+ALTER TABLE `login`
+  ADD
+UNIQUE KEY `telnum` (`telnum`),
+  ADD 
+UNIQUE KEY `email` (`email`);
+
+
+
+
+
+

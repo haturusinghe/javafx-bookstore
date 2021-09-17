@@ -1,9 +1,13 @@
 package fct.cs.Login;
 
 import com.jfoenix.controls.JFXComboBox;
+import fct.cs.controllers.mainPageController;
 import fct.cs.dbUtil.DatabaseConnector;
+import fct.cs.dbUtil.DatabaseHandler;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.controls.MFXStageDialog;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.github.palexdev.materialfx.controls.enums.DialogType;
 import io.github.palexdev.materialfx.utils.BindingUtils;
 import io.github.palexdev.materialfx.utils.StringUtils;
 import javafx.beans.binding.Bindings;
@@ -53,9 +57,6 @@ public class ChangePassword implements Initializable {
 
     @FXML
     private MFXPasswordField fPasswordCheck;
-
-    @FXML
-    private Label fErrLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -107,113 +108,27 @@ public class ChangePassword implements Initializable {
                 "Must contain at least one among these: ?!@()[]{}-_"
         );
 
+
+
     }
 
     private Connection conn;
 
-    @FXML
-    public void changeOnAction(ActiveEvent event) throws NoSuchAlgorithmException, InvalidKeySpecException {
-
-        DatabaseConnector databaseConnector = new DatabaseConnector();
-        PasswordSecure decrypt = new PasswordSecure();
-
-        try {
-            this.conn = databaseConnector.getConn();
-
-            String username = fUsername.getText().trim();
-            String question = fQuesBox.getValue().toString();
-            String answer = fAns.getText().trim();
-            String passGet = fPasswordGet.getText().trim();
-            String passCheck = fPasswordCheck.getText().trim();
-
-
-            /*if (username.isEmpty() || question.isEmpty() || answer.isEmpty() || passGet.isEmpty() || passCheck.isEmpty()) {
-                fErrLabel.setText("");
-            } else if (passGet.length() < 8) {
-                fPasswordGet.setValidated(true);
-                fPasswordGet.getValidator().add(
-                        BindingUtils.toProperty(
-                                fPasswordGet.passwordProperty().length().greaterThanOrEqualTo(8)
-                        ),
-                        "Must be at least 8 characters long"
-                );
-            } else if (passGet != passCheck) {
-                fPasswordCheck.setValidated(true);
-                fPasswordCheck.getValidator().add(
-                        BindingUtils.toProperty(
-                                fPasswordCheck.passwordProperty().isEqualTo(fPasswordGet.getPassword())
-                        ),
-                        "You need enter same password"
-                );
-            } else {*/
-
-                //sql query for getting username as telnum
-                PreparedStatement ps1 = conn.prepareStatement("select * from login where telnum=?");
-                //sql query for getting username as email
-                PreparedStatement ps2 = conn.prepareStatement("select * from login where email=?");
-
-                ps1.setString(1, username);
-                ps2.setString(1, username);
-
-                ResultSet rs_1 = ps1.executeQuery();
-                ResultSet rs_2 = ps2.executeQuery();
-
-                if (rs_1.next()) {
-
-                    String storedAnswer = rs_1.getString("ans");
-                    Integer id = rs_1.getInt(1);
-                    boolean matched = decrypt.validateString(answer, storedAnswer);
-                    System.out.println(matched);
-                    if (matched == true) {
-                        boolean changePass = correctAns(passGet, id);
-                        System.out.println("Change Password, "+ changePass);
-                    } else {
-                        fErrLabel.setText("Wrong Answer, Please try again..");
-                        System.out.println("Invalid Input");
-                    }
-
-                } else if (rs_2.next()) {
-                    String storedAnswer = rs_2.getString("ans");
-                    Integer id = rs_2.getInt(1);
-                    boolean matched = decrypt.validateString(answer, storedAnswer);
-                    System.out.println(matched);
-                    if (matched == true) {
-                        boolean changePass = correctAns(passGet, id);
-                        System.out.println("Change Password, "+ changePass);
-                    } else {
-                        fErrLabel.setText("Wrong Answer, Please try again..");
-                        System.out.println("Invalid Input");
-                    }
-
-                } else {
-                    System.out.println("Not Found");
-                    fErrLabel.setText("Invalid credentials. Please try again..");
-                }
-
-            //}
-
-        }catch(Exception ex){
-            System.out.println("error" + ex.toString());
-        }
-    }
-
     public boolean correctAns(String password, int iD) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
 
-        DatabaseConnector databaseConnector = new DatabaseConnector();
-        PasswordSecure encrypt = new PasswordSecure();
-
-        this.conn = databaseConnector.getConn();
-
-        String passwordEncrypt = encrypt.encryptString(password);
-        System.out.println("Password Encrypted");
+        try {
+            this.conn = DatabaseHandler.getInstance().getConn();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         String updateQuery = "UPDATE login set password = ? where id = ?";
         PreparedStatement preparedStatement = null;
         int count = 0;
         try {
             preparedStatement = conn.prepareStatement(updateQuery);
-            preparedStatement.setString(1,passwordEncrypt);
+            preparedStatement.setString(1,password);
             preparedStatement.setInt(2,iD);
             count = preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -223,9 +138,9 @@ public class ChangePassword implements Initializable {
         return count > 0;
     }
 
-    @FXML
-    public void registerOnAction(ActionEvent event)throws IOException {
-        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/fxml/login/Register.fxml"));
+            @FXML
+    public void hyperlinkRegister(ActionEvent event)throws IOException {
+        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/Register.fxml"));
         Scene scene = new Scene(view);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
@@ -233,5 +148,151 @@ public class ChangePassword implements Initializable {
     }
 
 
+    public void changeOnAction(ActionEvent actionEvent) {
+        String username = fUsername.getText().trim();
+        String answer = fAns.getText().trim();
+        String passGet = fPasswordGet.getText().trim();
+        String passCheck = fPasswordCheck.getText().trim();
+        String question = null;
+        try {
+            question = fQuesBox.getValue().toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        fPasswordCheck.setValidated(true);
+        fPasswordCheck.getValidator().add(
+                BindingUtils.toProperty(
+                        fPasswordCheck.passwordProperty().isEqualTo(fPasswordGet.getPassword())
+                ),
+                "Passwords dont match"
+        );
+
+        if (fUsername.isValid() && fAns.isValid() && fPasswordGet.isValid() && fPasswordCheck.isValid() && question != null) {
+
+            System.out.println("Form OK!");
+
+            try {
+                this.conn = DatabaseHandler.getInstance().getConn();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            PasswordSecure encrypt = new PasswordSecure();
+            PasswordSecure decrypt = new PasswordSecure();
+            String passwordEncrypt = null, answerDecrypt = null;
+
+            //Encrypt password
+            try {
+                passwordEncrypt = encrypt.encryptString(passGet);
+                System.out.println("Password Encrypted");
+
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (InvalidKeySpecException e) {
+                e.printStackTrace();
+            }
+
+            try {
+
+                //sql query for getting username as telnum
+                PreparedStatement ps_1 = conn.prepareStatement("select * from login where telnum=?");
+                //sql query for getting username as email
+                PreparedStatement ps_2 = conn.prepareStatement("select * from login where email=?");
+
+                ps_1.setString(1, username);
+                ps_2.setString(1, username);
+
+                ResultSet rs_1 = ps_1.executeQuery();
+                ResultSet rs_2 = ps_2.executeQuery();
+
+                if (rs_1.next()) {
+                    String storedAnswer = rs_1.getString("ans");
+                    Integer id = rs_1.getInt(1);
+                    boolean matchedAnswer = decrypt.validateString(answer, storedAnswer);
+                    boolean changePass = correctAns(passwordEncrypt, id);
+
+                    if (matchedAnswer == true) {
+
+                        if (changePass == true) {
+
+                            try {
+
+                                Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/login.fxml"));
+                                Scene scene = new Scene(view);
+                                System.out.println("Password changed\nLoad Login Page");
+                                Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                                window.setScene(scene);
+                                window.show();
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+
+                    } else {
+
+                        System.out.println("Check Again");
+                        MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Warning", "Wrong Answer, please try again");
+                        dialog.show();
+
+                    }
+
+                }else if (rs_2.next()) {
+                    String storedAnswer = rs_2.getString("ans");
+                    Integer id = rs_2.getInt(1);
+                    boolean matchedAnswer = decrypt.validateString(answer, storedAnswer);
+                    boolean changePass = correctAns(passwordEncrypt, id);
+
+                    if (matchedAnswer == true) {
+
+                        if (changePass == true) {
+
+                            try {
+
+                                Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/login.fxml"));
+                                Scene scene = new Scene(view);
+                                System.out.println("Password changed\nLoad Login Page");
+                                Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                                window.setScene(scene);
+                                window.show();
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+
+                    } else {
+
+                        System.out.println("Check Again");
+                        MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Warning", "Wrong Answer, please try again");
+                        dialog.show();
+
+                    }
+
+                }else {
+
+                    System.out.println("Check Again");
+                    MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Warning", "User doesn't exist");
+                    dialog.show();
+
+                }
+            } catch (SQLException | NoSuchAlgorithmException | InvalidKeySpecException throwables) {
+                throwables.printStackTrace();
+            }
+        } else {
+
+            System.out.println("Check Again");
+            MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Fill Forget-Password Form", "Please fill all the fields in the above form");
+            dialog.show();
+
+        }
+    }
+
+    public void close(ActionEvent actionEvent) {
+        System.exit(0);
+    }
 
 }
