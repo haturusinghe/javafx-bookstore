@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXLabel?>
+<?import io.github.palexdev.materialfx.controls.MFXListView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox prefHeight="600.0" prefWidth="500.0" stylesheets="@styles/side-panel.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.orders.orderDetailsController">
+    <children>
+        <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="500.0">
+            <children>
+            <AnchorPane prefHeight="94.0" prefWidth="502.0">
+               <children>
+                  <Label layoutX="3.0" layoutY="1.0" prefHeight="46.0" prefWidth="214.0" text="ORDER DETAILS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="465.0" mnemonicParsing="false" onAction="#close" styleClass="topClose">
+                     <graphic>
+                        <FontIcon iconColor="RED" iconLiteral="cil-yen" iconSize="20" styleClass="topClose" />
+                     </graphic>
+                  </Button>
+                  <Text layoutX="14.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order ID:" wrappingWidth="92.53673553466797">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="orderId" layoutX="95.0" layoutY="36.0" prefHeight="27.0" prefWidth="42.0">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            </children>
+        </HBox>
+        <VBox fx:id="infoContainerVBox" alignment="CENTER" minWidth="500.0" prefHeight="516.0" prefWidth="502.0">
+         <children>
+            <AnchorPane prefHeight="537.0" prefWidth="502.0">
+               <children>
+                  <MFXLabel layoutX="32.0" layoutY="25.0" prefHeight="27.0" prefWidth="60.0" text="Order Date:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </MFXLabel>
+                  <MFXLabel layoutX="160.0" layoutY="25.0" prefHeight="27.0" prefWidth="165.0" text="Customer Name:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </MFXLabel>
+                  <MFXLabel layoutX="338.0" layoutY="25.0" prefHeight="27.0" prefWidth="122.0" text="Employee Name:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </MFXLabel>
+                  <MFXLabel layoutX="48.0" layoutY="402.0" prefHeight="27.0" prefWidth="99.0" text="Sub Total:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </MFXLabel>
+                  <MFXLabel layoutX="199.0" layoutY="402.0" prefHeight="27.0" prefWidth="100.0" text="Discount:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </MFXLabel>
+                  <MFXLabel layoutX="350.0" layoutY="402.0" prefHeight="27.0" prefWidth="104.0" text="Total:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </MFXLabel>
+                  <Label fx:id="orderDate" layoutX="38.0" layoutY="66.0" prefHeight="35.0" prefWidth="109.0" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="cusName" layoutX="186.0" layoutY="66.0" prefHeight="35.0" prefWidth="109.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="empName" layoutX="352.0" layoutY="66.0" prefHeight="35.0" prefWidth="104.0" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="subTotal" layoutX="48.0" layoutY="452.0" prefHeight="35.0" prefWidth="100.0" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="discount" layoutX="201.0" layoutY="452.0" prefHeight="35.0" prefWidth="100.0" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="total" layoutX="354.0" layoutY="452.0" prefHeight="35.0" prefWidth="100.0" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <MFXListView fx:id="mfxList" layoutX="38.0" layoutY="136.0" prefHeight="247.0" prefWidth="454.0" />
+                  <MFXLabel layoutX="43.0" layoutY="108.0" prefHeight="27.0" prefWidth="78.0" text="Items">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </MFXLabel>
+               </children>
+            </AnchorPane>
+         </children>
+        </VBox>
+    </children>
+</VBox>
