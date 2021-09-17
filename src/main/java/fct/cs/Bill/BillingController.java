@@ -295,21 +295,26 @@ public class BillingController {
             }
         }
 
+        if (qty > 0){
+            if (!alreadyAdded) {
 
-        if (!alreadyAdded) {
 
+                Billdetails getOrderDetail = new Billdetails(orderDetailId, book_id, book_name, 1, unit_price, unit_price);
+                getOrderDetail.setOrder_id(orderDetailId);
+                orderDetailId++;
+                getOrderDetail.setBook_id(book_id);
+                getOrderDetail.setBook_name(book_name);
+                getOrderDetail.setQuantity(1);
+                getOrderDetail.setUnit_price(unit_price);
 
-            Billdetails getOrderDetail = new Billdetails(orderDetailId, book_id, book_name, 1, unit_price, unit_price);
-            getOrderDetail.setOrder_id(orderDetailId);
-            orderDetailId++;
-            getOrderDetail.setBook_id(book_id);
-            getOrderDetail.setBook_name(book_name);
-            getOrderDetail.setQuantity(1);
-            getOrderDetail.setUnit_price(unit_price);
+                billDetails.add(getOrderDetail);
 
-            billDetails.add(getOrderDetail);
+            }
 
+        }else{
+            ErrorShow(book_name + " is Out of Stock!!! ");
         }
+
 
     }
 
@@ -321,6 +326,15 @@ public class BillingController {
         }
         return subTotal;
     }
+    public int getQuantity(ArrayList<Billdetails> array) {
+        int quantity = 0;
+        for (Billdetails currentItem : array) {
+
+            quantity += currentItem.getQuantity();
+        }
+        return quantity;
+    }
+
 
     public int getFinalTotal(int total) {
         int disc = Integer.parseInt(discount.getText());
@@ -335,10 +349,16 @@ public class BillingController {
     }
 
     public void cancelOrder(ActionEvent action) {
+        cancelOrders();
+
+
+    }
+    public void cancelOrders(){
         billDetails.clear();
         loadBillTable();
         customerName.setText("");
         customerID.setText("");
+        discount.setText("");
         moveToSelectCustomer();
 
     }
@@ -348,7 +368,7 @@ public class BillingController {
         int customer_id = Integer.parseInt(customerID.getText());
         int employee_id = 1 ;
         Date order_date = getCurrentDate();
-        int total_quantity = BillingObservableList.size();
+        int total_quantity = getQuantity(billDetails);
         int total_discount = (Integer.parseInt(total.getText()) * Integer.parseInt(discount.getText()))/100;
 
         int total_price = Integer.parseInt(finalTotal.getText());
@@ -362,7 +382,10 @@ public class BillingController {
         return new Date(millis);
     }
     public void ChargeCustomer(ActionEvent action){
+        ChargeCustomer();
 
+    }
+    private void ChargeCustomer(){
         if(billDetails.size() == 0 ){
             ErrorShow("No Items in the Bill!!");
 
@@ -370,10 +393,12 @@ public class BillingController {
             Order order = getOrderEntryFromBill();
             billManager.updateOrderEntry(order);
             billManager.updateOrderDetailsByArray(billDetails);
+            confirmationToInvoice();
+            cancelOrders();
 
-            System.out.println(billDetails);
-            System.out.println(order);
         }
+
+
 
     }
 
@@ -387,6 +412,23 @@ public class BillingController {
 
         DialogLayout.setHeading(new Label(str));
         DialogLayout.setActions(button);
+        dialog.show();
+    }
+    public void confirmationToInvoice(){
+        JFXDialogLayout DialogLayout = new JFXDialogLayout();
+        JFXButton yes = new JFXButton("Yes");
+
+        JFXButton no = new JFXButton("No");
+        JFXDialog dialog = new JFXDialog( stackPane, DialogLayout , JFXDialog.DialogTransition.TOP);
+        yes.setOnAction(e->{
+            billManager.jasperInvoice();
+        });
+        no.setOnAction(e ->{
+            dialog.close();
+        });
+
+        DialogLayout.setHeading(new Label("Payment Successful!! \n Do you need a Invoice ?"));
+        DialogLayout.setActions(yes, no);
         dialog.show();
     }
 

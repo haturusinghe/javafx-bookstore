@@ -39,6 +39,10 @@ public class BillItemController implements Initializable {
 
     @FXML
     private TableColumn<BillItem, Integer>  unit_price;
+    @FXML
+    private TableColumn<BillItem, Integer> activeQty;
+    @FXML
+    private TableColumn addItem;
 
     @FXML
     private Label name;
@@ -46,8 +50,7 @@ public class BillItemController implements Initializable {
     @FXML
     private TextField searchItem;
 
-    @FXML
-    private TableColumn additem;
+
 
     private ItemManager ItemManager ;
     private CustomerManager customerManager ;
@@ -83,6 +86,15 @@ public class BillItemController implements Initializable {
 
         }
     }
+//    public void subQty(int book_id , ArrayList<BillItem> itemList){
+//
+//        for(BillItem item: itemList){
+//            if(item.getItem_id() == book_id){
+//                item.setActiveQty(item.getActiveQty() - 1 );
+//            }
+//        }
+//
+//    }
     public void setParentController(BillingController parentController) {
         this.parentController = parentController;
     }
@@ -92,10 +104,10 @@ public class BillItemController implements Initializable {
         itemName.setCellValueFactory(new PropertyValueFactory<>("item_name"));
         isbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         unit_price.setCellValueFactory(new PropertyValueFactory<>("unit_price"));
+        activeQty.setCellValueFactory(new PropertyValueFactory<>("activeQty"));
 
 
-
-     additem.setCellFactory((tableColumn) -> {
+     addItem.setCellFactory((tableColumn) -> {
         TableCell<BillItem, Integer> tableCell = new TableCell<>() {
 //            javafx.scene.image.Image imgSelect = new Image(getClass().getResourceAsStream("/images/book.png"));
             final javafx.scene.control.Button btnAdd = new Button();
@@ -116,6 +128,8 @@ public class BillItemController implements Initializable {
                     btnAdd.setOnAction(e ->{
                         System.out.println("Clicked Select");
                         BillItem entry = getTableView().getItems().get(getIndex());
+
+                        loadDataItemTable();
 //                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/Billing.fxml"));
 //
 //                        BillingController controller = loader.getController() ;

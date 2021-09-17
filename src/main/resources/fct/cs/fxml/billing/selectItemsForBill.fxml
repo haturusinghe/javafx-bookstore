@@ -12,11 +12,12 @@
    <children>
       <TableView fx:id="itemTable" layoutX="1.0" layoutY="140.0" prefHeight="451.0" prefWidth="542.0">
          <columns>
-            <TableColumn fx:id="itemId" prefWidth="46.40002369880676" text="ID" />
-            <TableColumn fx:id="itemName" prefWidth="200.00000762939453" text="Item" />
-            <TableColumn fx:id="isbn" prefWidth="100.0" text="ISBN" />
-            <TableColumn fx:id="unit_price" minWidth="0.0" prefWidth="68.0" text="Unit_Price" />
-            <TableColumn fx:id="additem" prefWidth="139.99993896484375" text="Add" />
+            <TableColumn fx:id="itemId" prefWidth="31.999998450279236" text="ID" />
+            <TableColumn fx:id="itemName" prefWidth="186.40003204345703" text="Item" />
+            <TableColumn fx:id="isbn" prefWidth="74.39996337890625" text="ISBN" />
+            <TableColumn fx:id="unit_price" minWidth="0.0" prefWidth="68.79998779296875" text="Unit_Price" />
+            <TableColumn fx:id="activeQty" prefWidth="71.20001220703125" text="ActiveQty" />
+            <TableColumn fx:id="addItem" prefWidth="110.39999389648438" text="Add" />
          </columns>
       </TableView>
       <TextField fx:id="searchItem" layoutX="261.0" layoutY="82.0" prefHeight="32.0" prefWidth="194.0" promptText="bookID/Title" />

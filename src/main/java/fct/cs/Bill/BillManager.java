@@ -5,9 +5,16 @@ import fct.cs.data.OrderDetailEntry;
 import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
 import fct.cs.Bill.orderDetails ;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BillManager {
     private DatabaseConnector databaseConnector;
@@ -153,6 +160,35 @@ public class BillManager {
         }
     }
 
+
+    public void jasperInvoice(){
+        JasperPrint jp ;
+        Map param = new HashMap();
+
+        try{
+            jp = JasperFillManager.fillReport("jasper_files/invoice.jasper" ,
+                    param,
+                    conn);
+
+            JasperViewer viewer = new JasperViewer(jp,false);
+
+            viewer.setTitle("Report");
+//            JasperExportManager.exportReportToPdfFile(jp, "jasper_files/invoice.pdf");
+            viewer.setSize(600 , 800);
+            viewer.setZoomRatio(0.5F);
+
+            viewer.setVisible(true);
+
+
+        }catch(JRException e){
+            System.out.println(e.getMessage());
+        }
+
+
+        // Creation of the HTML Jasper Reports
+
+
+    }
     }
 
 
