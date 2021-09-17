@@ -1,5 +1,6 @@
 package fct.cs.orders;
 
+import fct.cs.NewEmployee.EmployeeData;
 import fct.cs.dbUtil.DatabaseHandler;
 
 import java.sql.Connection;

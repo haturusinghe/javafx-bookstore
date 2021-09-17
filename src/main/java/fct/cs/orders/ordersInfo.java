@@ -22,6 +22,7 @@ public class ordersInfo {
     private final IntegerProperty total_quantity = new SimpleIntegerProperty(0);
     private final IntegerProperty total_price= new SimpleIntegerProperty(0);
     private final IntegerProperty total_discount = new SimpleIntegerProperty(0);
+//    private final StringProperty first_name = new SimpleStringProperty("");
 
     public ordersInfo(String orderId,String customerId,String employeeId,String orderDate,int totalQty,int totalPrice,int tdiscount) {
         setOrder_id(orderId);
@@ -31,6 +32,7 @@ public class ordersInfo {
         setTotal_quantity (totalQty);
         setTotal_price(totalPrice);
         setTotal_discount(tdiscount);
+//        setFirst_name(firstName);
     }
 
     public ordersInfo(String order_detail_id, String book_id, String order_id, int quantity, int unit_price, int tprice, String title) {
@@ -119,5 +121,16 @@ public class ordersInfo {
     public void setTotal_discount(int total_discount) {
         this.total_discount.set(total_discount);
     }
+//    public String getFirst_name() {
+//        return first_name.get();
+//    }
+//
+//    public StringProperty first_nameProperty() {
+//        return first_name;
+//    }
+//
+//    public void setFirst_name(String first_name) {
+//        this.first_name.set(first_name);
+//    }
 
 }

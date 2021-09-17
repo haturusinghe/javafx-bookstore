@@ -33,6 +33,9 @@ public class OrderManager {
     private static ResultSet getOrdersFromDatabase(int entriesPerPage, int pageNumber) {
         int offset = entriesPerPage * (pageNumber - 1);
         String query = "SELECT * FROM orders LIMIT ?  OFFSET  ?";
+//        String query = "SELECT orders.order_id,orders.customer_id,orders.employee_id,orders.order_date,orders.total_quantity,orders.total_price,orders.total_discount," +
+//                "customer.customer_name,employee.first_name FROM orders,employee , customer WHERE orders.employee_id= employee.employee_id " +
+//                "And orders.customer_id = customer.customer_id LIMIT ?  OFFSET  ?";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
         try {
@@ -67,6 +70,7 @@ public class OrderManager {
                         rs.getInt("total_quantity"),
                         rs.getInt("total_price"),
                         rs.getInt("total_discount")
+//                        String.valueOf(rs.getDate("first_name"))
 
                 ));
             }

@@ -18,10 +18,11 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import org.kordamp.ikonli.javafx.FontIcon;
-
+import fct.cs.orders.ordersInfo;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -37,14 +38,34 @@ public class orderDetailsController implements Initializable {
     private MFXListView<VBox> mfxList;
 
     private ObservableList<VBox> orderDetObservableList = FXCollections.observableArrayList();
-
 //    @FXML
-//    private Button cancelBtn;
+//    private TextField orderId;
+@FXML
+private Label orderId;
+
+    @FXML
+    private Label orderDate;
+
+    @FXML
+    private Label cusId;
+
+    @FXML
+    private Label empId;
+
+    @FXML
+    private Label total;
+
+    @FXML
+    private Label discount;
+
+    @FXML
+    private Label subTotal;
+
+
 
     private ordersController parentController;
     private JFXDrawer JFXDrawerdrawer;
     private ordersInfo currentOrder = null;
-
 
     @FXML
     void close(ActionEvent event) {
@@ -158,5 +179,25 @@ public class orderDetailsController implements Initializable {
         System.out.println("Order Passed");
         this.currentOrder = currentOrder;
         initOrderItemsList();
+    }
+    private void resetForm() {
+        orderId.setText("");
+        orderDate.setText("");
+        cusId.setText("");
+        empId.setText("");
+        total.setText("");
+        discount.setText("");
+        subTotal.setText("");
+    }
+
+    public void setEntry(ordersInfo currentOrder) {
+        resetForm();
+        orderId.setText(currentOrder.getOrder_id());
+        orderDate.setText(currentOrder.getOrder_date());
+        cusId.setText(currentOrder.getCustomer_id());
+        empId.setText(currentOrder.getEmployee_id());
+        total.setText(String.valueOf(currentOrder.getTotal_price()));
+        discount.setText(String.valueOf(currentOrder.getTotal_discount()));
+        subTotal.setText(String.valueOf(currentOrder.getTotal_price()-currentOrder.getTotal_discount()));
     }
 }
