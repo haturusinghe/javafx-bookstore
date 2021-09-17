@@ -30,10 +30,11 @@ import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class orderDetailsController implements Initializable {
-
-    public VBox infoContainerVBox;
     @FXML
-    private MFXListView<VBox> orderItemsList = new MFXListView<>();
+    private VBox infoContainerVBox;
+
+    @FXML
+    private MFXListView<VBox> mfxList;
 
     private ObservableList<VBox> orderDetObservableList = FXCollections.observableArrayList();
 
@@ -70,7 +71,7 @@ public class orderDetailsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         orderDetailsManager = new orderDetailsManager();
-        infoContainerVBox.getChildren().add(orderItemsList);
+        infoContainerVBox.getChildren().add(mfxList);
 //        setDetColumnProps();
 //        getOrderDetData();
 
@@ -89,7 +90,7 @@ public class orderDetailsController implements Initializable {
             orderDetObservableList.add(createOrderListItem(e));
             System.out.println(e.toString());
         }
-        orderItemsList.setItems(orderDetObservableList);
+        mfxList.setItems(orderDetObservableList);
 //        System.out.println(orderItemsList);
     }
 
