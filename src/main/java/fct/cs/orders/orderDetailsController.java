@@ -30,8 +30,8 @@ import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class orderDetailsController implements Initializable {
-    @FXML
-    private VBox infoContainerVBox;
+//    @FXML
+//    private VBox infoContainerVBox;
 
     @FXML
     private MFXListView<VBox> mfxList;
