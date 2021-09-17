@@ -47,10 +47,11 @@ private Label orderId;
     private Label orderDate;
 
     @FXML
-    private Label cusId;
+    private Label cusName;
 
     @FXML
-    private Label empId;
+    private Label empName;
+
 
     @FXML
     private Label total;
@@ -183,8 +184,8 @@ private Label orderId;
     private void resetForm() {
         orderId.setText("");
         orderDate.setText("");
-        cusId.setText("");
-        empId.setText("");
+        cusName.setText("");
+        empName.setText("");
         total.setText("");
         discount.setText("");
         subTotal.setText("");
@@ -194,10 +195,10 @@ private Label orderId;
         resetForm();
         orderId.setText(currentOrder.getOrder_id());
         orderDate.setText(currentOrder.getOrder_date());
-        cusId.setText(currentOrder.getCustomer_id());
-        empId.setText(currentOrder.getEmployee_id());
+        cusName.setText(currentOrder.getCustomer_name());
+        empName.setText(currentOrder.getFirst_name());
         total.setText(String.valueOf(currentOrder.getTotal_price()));
         discount.setText(String.valueOf(currentOrder.getTotal_discount()));
-        subTotal.setText(String.valueOf(currentOrder.getTotal_price()-currentOrder.getTotal_discount()));
+        subTotal.setText(String.valueOf(currentOrder.getTotal_price()+currentOrder.getTotal_discount()));
     }
 }

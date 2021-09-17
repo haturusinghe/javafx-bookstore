@@ -22,9 +22,11 @@ public class ordersInfo {
     private final IntegerProperty total_quantity = new SimpleIntegerProperty(0);
     private final IntegerProperty total_price= new SimpleIntegerProperty(0);
     private final IntegerProperty total_discount = new SimpleIntegerProperty(0);
-//    private final StringProperty first_name = new SimpleStringProperty("");
 
-    public ordersInfo(String orderId,String customerId,String employeeId,String orderDate,int totalQty,int totalPrice,int tdiscount) {
+    private final StringProperty first_name = new SimpleStringProperty("");
+    private final StringProperty customer_name = new SimpleStringProperty("");
+
+    public ordersInfo(String orderId,String customerId,String employeeId,String orderDate,int totalQty,int totalPrice,int tdiscount,String customerName,String firstName) {
         setOrder_id(orderId);
         setCustomer_id(customerId);
         setEmployee_id(employeeId);
@@ -32,7 +34,9 @@ public class ordersInfo {
         setTotal_quantity (totalQty);
         setTotal_price(totalPrice);
         setTotal_discount(tdiscount);
-//        setFirst_name(firstName);
+        setCustomer_name(customerName);
+        setFirst_name(firstName);
+
     }
 
     public ordersInfo(String order_detail_id, String book_id, String order_id, int quantity, int unit_price, int tprice, String title) {
@@ -121,16 +125,27 @@ public class ordersInfo {
     public void setTotal_discount(int total_discount) {
         this.total_discount.set(total_discount);
     }
-//    public String getFirst_name() {
-//        return first_name.get();
-//    }
-//
-//    public StringProperty first_nameProperty() {
-//        return first_name;
-//    }
-//
-//    public void setFirst_name(String first_name) {
-//        this.first_name.set(first_name);
-//    }
+    public String getFirst_name() {
+        return first_name.get();
+    }
+
+    public StringProperty first_nameProperty() {
+        return first_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name.set(first_name);
+    }
+    public String getCustomer_name() {
+        return customer_name.get();
+    }
+
+    public StringProperty customer_nameProperty() {
+        return customer_name;
+    }
+
+    public void setCustomer_name(String customer_name) {
+        this.customer_name.set(customer_name);
+    }
 
 }

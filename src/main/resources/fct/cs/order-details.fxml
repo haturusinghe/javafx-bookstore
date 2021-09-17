@@ -15,7 +15,7 @@
     <children>
         <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="500.0">
             <children>
-            <AnchorPane prefHeight="75.0" prefWidth="502.0">
+            <AnchorPane prefHeight="94.0" prefWidth="502.0">
                <children>
                   <Label layoutX="3.0" layoutY="1.0" prefHeight="46.0" prefWidth="214.0" text="ORDER DETAILS">
                      <font>
@@ -50,17 +50,17 @@
                         <Font size="18.0" />
                      </font>
                   </MFXLabel>
-                  <MFXLabel layoutX="175.0" layoutY="25.0" prefHeight="27.0" prefWidth="122.0" text="Customer Id:">
+                  <MFXLabel layoutX="160.0" layoutY="25.0" prefHeight="27.0" prefWidth="165.0" text="Customer Name:">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </MFXLabel>
-                  <MFXLabel layoutX="338.0" layoutY="25.0" prefHeight="27.0" prefWidth="122.0" text="Employee Id:">
+                  <MFXLabel layoutX="338.0" layoutY="25.0" prefHeight="27.0" prefWidth="122.0" text="Employee Name:">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </MFXLabel>
-                  <MFXLabel layoutX="48.0" layoutY="402.0" prefHeight="27.0" prefWidth="99.0" text="Total:">
+                  <MFXLabel layoutX="48.0" layoutY="402.0" prefHeight="27.0" prefWidth="99.0" text="Sub Total:">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -70,7 +70,7 @@
                         <Font size="18.0" />
                      </font>
                   </MFXLabel>
-                  <MFXLabel layoutX="350.0" layoutY="402.0" prefHeight="27.0" prefWidth="104.0" text="Sub Total:">
+                  <MFXLabel layoutX="350.0" layoutY="402.0" prefHeight="27.0" prefWidth="104.0" text="Total:">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -80,17 +80,17 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="cusId" layoutX="186.0" layoutY="66.0" prefHeight="35.0" prefWidth="109.0">
+                  <Label fx:id="cusName" layoutX="186.0" layoutY="66.0" prefHeight="35.0" prefWidth="109.0">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="empId" layoutX="352.0" layoutY="66.0" prefHeight="35.0" prefWidth="104.0" textAlignment="CENTER">
+                  <Label fx:id="empName" layoutX="352.0" layoutY="66.0" prefHeight="35.0" prefWidth="104.0" textAlignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="total" layoutX="48.0" layoutY="452.0" prefHeight="35.0" prefWidth="100.0" textAlignment="CENTER">
+                  <Label fx:id="subTotal" layoutX="48.0" layoutY="452.0" prefHeight="35.0" prefWidth="100.0" textAlignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -100,7 +100,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="subTotal" layoutX="354.0" layoutY="452.0" prefHeight="35.0" prefWidth="100.0" textAlignment="CENTER">
+                  <Label fx:id="total" layoutX="354.0" layoutY="452.0" prefHeight="35.0" prefWidth="100.0" textAlignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
