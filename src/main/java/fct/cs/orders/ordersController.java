@@ -18,10 +18,6 @@ import javafx.geometry.Pos;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import fct.cs.orders.orderDetailsController;
-import fct.cs.orders.orderDetailsData;
-import fct.cs.orders.ordersInfo;
-import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
 import java.net.URL;
@@ -136,7 +132,7 @@ public class ordersController implements Initializable {
             rowCell.setGraphicTextGap(1);
             rowCell.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/order-details.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/orders/order-details.fxml"));
                     VBox box = loader.load();
                     orderDetailsController controller = loader.getController();
 

@@ -88,7 +88,7 @@ public class mainPageController implements Initializable {
 
     public void loadOrdersPage(ActionEvent actionEvent) {
         if (!currentPage.equals("orders")) {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/old/orders.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/orders/orders.fxml"));
             try {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());

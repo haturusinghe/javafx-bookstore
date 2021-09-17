@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox prefHeight="600.0" prefWidth="500.0" stylesheets="@styles/side-panel.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.orders.orderDetailsController">
+<VBox prefHeight="600.0" prefWidth="500.0" stylesheets="@../../styles/side-panel.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.orders.orderDetailsController">
     <children>
         <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="500.0">
             <children>
