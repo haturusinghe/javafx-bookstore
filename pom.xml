@@ -44,6 +44,17 @@
             <artifactId>ikonli-metrizeicons-pack</artifactId>
             <version>12.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-fontawesome5-pack</artifactId>
+            <version>12.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-prestashopicons-pack</artifactId>
+            <version>12.2.0</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
         <dependency>
             <groupId>org.mybatis</groupId>

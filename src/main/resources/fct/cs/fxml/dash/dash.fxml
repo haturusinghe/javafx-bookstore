@@ -150,7 +150,10 @@
                   <HBox prefHeight="241.0" prefWidth="523.0">
                      <children>
                         <VBox fx:id="stockItem_vbox" prefHeight="242.0" prefWidth="339.0" />
-                        <VBox fx:id="StockItemList_vbox" alignment="CENTER" prefHeight="242.0" prefWidth="194.0" />
+                        <VBox fx:id="StockItemList_vbox" alignment="CENTER" prefHeight="220.0" prefWidth="337.0">
+                           <children>
+                              <MFXListView fx:id="stockItemListView" depthLevel="LEVEL0" hideScrollBars="true" prefHeight="220.0" prefWidth="266.0" />
+                           </children></VBox>
                      </children>
                   </HBox>
                </children>

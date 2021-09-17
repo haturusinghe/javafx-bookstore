@@ -4,7 +4,6 @@ package fct.cs.Dash;
 import eu.hansolo.fx.charts.CoxcombChart;
 import eu.hansolo.fx.charts.data.ChartItem;
 
-import io.github.palexdev.materialfx.controls.MFXFlowlessListView;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.utils.ColorUtils;
 import javafx.collections.FXCollections;
@@ -20,7 +19,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
@@ -34,6 +32,7 @@ public class DashController implements Initializable {
     public VBox revanue_vbox;
     public VBox StockItemList_vbox;
     public Label stockItemsLabel;
+
     @FXML
     private TextField totalItems;
 
@@ -52,8 +51,11 @@ public class DashController implements Initializable {
 
     @FXML
     private MFXListView<VBox> popularItemsList;
-
     private ObservableList<VBox> booksObservableList = FXCollections.observableArrayList();
+
+    @FXML
+    private MFXListView stockItemListView;
+    private ObservableList<VBox> stockObservableList = FXCollections.observableArrayList();
 
     public void setManager(boolean isManager) {
     }
@@ -61,7 +63,7 @@ public class DashController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initAreaCharts();
-        setTextFields();
+        setInfoCards();
         initCoxcombChart();
         initPopularItemsList();
     }
@@ -73,8 +75,8 @@ public class DashController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        for (BookSale e:
-             list) {
+        for (BookSale e :
+                list) {
             booksObservableList.add(createBookListItem(e));
         }
         popularItemsList.setItems(booksObservableList);
@@ -82,6 +84,7 @@ public class DashController implements Initializable {
 
     private void initCoxcombChart() {
         List<ChartItem> items = new ArrayList<>();
+        stockItemListView.setItems(stockObservableList);
 
         try {
             Dictionary<String, Integer> dict = DashManager.getStockItems();
@@ -89,15 +92,16 @@ public class DashController implements Initializable {
             for (Enumeration<String> keys = dict.keys(); keys.hasMoreElements(); ) { // iterate over all keys
                 String keyVal = keys.nextElement();
                 int v = Integer.parseInt(totalItems.getText());
-                int w = dict.get(keyVal) ;
+                int w = dict.get(keyVal);
                 double d = ((double) w) / v;
 
                 d = Math.round(d * 100);
                 System.out.println(w);
                 Color rColor = ColorUtils.getRandomColor();
-                items.add(new ChartItem(keyVal,w,rColor));
-                StockItemList_vbox.setSpacing(5);
-                StockItemList_vbox.getChildren().add(createCoxcombLegend(keyVal,w,rColor));
+                items.add(new ChartItem(keyVal, w, rColor));
+                stockObservableList.add(createCoxcombLegend(keyVal, w, rColor));
+//                StockItemList_vbox.setSpacing(5);
+//                StockItemList_vbox.getChildren().add(createCoxcombLegend(keyVal, w, rColor));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -124,7 +128,7 @@ public class DashController implements Initializable {
             e.printStackTrace();
         }
 
-        for (MonthlyEntry e: reportData) {
+        for (MonthlyEntry e : reportData) {
             dataSeries1.getData().add(new XYChart.Data(e.getOrderMonth(), e.getSalesPerMonth()));
             dataSeries2.getData().add(new XYChart.Data(e.getOrderMonth(), e.getDiscountPerMonth()));
             dataSeries3.getData().add(new XYChart.Data(e.getOrderMonth(), e.getProfitPerMonth()));
@@ -137,7 +141,7 @@ public class DashController implements Initializable {
         revenueChart.getYAxis().setTickMarkVisible(false);
     }
 
-    private void setTextFields() {
+    private void setInfoCards() {
         try {
             totalItems.setText(String.valueOf(DashManager.getTotalStockQuantity()));
             totalItems.setEditable(false);
@@ -146,7 +150,7 @@ public class DashController implements Initializable {
         }
 
         try {
-            totalSales.setText(String.valueOf(DashManager.getTotalCashSales()));
+            totalSales.setText("Rs." + String.valueOf(DashManager.getTotalCashSales()));
             totalSales.setEditable(false);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -168,60 +172,90 @@ public class DashController implements Initializable {
     }
 
     private VBox createBookListItem(BookSale e) {
+        Color color = ColorUtils.getRandomColor();
         VBox vBox = new VBox();
 //        vBox.setStyle("-fx-padding: 10px 15px;");
 //        vBox.setStyle("-fx-background-radius: 10px;");
-        vBox.setBackground(new Background(new BackgroundFill(ColorUtils.getRandomColor(),CornerRadii.EMPTY, Insets.EMPTY)));
+        vBox.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
         vBox.setPadding(new Insets(5, 0, 5, 10));
         HBox titleHbox = new HBox();
         HBox orderHbox = new HBox();
         HBox amountHbox = new HBox();
 
+        Color textColor = null;
+        if ((color.getRed()*0.299 + color.getGreen()*0.587 + color.getBlue()*0.114) > 186){
+            textColor = Color.BLACK;
+        }else{
+            textColor = Color.WHITE;
+        }
 
 
-        FontIcon bookIcon = new FontIcon("cil-book");
-        bookIcon.setIconColor(Color.BLACK);
-        bookIcon.setIconSize(18);
+        FontIcon bookIcon = new FontIcon("ps-book-tag");
+        bookIcon.setIconColor(textColor);
+        bookIcon.setIconSize(20);
 
         Label titleLabel = new Label("Title: " + e.getTitle(), bookIcon);
+        titleLabel.setTextFill(textColor);
         //font-family: 'Josefin Sans', sans-serif;
 //        titleLabel.setStyle("-fx-font-size: 20;");
 //        titleLabel.setStyle("-fx-padding: 10px 15px;");
         titleHbox.getChildren().addAll(titleLabel);
 
-        Label amountLabel = new Label("Amount Sold: " + e.getTotalQtySold());
+        FontIcon amountIcon = new FontIcon("ps-data-board");
+        amountIcon.setIconColor(textColor);
+        amountIcon.setIconSize(16);
+        Label amountLabel = new Label("Amount Sold: " + e.getTotalQtySold(),amountIcon);
+        amountLabel.setTextFill(textColor);
 //        amountLabel.setStyle("-fx-padding: 10px 15px;");
-        Label orderLabel = new Label("Number of Orders: " + e.getNumOrders());
+
+        FontIcon ordersIcon = new FontIcon("ps-cart-supermarket");
+        ordersIcon.setIconColor(textColor);
+        ordersIcon.setIconSize(14);
+        Label orderLabel = new Label("Number of Orders: " + e.getNumOrders(),ordersIcon);
+        orderLabel.setTextFill(textColor);
+
         amountHbox.getChildren().addAll(amountLabel);
         orderHbox.getChildren().addAll(orderLabel);
 
         titleLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 20;");
         amountLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 16;");
         orderLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 14;");
-        vBox.getChildren().addAll(titleHbox,amountHbox,orderHbox);
+        vBox.getChildren().addAll(titleHbox, amountHbox, orderHbox);
         return vBox;
     }
 
-    private VBox createCoxcombLegend(String bookName, int count,Color color) {
-//        HBox hBox = new HBox(20);
-        HBox hBox = new HBox();
-        VBox vBox  = new VBox();
-        vBox.setPadding(new Insets(5,5,5,5));
+    private VBox createCoxcombLegend(String bookName, int count, Color color) {
+        Color textColor = null;
+        if ((color.getRed()*0.299 + color.getGreen()*0.587 + color.getBlue()*0.114) > 186){
+            textColor = Color.BLACK;
+        }else{
+            textColor = Color.WHITE;
+        }
+
+        HBox hBox1 = new HBox();
+        HBox hBox2 = new HBox();
+        VBox vBox = new VBox();
+        vBox.setPadding(new Insets(5, 5, 5, 5));
         vBox.setBackground(new Background(new BackgroundFill(color, new CornerRadii(10), Insets.EMPTY)));
         /*hBox.setPadding(new Insets(0, 10, 0, 10));
         hBox.setPrefSize(200, 30);*/
 
-
-        FontIcon bookIcon = new FontIcon("cil-book");
-        bookIcon.setIconColor(Color.WHITE);
+        FontIcon bookIcon = new FontIcon("fas-book");
+        bookIcon.setIconColor(textColor);
         bookIcon.setIconSize(12);
-        Label amountLabel = new Label("Amount: " + count);
-        Label bookNameLabel = new Label("Title: " + bookName,bookIcon);
-        amountLabel.setTextFill(Paint.valueOf("#fff"));
-        bookNameLabel.setTextFill(Paint.valueOf("#fff"));
+        Label bookNameLabel = new Label("Title: " + bookName, bookIcon);
 
-        hBox.getChildren().addAll(bookNameLabel,amountLabel);
-        vBox.getChildren().addAll(bookNameLabel,amountLabel);
+        FontIcon amountIcon = new FontIcon("fas-box");
+        amountIcon.setIconColor(textColor);
+        amountIcon.setIconSize(12);
+        Label amountLabel = new Label("Amount: " + count, amountIcon);
+
+        amountLabel.setTextFill(textColor);
+        bookNameLabel.setTextFill(textColor);
+
+        hBox1.getChildren().addAll(bookNameLabel);
+        hBox2.getChildren().addAll(amountLabel);
+        vBox.getChildren().addAll(hBox1, hBox2);
         return vBox;
     }
 
