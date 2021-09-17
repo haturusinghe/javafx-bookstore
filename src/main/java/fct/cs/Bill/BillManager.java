@@ -103,7 +103,7 @@ public class BillManager {
 
     }
 
-       public int getLastOrderId() {
+    public int getLastOrderId() {
             String query = "SELECT order_id FROM orders order by order_id desc limit 1";
             PreparedStatement preparedStatement = null;
             ResultSet resultSet;
