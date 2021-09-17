@@ -394,7 +394,7 @@ public class BillingController {
             billManager.updateOrderEntry(order);
             billManager.updateOrderDetailsByArray(billDetails);
             confirmationToInvoice();
-            cancelOrders();
+
 
         }
 
@@ -421,8 +421,11 @@ public class BillingController {
         yes.setOnAction(e->{
             billManager.jasperInvoice();
             cancelOrders();
+            dialog.close();
+
         });
         no.setOnAction(e ->{
+            cancelOrders();
             dialog.close();
         });
 
