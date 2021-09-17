@@ -39,6 +39,13 @@ import javafx.stage.Stage;
 
 public class RegisterController implements Initializable {
 
+    /*
+      TODO :
+       change Login Pages button styles
+       success/error notification after account created
+       nullpointer exception for combobox select
+     */
+
     public ImageView imgX;
     ObservableList<String> questionBoxList = FXCollections.observableArrayList("What's your pet's name?","What's your favorite food?","Who was your childhood hero?");
 

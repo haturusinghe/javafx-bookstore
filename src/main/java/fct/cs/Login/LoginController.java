@@ -33,6 +33,12 @@ import javafx.scene.image.Image;
  */
 public class LoginController implements Initializable {
 
+    /*
+     *  TODO :
+     *   change Login Pages button styles
+     *   login success / error notification
+     * */
+
     public ImageView imgX;
     @FXML
     private Label label;
