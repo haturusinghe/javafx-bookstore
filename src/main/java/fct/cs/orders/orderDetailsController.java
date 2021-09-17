@@ -71,7 +71,7 @@ public class orderDetailsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         orderDetailsManager = new orderDetailsManager();
-        infoContainerVBox.getChildren().add(mfxList);
+//        infoContainerVBox.getChildren().add(mfxList);
 //        setDetColumnProps();
 //        getOrderDetData();
 
