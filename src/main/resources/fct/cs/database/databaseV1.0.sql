@@ -16,6 +16,15 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- CREATE DATABASE BOOKSTORE
+--
+
+DROP DATABASE IF EXISTS bookstore
+CREATE DATABASE bookstore
+USE bookstore
+
+
+--
 -- Table structure for table `author`
 --
 
