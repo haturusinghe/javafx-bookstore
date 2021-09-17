@@ -20,7 +20,7 @@ public class ItemManager extends CustomerManager {
 
     public ResultSet getItemFromDatabase() {
 
-        String query = "SELECT book.book_id, book.title, book.isbn , inventory.list_price , inventory.qty FROM book JOIN inventory ON book.book_id=inventory.book_id order by book_id  ;";
+        String query = "SELECT book.book_id, book.title, book.isbn , inventory.list_price , inventory.qty FROM book JOIN inventory ON book.book_id=inventory.book_id where qty> 0 order by book_id   ;";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
         try {

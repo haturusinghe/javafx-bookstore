@@ -394,11 +394,9 @@ public class BillingController {
             billManager.updateOrderEntry(order);
             billManager.updateOrderDetailsByArray(billDetails);
             confirmationToInvoice();
-            cancelOrders();
+
 
         }
-
-
 
     }
 
@@ -422,8 +420,12 @@ public class BillingController {
         JFXDialog dialog = new JFXDialog( stackPane, DialogLayout , JFXDialog.DialogTransition.TOP);
         yes.setOnAction(e->{
             billManager.jasperInvoice();
+            cancelOrders();
+            dialog.close();
+
         });
         no.setOnAction(e ->{
+            cancelOrders();
             dialog.close();
         });
 
