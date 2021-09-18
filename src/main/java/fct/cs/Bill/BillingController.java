@@ -37,8 +37,7 @@ public class BillingController {
     private StackPane stackPane;
 
 
-    @FXML
-    private AnchorPane Bill;
+
 
     @FXML
     private Button search;

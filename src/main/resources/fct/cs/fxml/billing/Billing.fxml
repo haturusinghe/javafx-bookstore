@@ -8,39 +8,61 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.BillingController">
+<VBox maxHeight="685.0" maxWidth="1030.0" prefHeight="685.0" prefWidth="1030.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.BillingController">
    <children>
-      <JFXDrawer fx:id="drawer" defaultDrawerSize="500.0" direction="RIGHT" minHeight="-Infinity" minWidth="-Infinity" onDrawerClosing="#hideDrawer" prefHeight="686.0" prefWidth="441.0" />
-      <VBox>
+      <StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="1029.0">
          <children>
-            <AnchorPane fx:id="Bill" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="1029.0">
+            <JFXDrawer fx:id="drawer" defaultDrawerSize="500.0" direction="RIGHT" minHeight="-Infinity" minWidth="-Infinity" onDrawerClosing="#hideDrawer" prefHeight="686.0" prefWidth="441.0" />
+            <VBox>
                <children>
-                  <HBox layoutX="3.0" layoutY="-3.0" prefHeight="685.0" prefWidth="1030.0">
+                  <HBox prefHeight="685.0" prefWidth="1030.0">
                      <children>
-                        <AnchorPane prefHeight="502.0" prefWidth="624.0">
+                        <VBox fx:id="content" prefHeight="685.0" prefWidth="575.0" />
+                        <VBox prefHeight="686.0" prefWidth="477.0">
                            <children>
-                              <VBox fx:id="content" layoutX="7.0" layoutY="1.0" prefHeight="685.0" prefWidth="575.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="687.0" prefWidth="488.0">
-                           <children>
-                              <Label layoutX="9.0" layoutY="91.0" prefHeight="26.0" prefWidth="86.0" text="Customer : ">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="customerName" layoutX="86.0" layoutY="91.0" prefHeight="26.0" prefWidth="127.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TableView fx:id="BillTable" layoutX="-4.0" layoutY="117.0" prefHeight="350.0" prefWidth="434.0">
+                              <HBox>
+                                 <children>
+                                    <MFXLabel prefHeight="13.0" prefWidth="111.0" text="Bill :">
+                                       <font>
+                                          <Font size="27.0" />
+                                       </font>
+                                    </MFXLabel>
+                                 </children>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <Label prefHeight="26.0" prefWidth="94.0" text="CustomerID:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="customerID" prefHeight="26.0" prefWidth="127.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <Label prefHeight="26.0" prefWidth="86.0" text="Customer : ">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="customerName" prefHeight="26.0" prefWidth="127.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <TableView fx:id="BillTable" prefHeight="350.0" prefWidth="434.0">
                                  <columns>
                                     <TableColumn fx:id="bookID" prefWidth="48.799989342689514" text="bookID" />
                                     <TableColumn fx:id="item" prefWidth="163.19988250732422" text="item" />
@@ -50,60 +72,61 @@
                                     <TableColumn fx:id="remove" prefWidth="46.4000244140625" text="X" />
                                  </columns>
                               </TableView>
-                              <Label layoutX="256.0" layoutY="462.0" prefHeight="30.0" prefWidth="56.0" text="Total :" textAlignment="RIGHT">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="total" layoutX="330.0" layoutY="464.0" prefHeight="26.0" prefWidth="71.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="discount" layoutX="256.0" layoutY="494.0" prefHeight="24.0" prefWidth="56.0" text="0" />
-                              <Label layoutX="256.0" layoutY="540.0" prefHeight="30.0" prefWidth="77.0" text="Final total :" textAlignment="RIGHT">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="finalTotal" layoutX="339.0" layoutY="542.0" prefHeight="26.0" prefWidth="78.0" textAlignment="RIGHT">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Button layoutX="326.0" layoutY="494.0" mnemonicParsing="false" onAction="#addDiscount" prefHeight="26.0" prefWidth="105.0" text="\% ADD Discount" />
-                              <Label layoutX="5.0" layoutY="66.0" prefHeight="26.0" prefWidth="94.0" text="CustomerID:">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="customerID" layoutX="86.0" layoutY="66.0" prefHeight="26.0" prefWidth="127.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <MFXLabel layoutX="-3.0" prefHeight="13.0" prefWidth="111.0" text="Bill :">
-                                 <font>
-                                    <Font size="27.0" />
-                                 </font>
-                              </MFXLabel>
-                              <MFXButton fx:id="chargeCustomer" layoutX="29.0" layoutY="589.0" onAction="#ChargeCustomer" prefHeight="50.0" prefWidth="174.0" text="Charge Customer">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </MFXButton>
-                              <MFXButton fx:id="cancel" layoutX="243.0" layoutY="589.0" onAction="#cancelOrder" prefHeight="50.0" prefWidth="174.0" text="Cancel">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </MFXButton>
+                              <HBox>
+                                 <children>
+                                    <Label prefHeight="30.0" prefWidth="56.0" text="Total :" textAlignment="RIGHT">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="total" prefHeight="26.0" prefWidth="71.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <TextField fx:id="discount" prefHeight="24.0" prefWidth="56.0" text="0" />
+                                    <Button mnemonicParsing="false" onAction="#addDiscount" prefHeight="26.0" prefWidth="105.0" text="\% ADD Discount" />
+                                 </children>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <Label prefHeight="30.0" prefWidth="77.0" text="Final total :" textAlignment="RIGHT">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="finalTotal" prefHeight="26.0" prefWidth="78.0" textAlignment="RIGHT">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <MFXButton fx:id="chargeCustomer" onAction="#ChargeCustomer" prefHeight="50.0" prefWidth="174.0" text="Charge Customer">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </MFXButton>
+                                    <MFXButton fx:id="cancel" onAction="#cancelOrder" prefHeight="50.0" prefWidth="174.0" text="Cancel">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </MFXButton>
+                                 </children>
+                              </HBox>
                            </children>
-                        </AnchorPane>
+                        </VBox>
                      </children>
                   </HBox>
                </children>
-            </AnchorPane>
+            </VBox>
          </children>
-      </VBox>
+      </StackPane>
    </children>
-</StackPane>
+</VBox>

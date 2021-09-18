@@ -5,12 +5,29 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="668.0" prefWidth="555.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.BillItemController">
+
+<VBox style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.BillItemController">
    <children>
-      <TableView fx:id="itemTable" layoutX="1.0" layoutY="140.0" prefHeight="451.0" prefWidth="542.0">
+      <HBox>
+         <children>
+            <MFXLabel prefHeight="47.0" prefWidth="141.0" text=" Select Item :">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </MFXLabel>
+         </children>
+      </HBox>
+      <HBox>
+         <children>
+            <TextField fx:id="searchItem" prefHeight="32.0" prefWidth="194.0" promptText="bookID/Title" />
+            <MFXButton onAction="#searchItem" prefHeight="32.0" prefWidth="70.0" text="Search" />
+         </children>
+      </HBox>
+      <TableView fx:id="itemTable" prefHeight="451.0" prefWidth="542.0">
          <columns>
             <TableColumn fx:id="itemId" prefWidth="31.999998450279236" text="ID" />
             <TableColumn fx:id="itemName" prefWidth="186.40003204345703" text="Item" />
@@ -20,13 +37,10 @@
             <TableColumn fx:id="addItem" prefWidth="110.39999389648438" text="Add" />
          </columns>
       </TableView>
-      <TextField fx:id="searchItem" layoutX="261.0" layoutY="82.0" prefHeight="32.0" prefWidth="194.0" promptText="bookID/Title" />
-      <MFXButton layoutX="461.0" layoutY="82.0" onAction="#searchItem" prefHeight="32.0" prefWidth="70.0" text="Search" />
-      <MFXButton fx:id="moveToCustomer" layoutX="175.0" layoutY="599.0" onAction="#goToSelectCustomer" prefHeight="47.0" prefWidth="194.0" text="Move To Select Customer" />
-      <MFXLabel layoutX="1.0" layoutY="14.0" prefHeight="47.0" prefWidth="141.0" text=" Select Item :">
-         <font>
-            <Font size="29.0" />
-         </font>
-      </MFXLabel>
+      <HBox>
+         <children>
+            <MFXButton fx:id="moveToCustomer" onAction="#goToSelectCustomer" prefHeight="47.0" prefWidth="194.0" text="Move To Select Customer" />
+         </children>
+      </HBox>
    </children>
-</AnchorPane>
+</VBox>
