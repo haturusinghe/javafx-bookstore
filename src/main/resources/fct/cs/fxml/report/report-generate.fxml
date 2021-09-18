@@ -5,7 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 
-<VBox style="-fx-background-color:white" alignment="TOP_CENTER" prefHeight="685.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.GenReport.StepperController">
+<VBox style="-fx-background-color:white" alignment="TOP_CENTER" prefHeight="685.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.GenReport.GenerateReportController">
 <children>
    <MFXStepper fx:id="stepper" />
 </children>
