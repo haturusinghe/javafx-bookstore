@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="books_monthly_report_new" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0a26fc9a-bee2-48e1-802d-fa20a303388e">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BookStore Connection"/>
+	<parameter name="year" class="java.lang.Integer"/>
+	<parameter name="month" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+    YEAR(orders.order_date) AS orderYear,
+    MONTHNAME(orders.order_date) AS orderMonth,
+    book.title,
+    COUNT(
+        DISTINCT order_details.order_id
+    ) AS ordersPerMonth,
+    SUM(order_details.quantity) AS quantityPerMonth,
+    SUM(inventory.list_price) AS unitPrice,
+    SUM(
+        order_details.quantity * inventory.list_price
+    ) AS salesPerMounth
+FROM
+    orders,
+    order_details,
+    inventory,
+    book
+WHERE
+    YEAR(orders.order_date) = $P{year} AND MONTH(orders.order_date) = $P{month} AND orders.order_id = order_details.order_id AND order_details.book_id = inventory.book_id AND order_details.book_id = book.book_id
+GROUP BY
+    YEAR(orders.order_date),
+    MONTH(orders.order_date),
+    order_details.book_id]]>
+	</queryString>
+	<field name="orderYear" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="orderYear"/>
+		<property name="com.jaspersoft.studio.field.label" value="orderYear"/>
+	</field>
+	<field name="orderMonth" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="orderMonth"/>
+		<property name="com.jaspersoft.studio.field.label" value="orderMonth"/>
+	</field>
+	<field name="title" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="title"/>
+		<property name="com.jaspersoft.studio.field.label" value="title"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="book"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ordersPerMonth" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="ordersPerMonth"/>
+		<property name="com.jaspersoft.studio.field.label" value="ordersPerMonth"/>
+	</field>
+	<field name="quantityPerMonth" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="quantityPerMonth"/>
+		<property name="com.jaspersoft.studio.field.label" value="quantityPerMonth"/>
+	</field>
+	<field name="unitPrice" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="unitPrice"/>
+		<property name="com.jaspersoft.studio.field.label" value="unitPrice"/>
+	</field>
+	<field name="salesPerMounth" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="salesPerMounth"/>
+		<property name="com.jaspersoft.studio.field.label" value="salesPerMounth"/>
+	</field>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{orderYear}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6" uuid="2670a502-a8cc-47e6-a287-01bcbd202c66"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Year]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="993cdd12-653a-47f5-9493-4e24cb393dba"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{orderYear}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="9b78a39e-a9cf-4b70-8021-b947ff836590"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupExpression><![CDATA[$F{orderMonth}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="2874e23f-e630-40b4-853a-34941bf21f95"/>
+					<textElement>
+						<font size="22" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{orderMonth}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="0f1f15fb-bc55-4356-8620-5f8b5dae18c1"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Month]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="492f9c80-3146-4c9e-b7b4-8e370a997625"/>
+				<staticText>
+					<reportElement x="20" y="20" width="340" height="43" forecolor="#FFFFFF" uuid="3c5d68d2-300b-467a-aa39-f1a4f185d17a"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Monthly Report]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="8b367e71-c612-4eae-aea9-5a51e88eca51"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Retail Book Store]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="eb9d05d7-9b14-4fa0-b7ac-4eda8f1e9506"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="305f9f94-a23a-4ed8-8350-9efd6f713562">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e4d0248c-7803-406f-b2fd-cb059e92ca80"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Book Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="111" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a32b27f2-b131-4322-8e57-9d90178ca742">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="963535de-9090-4dcd-b477-11b909a80847"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[# Orders]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="222" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ed52fa75-4546-434e-84be-11b3cf1ab066">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="98493b8c-d95a-40ff-b934-0ce8c6199783"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QTY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="333" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ce5501dd-372c-4dfd-931a-c7ff714d15ba">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e3164b94-9dfe-476e-b203-a0f3cde6dc27"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unit Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="444" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e14206a8-8ba8-490c-8c22-07058ca692e5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="52f8afde-65ea-4e92-a8ef-ba5a5619bb87"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Sales]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="a92c6900-3d6c-4100-b8cc-1cbe13526a9e"/>
+			</line>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="0" y="0" width="111" height="20" uuid="b3546264-d35a-4791-81ca-5ec4977ffa97">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e4d0248c-7803-406f-b2fd-cb059e92ca80"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="111" y="0" width="111" height="20" uuid="5c5f71a1-76f0-4e23-9c95-6ef3f9222d68">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="963535de-9090-4dcd-b477-11b909a80847"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ordersPerMonth}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="222" y="0" width="111" height="20" uuid="80ac084a-d320-46b9-b986-144b56ee3b48">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="98493b8c-d95a-40ff-b934-0ce8c6199783"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantityPerMonth}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="333" y="0" width="111" height="20" uuid="6eb34e96-bb0f-4c33-8118-e682059f30fa">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e3164b94-9dfe-476e-b203-a0f3cde6dc27"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{unitPrice}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="444" y="0" width="111" height="20" uuid="cbfa5e02-ae42-44eb-941a-7d303eaf08f1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="52f8afde-65ea-4e92-a8ef-ba5a5619bb87"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{salesPerMounth}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="ab4491b0-8b21-48c2-8c29-4c533d1e76bd"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="941df107-f781-49c0-b30c-8bae8bb28443"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="6a3dbea4-5240-4c16-b2fd-f2785caf2c73"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
