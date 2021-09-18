@@ -118,7 +118,16 @@ public class GenerateReportController implements Initializable {
         monthList = FXCollections.observableArrayList(List.of(
                 new SimpleMonth("January", 1),
                 new SimpleMonth("February", 2),
-                new SimpleMonth("August", 8)
+                new SimpleMonth("March", 3),
+                new SimpleMonth("April", 4),
+                new SimpleMonth("May", 5),
+                new SimpleMonth("June", 6),
+                new SimpleMonth("July", 7),
+                new SimpleMonth("August", 8),
+                new SimpleMonth("September", 9),
+                new SimpleMonth("October", 10),
+                new SimpleMonth("November", 11),
+                new SimpleMonth("December", 12)
         ));
     }
 
