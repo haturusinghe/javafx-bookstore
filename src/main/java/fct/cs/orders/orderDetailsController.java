@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.events.JFXDrawerEvent;
 import fct.cs.data.Category;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXLabel;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.cell.MFXTableColumn;
@@ -45,26 +46,26 @@ public class orderDetailsController implements Initializable {
 //    @FXML
 //    private TextField orderId;
 @FXML
-private Label orderId;
+private MFXLabel orderId;
 
     @FXML
-    private Label orderDate;
+    private MFXLabel orderDate;
 
     @FXML
-    private Label cusName;
+    private MFXLabel cusName;
 
     @FXML
-    private Label empName;
+    private MFXLabel empName;
 
 
     @FXML
-    private Label total;
+    private MFXLabel total;
 
     @FXML
-    private Label discount;
+    private MFXLabel discount;
 
     @FXML
-    private Label subTotal;
+    private MFXLabel subTotal;
 
 
 
