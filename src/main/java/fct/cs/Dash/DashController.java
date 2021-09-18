@@ -225,7 +225,7 @@ public class DashController implements Initializable {
         VBox vBox = new VBox();
 //        vBox.setStyle("-fx-padding: 10px 15px;");
 //        vBox.setStyle("-fx-background-radius: 10px;");
-        vBox.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+        vBox.setBackground(new Background(new BackgroundFill(color, new CornerRadii(5), Insets.EMPTY)));
         vBox.setPadding(new Insets(5, 0, 5, 10));
         HBox titleHbox = new HBox();
         HBox orderHbox = new HBox();
@@ -285,7 +285,7 @@ public class DashController implements Initializable {
         HBox hBox2 = new HBox();
         VBox vBox = new VBox();
         vBox.setPadding(new Insets(5, 5, 5, 5));
-        vBox.setBackground(new Background(new BackgroundFill(color, new CornerRadii(10), Insets.EMPTY)));
+        vBox.setBackground(new Background(new BackgroundFill(color, new CornerRadii(3), Insets.EMPTY)));
         /*hBox.setPadding(new Insets(0, 10, 0, 10));
         hBox.setPrefSize(200, 30);*/
 
