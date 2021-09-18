@@ -148,7 +148,7 @@ private MFXLabel orderId;
         VBox vBox = new VBox();
 //        vBox.setStyle("-fx-padding: 10px 15px;");
 //        vBox.setStyle("-fx-background-radius: 10px;");
-        vBox.setBackground(new Background(new BackgroundFill(ColorUtils.getRandomColor(), CornerRadii.EMPTY, Insets.EMPTY)));
+        vBox.setBackground(new Background(new BackgroundFill(Color.web("#3C3F41"), new CornerRadii(2), Insets.EMPTY)));
         vBox.setPadding(new Insets(5, 0, 5, 10));
         HBox titleHbox = new HBox();
         HBox unitPriceHbox = new HBox();
@@ -156,26 +156,39 @@ private MFXLabel orderId;
         HBox priceHbox = new HBox();
 
 
-        FontIcon fileIcon = new FontIcon("cil-file");
-        fileIcon.setIconColor(Color.BLACK);
-        fileIcon.setIconSize(18);
-
-        Label titleLabel = new Label("Title: " + e.getTitle(), fileIcon);
+        FontIcon bookIcon = new FontIcon("antf-read");
+        bookIcon.setIconColor(Color.WHITE);
+        bookIcon.setIconSize(14);
+        Label titleLabel = new Label("Item Name: " + e.getTitle(), bookIcon);
+        titleLabel.setTextFill(Color.WHITE);
         titleHbox.getChildren().addAll(titleLabel);
 
-        Label unitPriceLabel = new Label("Unit Price: " + e.getUnit_price());
+
+        FontIcon priceIcon = new FontIcon("antf-calendar");
+        priceIcon.setIconColor(Color.WHITE);
+        priceIcon.setIconSize(14);
+        Label unitPriceLabel = new Label("Unit Price: Rs." + e.getUnit_price(),priceIcon);
+        unitPriceLabel.setTextFill(Color.WHITE);
         unitPriceHbox.getChildren().addAll(unitPriceLabel);
 
-        Label quantityLabel = new Label("Quanitity: " + e.getQuantity());
+        FontIcon quantityIcon = new FontIcon("anto-shopping-cart");
+        quantityIcon.setIconColor(Color.WHITE);
+        quantityIcon.setIconSize(14);
+        Label quantityLabel = new Label("Quantity: " + e.getQuantity(),quantityIcon);
+        quantityLabel.setTextFill(Color.WHITE);
         quantityHbox.getChildren().addAll(quantityLabel);
 
-        Label priceLabel = new Label("Total: " + e.getPrice());
+        FontIcon totalIcon = new FontIcon("anto-shopping");
+        totalIcon.setIconColor(Color.WHITE);
+        totalIcon.setIconSize(14);
+        Label priceLabel = new Label("Total: Rs." + e.getPrice(),totalIcon);
+        priceLabel.setTextFill(Color.WHITE);
         priceHbox.getChildren().addAll(priceLabel);
 
-        titleLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 20;");
+        /*titleLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 20;");
         unitPriceLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 16;");
         quantityLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 14;");
-        priceLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 16;");
+        priceLabel.setStyle("-fx-font-family: 'Work Sans'; -fx-font-size: 16;");*/
         vBox.getChildren().addAll(titleHbox, unitPriceHbox, quantityHbox, priceHbox);
         return vBox;
     }
