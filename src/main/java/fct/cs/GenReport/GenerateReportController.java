@@ -35,6 +35,9 @@ import java.util.ResourceBundle;
 
 
 public class GenerateReportController implements Initializable {
+
+    /* TODO : Improve UI */
+
     public MFXStepper stepper;
     private final MFXTextField reportTypeSelected;
     private final MFXTextField selectedYear;

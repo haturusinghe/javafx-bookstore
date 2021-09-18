@@ -31,6 +31,10 @@ import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class orderDetailsController implements Initializable {
+
+    /* TODO : Improve Order Details Drawer UI with more styling */
+    /* TODO : Add success/error Notifications */
+
 //    @FXML
 //    private VBox infoContainerVBox;
 

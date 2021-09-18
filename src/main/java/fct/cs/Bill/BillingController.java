@@ -29,6 +29,10 @@ import java.util.ArrayList;
 
 
 public class BillingController {
+
+    /* TODO : Improve all billing pages and related forms styling/layout */
+    /* TODO : Add success/error notifications */
+
     @FXML
     private StackPane stackPane;
 

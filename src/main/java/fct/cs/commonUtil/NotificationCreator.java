@@ -1,6 +1,7 @@
-package fct.cs.inventory;
+package fct.cs.commonUtil;
 
 
+import fct.cs.inventory.StockEntry;
 import io.github.palexdev.materialfx.controls.MFXDialog;
 import io.github.palexdev.materialfx.controls.MFXNotification;
 import io.github.palexdev.materialfx.controls.SimpleMFXNotificationPane;
@@ -19,6 +20,9 @@ import java.util.ArrayList;
 
 
 public class NotificationCreator {
+    /* TODO : Reimplement Inventory Page Table in MFXTable */
+    /* TODO : Change add new entry drawer promt text */
+
 
     private static ArrayList<StockEntry> lowItems = new ArrayList<>();
 

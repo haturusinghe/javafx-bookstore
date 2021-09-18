@@ -30,6 +30,10 @@ import java.util.ResourceBundle;
 import java.util.ArrayList;
 
 public class NewCustomerController implements Initializable {
+
+    /* TODO : Add table header elements (add button and search bar) */
+    /* TODO : Add error/success notifications */
+
     public MFXTableView customerTable;
     public JFXDrawer drawer;
     private fct.cs.NewCustomer.NewCustomerController thisController = this;

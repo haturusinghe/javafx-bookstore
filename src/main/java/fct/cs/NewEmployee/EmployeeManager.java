@@ -1,7 +1,7 @@
 package fct.cs.NewEmployee;
 
 import fct.cs.dbUtil.DatabaseHandler;
-import fct.cs.inventory.NotificationCreator;
+import fct.cs.commonUtil.NotificationCreator;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
