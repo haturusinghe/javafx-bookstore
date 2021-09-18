@@ -40,29 +40,29 @@
                         <VBox>
                             <children>
                                 <Label styleClass="textLabel" text="Customer ID" />
-                                <TextField fx:id="customer_id_txtField" editable="false"/>
+                                <TextField fx:id="customer_id_txtField" editable="false" />
                             </children>
                         </VBox>
                     </children>
                 </HBox>
                 <Separator prefWidth="200.0" />
-                <HBox fx:id="name_hbox" alignment="CENTER" layoutX="50.0" layoutY="383.0" spacing="20.0">
+                <HBox fx:id="name_hbox" alignment="BOTTOM_LEFT" layoutX="50.0" layoutY="383.0" spacing="20.0">
                     <children>
                         <VBox>
                             <children>
                                 <Label styleClass="textLabel" text="Customer Name" />
-                                <TextField fx:id="customer_name_txtField"  />
+                                <TextField fx:id="customer_name_txtField" />
                             </children>
                         </VBox>
                     </children>
                 </HBox>
                 <Separator prefWidth="200.0" />
-                <HBox fx:id="location_hbox" alignment="CENTER" layoutX="50.0" layoutY="383.0" spacing="20.0">
+                <HBox fx:id="location_hbox" alignment="CENTER_LEFT" layoutX="50.0" layoutY="383.0" spacing="20.0">
                     <children>
                         <VBox>
                             <children>
                                 <Label styleClass="textLabel" text="Location" />
-                                <TextField fx:id="location_txtField"  />
+                                <TextField fx:id="location_txtField" />
                             </children>
                         </VBox>
                     </children>

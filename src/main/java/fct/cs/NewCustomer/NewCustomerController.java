@@ -2,11 +2,15 @@ package fct.cs.NewCustomer;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.events.JFXDrawerEvent;
+import fct.cs.NewEmployee.EmployeeData;
 import fct.cs.data.Category;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXIconWrapper;
 import io.github.palexdev.materialfx.controls.MFXTableView;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.cell.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
+import io.github.palexdev.materialfx.controls.enums.Styles;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,18 +35,17 @@ import java.util.ArrayList;
 
 public class NewCustomerController implements Initializable {
 
-    /* TODO : Add table header elements (add button and search bar) */
     /* TODO : Add error/success notifications */
 
     public MFXTableView customerTable;
     public JFXDrawer drawer;
     private fct.cs.NewCustomer.NewCustomerController thisController = this;
     private ObservableList<CustomerData> customerObservableList = FXCollections.observableArrayList();
-    private FilteredList<CustomerData> customerFilteredList = new FilteredList<>(customerObservableList);
+    private FilteredList<CustomerData> customerFilteredList;
     private static CustomerData selectedCustomer = null;
 
     private ObservableList<Category> categoryList = FXCollections.observableArrayList();
-
+    private final MFXTextField searchField = new MFXTextField();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,6 +53,62 @@ public class NewCustomerController implements Initializable {
         setDataCustomer();
         setColumnProps();
         setColumnSize();
+
+        customerTable.setHeaderSupplier(() -> {
+            HBox mainContainer = new HBox();
+            mainContainer.setPrefHeight(50);
+            mainContainer.setPrefWidth(1030);
+            mainContainer.setAlignment(Pos.CENTER_LEFT);
+            mainContainer.setPadding(new Insets(10,0,5,5));
+
+            HBox spanMid = new HBox();
+            spanMid.setMinWidth(610);
+            spanMid.setMinHeight(50);
+
+            HBox spanEnd = new HBox();
+            spanEnd.setMinHeight(50);
+            spanEnd.setMaxWidth(10);
+
+            HBox searchContainer = new HBox(10);
+            searchContainer.setMinHeight(50);
+            searchContainer.setAlignment(Pos.CENTER_RIGHT);
+            searchField.setPromptText("Search Customers");
+            searchField.setIcon(new MFXIconWrapper(new MFXFontIcon("mfx-search", 28, Color.web("#4D4D4D")), 24));
+            searchField.setIconInsets(new Insets(0,0,10,0));
+            searchField.setMinHeight(50);
+            searchField.setStyle("-fx-font-size: 18px;");
+
+            searchField.setOnKeyTyped(actionEvent -> {
+                customerFilteredList = new FilteredList<CustomerData>(customerObservableList);
+                thisController.searchTableFromText(searchField.getText());
+                customerTable.setItems(customerFilteredList);
+            });
+
+
+            FontIcon addIcon = new FontIcon("anto-plus-circle");
+            addIcon.setIconColor(Color.WHITE);
+            addIcon.setIconSize(25);
+
+            MFXButton addBtn = new MFXButton();
+            addBtn.setText("Add Customer");
+            addBtn.setStyle("-fx-background-color: #2B2B2B;-fx-font-size: 20px;-fx-background-radius: 9,8,5,4,3;-fx-text-fill: #fff;");
+            addBtn.setGraphic(addIcon);
+            addBtn.setOnAction(actionEvent -> {
+                thisController.addNewEntry();
+            });
+
+
+            /*MFXLabel testLabel = new MFXLabel("Header");
+            HBox holderHbox = new HBox();
+            holderHbox.getChildren().addAll(testLabel);
+            holderHbox.setMaxWidth(Region.USE_PREF_SIZE);
+            VBox box = new VBox(holderHbox);
+            box.setAlignment(Pos.CENTER_RIGHT);*/
+
+            searchContainer.getChildren().addAll(searchField);
+            mainContainer.getChildren().addAll(searchContainer,spanMid,addBtn,spanEnd);
+            return mainContainer;
+        });
     }
 
     private void setColumnSize() {
@@ -188,7 +247,7 @@ public class NewCustomerController implements Initializable {
         drawer.toBack();
     }
 
-    public void addNewEntry(ActionEvent action){
+    public void addNewEntry(){
         addNewCustomer(drawer);
     }
 
@@ -221,5 +280,14 @@ public class NewCustomerController implements Initializable {
     }
 
     public void setManager(boolean isManager) {
+    }
+
+    public void searchTableFromText(String key) {
+        System.out.println("Searching ...");
+        customerFilteredList.setPredicate(customerData -> {
+            String filter = key.toLowerCase();
+            boolean nameMatches = String.valueOf(customerData.getcustomer_name()).toLowerCase().contains(filter);
+            return nameMatches;
+        });
     }
 }
