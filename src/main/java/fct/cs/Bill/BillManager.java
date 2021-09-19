@@ -29,7 +29,7 @@ public class BillManager {
         }
     }
     public boolean updateOrderEntry(Order entry){
-        String addQuery = "insert into orders(   customer_id , employee_id,order_date,total_quantity, total_price, total_discount ) values (?,?,?,?,?,?)";
+        String addQuery = "insert into orders(customer_id , employee_id,order_date,total_quantity, total_price, total_discount,discount_perc ) values (?,?,?,?,?,?,?)";
         PreparedStatement preparedStatement = null;
         int count = 0;
         try {
@@ -40,6 +40,7 @@ public class BillManager {
             preparedStatement.setInt(4,entry.getTotal_quantity());
             preparedStatement.setInt(5,entry.getTotal_price());
             preparedStatement.setInt(6,entry.getTotal_discount());
+            preparedStatement.setInt(7,entry.getDiscount_perc());
 
             count = preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -50,7 +51,7 @@ public class BillManager {
     }
 
     public boolean updateOrderDetailsEntry(orderDetails entry){
-        String addQuery = "insert into order_details (order_detail_id ,order_id, book_id, quantity, unit_price, price) values (?,?,?,?,?,?)";
+        String addQuery = "insert into order_details (order_detail_id ,order_id, book_id, quantity, unit_price) values (?,?,?,?,?)";
         PreparedStatement preparedStatement = null;
         int count = 0;
         try {
@@ -60,8 +61,6 @@ public class BillManager {
             preparedStatement.setInt(3,entry.getBook_id());
             preparedStatement.setInt(4,entry.getQuantity());
             preparedStatement.setInt(5,entry.getUnit_price());
-            preparedStatement.setInt(6,entry.getTotalForItem());
-
 
             count = preparedStatement.executeUpdate();
         } catch (SQLException e) {
