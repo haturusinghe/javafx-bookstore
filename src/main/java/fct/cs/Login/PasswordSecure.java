@@ -10,7 +10,7 @@ import java.security.spec.InvalidKeySpecException;
 public class PasswordSecure {
 
     //encryption
-        static String encryptString(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        public static String encryptString(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
             int iterations = 1000;
             char[] chars = password.toCharArray();
             byte[] salt = getSalt();
