@@ -268,7 +268,7 @@ public class RegisterController implements Initializable {
 
                 System.out.println("Account successfully registered");
 
-                Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/login.fxml"));
+                Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/fxml/login/login.fxml"));
                 Scene scene = new Scene(view);
                 System.out.println("Load Login Page");
                 Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();

@@ -75,7 +75,7 @@
                               </HBox>
                               <VBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="680.0">
                                  <children>
-                                    <JFXButton fx:id="loginBtn" buttonType="RAISED" onAction="#loginOnAction" prefHeight="33.0" prefWidth="265.0" ripplerFill="#723fff" style="-fx-background-color: #1473e8;" text="Sign In">
+                                    <JFXButton fx:id="loginBtn" buttonType="RAISED" onAction="#loginOnAction" prefHeight="33.0" prefWidth="265.0" ripplerFill="#723fff" style="-fx-background-color: #1473e8; -fx-text-fill: #FFF;" text="Sign In">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
