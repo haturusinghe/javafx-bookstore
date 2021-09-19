@@ -2,7 +2,8 @@ package fct.cs.Login;
 
 //import com.mysql.cj.conf.BooleanProperty;
 import com.jfoenix.controls.JFXComboBox;
-        import fct.cs.dbUtil.DatabaseHandler;
+import fct.cs.commonUtil.NotificationCreator;
+import fct.cs.dbUtil.DatabaseHandler;
 import io.github.palexdev.materialfx.controls.*;
 import io.github.palexdev.materialfx.controls.enums.DialogType;
 import io.github.palexdev.materialfx.utils.BindingUtils;
@@ -22,9 +23,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-        import java.sql.SQLException;
+import java.sql.*;
 import java.util.ResourceBundle;
 
         import javafx.scene.image.Image;
@@ -41,7 +40,10 @@ public class RegisterController implements Initializable {
      */
 
     public ImageView imgX;
+    public MFXComboBox<String> genderBox;
+    public MFXTextField locationField;
     ObservableList<String> questionBoxList = FXCollections.observableArrayList("What's your pet's name?","What's your favorite food?","Who was your childhood hero?");
+    ObservableList<String> genderBoxList = FXCollections.observableArrayList("Male","Female");
 
 
     @FXML
@@ -81,12 +83,24 @@ public class RegisterController implements Initializable {
 
         quesBox.setItems(questionBoxList);
 
+        genderBox.setItems(genderBoxList);
+        genderBox.setValidated(true);
+        genderBox.getValidator().add(BindingUtils.toProperty(genderBox.getSelectionModel().selectedIndexProperty().isNotEqualTo(-1)), "Select Gender");
+
         ansField.setValidated(true);
         ansField.getValidator().add(
                 BindingUtils.toProperty(
                         ansField.textProperty().length().isNotEqualTo(0)
                 ),
                 "You need enter the Answer"
+        );
+
+        locationField.setValidated(true);
+        locationField.getValidator().add(
+                BindingUtils.toProperty(
+                        locationField.textProperty().length().isNotEqualTo(0)
+                ),
+                "You need enter your Location"
         );
 
         //check firstname validation
@@ -199,19 +213,22 @@ public class RegisterController implements Initializable {
         String fName = firstName.getText().trim();
         String lName = lastName.getText().trim();
         String pNum = telNum.getText().trim();
+        String location = locationField.getText().trim();
         String email = emailAddress.getText().trim();
         String passGet = passwordGet.getText().trim();
         String passCheck = passwordCheck.getText().trim();
         String answer = ansField.getText().trim();
         String question = null;
+        String gender = null;
         try {
             question = quesBox.getValue().toString();
+            gender = genderBox.getSelectionModel().getSelectedItem();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
 
-        if (firstName.isValid() && lastName.isValid() && telNum.isValid() && emailAddress.isValid() &&
+        if (firstName.isValid() && lastName.isValid() && telNum.isValid() && emailAddress.isValid() && genderBox.isValid() && locationField.isValid() &&
                 passwordGet.isValid() && passwordCheck.isValid() &&
                 ansField.isValid() && question !=null
         ) {
@@ -226,61 +243,80 @@ public class RegisterController implements Initializable {
                     "Passwords dont match"
             );
 
-            try {
-                this.conn = DatabaseHandler.getInstance().getConn();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if(passwordCheck.isValid()){
+                try {
+                    this.conn = DatabaseHandler.getInstance().getConn();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                PasswordSecure encrypt = new PasswordSecure();
+                String passwordEncrypt = null, answerEncrypt = null;
+                //Encrypt password
+                try {
+                    passwordEncrypt = encrypt.encryptString(passGet);
+                    System.out.println("Password Encrypted");
+                    answerEncrypt = encrypt.encryptString(answer);
+                    System.out.println("Answer Encrypted");
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (InvalidKeySpecException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+
+                    String emp_sql = "INSERT INTO employee (gender,location,fname,lname) values(?,?,?,?)";
+
+                    PreparedStatement employeeStatement = conn.prepareStatement(emp_sql, Statement.RETURN_GENERATED_KEYS);
+
+                    employeeStatement.setString(1, gender);
+                    employeeStatement.setString(2, location);
+                    employeeStatement.setString(3, fName);
+                    employeeStatement.setString(4, lName);
+
+                    employeeStatement.executeUpdate();
+                    ResultSet keys = employeeStatement.getGeneratedKeys();
+                    int last_inserted_id = 0;
+                    if(keys.next())
+                    {
+                        last_inserted_id = keys.getInt(1);
+                    }
+
+                    String sql = "INSERT INTO login (telnum, email, password, ques, ans,emp_id) values(?,?,?,?,?,?)";
+                    PreparedStatement ps_3 = conn.prepareStatement(sql);
+
+
+                    ps_3.setString(1, pNum);
+                    ps_3.setString(2, email);
+                    ps_3.setString(3, passwordEncrypt);
+                    ps_3.setString(4, question);
+                    ps_3.setString(5, answerEncrypt);
+                    ps_3.setInt(6, last_inserted_id);
+
+                    ps_3.execute();
+
+                    NotificationCreator.showSuccessBottomRight("Success","Account successfully registered, Now you can Login");
+                    Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/fxml/login/login.fxml"));
+                    Scene scene = new Scene(view);
+                    System.out.println("Load Login Page");
+                    Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                    window.setScene(scene);
+                    window.show();
+
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    System.out.println(e.getMessage());
+                    MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Warning", e.getMessage());
+                    dialog.show();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+
+                }
             }
-            PasswordSecure encrypt = new PasswordSecure();
-            String passwordEncrypt = null, answerEncrypt = null;
-            //Encrypt password
-            try {
-                passwordEncrypt = encrypt.encryptString(passGet);
-                System.out.println("Password Encrypted");
-                answerEncrypt = encrypt.encryptString(answer);
-                System.out.println("Answer Encrypted");
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            } catch (InvalidKeySpecException e) {
-                e.printStackTrace();
-            }
-
-            try {
-
-                String sql = "INSERT INTO login (fname, lname, telnum, email, password, ques, ans) values(?,?,?,?,?,?,?)";
-                PreparedStatement ps_3 = conn.prepareStatement(sql);
-
-                ps_3.setString(1, fName);
-                ps_3.setString(2, lName);
-                ps_3.setString(3, pNum);
-                ps_3.setString(4, email);
-                ps_3.setString(5, passwordEncrypt);
-                ps_3.setString(6, question);
-                ps_3.setString(7, answerEncrypt);
-
-                ps_3.execute();
-
-                System.out.println("Account successfully registered");
-
-                Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/fxml/login/login.fxml"));
-                Scene scene = new Scene(view);
-                System.out.println("Load Login Page");
-                Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-                window.setScene(scene);
-                window.show();
-
-
-
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.out.println(e.getMessage());
-                MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Warning", e.getMessage());
-                dialog.show();
-
-            }catch (IOException e) {
-                e.printStackTrace();
-
+            else{
+                NotificationCreator.showErrorBottomRight("Error","Passwords dont match");
             }
 
 
@@ -291,6 +327,10 @@ public class RegisterController implements Initializable {
             dialog.show();
         }
 
+    }
+
+    private int getEmpId() {
+        return 0;
     }
 
     public void close(ActionEvent actionEvent) {
