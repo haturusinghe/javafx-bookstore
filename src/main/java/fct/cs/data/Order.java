@@ -10,6 +10,17 @@ public class Order {
     private int total_quantity;
     private int total_price;
     private int total_discount;
+    private int discount_perc;
+
+    public Order(int customer_id, int employee_id, Date order_date, int total_quantity, int total_price, int total_discount, int discount_perc) {
+        this.customer_id = customer_id;
+        this.employee_id = employee_id;
+        this.order_date = order_date;
+        this.total_quantity = total_quantity;
+        this.total_price = total_price;
+        this.total_discount = total_discount;
+        this.discount_perc = discount_perc;
+    }
 
     public Order(int order_id, int customer_id, int employee_id, Date order_date, int total_quantity, int total_price, int total_discount) {
         this.order_id = order_id;
@@ -28,6 +39,14 @@ public class Order {
         this.total_discount = total_discount;
         this.total_price = total_price;
 
+    }
+
+    public int getDiscount_perc() {
+        return discount_perc;
+    }
+
+    public void setDiscount_perc(int discount_perc) {
+        this.discount_perc = discount_perc;
     }
 
     public int getOrder_id() {
