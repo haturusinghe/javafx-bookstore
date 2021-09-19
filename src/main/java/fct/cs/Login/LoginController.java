@@ -144,6 +144,7 @@ public class LoginController implements Initializable {
                 if(rs_1.next()){
                     String storedPassword = rs_1.getString("password");
                     boolean isManger = rs_1.getBoolean("isManager");
+                    int loggedEmployeeID = rs_1.getInt("emp_id");
                     boolean matchedPassword = decrypt.validateString(password, storedPassword );
 
                     if(matchedPassword == true) {
@@ -152,6 +153,7 @@ public class LoginController implements Initializable {
                         Parent view = loader.load();
                         mainPageController controller = loader.getController();
                         controller.setManager(isManger);
+                        controller.setCurrentEmployeeID(loggedEmployeeID);
                         System.out.println("check");
                         Scene scene = new Scene(view);
                         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
