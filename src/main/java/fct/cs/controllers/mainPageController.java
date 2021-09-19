@@ -56,6 +56,7 @@ public class mainPageController implements Initializable {
     private String currentPage = "";
 
     private boolean isManager = true;
+    private int currentEmployeeID;
 
     public void setManager(boolean manager) {
         this.isManager = manager;
@@ -245,5 +246,11 @@ public class mainPageController implements Initializable {
         }else{
             System.out.println("already loaded");
         }
+    }
+
+
+    public void setCurrentEmployeeID(int idFromLogin) {
+        this.currentEmployeeID = idFromLogin;
+        System.out.println(currentEmployeeID);
     }
 }
