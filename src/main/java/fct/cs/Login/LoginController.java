@@ -149,6 +149,7 @@ public class LoginController implements Initializable {
                     boolean matchedPassword = decrypt.validateString(password, storedPassword );
 
                     if(matchedPassword == true) {
+                        NotificationCreator.showSuccessBottomRight("Success","Logging In...");
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/main-dash.fxml"));
                         Parent view = loader.load();
                         mainPageController controller = loader.getController();
