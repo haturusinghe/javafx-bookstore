@@ -44,6 +44,7 @@ public class NewEmployeeController implements Initializable {
     private final MFXComboBox<String> searchCombo = new MFXComboBox<>();
 
     private ObservableList<Category> categoryList = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -56,7 +57,7 @@ public class NewEmployeeController implements Initializable {
             mainContainer.setPrefHeight(50);
             mainContainer.setPrefWidth(1030);
             mainContainer.setAlignment(Pos.CENTER_LEFT);
-            mainContainer.setPadding(new Insets(10,0,5,5));
+            mainContainer.setPadding(new Insets(10, 0, 5, 5));
 
             HBox spanMid = new HBox();
             spanMid.setMinWidth(610);
@@ -71,7 +72,7 @@ public class NewEmployeeController implements Initializable {
             searchContainer.setAlignment(Pos.CENTER_RIGHT);
             searchField.setPromptText("Search Employees");
             searchField.setIcon(new MFXIconWrapper(new MFXFontIcon("mfx-search", 28, Color.web("#4D4D4D")), 24));
-            searchField.setIconInsets(new Insets(0,0,10,0));
+            searchField.setIconInsets(new Insets(0, 0, 10, 0));
             searchField.setMinHeight(50);
             searchField.setStyle("-fx-font-size: 18px;");
 
@@ -108,7 +109,7 @@ public class NewEmployeeController implements Initializable {
             box.setAlignment(Pos.CENTER_RIGHT);*/
 
             searchContainer.getChildren().addAll(searchField);
-            mainContainer.getChildren().addAll(searchContainer,spanMid,addBtn,spanEnd);
+            mainContainer.getChildren().addAll(searchContainer, spanMid, addBtn, spanEnd);
             return mainContainer;
         });
 
@@ -119,8 +120,9 @@ public class NewEmployeeController implements Initializable {
         Platform.runLater(() -> {
             System.out.println("Later");
             employeeObservableList.clear();
-            for (EmployeeData e:
+            for (EmployeeData e :
                     eList) {
+                System.out.println(e.toString());
                 employeeObservableList.add(e);
 
             }
@@ -157,13 +159,12 @@ public class NewEmployeeController implements Initializable {
             MFXTableRowCell rowCell = new MFXTableRowCell("Update");
             rowCell.setGraphicTextGap(5);
             rowCell.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-                System.out.println("Update");
+                System.out.println("Update: " + employeeData.toString());
 
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/employee/employee-form.fxml"));
                     VBox box = loader.load();
-                     EmployeeFormController controller = loader.getController();
-
+                    EmployeeFormController controller = loader.getController();
                     controller.setParentController(thisController);
                     controller.setDrawer(drawer);
 //                    controller.setInventoryManager(inventoryManager);
@@ -222,7 +223,7 @@ public class NewEmployeeController implements Initializable {
 //        updateColumn.setMaxWidth(20);
 
 
-        empTable.getTableColumns().addAll(empIdColumn, fMameColumn,lNameColumn, salaryColumn,updateColumn,deleteColumn);
+        empTable.getTableColumns().addAll(empIdColumn, fMameColumn, lNameColumn, salaryColumn, updateColumn, deleteColumn);
     }
 
     public void hideDrawer(JFXDrawerEvent jfxDrawerEvent) {
@@ -231,14 +232,12 @@ public class NewEmployeeController implements Initializable {
 
     public void addNewEntry() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/employee/employee-form.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/employee/add-employee-form.fxml"));
             VBox box = loader.load();
             EmployeeFormController controller = loader.getController();
-
             controller.setParentController(thisController);
             controller.setDrawer(drawer);
 //                    controller.setInventoryManager(inventoryManager);
-//            controller.setEntry(employeeData);
             controller.setAddingNew(true);
             drawer.setSidePane(box);
         } catch (IOException ex) {
