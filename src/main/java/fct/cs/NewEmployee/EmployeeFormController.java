@@ -22,6 +22,7 @@ public class EmployeeFormController implements Initializable {
 
     public TextField emp_id_txtField;
     public MFXCheckbox managerCheck;
+    public TextField location_txtField;
     @FXML
     private HBox name_hbox;
 
@@ -248,29 +249,30 @@ public class EmployeeFormController implements Initializable {
                 email_txtField.getText(),
                 gender_txtField.getText(),
                 phone_txtField.getText(),
-                Integer.parseInt(salary_txtField.getText())
+                Integer.parseInt(salary_txtField.getText()),
+                location_txtField.getText()
         );
 
         return e;
     }
-
 
     public void setEntry(EmployeeData employeeData) {
         resetForm();
         emp_id_txtField.setText(employeeData.getEmployee_id());
         fName_txtField.setText(employeeData.getFirst_name());
         lName_txtField.setText(employeeData.getLast_name());
+        location_txtField.setText(employeeData.getLocation());
         salary_txtField.setText(String.valueOf(employeeData.getSalary()));
         gender_txtField.setText(employeeData.getGender());
         email_txtField.setText(employeeData.getEmail());
         phone_txtField.setText(employeeData.getPhone_number());
     }
 
-
     private void resetForm() {
         emp_id_txtField.clear();
         fName_txtField.clear();
         lName_txtField.clear();
+        location_txtField.clear();
         salary_txtField.clear();
         gender_txtField.clear();
         email_txtField.clear();

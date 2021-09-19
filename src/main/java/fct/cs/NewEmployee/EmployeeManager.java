@@ -76,7 +76,7 @@ public class EmployeeManager {
     }
 
     public static boolean updateEmployee(EmployeeData entry) {
-        String updateQuery = "UPDATE employee set salary = ? where employee_id = ?";
+        String updateQuery = "UPDATE employee set salary = ?,location = ? where employee_id = ?";
         //first_name
         //last_name
         //email
@@ -88,7 +88,8 @@ public class EmployeeManager {
         try {
             preparedStatement = conn.prepareStatement(updateQuery);
             preparedStatement.setInt(1, (entry.getSalary()));
-            preparedStatement.setInt(2, Integer.parseInt(entry.getEmployee_id()));
+            preparedStatement.setString(2, (entry.getLocation()));
+            preparedStatement.setInt(3, Integer.parseInt(entry.getEmployee_id()));
             count = preparedStatement.executeUpdate();
             NotificationCreator.showSuccessBottomRight("Operation Successfully Completed","Employee Updated Successfully");
         } catch (SQLException e) {

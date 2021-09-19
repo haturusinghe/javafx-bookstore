@@ -21,7 +21,7 @@ public class EmployeeData implements IFilterable {
     private final StringProperty location = new SimpleStringProperty("");
     private final BooleanProperty isManager = new SimpleBooleanProperty(false);
 
-    public EmployeeData(String empid,String fname,String lname,String email,String gender,String phone,int sal) {
+    public EmployeeData(String empid,String fname,String lname,String email,String gender,String phone,int sal,String location) {
         setEmail(email);
         setEmployee_id(empid);
         setFirst_name(fname);
@@ -29,6 +29,7 @@ public class EmployeeData implements IFilterable {
         setGender(gender);
         setSalary(sal);
         setPhone_number(phone);
+        setLocation(location);
     }
 
     public EmployeeData(String employee_id, String fname, String lname, String email, String gender, String telnum, int salary, String location, boolean isManager) {

@@ -31,6 +31,10 @@ import java.util.ResourceBundle;
 import java.util.ArrayList;
 
 public class NewEmployeeController implements Initializable {
+
+    /* TODO : Add makeManager function to update form */
+    /* TODO : Improve styling of Add Employee form */
+
     public MFXTableView empTable;
     public JFXDrawer drawer;
 
@@ -123,7 +127,9 @@ public class NewEmployeeController implements Initializable {
             for (EmployeeData e :
                     eList) {
                 System.out.println(e.toString());
-                employeeObservableList.add(e);
+                if(!e.isIsManager()){
+                    employeeObservableList.add(e);
+                }
 
             }
         });
