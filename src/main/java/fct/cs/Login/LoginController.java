@@ -8,6 +8,8 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
+import fct.cs.commonUtil.AppUtils;
+import fct.cs.commonUtil.NotificationCreator;
 import fct.cs.controllers.mainPageController;
 import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
@@ -32,12 +34,6 @@ import javafx.scene.image.Image;
  * @author hoxha
  */
 public class LoginController implements Initializable {
-
-    /*
-     *  TODO :
-     *   change Login Pages button styles
-     *   login success / error notification
-     * */
 
     public ImageView imgX;
     @FXML
@@ -105,10 +101,31 @@ public class LoginController implements Initializable {
         Image img1 = new Image(String.valueOf(getClass().getResource("/images/BookStore.png")));
         imgX.setImage(img1);
         centerImage();
+
+
     }
 
     @FXML
     void loginOnAction(ActionEvent event) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
+
+        if (!txtUsername.isValidated() && !txtPass.isValidated()) {
+            txtUsername.setValidated(true);
+            txtUsername.getValidator().add(
+                    BindingUtils.toProperty(
+                            txtUsername.textProperty().length().isNotEqualTo(0)
+                    ),
+                    "You need enter username"
+            );
+
+            txtPass.setValidated(true);
+            txtPass.getValidator().add(
+                    BindingUtils.toProperty(
+                            txtPass.textProperty().length().isNotEqualTo(0)
+                    ),
+                    "You need enter password"
+            );
+        }
+
         PasswordSecure decrypt = new PasswordSecure();
 
         try {
@@ -116,37 +133,15 @@ public class LoginController implements Initializable {
             String username = txtUsername.getText().trim();
             String password = txtPass.getText().trim();
 
-            if (username.isEmpty() || password.isEmpty()) {
-
-                txtUsername.setValidated(true);
-                txtUsername.getValidator().add(
-                        BindingUtils.toProperty(
-                                txtUsername.textProperty().length().isNotEqualTo(0)
-                        ),
-                        "You need enter username"
-                );
-
-                txtPass.setValidated(true);
-                txtPass.getValidator().add(
-                        BindingUtils.toProperty(
-                                txtPass.textProperty().length().isNotEqualTo(0)
-                        ),
-                        "You need enter password"
-                );
-
-                System.out.println("Empty field");
-            }
-            else {
+            if (txtUsername.isValid() || txtPass.isValid()) {
                 //sql query for getting username as telnum
-                PreparedStatement ps_1 = conn.prepareStatement("select * from login where telnum=?");
-                //sql query for getting username as email
-                PreparedStatement ps_2 = conn.prepareStatement("select * from login where email=?");
+                PreparedStatement ps_1 = conn.prepareStatement("select * from login where telnum=? OR email=?");
 
                 ps_1.setString(1, username);
-                ps_2.setString(1, username);
+                ps_1.setString(2, username);
 
                 ResultSet rs_1 = ps_1.executeQuery();
-                ResultSet rs_2 = ps_2.executeQuery();
+
 
                 if(rs_1.next()){
                     String storedPassword = rs_1.getString("password");
@@ -154,9 +149,6 @@ public class LoginController implements Initializable {
                     boolean matchedPassword = decrypt.validateString(password, storedPassword );
 
                     if(matchedPassword == true) {
-
-//                        System.out.println("Login successful\nisManager " + isManger);
-
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/main-dash.fxml"));
                         Parent view = loader.load();
                         mainPageController controller = loader.getController();
@@ -164,68 +156,20 @@ public class LoginController implements Initializable {
                         System.out.println("check");
                         Scene scene = new Scene(view);
                         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        AppUtils.enableDrag(scene,window);
                         window.setScene(scene);
                         window.show();
-
                     }else{
-
-
-                        txtPass.setValidated(true);
-                        txtPass.getValidator().add(
-                                BindingUtils.toProperty(
-                                        txtPass.textProperty().length().isEqualTo(0)
-                                ),
-                                "Invalid Password"
-                        );
-
+                        NotificationCreator.showErrorBottomRight("Error Loggin In","Incorrect Password");
                     }
 
-                }else if(rs_2.next()){
-
-                    String storedPassword = rs_2.getString("password");
-                    boolean isManger = rs_2.getBoolean("isManager");
-                    boolean matchedPassword = decrypt.validateString(password, storedPassword );
-
-                    if(matchedPassword == true) {
-
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fct/cs/main-dash.fxml"));
-                        Parent view = loader.load();
-                        mainPageController controller = loader.getController();
-                        controller.setManager(isManger);
-                        System.out.println("check");
-                        Scene scene = new Scene(view);
-                        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        window.setScene(scene);
-                        window.show();
-
-                    }else{
-
-                        txtPass.setValidated(true);
-                        txtPass.getValidator().add(
-                                BindingUtils.toProperty(
-                                        txtPass.textProperty().length().isEqualTo(0)
-                                ),
-                                "Invalid Password"
-                        );
-
-                    }
-
-                } else {
-                    System.out.println("Not Found");
-
-                    txtUsername.setValidated(true);
-                    txtUsername.getValidator().add(
-                            BindingUtils.toProperty(
-                                    txtUsername.textProperty().length().isEqualTo(0)
-                            ),
-                            "Invalid User"
-                    );
-//                    errorMsg.setText("Invalid credentials. Please try again");
+                }else{
+                    NotificationCreator.showErrorBottomRight("Error Loggin In","User Not Found");
                 }
             }
-        } catch (SQLException throwables) {
-//            System.out.println("error" + ex.toString());
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            NotificationCreator.showErrorBottomRight("Error Loggin In",e.getMessage());
         }
 
     }
@@ -233,7 +177,7 @@ public class LoginController implements Initializable {
     //Load register.fxml
     @FXML
     public void registerOnAction(ActionEvent event1)throws IOException{
-        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/register.fxml"));
+        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/fxml/login/register.fxml"));
         Scene scene = new Scene(view);
         System.out.println("Load register page");
         Stage window = (Stage)((Node)event1.getSource()).getScene().getWindow();
@@ -244,7 +188,7 @@ public class LoginController implements Initializable {
     //Load ChangePassword.fxml
     @FXML
     public void forgotOnAction(ActionEvent event2)throws IOException{
-        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/change-password.fxml"));
+        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/fxml/login/change-password.fxml"));
         Scene scene = new Scene(view);
         System.out.println("Load change-password page");
         Stage window = (Stage)((Node)event2.getSource()).getScene().getWindow();
