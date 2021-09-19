@@ -2,7 +2,7 @@ package fct.cs.Books;
 
 
 import fct.cs.Author.Author;
-import fct.cs.dbUtil.DatabaseConnector;
+import fct.cs.dbUtil.DatabaseHandler;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,15 @@ import java.util.ArrayList;
 
 public class BookManager {
 //    private DatabaseConnector databaseConnector;
-    private static Connection conn = DatabaseConnector.getConn();
+    private static Connection conn;
+
+    static {
+        try {
+            conn = DatabaseHandler.getInstance().getConn();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static ArrayList<Book> getBookList(int entriesPerPage, int pageNumber){
         ResultSet rs = getBooksFromDatabase(entriesPerPage, pageNumber);

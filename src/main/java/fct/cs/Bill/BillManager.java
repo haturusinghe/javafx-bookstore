@@ -1,12 +1,8 @@
 package fct.cs.Bill;
 
 import fct.cs.data.Order;
-import fct.cs.data.OrderDetailEntry;
-import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
-import fct.cs.Bill.orderDetails ;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
@@ -17,7 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BillManager {
-    private DatabaseConnector databaseConnector;
     private Connection conn;
 
     public BillManager() {

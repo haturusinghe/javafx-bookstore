@@ -1,6 +1,5 @@
 package fct.cs.Bill;
 
-import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
 
 import java.sql.Connection;
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 
 public class ItemManager extends CustomerManager {
 
-    private DatabaseConnector databaseConnector;
     private Connection conn;
 
     public ItemManager() throws SQLException {

@@ -1,11 +1,8 @@
 package fct.cs.Login;
 
-import com.jfoenix.controls.JFXButton;
 //import com.mysql.cj.conf.BooleanProperty;
 import com.jfoenix.controls.JFXComboBox;
-import fct.cs.controllers.mainPageController;
-import fct.cs.dbUtil.DatabaseConnector;
-import fct.cs.dbUtil.DatabaseHandler;
+        import fct.cs.dbUtil.DatabaseHandler;
 import io.github.palexdev.materialfx.controls.*;
 import io.github.palexdev.materialfx.controls.enums.DialogType;
 import io.github.palexdev.materialfx.utils.BindingUtils;
@@ -19,8 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.fxml.FXML;
+        import javafx.fxml.FXML;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,12 +24,10 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+        import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
+        import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 

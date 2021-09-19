@@ -1,6 +1,5 @@
 package fct.cs.NewCustomer;
 
-import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

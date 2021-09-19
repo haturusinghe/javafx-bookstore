@@ -11,7 +11,6 @@ import com.jfoenix.controls.JFXButton;
 import fct.cs.commonUtil.AppUtils;
 import fct.cs.commonUtil.NotificationCreator;
 import fct.cs.controllers.mainPageController;
-import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -67,7 +66,6 @@ public class LoginController implements Initializable {
     private Hyperlink fgwPass;
 
     private Connection conn;
-    private DatabaseConnector databaseConnector;
     PreparedStatement pst;
     ResultSet rs;
 

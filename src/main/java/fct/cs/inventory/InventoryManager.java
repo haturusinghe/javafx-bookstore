@@ -2,7 +2,6 @@ package fct.cs.inventory;
 
 import fct.cs.Author.Author;
 import fct.cs.Books.Book;
-import fct.cs.dbUtil.DatabaseConnector;
 import fct.cs.dbUtil.DatabaseHandler;
 
 import java.sql.*;
