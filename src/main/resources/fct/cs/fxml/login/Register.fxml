@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.Button?>
@@ -48,34 +49,44 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="509.0" prefWidth="680.0" spacing="40.0">
+                  <VBox alignment="CENTER" prefHeight="509.0" prefWidth="680.0" spacing="30.0">
                      <children>
                         <HBox spacing="20.0">
                            <children>
-                              <MFXTextField fx:id="firstName" alignment="TOP_LEFT" focusTraversable="false" prefHeight="29.0" prefWidth="197.0" promptText="First Name" />
-                              <MFXTextField fx:id="lastName" alignment="TOP_LEFT" focusTraversable="false" prefHeight="29.0" prefWidth="197.0" promptText="Last Name" />
+                              <MFXTextField fx:id="firstName" alignment="TOP_LEFT" focusTraversable="false" prefHeight="29.0" prefWidth="197.0" promptText="First Name" unfocusedLineColor="BLACK" />
+                              <MFXTextField fx:id="lastName" alignment="TOP_LEFT" focusTraversable="false" prefHeight="29.0" prefWidth="197.0" promptText="Last Name" unfocusedLineColor="BLACK" />
                            </children>
                         </HBox>
-                        <VBox>
+                        <HBox layoutX="10.0" layoutY="312.0" spacing="23.0">
                            <children>
-                              <MFXTextField fx:id="telNum" alignment="TOP_LEFT" focusTraversable="false" prefHeight="29.0" prefWidth="197.0" promptText="Phone Number" />
+                              <MFXComboBox fx:id="genderBox" focusTraversable="false" lineColor="BLACK" prefHeight="27.0" prefWidth="197.0" promptText="Select Gender" unfocusedLineColor="BLACK" />
+                           </children>
+                        </HBox>
+                        <VBox layoutX="10.0" layoutY="143.0">
+                           <children>
+                              <MFXTextField fx:id="locationField" alignment="TOP_LEFT" focusTraversable="false" prefHeight="29.0" prefWidth="197.0" promptText="Location" unfocusedLineColor="BLACK" />
                            </children>
                         </VBox>
                         <VBox>
                            <children>
-                              <MFXTextField fx:id="emailAddress" alignment="TOP_LEFT" focusTraversable="false" prefHeight="29.0" prefWidth="302.0" promptText="Email" />
+                              <MFXTextField fx:id="telNum" alignment="TOP_LEFT" focusTraversable="false" prefHeight="29.0" prefWidth="197.0" promptText="Phone Number" unfocusedLineColor="BLACK" />
+                           </children>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <MFXTextField fx:id="emailAddress" alignment="TOP_LEFT" focusTraversable="false" prefHeight="29.0" prefWidth="302.0" promptText="Email" unfocusedLineColor="BLACK" />
                            </children>
                         </VBox>
                         <HBox spacing="60.0">
                            <children>
-                              <MFXPasswordField fx:id="passwordGet" focusTraversable="false" prefHeight="36.0" prefWidth="163.0" promptText="Password" />
-                              <MFXPasswordField fx:id="passwordCheck" focusTraversable="false" prefHeight="36.0" prefWidth="163.0" promptText="Confirm Password " />
+                              <MFXPasswordField fx:id="passwordGet" focusTraversable="false" prefHeight="36.0" prefWidth="163.0" promptText="Password" unfocusedLineColor="BLACK" />
+                              <MFXPasswordField fx:id="passwordCheck" focusTraversable="false" prefHeight="36.0" prefWidth="163.0" promptText="Confirm Password " unfocusedLineColor="BLACK" />
                            </children>
                         </HBox>
                         <HBox spacing="23.0">
                            <children>
-                              <JFXComboBox fx:id="quesBox" focusTraversable="false" prefHeight="27.0" prefWidth="197.0" promptText="Choose your question" />
-                              <MFXTextField fx:id="ansField" alignment="TOP_LEFT" focusTraversable="false" prefHeight="29.0" prefWidth="197.0" promptText="Answer" />
+                              <JFXComboBox fx:id="quesBox" focusTraversable="false" prefHeight="27.0" prefWidth="197.0" promptText="Choose your question" unFocusColor="BLACK" />
+                              <MFXTextField fx:id="ansField" alignment="TOP_LEFT" focusTraversable="false" prefHeight="29.0" prefWidth="197.0" promptText="Answer" unfocusedLineColor="BLACK" />
                            </children>
                         </HBox>
                         <VBox>
