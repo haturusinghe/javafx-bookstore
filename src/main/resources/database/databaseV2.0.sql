@@ -1,6 +1,6 @@
 -- MariaDB dump 10.18  Distrib 10.4.17-MariaDB, for Win64 (AMD64)
 --
--- Host: localhost    Database: bookstore
+-- Host: localhost    Database: g05_bookstore
 -- ------------------------------------------------------
 -- Server version	10.4.17-MariaDB
 
@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `author`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `author` (
-  `author_id` int(11) NOT NULL,
+  `author_id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(50) DEFAULT NULL,
   `last_name` varchar(50) DEFAULT NULL,
   `website` varchar(50) DEFAULT NULL,
   `gender` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`author_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,7 +50,7 @@ DROP TABLE IF EXISTS `book`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `book` (
-  `book_id` int(11) NOT NULL,
+  `book_id` int(11) NOT NULL AUTO_INCREMENT,
   `isbn` varchar(50) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
   `publisher` varchar(50) DEFAULT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE `book` (
   KEY `FK_author` (`author_id`),
   CONSTRAINT `FK_author` FOREIGN KEY (`author_id`) REFERENCES `author` (`author_id`),
   CONSTRAINT `FK_cat` FOREIGN KEY (`category_id`) REFERENCES `book_category` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=501 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,10 +87,10 @@ DROP TABLE IF EXISTS `book_category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `book_category` (
-  `category_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,13 +111,13 @@ DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `customer` (
-  `customer_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_name` varchar(50) DEFAULT NULL,
   `location` varchar(50) DEFAULT NULL,
   `mobile` varchar(12) DEFAULT NULL,
   `email` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,15 +138,14 @@ DROP TABLE IF EXISTS `employee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `employee` (
-  `employee_id` int(11) NOT NULL,
-  `first_name` varchar(50) DEFAULT NULL,
-  `last_name` varchar(50) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
+  `employee_id` int(11) NOT NULL AUTO_INCREMENT,
   `gender` varchar(50) DEFAULT NULL,
-  `phone_number` varchar(50) DEFAULT NULL,
-  `salary` int(11) DEFAULT NULL,
+  `location` varchar(50) DEFAULT NULL,
+  `salary` int(11) NOT NULL DEFAULT 10000,
+  `fname` varchar(50) DEFAULT NULL,
+  `lname` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`employee_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,7 +154,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'Erlicc','Andre','tchinnick0@gmpg.org','Male','393-303-6346',11000),(2,'Donall','Josovitz','djosovitz1@gov.uk','Genderqueer','268-238-3727',11857),(3,'Yula','Buyers','ybuyers2@yale.edu','Non-binary','670-820-4885',19113),(4,'Gardiner','New','gnew3@google.com.hk','Female','217-233-2290',14890),(5,'Algo','Zed','asgasg@assaf.com','Fale','4569872365',69500),(7,'Eddie','Buck','eboocock6@studiopress.com','Male','353-319-1889',13191),(8,'Ada','Boar','aboar7@cmu.edu','Bigender','859-464-6000',11139),(9,'Norma','Edworthye','nedworthye8@nasa.gov','Genderfluid','884-137-8288',11962),(13,'Nora','Allen','nora@central.com','Female','011111111',15000),(15,'Harry','Allen','henry@gmail.com','Male','874654136',10000);
+INSERT INTO `employee` VALUES (6,'Male','Edas',10000,'Ted','Tada'),(7,'Male','Cali',10000,'Jay','Elec');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,7 +183,7 @@ CREATE TABLE `inventory` (
 
 LOCK TABLES `inventory` WRITE;
 /*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
-INSERT INTO `inventory` VALUES (1,500,6,5),(2,200,10,20),(3,1000,9,5),(5,500,5,5),(8,750,45,10),(10,1500,8,5);
+INSERT INTO `inventory` VALUES (1,550,15,10),(2,100,17,10),(3,750,35,10),(5,5000,3,1);
 /*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,18 +196,19 @@ DROP TABLE IF EXISTS `login`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `login` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fname` varchar(50) NOT NULL,
-  `lname` varchar(100) NOT NULL,
   `telnum` varchar(15) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(512) NOT NULL,
   `ques` varchar(75) NOT NULL,
   `ans` varchar(512) DEFAULT NULL,
   `isManager` tinyint(1) DEFAULT 0,
+  `emp_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `telnum` (`telnum`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `email` (`email`),
+  KEY `FK_emp` (`emp_id`),
+  CONSTRAINT `FK_emp` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`employee_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,7 +217,7 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
-INSERT INTO `login` VALUES (15,'Amal','Perera','0123456789','amal@mail.com','1000:21818215f41a0d2a2b8e0e2130d577c7:f1945b511d0d0933ad3d086af6ccc5de8feecc64276044b1d4bc36f8c195ae2f98b4b59f38312b0f364dfa5a6a6fbd432fc31939b60daf7f4eda3af35ce5dfd8','What\'s your favorite food?','1000:010cdea0690c64eafc25f394161c8919:5382a2fb84a41d72d1c325df2878dbe758d5379e3db56d7e331c6cbfe4a53716b521c7d698d047bce3a68e248e35c4552895c05efed4dfa2a2d2b1095e784a20',0);
+INSERT INTO `login` VALUES (20,'123456789','ted@mail.com','1000:442368e2730b2323d1032c9d7cfcd3c8:f42f193cd577b8662527dacfedc9873f0be9df6e3d73515a784e24249a7c9b997ad25bcb99aae3bb86d8975ef941617ddcea396e970148a31fa1ca8b4afd7e06','What\'s your favorite food?','1000:59c5887cbd87ac53e38a8c9086141a87:1f728d5ec911bdc66b19babf4c3b0996a6b79556b80c4a07b53dd43009f53b1b7c1a4e0ddbdeef215461b71f9e7b59143ed4734d1c7cedfa13c67d88340415da',1,6),(21,'6969696969','jay@mail.com','1000:425daee4a621298c9f1a32124548ebf3:ed09ced6e53b2832ab5908888b2eb2dcf3328e37ca01a552d2135d45142485590f3ce780fccd477b53cf139eb9b93acb8994cc43dc545187d78fd07febf9230b','Who was your childhood hero?','1000:3cbc3f77c446376679a6feae304622a5:dc306d1be70bc0b805d09c39f5913d1e6db2842e18c06e1bf0ebfd81da05d348a21bbcf66eba158409c32cc01da41d1774170adc71c1b0ffe7808de3dcbb02f2',0,7);
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,12 +229,11 @@ DROP TABLE IF EXISTS `order_details`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `order_details` (
-  `order_detail_id` int(11) NOT NULL,
   `book_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `quantity` int(11) DEFAULT NULL,
   `unit_price` int(11) DEFAULT NULL,
-  PRIMARY KEY (`order_detail_id`,`book_id`,`order_id`),
+  PRIMARY KEY (`book_id`,`order_id`),
   KEY `FK_order_del` (`order_id`),
   KEY `FK_Books` (`book_id`),
   CONSTRAINT `FK_Books` FOREIGN KEY (`book_id`) REFERENCES `book` (`book_id`),
@@ -248,7 +247,7 @@ CREATE TABLE `order_details` (
 
 LOCK TABLES `order_details` WRITE;
 /*!40000 ALTER TABLE `order_details` DISABLE KEYS */;
-INSERT INTO `order_details` VALUES (1,1,33,1,500),(1,1,36,3,500),(1,2,32,2,200),(1,2,35,3,200),(1,3,34,1,1000),(2,5,33,2,500),(2,5,34,2,500),(2,5,35,1,500),(2,8,36,5,750),(3,10,32,1,1500),(3,10,36,1,1500);
+INSERT INTO `order_details` VALUES (1,38,2,550),(1,39,1,550),(1,40,2,550),(1,43,1,550),(1,44,4,550),(2,39,2,100),(2,40,3,100),(2,41,2,100),(2,42,3,100),(2,43,2,100),(2,44,1,100),(3,38,1,750),(3,39,2,750),(3,40,2,750),(3,41,2,750),(3,42,3,750),(3,43,3,750),(3,44,2,750),(5,38,1,5000),(5,41,1,5000);
 /*!40000 ALTER TABLE `order_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,14 +265,14 @@ CREATE TABLE `orders` (
   `order_date` date NOT NULL,
   `total_quantity` int(11) NOT NULL,
   `total_price` int(11) DEFAULT NULL,
-  `total_discount` int(11) DEFAULT NULL,
+  `total_discount` int(11) DEFAULT 0,
   `discount_perc` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`order_id`),
   KEY `FK_Cus` (`customer_id`),
-  KEY `FK_Emp` (`employee_id`),
+  KEY `FK_Employee` (`employee_id`),
   CONSTRAINT `FK_Cus` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
-  CONSTRAINT `FK_Emp` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+  CONSTRAINT `FK_Employee` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -282,7 +281,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (32,1,1,'2021-09-19',3,1805,95,5),(33,2,1,'2021-08-12',3,1500,150,10),(34,3,1,'2021-07-01',3,1800,200,10),(35,2,1,'2020-09-19',4,990,110,10),(36,1,1,'2020-07-15',9,6750,337,5);
+INSERT INTO `orders` VALUES (38,1,7,'2021-09-19',4,6165,685,10),(39,2,6,'2021-08-12',5,2138,112,5),(40,3,6,'2021-07-08',7,2697,203,7),(41,1,7,'2021-09-19',5,6030,670,10),(42,2,6,'2020-09-18',6,2295,255,10),(43,1,7,'2020-07-09',6,3000,300,10),(44,2,6,'2020-07-09',7,3420,380,10);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -295,4 +294,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-19  8:24:45
+-- Dump completed on 2021-09-19 16:18:51
