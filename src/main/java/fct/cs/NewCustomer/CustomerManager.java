@@ -97,16 +97,15 @@ public class CustomerManager {
     }
 
     public static boolean addSingleCustomer(CustomerData entry){
-        String addQuery = "insert into customer (customer_id, customer_name, location, mobile, email) values (?,?,?,?,?)";
+        String addQuery = "insert into customer (customer_name, location, mobile, email) values (?,?,?,?)";
         PreparedStatement preparedStatement = null;
         int count = 0;
         try {
             preparedStatement = conn.prepareStatement(addQuery);
-            preparedStatement.setInt(1, Integer.parseInt(entry.getcustomer_id()));
-            preparedStatement.setString(2,entry.getcustomer_name());
-            preparedStatement.setString(3,entry.getlocation());
-            preparedStatement.setString(4,entry.getmobile());
-            preparedStatement.setString(5,entry.getemail());
+            preparedStatement.setString(1,entry.getcustomer_name());
+            preparedStatement.setString(2,entry.getlocation());
+            preparedStatement.setString(3,entry.getmobile());
+            preparedStatement.setString(4,entry.getemail());
             count = preparedStatement.executeUpdate();
         } catch (SQLException c) {
             c.printStackTrace();

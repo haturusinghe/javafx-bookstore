@@ -4,12 +4,15 @@ import com.jfoenix.controls.JFXDrawer;
 import javafx.event.ActionEvent;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
 public class CustomerFormController {
 
     public TextField customer_id_txtField;
+    public HBox customer_id_hbox;
+    public Separator topSep;
 
     @FXML
     private HBox name_hbox;
@@ -99,8 +102,11 @@ public class CustomerFormController {
     public void setAddingNew(boolean b) {
         this.isAddingNew = b;
         if(b){
-            customer_id_txtField.setEditable(true);
+            customer_id_hbox.setVisible(false);
+            topSep.setVisible(false);
         }else{
+            topSep.setVisible(true);
+            customer_id_hbox.setVisible(true);
             customer_id_txtField.setEditable(false);
         }
     }

@@ -36,6 +36,7 @@ import java.util.ArrayList;
 public class NewCustomerController implements Initializable {
 
     /* TODO : Add error/success notifications */
+    /* TODO : Remove customerID field from Add/Update forms and make it AUTO_INCREMENT */
 
     public MFXTableView customerTable;
     public JFXDrawer drawer;
