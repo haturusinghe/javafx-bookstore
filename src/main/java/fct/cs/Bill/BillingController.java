@@ -38,15 +38,13 @@ import java.util.ArrayList;
 public class BillingController {
 
     public HBox dateHBox;
+    public MFXTextField empIdField;
 
     /* TODO : Improve all billing pages and related forms styling/layout */
     /* TODO : Add success/error notifications */
 
     @FXML
     private StackPane stackPane;
-
-
-
 
     @FXML
     private Button search;
@@ -402,9 +400,8 @@ public class BillingController {
     }
 
     public Order getOrderEntryFromBill(){
-
         int customer_id = Integer.parseInt(customerID.getText());
-        int employee_id = 1 ;
+        int employee_id = Integer.parseInt(empIdField.getText()); ;
         Date order_date = getCurrentDate();
         int total_quantity = getQuantity(billDetails);
         int total_discount = (Integer.parseInt(total.getText()) * Integer.parseInt(discount.getText()))/100;
@@ -429,9 +426,7 @@ public class BillingController {
             billManager.updateOrderEntry(order);
             billManager.updateOrderDetailsByArray(billDetails);
             confirmationToInvoice();
-
         }
-
     }
 
     public void ErrorShow(String str){
@@ -475,18 +470,11 @@ public class BillingController {
     public void newCustomer(){
         newCustomerController = new NewCustomerController() ;
         newCustomerController.addNewCustomer(drawer);
-
-
-
     }
 
     public void hideDrawer(JFXDrawerEvent jfxDrawerEvent) {
         moveToSelectCustomer();
         drawer.toBack();
-
-
-
-
     }
 
     public void displayDate(ActionEvent actionEvent) {
