@@ -1,10 +1,7 @@
 package fct.cs.NewEmployee;
 
 import io.github.palexdev.materialfx.filter.IFilterable;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 public class EmployeeData implements IFilterable {
     //employee_id
@@ -21,6 +18,8 @@ public class EmployeeData implements IFilterable {
     private final StringProperty gender = new SimpleStringProperty("");
     private final StringProperty phone_number = new SimpleStringProperty("");
     private final IntegerProperty salary = new SimpleIntegerProperty(0);
+    private final StringProperty location = new SimpleStringProperty("");
+    private final BooleanProperty isManager = new SimpleBooleanProperty(false);
 
     public EmployeeData(String empid,String fname,String lname,String email,String gender,String phone,int sal) {
         setEmail(email);
@@ -30,6 +29,43 @@ public class EmployeeData implements IFilterable {
         setGender(gender);
         setSalary(sal);
         setPhone_number(phone);
+    }
+
+    public EmployeeData(String employee_id, String fname, String lname, String email, String gender, String telnum, int salary, String location, boolean isManager) {
+        setEmail(email);
+        setEmployee_id(employee_id);
+        setFirst_name(fname);
+        setLast_name(lname);
+        setGender(gender);
+        setSalary(salary);
+        setPhone_number(telnum);
+        setLocation(location);
+        setIsManager(isManager);
+    }
+
+
+    public String getLocation() {
+        return location.get();
+    }
+
+    public StringProperty locationProperty() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location.set(location);
+    }
+
+    public boolean isIsManager() {
+        return isManager.get();
+    }
+
+    public BooleanProperty isManagerProperty() {
+        return isManager;
+    }
+
+    public void setIsManager(boolean isManager) {
+        this.isManager.set(isManager);
     }
 
     public String getEmployee_id() {
@@ -114,6 +150,21 @@ public class EmployeeData implements IFilterable {
 
     public void setSalary(int salary) {
         this.salary.set(salary);
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeData{" +
+                "employee_id=" + employee_id +
+                ", first_name=" + first_name +
+                ", last_name=" + last_name +
+                ", email=" + email +
+                ", gender=" + gender +
+                ", phone_number=" + phone_number +
+                ", salary=" + salary +
+                ", location=" + location +
+                ", isManager=" + isManager +
+                '}';
     }
 
     @Override
