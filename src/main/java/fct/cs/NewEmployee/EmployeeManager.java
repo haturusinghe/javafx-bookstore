@@ -1,12 +1,12 @@
 package fct.cs.NewEmployee;
 
+import fct.cs.Login.PasswordSecure;
 import fct.cs.dbUtil.DatabaseHandler;
 import fct.cs.commonUtil.NotificationCreator;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class EmployeeManager {
@@ -27,14 +27,14 @@ public class EmployeeManager {
 
     private static ResultSet getEmployeesFromDatabase(int entriesPerPage, int pageNumber) {
         int offset = entriesPerPage * (pageNumber - 1);
-        String query = "SELECT * FROM employee LIMIT ?  OFFSET  ?";
+        String query = "SELECT employee.*,login.* FROM employee,login where employee.employee_id = login.emp_id;";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
         try {
             preparedStatement = conn.prepareStatement(query);
 
-            preparedStatement.setInt(1, entriesPerPage);
-            preparedStatement.setInt(2, offset);
+//            preparedStatement.setInt(1, entriesPerPage);
+//            preparedStatement.setInt(2, offset);
             resultSet = preparedStatement.executeQuery();
             return resultSet;
         } catch (SQLException e) {
@@ -56,13 +56,15 @@ public class EmployeeManager {
             //salary
             while (rs.next()) {
                 orderList.add(new EmployeeData(
-                        String.valueOf(rs.getInt("employee_id")),
-                        rs.getString("first_name"),
-                        rs.getString("last_name"),
+                        String.valueOf(rs.getInt("emp_id")),
+                        rs.getString("fname"),
+                        rs.getString("lname"),
                         rs.getString("email"),
                         rs.getString("gender"),
-                        rs.getString("phone_number"),
-                        rs.getInt("salary")
+                        rs.getString("telnum"),
+                        rs.getInt("salary"),
+                        rs.getString("location"),
+                        rs.getBoolean("isManager")
 
                 ));
             }
@@ -74,7 +76,7 @@ public class EmployeeManager {
     }
 
     public static boolean updateEmployee(EmployeeData entry) {
-        String updateQuery = "UPDATE employee set first_name = ?, last_name = ?, email = ?,gender = ?,phone_number = ?,salary = ? where employee_id = ?";
+        String updateQuery = "UPDATE employee set salary = ? where employee_id = ?";
         //first_name
         //last_name
         //email
@@ -85,14 +87,8 @@ public class EmployeeManager {
         int count = 0;
         try {
             preparedStatement = conn.prepareStatement(updateQuery);
-            preparedStatement.setString(1,entry.getFirst_name());
-            preparedStatement.setString(2,entry.getLast_name());
-            preparedStatement.setString(3,entry.getLast_name());
-            preparedStatement.setString(3,entry.getEmail());
-            preparedStatement.setString(4,entry.getGender());
-            preparedStatement.setString(5,entry.getPhone_number());
-            preparedStatement.setInt(6,entry.getSalary());
-            preparedStatement.setInt(7, Integer.parseInt(entry.getEmployee_id()));
+            preparedStatement.setInt(1, (entry.getSalary()));
+            preparedStatement.setInt(2, Integer.parseInt(entry.getEmployee_id()));
             count = preparedStatement.executeUpdate();
             NotificationCreator.showSuccessBottomRight("Operation Successfully Completed","Employee Updated Successfully");
         } catch (SQLException e) {
@@ -120,7 +116,61 @@ public class EmployeeManager {
         return count > 0;
     }
 
-    public static boolean addSingleEmployee(EmployeeData entry){
+    public static boolean addSingleEmployee(EmployeeData entry, String passGet, String question, String answer){
+        int count = 0;
+        PasswordSecure encrypt = new PasswordSecure();
+        String passwordEncrypt = null, answerEncrypt = null;
+
+        try {
+            passwordEncrypt = PasswordSecure.encryptString(passGet);
+            System.out.println("Password Encrypted");
+            answerEncrypt = PasswordSecure.encryptString(answer);
+            System.out.println("Answer Encrypted");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+
+        try {
+
+            String emp_sql = "INSERT INTO employee (gender,location,fname,lname) values(?,?,?,?)";
+            PreparedStatement employeeStatement = conn.prepareStatement(emp_sql, Statement.RETURN_GENERATED_KEYS);
+
+            employeeStatement.setString(1, entry.getGender());
+            employeeStatement.setString(2, entry.getLocation());
+            employeeStatement.setString(3, entry.getFirst_name());
+            employeeStatement.setString(4, entry.getLast_name());
+
+            employeeStatement.executeUpdate();
+            ResultSet keys = employeeStatement.getGeneratedKeys();
+            int last_inserted_id = 0;
+            if (keys.next()) {
+                last_inserted_id = keys.getInt(1);
+            }
+
+            String sql = "INSERT INTO login (telnum, email, password, ques, ans,emp_id) values(?,?,?,?,?,?)";
+            PreparedStatement ps_3 = conn.prepareStatement(sql);
+
+
+            ps_3.setString(1, entry.getPhone_number());
+            ps_3.setString(2, entry.getEmail());
+            ps_3.setString(3, passwordEncrypt);
+            ps_3.setString(4, question);
+            ps_3.setString(5, answerEncrypt);
+            ps_3.setInt(6, last_inserted_id);
+
+            ps_3.execute();
+
+            NotificationCreator.showSuccessBottomRight("Success", "New Employee Account Created");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return count > 0;
+    }
+
+    /*public static boolean addSingleEmployee(EmployeeData entry){
         String addQuery = "insert into employee (employee_id, first_name, last_name, email, gender, phone_number, salary) values (?,?,?,?,?,?,?)";
         PreparedStatement preparedStatement = null;
         int count = 0;
@@ -140,7 +190,7 @@ public class EmployeeManager {
             NotificationCreator.showErrorBottomRight("Error Adding New Employee",e.getMessage());
         }
         return count > 0;
-    }
+    }*/
 
 
 }
