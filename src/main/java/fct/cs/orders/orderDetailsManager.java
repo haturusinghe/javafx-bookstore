@@ -66,9 +66,7 @@ public class orderDetailsManager {
                         String.valueOf(rs.getInt("order_id")),
                         rs.getString("title"),
                         rs.getInt("quantity"),
-                        rs.getInt("unit_price"),
-                        rs.getInt("price")
-
+                        rs.getInt("unit_price")
                 ));
             }
         } catch (SQLException e) {
