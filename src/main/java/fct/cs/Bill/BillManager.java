@@ -46,16 +46,15 @@ public class BillManager {
     }
 
     public boolean updateOrderDetailsEntry(orderDetails entry){
-        String addQuery = "insert into order_details (order_detail_id ,order_id, book_id, quantity, unit_price) values (?,?,?,?,?)";
+        String addQuery = "insert into order_details (order_id, book_id, quantity, unit_price) values (?,?,?,?)";
         PreparedStatement preparedStatement = null;
         int count = 0;
         try {
             preparedStatement = conn.prepareStatement(addQuery);
-            preparedStatement.setInt(1,entry.getOrder_detailedID());
-            preparedStatement.setInt(2,entry.getOrder_id());
-            preparedStatement.setInt(3,entry.getBook_id());
-            preparedStatement.setInt(4,entry.getQuantity());
-            preparedStatement.setInt(5,entry.getUnit_price());
+            preparedStatement.setInt(1,entry.getOrder_id());
+            preparedStatement.setInt(2,entry.getBook_id());
+            preparedStatement.setInt(3,entry.getQuantity());
+            preparedStatement.setInt(4,entry.getUnit_price());
 
             count = preparedStatement.executeUpdate();
         } catch (SQLException e) {
