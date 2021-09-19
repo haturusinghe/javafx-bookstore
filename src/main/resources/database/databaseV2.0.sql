@@ -15,7 +15,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
 --
 -- Table structure for table `author`
 --
@@ -62,7 +61,11 @@ CREATE TABLE `book` (
   `num_pages` int(11) DEFAULT NULL,
   `lang` varchar(50) DEFAULT NULL,
   `book_description` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`book_id`)
+  PRIMARY KEY (`book_id`),
+  KEY `FK_cat` (`category_id`),
+  KEY `FK_author` (`author_id`),
+  CONSTRAINT `FK_author` FOREIGN KEY (`author_id`) REFERENCES `author` (`author_id`),
+  CONSTRAINT `FK_cat` FOREIGN KEY (`category_id`) REFERENCES `book_category` (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -72,7 +75,7 @@ CREATE TABLE `book` (
 
 LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
-INSERT INTO `book` VALUES (1,'226424542-5',4,'Fisher Inc',10,'Phalacrocorax albiventer',1991,547,842,'Chinese','Switchable asynchronous utilisation'),(2,'782809134-6',2,'Ferry-Dietrich',3,'Cordylus giganteus',2004,2787,586,'Hungarian','Proactive user-facing circuit'),(3,'526316243-X',5,'Spencer, Quigley and Stanton',5,'Ninox superciliaris',2006,1768,830,'Icelandic','Optimized uniform groupware'),(4,'791417617-6',5,'Breitenberg, Goodwin and Quitzon',2,'Geochelone elephantopus',1990,1371,565,'Hungarian','User-friendly asynchronous neural-net'),(5,'532310026-5',2,'Reichel LLC',9,'Gorilla gorilla',2009,1741,374,'Kazakh','Persistent asynchronous conglomeration'),(6,'106780385-8',2,'Connelly, Baumbach and Aufderhar',1,'Creagrus furcatus',2003,3821,578,'Montenegrin','Profit-focused client-driven info-mediaries'),(7,'566332181-0',2,'Cremin, Ondricka and Schumm',7,'Manouria emys',2006,2296,925,'Fijian','Implemented 3rd generation forecast'),(8,'545924208-8',1,'Zemlak Group',9,'Chlamydosaurus kingii',1984,2072,549,'Kyrgyz','Digitized object-oriented focus group'),(9,'893818838-8',5,'Harber, Kozey and Douglas',5,'unavailable',2012,1414,305,'Marathi','Reactive didactic workforce'),(10,'204386047-X',4,'Pouros, Murray and Glover',6,'Macropus robustus',2002,2371,221,'Oriya','Open-source intermediate data-warehouse'),(11,'061028428-2',4,'Bosco, Kub and Kiehn',4,'Canis aureus',2006,722,298,'Tajik','Optimized next generation utilisation'),(12,'191235481-0',5,'Windler-Wehner',6,'Diceros bicornis',2009,2010,794,'Thai','Networked holistic software'),(13,'476984142-6',3,'Pouros, Skiles and Grimes',4,'Acrobates pygmaeus',2002,4404,862,'Nepali','Reactive user-facing productivity'),(14,'936524938-4',4,'Casper Inc',6,'Phalacrocorax niger',1996,240,724,'Telugu','Extended systematic model'),(15,'622089167-8',5,'Blick-Stamm',10,'Sylvilagus floridanus',2000,869,301,'Norwegian','Public-key human-resource system engine'),(16,'744784190-0',5,'Metz and Sons',6,'Echimys chrysurus',2001,2963,442,'Kurdish','Right-sized content-based contingency'),(17,'543309810-9',1,'Hamill-Adams',8,'Amblyrhynchus cristatus',2007,3401,162,'Oriya','Open-source analyzing parallelism'),(18,'651982624-3',2,'Hermann and Sons',3,'Ardea golieth',1993,290,768,'Indonesian','Robust systematic focus group'),(19,'316159158-5',3,'Hayes, Beatty and Bergnaum',8,'Motacilla aguimp',1984,1689,677,'Irish Gaelic','Persevering reciprocal knowledge user'),(20,'986247367-3',1,'Gorczany, Harber and Grimes',3,'Kobus leche robertsi',1993,2210,128,'Yiddish','Cross-group encompassing paradigm'),(21,'990755377-8',1,'Murazik Group',4,'Bison bison',2000,3711,296,'Afrikaans','Assimilated dynamic solution'),(22,'841884138-9',3,'Murray-Padberg',4,'Chloephaga melanoptera',2009,926,142,'Kannada','Automated grid-enabled architecture'),(23,'171323191-3',2,'Cummerata Group',2,'Anser anser',2005,2488,784,'Greek','Reactive stable focus group'),(24,'973849306-4',5,'Gusikowski, Jacobs and Labadie',10,'Cacatua tenuirostris',1990,2149,275,'West Frisian','Expanded multi-state software'),(25,'069938420-6',1,'Hoppe-Mills',1,'Francolinus swainsonii',2009,868,875,'Spanish','Upgradable solution-oriented customer loyalty'),(26,'424759974-7',1,'Zboncak-Blick',5,'Axis axis',2005,2821,747,'Japanese','Seamless incremental extranet'),(27,'719479191-9',2,'Kozey-Graham',8,'Genetta genetta',2011,1494,697,'Mongolian','Ergonomic impactful info-mediaries'),(28,'748800431-0',2,'Pfeffer Group',6,'Macropus fuliginosus',2000,4931,263,'Yiddish','Secured tertiary focus group'),(29,'015858967-X',1,'Schmidt Group',6,'Sula dactylatra',1993,3783,536,'Malagasy','Open-architected optimal framework'),(30,'788542204-6',1,'West, White and Reichert',5,'Threskionis aethiopicus',2003,239,606,'Hiri Motu','Advanced fresh-thinking analyzer');
+INSERT INTO `book` VALUES (1,'226424542-5',1,'Fisher Inc',2,'Phalacrocorax albiventer',1991,547,842,'Chinese','Switchable asynchronous utilisation'),(2,'782809134-6',2,'Ferry-Dietrich',3,'Cordylus giganteus',2004,2787,586,'Hungarian','Proactive user-facing circuit'),(3,'526316243-X',5,'Spencer, Quigley and Stanton',5,'Ninox superciliaris',2006,1768,830,'Icelandic','Optimized uniform groupware'),(4,'791417617-6',5,'Breitenberg, Goodwin and Quitzon',2,'Geochelone elephantopus',1990,1371,565,'Hungarian','User-friendly asynchronous neural-net'),(5,'532310026-5',2,'Reichel LLC',9,'Gorilla gorilla',2009,1741,374,'Kazakh','Persistent asynchronous conglomeration'),(6,'106780385-8',2,'Connelly, Baumbach and Aufderhar',1,'Creagrus furcatus',2003,3821,578,'Montenegrin','Profit-focused client-driven info-mediaries'),(7,'566332181-0',2,'Cremin, Ondricka and Schumm',7,'Manouria emys',2006,2296,925,'Fijian','Implemented 3rd generation forecast'),(8,'545924208-8',1,'Zemlak Group',9,'Chlamydosaurus kingii',1984,2072,549,'Kyrgyz','Digitized object-oriented focus group'),(9,'893818838-8',5,'Harber, Kozey and Douglas',5,'unavailable',2012,1414,305,'Marathi','Reactive didactic workforce'),(10,'204386047-X',4,'Pouros, Murray and Glover',6,'Macropus robustus',2002,2371,221,'Oriya','Open-source intermediate data-warehouse'),(11,'061028428-2',4,'Bosco, Kub and Kiehn',4,'Canis aureus',2006,722,298,'Tajik','Optimized next generation utilisation'),(12,'191235481-0',5,'Windler-Wehner',6,'Diceros bicornis',2009,2010,794,'Thai','Networked holistic software'),(13,'476984142-6',3,'Pouros, Skiles and Grimes',4,'Acrobates pygmaeus',2002,4404,862,'Nepali','Reactive user-facing productivity'),(14,'936524938-4',4,'Casper Inc',6,'Phalacrocorax niger',1996,240,724,'Telugu','Extended systematic model'),(15,'622089167-8',5,'Blick-Stamm',10,'Sylvilagus floridanus',2000,869,301,'Norwegian','Public-key human-resource system engine'),(16,'744784190-0',5,'Metz and Sons',6,'Echimys chrysurus',2001,2963,442,'Kurdish','Right-sized content-based contingency'),(17,'543309810-9',1,'Hamill-Adams',8,'Amblyrhynchus cristatus',2007,3401,162,'Oriya','Open-source analyzing parallelism'),(18,'651982624-3',2,'Hermann and Sons',3,'Ardea golieth',1993,290,768,'Indonesian','Robust systematic focus group'),(19,'316159158-5',3,'Hayes, Beatty and Bergnaum',8,'Motacilla aguimp',1984,1689,677,'Irish Gaelic','Persevering reciprocal knowledge user'),(20,'986247367-3',1,'Gorczany, Harber and Grimes',3,'Kobus leche robertsi',1993,2210,128,'Yiddish','Cross-group encompassing paradigm'),(21,'990755377-8',1,'Murazik Group',4,'Bison bison',2000,3711,296,'Afrikaans','Assimilated dynamic solution'),(22,'841884138-9',3,'Murray-Padberg',4,'Chloephaga melanoptera',2009,926,142,'Kannada','Automated grid-enabled architecture'),(23,'171323191-3',2,'Cummerata Group',2,'Anser anser',2005,2488,784,'Greek','Reactive stable focus group'),(24,'973849306-4',5,'Gusikowski, Jacobs and Labadie',10,'Cacatua tenuirostris',1990,2149,275,'West Frisian','Expanded multi-state software'),(25,'069938420-6',1,'Hoppe-Mills',1,'Francolinus swainsonii',2009,868,875,'Spanish','Upgradable solution-oriented customer loyalty'),(26,'424759974-7',1,'Zboncak-Blick',5,'Axis axis',2005,2821,747,'Japanese','Seamless incremental extranet'),(27,'719479191-9',2,'Kozey-Graham',8,'Genetta genetta',2011,1494,697,'Mongolian','Ergonomic impactful info-mediaries'),(28,'748800431-0',2,'Pfeffer Group',6,'Macropus fuliginosus',2000,4931,263,'Yiddish','Secured tertiary focus group'),(29,'015858967-X',1,'Schmidt Group',6,'Sula dactylatra',1993,3783,536,'Malagasy','Open-architected optimal framework'),(30,'788542204-6',1,'West, White and Reichert',5,'Threskionis aethiopicus',2003,239,606,'Hiri Motu','Advanced fresh-thinking analyzer'),(500,'4568745695',1,'Penguin',1,'Good Year',2000,500,500,'English','Good Book');
 /*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,31 +104,6 @@ INSERT INTO `book_category` VALUES (1,'application'),(2,'Synergized'),(3,'system
 UNLOCK TABLES;
 
 --
--- Table structure for table `category`
---
-
-DROP TABLE IF EXISTS `category`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `category` (
-  `category_id` int(11) DEFAULT NULL,
-  `category_name` text DEFAULT NULL,
-  `low_value` int(11) DEFAULT NULL,
-  `up_value` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `category`
---
-
-LOCK TABLES `category` WRITE;
-/*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'less than 15k',0,15000),(2,'greater than 15k',15000,100000),(1,'Less than 25k',0,25000),(1,'greater than 25k',25000,150000);
-/*!40000 ALTER TABLE `category` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `customer`
 --
 
@@ -148,7 +126,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'Nimal','Colombo','0714331372','nimal1998@gmail.com'),(2,'Kamal','Kelaniya','0714345672','kamal1997@gmail.com'),(3,'Rayan','Matara','0714331372','nimal1993@gmail.com');
+INSERT INTO `customer` VALUES (1,'Jason Bourne','Colombo','0714331372','nimal1998@gmail.com'),(2,'Kamal','Kelaniya','0714345672','kamal1997@gmail.com'),(3,'Bill Murr','Colombo','0659856589','bill@dc.com');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +155,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'Eric','Andre','tchinnick0@gmpg.org','Male','393-303-6346',11000),(2,'Donall','Josovitz','djosovitz1@gov.uk','Genderqueer','268-238-3727',11857),(3,'Yula','Buyers','ybuyers2@yale.edu','Non-binary','670-820-4885',19113),(4,'Gardiner','New','gnew3@google.com.hk','Female','217-233-2290',14890),(5,'Brandie','Peegrem','bpeegrem4@patch.com','Genderfluid','166-398-8717',18363),(6,'Maurizio','Hadcock','mhadcock5@bloomberg.com','Agender','508-750-4714',19405),(7,'Eddie','Boocock','eboocock6@studiopress.com','Male','353-319-1889',13191),(8,'Ada','Boar','aboar7@cmu.edu','Bigender','859-464-6000',11139),(9,'Norma','Edworthye','nedworthye8@nasa.gov','Genderfluid','884-137-8288',11962),(13,'Nora','Allen','nora@central.com','Female','011111111',15000),(15,'Henry','Allen','henry@gmail.com','Male','874654136',10000);
+INSERT INTO `employee` VALUES (1,'Erlicc','Andre','tchinnick0@gmpg.org','Male','393-303-6346',11000),(2,'Donall','Josovitz','djosovitz1@gov.uk','Genderqueer','268-238-3727',11857),(3,'Yula','Buyers','ybuyers2@yale.edu','Non-binary','670-820-4885',19113),(4,'Gardiner','New','gnew3@google.com.hk','Female','217-233-2290',14890),(5,'Algo','Zed','asgasg@assaf.com','Fale','4569872365',69500),(7,'Eddie','Buck','eboocock6@studiopress.com','Male','353-319-1889',13191),(8,'Ada','Boar','aboar7@cmu.edu','Bigender','859-464-6000',11139),(9,'Norma','Edworthye','nedworthye8@nasa.gov','Genderfluid','884-137-8288',11962),(13,'Nora','Allen','nora@central.com','Female','011111111',15000),(15,'Harry','Allen','henry@gmail.com','Male','874654136',10000);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,7 +172,9 @@ CREATE TABLE `inventory` (
   `qty` int(11) NOT NULL,
   `min_qty` int(11) DEFAULT 1,
   PRIMARY KEY (`book_id`),
-  CONSTRAINT `inventory_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `book` (`book_id`)
+  CONSTRAINT `FK_book` FOREIGN KEY (`book_id`) REFERENCES `book` (`book_id`),
+  CONSTRAINT `inventory_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `book` (`book_id`),
+  CONSTRAINT `CHK_qty` CHECK (`qty` >= 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -204,7 +184,7 @@ CREATE TABLE `inventory` (
 
 LOCK TABLES `inventory` WRITE;
 /*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
-INSERT INTO `inventory` VALUES (1,865,100,10),(2,200,20,5),(3,100,50,5);
+INSERT INTO `inventory` VALUES (1,500,6,5),(2,200,10,20),(3,1000,9,5),(5,500,5,5),(8,750,45,10),(10,1500,8,5);
 /*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,7 +208,7 @@ CREATE TABLE `login` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `telnum` (`telnum`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -237,7 +217,7 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
-INSERT INTO `login` VALUES (6,'Hal','Cad','12345678','hal@dc.com','1000:8fcd49560bf4543e23fcfbdfe08efebd:745be8740e9360d8a9381eefda61b53adb437c7b84127f03d6716b3cde3488aefdd378808067510736a846bbf5f5bc217899fda1bce9a5a2a64ce97676d98180','What\'s your favorite food?','1000:83eb1e8b2490226554d8294a0f06817e:8b2a7e4b3d39f1cf949ecc74a863439e5c205a5cc21f204379862234c72517b6c5385a5ecf543dfe469760897d27b8cdbbb2e180d46a598910eddeb881fe40ec',0),(7,'Cal','Hal','1236969','cal@dc.com','1000:8cd6723447b5eef2623302774bfbe561:083d97676b0bf97355c56919a473b2ead75aa30dabe60f05272e4be41867355c3d8ad1332768bde71ade24747872a60984ce8972bcf513a1f4da21e024902e34','What\'s your pet\'s name?','1000:5446fca3bb82e9d52f75d06487731e8b:287e24dec244da793a2969cbaeac1c09b22814471b31184144498654e5705986d36df048da3ae42cfa506ac8f7c2aff49ba0d6549dc5456c1389a2732d0c2fbc',0),(8,'asfa','asfasf','+4654654','asasf@asfas.casf','1000:6bde4b7e2c1e340bd1cb8b90a6d63b1f:55acf8483f59ac2d042786aaa31dc8874bda2f921779c33be96f76289e5b6314460db21332739eab25f3fe9a49fc84f866f314edf77a438c081abe5f2c4e107c','What\'s your pet\'s name?','1000:6da8fc3228f7d48e4b8552d348c9aa91:90b93c47e0c02b08d278b040bd3fc3433cae5938ce070f7f8631b4171e112092eef9cb2a607bc2a6be75661659a9053952e2e1ec5e75589855dc819af5e7676f',0),(9,'zack','snyder','0696969','zack@dc.com','1000:2ca0f755cbf0eb676a74f56e3f85744b:4f1eb64e3031bc6ece16046cd40dba0753ee9d43db2d24183cb5abba0380ba6a8798cf23c95d9e85b8a5cc5466b294dca4bf3e84951e762928d71e97a5879686','What\'s your favorite food?','1000:109cccc33b95a7340d78e6ac5c94d5d3:fffdf50fce20a4bd3fe37582541f115962dd24c2c7f8cb9bcac38d47ee530784a86bdf3e3edf237b1365bbb4905cbd958afa725c34a4ed0b79e31a9d09af7ca4',0);
+INSERT INTO `login` VALUES (15,'Amal','Perera','0123456789','amal@mail.com','1000:21818215f41a0d2a2b8e0e2130d577c7:f1945b511d0d0933ad3d086af6ccc5de8feecc64276044b1d4bc36f8c195ae2f98b4b59f38312b0f364dfa5a6a6fbd432fc31939b60daf7f4eda3af35ce5dfd8','What\'s your favorite food?','1000:010cdea0690c64eafc25f394161c8919:5382a2fb84a41d72d1c325df2878dbe758d5379e3db56d7e331c6cbfe4a53716b521c7d698d047bce3a68e248e35c4552895c05efed4dfa2a2d2b1095e784a20',0);
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -249,12 +229,16 @@ DROP TABLE IF EXISTS `order_details`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `order_details` (
-  `order_id` int(11) NOT NULL,
+  `order_detail_id` int(11) NOT NULL,
   `book_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
   `quantity` int(11) DEFAULT NULL,
   `unit_price` int(11) DEFAULT NULL,
-  `discount` int(11) DEFAULT NULL,
-  PRIMARY KEY (`book_id`,`order_id`)
+  PRIMARY KEY (`order_detail_id`,`book_id`,`order_id`),
+  KEY `FK_order_del` (`order_id`),
+  KEY `FK_Books` (`book_id`),
+  CONSTRAINT `FK_Books` FOREIGN KEY (`book_id`) REFERENCES `book` (`book_id`),
+  CONSTRAINT `FK_order_del` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -264,7 +248,7 @@ CREATE TABLE `order_details` (
 
 LOCK TABLES `order_details` WRITE;
 /*!40000 ALTER TABLE `order_details` DISABLE KEYS */;
-INSERT INTO `order_details` VALUES (3,1,5,1466,350),(2,3,4,508,439),(4,4,2,1287,251),(3,8,3,1989,355),(1,9,1,322,403),(1,10,3,133,98),(23,10,2,100,50);
+INSERT INTO `order_details` VALUES (1,1,33,1,500),(1,1,36,3,500),(1,2,32,2,200),(1,2,35,3,200),(1,3,34,1,1000),(2,5,33,2,500),(2,5,34,2,500),(2,5,35,1,500),(2,8,36,5,750),(3,10,32,1,1500),(3,10,36,1,1500);
 /*!40000 ALTER TABLE `order_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -276,15 +260,20 @@ DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `orders` (
-  `order_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) DEFAULT NULL,
   `employee_id` int(11) DEFAULT NULL,
-  `order_date` date DEFAULT NULL,
-  `total_quantity` int(11) DEFAULT NULL,
+  `order_date` date NOT NULL,
+  `total_quantity` int(11) NOT NULL,
   `total_price` int(11) DEFAULT NULL,
   `total_discount` int(11) DEFAULT NULL,
-  PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `discount_perc` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`order_id`),
+  KEY `FK_Cus` (`customer_id`),
+  KEY `FK_Emp` (`employee_id`),
+  CONSTRAINT `FK_Cus` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
+  CONSTRAINT `FK_Emp` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,7 +282,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,1,1,'2021-06-13',24,2569,773),(2,4,4,'2021-02-23',37,1245,821),(3,2,2,'2021-04-12',16,4746,401),(4,5,4,'2021-05-19',96,2983,187),(5,5,2,'2021-05-25',97,1472,769);
+INSERT INTO `orders` VALUES (32,1,1,'2021-09-19',3,1805,95,5),(33,2,1,'2021-08-12',3,1500,150,10),(34,3,1,'2021-07-01',3,1800,200,10),(35,2,1,'2020-09-19',4,990,110,10),(36,1,1,'2020-07-15',9,6750,337,5);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -306,4 +295,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-13  7:02:19
+-- Dump completed on 2021-09-19  8:24:45
