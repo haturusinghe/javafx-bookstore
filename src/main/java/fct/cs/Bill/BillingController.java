@@ -7,6 +7,11 @@ import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.events.JFXDrawerEvent;
 import fct.cs.NewCustomer.NewCustomerController;
 import fct.cs.data.Order;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.github.palexdev.materialfx.controls.cell.MFXDateCell;
+import io.github.palexdev.materialfx.utils.BindingUtils;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,6 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -25,10 +31,13 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
 public class BillingController {
+
+    public HBox dateHBox;
 
     /* TODO : Improve all billing pages and related forms styling/layout */
     /* TODO : Add success/error notifications */
@@ -52,7 +61,7 @@ public class BillingController {
     private Label total;
 
     @FXML
-    private TextField discount;
+    private MFXTextField discount;
 
     @FXML
     private Label finalTotal;
@@ -122,6 +131,7 @@ public class BillingController {
     private BillManager billManager;
     private NewCustomerController newCustomerController ;
     private SelectCustomerController SelectCustomerController ;
+    MFXDatePicker datePicker;
 //    private int subTotal;
 
     private int orderDetailId = 1;
@@ -129,6 +139,31 @@ public class BillingController {
     private boolean alreadyAdded = false;
 
     public void initialize() {
+
+        datePicker = new MFXDatePicker(LocalDate.now());
+        datePicker.setPickerColor(Color.BLACK);
+        datePicker.setLineColor(Color.BLACK);
+        datePicker.setColorText(true);
+        dateHBox.getChildren().add(datePicker);
+
+
+        discount.setText("0");
+        discount.setValidated(true);
+        discount.getValidator().add(
+                BindingUtils.toProperty(
+                        discount.textProperty().length().greaterThanOrEqualTo(1)
+                ),
+                "This field cant be empty"
+        );
+        discount.getValidator().add(BindingUtils.toProperty(
+                        Bindings.createBooleanBinding(
+                                () -> discount.getText().matches("^[0-9]*$"),
+                                discount.textProperty()
+                        )
+                ),
+                "Must only contain digits"
+        );
+
         static_label = customerName;
         billManager = new BillManager();
         billDetails = new ArrayList<Billdetails>();
@@ -329,15 +364,14 @@ public class BillingController {
         }
         return subTotal;
     }
+
     public int getQuantity(ArrayList<Billdetails> array) {
         int quantity = 0;
         for (Billdetails currentItem : array) {
-
             quantity += currentItem.getQuantity();
         }
         return quantity;
     }
-
 
     public int getFinalTotal(int total) {
         int disc = Integer.parseInt(discount.getText());
@@ -356,6 +390,7 @@ public class BillingController {
 
 
     }
+
     public void cancelOrders(){
         billDetails.clear();
         loadBillTable();
@@ -373,31 +408,27 @@ public class BillingController {
         Date order_date = getCurrentDate();
         int total_quantity = getQuantity(billDetails);
         int total_discount = (Integer.parseInt(total.getText()) * Integer.parseInt(discount.getText()))/100;
-
+        int discount_perc = Integer.parseInt(discount.getText());
         int total_price = Integer.parseInt(finalTotal.getText());
-
-        return new Order(customer_id,employee_id,order_date,total_quantity,total_discount,total_price);
+        return new Order(customer_id,employee_id,order_date,total_quantity,total_price,total_discount,discount_perc);
     }
 
     public Date getCurrentDate(){
-        long millis=System.currentTimeMillis();
-
-        return new Date(millis);
+        return Date.valueOf(datePicker.getDate());
     }
+
     public void ChargeCustomer(ActionEvent action){
         ChargeCustomer();
-
     }
+
     private void ChargeCustomer(){
         if(billDetails.size() == 0 ){
             ErrorShow("No Items in the Bill!!");
-
         }else {
             Order order = getOrderEntryFromBill();
             billManager.updateOrderEntry(order);
             billManager.updateOrderDetailsByArray(billDetails);
             confirmationToInvoice();
-
 
         }
 
@@ -415,6 +446,7 @@ public class BillingController {
         DialogLayout.setActions(button);
         dialog.show();
     }
+
     public void confirmationToInvoice(){
         JFXDialogLayout DialogLayout = new JFXDialogLayout();
         JFXButton yes = new JFXButton("Yes");
@@ -455,6 +487,10 @@ public class BillingController {
 
 
 
+    }
+
+    public void displayDate(ActionEvent actionEvent) {
+        getCurrentDate();
     }
 }
 
