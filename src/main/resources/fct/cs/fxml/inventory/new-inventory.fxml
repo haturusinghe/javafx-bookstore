@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<?import io.github.palexdev.materialfx.controls.MFXTableView?>
+<VBox minHeight="600.0" stylesheets="@../../styles/inventory-page.css" xmlns="http://javafx.com/javafx/16"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.inventory.NewInventoryController">
+    <children>
+        <StackPane fx:id="stackPane" prefHeight="684.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+            <children>
+                <JFXDrawer fx:id="drawer" defaultDrawerSize="300.0" direction="RIGHT" onDrawerClosing="#hideDrawer"
+                           prefHeight="368.0" prefWidth="108.0"/>
+                <VBox alignment="BOTTOM_CENTER">
+                    <children>
+                        <MFXTableView fx:id="inventoryTable" fixedRowsHeight="40.0" headerHeight="60.0" maxHeight="685.0" maxRowsPerPage="10" maxWidth="1030.0" minHeight="600.0" minWidth="1030.0" prefHeight="685.0" prefWidth="1030.0" />
+                    </children>
+                </VBox>
+            </children>
+        </StackPane>
+    </children>
+</VBox>
