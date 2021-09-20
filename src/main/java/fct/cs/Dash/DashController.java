@@ -232,7 +232,7 @@ public class DashController implements Initializable {
         HBox amountHbox = new HBox();
 
         Color textColor = null;
-        if ((color.getRed()*0.299 + color.getGreen()*0.587 + color.getBlue()*0.114) > 50){
+        if ((color.getRed()*0.299 + color.getGreen()*0.587 + color.getBlue()*0.114)*100 > 50){
             textColor = Color.BLACK;
         }else{
             textColor = Color.WHITE;
@@ -275,7 +275,7 @@ public class DashController implements Initializable {
 
     private VBox createCoxcombLegend(String bookName, int count, Color color) {
         Color textColor = null;
-        if ((color.getRed()*0.299 + color.getGreen()*0.587 + color.getBlue()*0.114) > 50){
+        if ((color.getRed()*0.299 + color.getGreen()*0.587 + color.getBlue()*0.114)*100 > 50){
             textColor = Color.BLACK;
         }else{
             textColor = Color.WHITE;
