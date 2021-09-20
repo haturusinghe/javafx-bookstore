@@ -2,15 +2,15 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXLabel?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxWidth="680.0" minHeight="680.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.BillItemController">
+<VBox maxWidth="680.0" minHeight="680.0" style="-fx-background-color: white;" stylesheets="@../../styles/BillTables_style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.BillItemController">
    <children>
       <HBox minHeight="50.0">
          <children>
@@ -23,8 +23,9 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" minHeight="50.0" spacing="10.0">
          <children>
-            <TextField fx:id="searchItem" prefHeight="35.0" prefWidth="194.0" promptText="bookID/Title" />
-            <MFXButton buttonType="RAISED" depthLevel="LEVEL1" onAction="#searchItem" prefHeight="35.0" prefWidth="70.0" text="Search" />
+            <VBox prefHeight="50.0" prefWidth="270.0" />
+            <MFXTextField fx:id="searchItem" prefHeight="26.0" prefWidth="162.0" />
+            <MFXButton buttonType="RAISED" depthLevel="LEVEL1" onAction="#searchItem" prefHeight="35.0" prefWidth="70.0" styleClass="buttonStyle" text="Search" />
          </children>
          <padding>
             <Insets left="10.0" />
@@ -40,9 +41,10 @@
             <TableColumn fx:id="addItem" prefWidth="79.20001220703125" text="Add to Bill" />
          </columns>
       </TableView>
+      <VBox prefHeight="32.0" prefWidth="542.0" />
       <HBox>
          <children>
-            <MFXButton fx:id="moveToCustomer" buttonType="RAISED" depthLevel="LEVEL1" onAction="#goToSelectCustomer" prefHeight="47.0" prefWidth="194.0" text="Change Customer" />
+            <MFXButton fx:id="moveToCustomer" buttonType="RAISED" depthLevel="LEVEL1" onAction="#goToSelectCustomer" prefHeight="47.0" prefWidth="194.0" styleClass="buttonStyle" text="Change Customer" />
          </children>
          <padding>
             <Insets bottom="5.0" left="10.0" top="5.0" />
