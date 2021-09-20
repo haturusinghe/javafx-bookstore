@@ -1,5 +1,6 @@
 package fct.cs.Bill;
 import fct.cs.controllers.mainPageController;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -18,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextField ;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
 import java.net.URL;
@@ -56,7 +58,8 @@ public class SelectCustomerController implements Initializable {
 
     @FXML
     private TextField searchCustomer;
-
+    @FXML
+    private MFXButton search;
 
     @FXML
     private TableColumn SelectCustomer;
@@ -68,6 +71,7 @@ public class SelectCustomerController implements Initializable {
     public void initialize(URL location , ResourceBundle resources) {
 
         CustomerManager = new CustomerManager();
+        searchButton();
         setColumns();
         loadDataTable();
 
@@ -210,7 +214,13 @@ public class SelectCustomerController implements Initializable {
 
 
     }
+    public void searchButton(){
 
+        search.setText("");
+     FontIcon icon  =  new FontIcon("anto-search") ;
+     icon.setIconSize(30);
+        search.setGraphic(icon);
+    }
 //    public void getCustomerData() {
 //        ArrayList<BillCustomer> cList = CustomerManager.getCustomerList(100, 1);
 //        customerObservableList.clear();

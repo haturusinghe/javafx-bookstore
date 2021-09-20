@@ -143,6 +143,7 @@ public class BillingController {
     private boolean alreadyAdded = false;
 
     public void initialize() {
+
         employeeID.setText(String.valueOf(currentEmployeeID));
         datePicker = new MFXDatePicker(LocalDate.now());
         datePicker.setPickerColor(Color.BLACK);
