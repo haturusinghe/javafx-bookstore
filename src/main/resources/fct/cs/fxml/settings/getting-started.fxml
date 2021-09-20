@@ -55,7 +55,7 @@
                                  <children>
                                     <HBox layoutX="10.0" layoutY="26.0" minWidth="300.0" prefHeight="34.0" prefWidth="626.0">
                                        <children>
-                                          <MFXTextField fx:id="dbURL" focusTraversable="false" prefHeight="33.0" prefWidth="265.0" promptText="Enter Database URL" />
+                                          <MFXTextField fx:id="dbURL" focusTraversable="false" prefHeight="33.0" prefWidth="265.0" promptText="Enter Database URL : localhost:3306 " />
                                        </children>
                                     </HBox>
                                     <HBox minWidth="300.0" prefHeight="34.0" prefWidth="626.0">
@@ -87,6 +87,11 @@
                         </VBox>
                      </children>
                   </VBox>
+                  <HBox fx:id="progressBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="59.0" prefWidth="680.0">
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
                </children>
             </VBox>
          </children>
