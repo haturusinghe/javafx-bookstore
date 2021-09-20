@@ -4,7 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import fct.cs.Bill.BillingController;
 import fct.cs.Dash.DashController;
 import fct.cs.NewCustomer.NewCustomerController;
-import fct.cs.inventory.InventoryController;
+import fct.cs.inventory.NewInventoryController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -109,12 +109,12 @@ public class mainPageController implements Initializable {
 
     public void loadInventoryPage() {
         if (!currentPage.equals("inventory")) {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/inventory/inventory.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/inventory/new-inventory.fxml"));
             try {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());
-                InventoryController inventoryController = loader.getController();
-                inventoryController.setManager(isManager);
+                NewInventoryController inventoryController = loader.getController();
+//                NewInventoryController.setManager(isManager);
                 currentPage = "inventory";
                 setHeaderText("Manage Inventory");
             } catch (IOException e) {

@@ -42,6 +42,9 @@ public class BillingController {
 
     /* TODO : Improve all billing pages and related forms styling/layout */
     /* TODO : Add success/error notifications */
+    /* TODO : Add table styling */
+    /* TODO : Fix button sizes */
+    /* TODO : Remove current styles from table buttons and use FontIcons in buttons instead */
 
     @FXML
     private StackPane stackPane;

@@ -37,7 +37,6 @@ public class ChangePassword implements Initializable {
 
     /*
      *  TODO :
-     *   change Login Pages button styles
      *   success/error notification after password change
      *   nullpointer exception for combobox select
      *   forget password page typo
