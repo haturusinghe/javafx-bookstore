@@ -328,7 +328,7 @@ WHERE
 								<reportElement key="" style="Column header" x="0" y="0" width="160" height="30" forecolor="#000000" uuid="4cae36cc-8b7a-465f-8958-58da43d84f5f"/>
 								<box leftPadding="2"/>
 								<textElement>
-									<font size="12" isBold="true"/>
+									<font fontName="Arial" size="12" isBold="true"/>
 								</textElement>
 								<text><![CDATA[Title]]></text>
 							</staticText>
@@ -338,7 +338,7 @@ WHERE
 								<reportElement style="Detail" x="0" y="0" width="160" height="30" uuid="6dbcd166-f03e-47be-a474-8849c645e745"/>
 								<box leftPadding="2"/>
 								<textElement>
-									<font fontName="______________" size="12"/>
+									<font fontName="Arial" size="12"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
 							</textField>
@@ -351,7 +351,7 @@ WHERE
 								<reportElement key="" style="Column header" x="0" y="0" width="80" height="30" forecolor="#000000" uuid="2f567fcd-55f0-4da8-81cc-375cc92d2376"/>
 								<box leftPadding="2"/>
 								<textElement>
-									<font fontName="______________" size="12" isBold="true"/>
+									<font fontName="Arial" size="12" isBold="true"/>
 								</textElement>
 								<text><![CDATA[Quantity]]></text>
 							</staticText>
@@ -361,7 +361,7 @@ WHERE
 								<reportElement style="Detail" x="0" y="0" width="80" height="30" uuid="ed8bb37e-7bc7-40dd-9de2-3eeb0f4e21ca"/>
 								<box leftPadding="2"/>
 								<textElement>
-									<font fontName="______________" size="12"/>
+									<font fontName="Arial" size="12"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 							</textField>
@@ -374,7 +374,7 @@ WHERE
 								<reportElement key="" style="Column header" x="0" y="0" width="80" height="30" forecolor="#000000" uuid="35464f4c-0cbd-47db-b263-8f004f87e1d6"/>
 								<box leftPadding="2"/>
 								<textElement>
-									<font fontName="______________" size="12" isBold="true"/>
+									<font fontName="Arial" size="12" isBold="true"/>
 								</textElement>
 								<text><![CDATA[Unit Price]]></text>
 							</staticText>
@@ -384,7 +384,7 @@ WHERE
 								<reportElement style="Detail" x="0" y="0" width="80" height="30" uuid="83e0f96e-9e97-4d3a-acb9-d297c0fdd178"/>
 								<box leftPadding="2"/>
 								<textElement>
-									<font fontName="______________" size="12"/>
+									<font fontName="Arial" size="12"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{unit_price}]]></textFieldExpression>
 							</textField>
@@ -397,7 +397,7 @@ WHERE
 								<reportElement key="" style="Column header" x="0" y="0" width="80" height="30" forecolor="#000000" uuid="2dfeb161-bba0-45a6-a9cf-f8172d9c0ced"/>
 								<box leftPadding="2"/>
 								<textElement>
-									<font fontName="______________" size="12" isBold="true"/>
+									<font fontName="Arial" size="12" isBold="true"/>
 								</textElement>
 								<text><![CDATA[Amount]]></text>
 							</staticText>
@@ -407,7 +407,7 @@ WHERE
 								<reportElement style="Detail" x="0" y="0" width="80" height="30" uuid="0e150dcf-90d8-4b47-9852-05d18f65904c"/>
 								<box leftPadding="2"/>
 								<textElement>
-									<font fontName="______________" size="12"/>
+									<font fontName="Arial" size="12"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 							</textField>
