@@ -3,9 +3,18 @@ package fct.cs.inventory;
 public class StockEntry {
     private int inv_id;
     private int book_id;
+    private String book_title;
     private int list_price;
     private int qty;
     private int min_qty;
+
+    public String getBook_title() {
+        return book_title;
+    }
+
+    public void setBook_title(String book_title) {
+        this.book_title = book_title;
+    }
 
     public StockEntry(int inv_id, int book_id, int list_price, int qty, int min_qty) {
         this.inv_id = inv_id;
@@ -20,6 +29,14 @@ public class StockEntry {
         this.list_price = list_price;
         this.qty = qty;
         this.min_qty = min_qty;
+    }
+
+    public StockEntry(int book_id, String title, int list_price, int qty, int min_qty) {
+        setBook_id(book_id);
+        setBook_title(title);
+        setList_price(list_price);
+        setQty(qty);
+        setMin_qty(min_qty);
     }
 
     public int getInv_id() {
@@ -67,6 +84,7 @@ public class StockEntry {
         return "StockEntry{" +
                 "inv_id=" + inv_id +
                 ", book_id=" + book_id +
+                ", book_title='" + book_title + '\'' +
                 ", list_price=" + list_price +
                 ", qty=" + qty +
                 ", min_qty=" + min_qty +
