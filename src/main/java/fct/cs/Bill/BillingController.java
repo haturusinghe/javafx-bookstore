@@ -381,9 +381,16 @@ public class BillingController {
     }
 
     public int getFinalTotal(int total) {
-        int disc = Integer.parseInt(discount.getText());
+        int disc = 0  ;
+      try {
+          disc = Integer.parseInt(discount.getText());
 
-        return (total - (total * disc) / 100);
+      }finally {
+
+          return (total - (total * disc) / 100);
+      }
+
+
     }
 
     public void addDiscount(KeyEvent key) {
@@ -403,7 +410,7 @@ public class BillingController {
         loadBillTable();
         customerName.setText("");
         customerID.setText("");
-        discount.setText("");
+        discount.setText("0");
         moveToSelectCustomer();
 
     }
@@ -434,7 +441,9 @@ public class BillingController {
 
           if  (!discount.isValid()){
               ErrorShow("Enter a Valid Discount !!");
+              discount.setText("");
           }else {
+
               Order order = getOrderEntryFromBill();
               billManager.updateOrderEntry(order);
               billManager.updateOrderDetailsByArray(billDetails);
@@ -447,13 +456,17 @@ public class BillingController {
         JFXDialogLayout DialogLayout = new JFXDialogLayout();
         JFXButton button = new JFXButton("Okay");
         JFXDialog dialog = new JFXDialog( stackPane, DialogLayout , JFXDialog.DialogTransition.TOP);
+
         button.setOnAction(e ->{
             dialog.close();
         });
+        Label msg = new Label(str);
 
-        DialogLayout.setHeading(new Label(str));
+        msg.setStyle("-fx-font-size: 14px ;");
+        DialogLayout.setHeading(msg);
         DialogLayout.setActions(button);
         dialog.show();
+
     }
 
     public void confirmationToInvoice(){
@@ -494,9 +507,10 @@ public class BillingController {
     public void getEmployeeId(int employeeID)
     {
         currentEmployeeID = employeeID ;
+        System.out.println("Employee ID" + currentEmployeeID);
     }
 
-    
+
     public void displayDate(ActionEvent actionEvent) {
         getCurrentDate();
     }

@@ -170,6 +170,7 @@ public class mainPageController implements Initializable {
         }else{
             System.out.println("already loaded");
         }
+
     }
 
     public void loadCustomerPage() {
@@ -251,7 +252,7 @@ public class mainPageController implements Initializable {
 
 
     public void setCurrentEmployeeID(int idFromLogin) {
-        this.currentEmployeeID = idFromLogin;
+        currentEmployeeID = idFromLogin;
         System.out.println(currentEmployeeID);
     }
 }
