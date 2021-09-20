@@ -40,6 +40,9 @@ import java.util.ResourceBundle;
 
 public class InventoryController implements Initializable {
 
+    /* TODO : Reimplement Inventory Page Table in MFXTable */
+    /* TODO : Change add new entry drawer promt text */
+
     public JFXButton m_addNewEntryBtn;
     @FXML
     private MFXFilterComboBox category_combo;
@@ -357,7 +360,7 @@ public class InventoryController implements Initializable {
                                 VBox box = loader.load();
                                 EditInventoryController controller = loader.getController();
 
-                                controller.setParentController(thisController);
+//                                controller.setParentController(thisController);
                                 controller.setDrawer(drawer);
                                 controller.setInventoryManager(inventoryManager);
                                 controller.setEntry(entry);
@@ -537,10 +540,6 @@ public class InventoryController implements Initializable {
         inventoryTable.setItems(stockEntryFilteredList);
     }
 
-    @FXML
-    void selectItem(MouseEvent event) {
-
-    }
 
     @FXML
     void viewOutOfStock(ActionEvent event) {
@@ -589,7 +588,7 @@ public class InventoryController implements Initializable {
             VBox box = loader.load();
             EditInventoryController controller = loader.getController();
 
-            controller.setParentController(this);
+//            controller.setParentController(this);
             controller.setDrawer(drawer);
             controller.setInventoryManager(inventoryManager);
             controller.setAddingNew(true);
