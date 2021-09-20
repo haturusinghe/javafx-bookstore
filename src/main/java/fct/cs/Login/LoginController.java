@@ -178,7 +178,7 @@ public class LoginController implements Initializable {
     //Load register.fxml
     @FXML
     public void registerOnAction(ActionEvent event1)throws IOException{
-        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/fxml/login/register.fxml"));
+        Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/fxml/login/Register.fxml"));
         Scene scene = new Scene(view);
         System.out.println("Load register page");
         Stage window = (Stage)((Node)event1.getSource()).getScene().getWindow();
