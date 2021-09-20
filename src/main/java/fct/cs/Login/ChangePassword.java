@@ -1,6 +1,7 @@
 package fct.cs.Login;
 
 import com.jfoenix.controls.JFXComboBox;
+import fct.cs.commonUtil.NotificationCreator;
 import fct.cs.dbUtil.DatabaseHandler;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXStageDialog;
@@ -43,7 +44,7 @@ public class ChangePassword implements Initializable {
      * */
 
     public ImageView imgX;
-    ObservableList<String> questionBoxList = FXCollections.observableArrayList("What's your pet's name?","What's your favorite food?","Who was your childhood hero?");
+    ObservableList<String> questionBoxList = FXCollections.observableArrayList("What's your pet's name?", "What's your favorite food?", "Who was your childhood hero?");
 
 
     @FXML
@@ -62,7 +63,7 @@ public class ChangePassword implements Initializable {
     private MFXPasswordField fPasswordCheck;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
 
         javafx.scene.image.Image img1 = new Image(String.valueOf(getClass().getResource("/images/BookStore.png")));
         imgX.setImage(img1);
@@ -112,7 +113,6 @@ public class ChangePassword implements Initializable {
         );
 
 
-
     }
 
     private Connection conn;
@@ -131,21 +131,21 @@ public class ChangePassword implements Initializable {
         int count = 0;
         try {
             preparedStatement = conn.prepareStatement(updateQuery);
-            preparedStatement.setString(1,password);
-            preparedStatement.setInt(2,iD);
+            preparedStatement.setString(1, password);
+            preparedStatement.setInt(2, iD);
             count = preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            NotificationCreator.showErrorBottomRight("Error", e.getMessage());
         }
 
         return count > 0;
     }
 
-            @FXML
-    public void hyperlinkRegister(ActionEvent event)throws IOException {
+    @FXML
+    public void hyperlinkRegister(ActionEvent event) throws IOException {
         Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/fxml/login/Register.fxml"));
         Scene scene = new Scene(view);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
@@ -220,7 +220,7 @@ public class ChangePassword implements Initializable {
                         if (changePass == true) {
 
                             try {
-
+                                NotificationCreator.showSuccessBottomRight("Success","Password changed !");
                                 Parent view = FXMLLoader.load(getClass().getResource("/fct/cs/login.fxml"));
                                 Scene scene = new Scene(view);
                                 System.out.println("Password changed\nLoad Login Page");
@@ -236,13 +236,14 @@ public class ChangePassword implements Initializable {
 
                     } else {
 
-                        System.out.println("Check Again");
-                        MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Warning", "Wrong Answer, please try again");
-                        dialog.show();
+//                        System.out.println("Check Again");
+//                        MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Warning", "Wrong Answer, please try again");
+//                        dialog.show();
+                        NotificationCreator.showErrorBottomRight("Error","Fill the form correctly.");
 
                     }
 
-                }else if (rs_2.next()) {
+                } else if (rs_2.next()) {
                     String storedAnswer = rs_2.getString("ans");
                     Integer id = rs_2.getInt(1);
                     boolean matchedAnswer = decrypt.validateString(answer, storedAnswer);
@@ -269,27 +270,20 @@ public class ChangePassword implements Initializable {
 
                     } else {
 
-                        System.out.println("Check Again");
-                        MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Warning", "Wrong Answer, please try again");
-                        dialog.show();
+                        NotificationCreator.showErrorBottomRight("Error","Fill the form correctly.");
 
                     }
 
-                }else {
+                } else {
 
-                    System.out.println("Check Again");
-                    MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Warning", "User doesn't exist");
-                    dialog.show();
+                    NotificationCreator.showErrorBottomRight("Error","Fill the form correctly.");
 
                 }
             } catch (SQLException | NoSuchAlgorithmException | InvalidKeySpecException throwables) {
                 throwables.printStackTrace();
             }
         } else {
-
-            System.out.println("Check Again");
-            MFXStageDialog dialog = new MFXStageDialog(DialogType.WARNING, "Fill Forget-Password Form", "Please fill all the fields in the above form");
-            dialog.show();
+            NotificationCreator.showErrorBottomRight("Error","Fill the form correctly.");
 
         }
     }
