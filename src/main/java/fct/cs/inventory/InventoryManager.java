@@ -104,6 +104,7 @@ public class InventoryManager {
             while (rs.next()) {
                 orderList.add(new StockEntry(
                         rs.getInt("book_id"),
+                        rs.getString("title"),
                         rs.getInt("list_price"),
                         rs.getInt("qty"),
                         rs.getInt("min_qty")
@@ -124,14 +125,14 @@ public class InventoryManager {
 
     private ResultSet getInventoryFromDatabase(int entriesPerPage, int pageNumber) {
         int offset = entriesPerPage * (pageNumber - 1);
-        String query = "SELECT * FROM inventory LIMIT ?  OFFSET  ?";
+        String query = "SELECT inventory.*,book.title FROM inventory,book where inventory.book_id = book.book_id";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
         try {
             preparedStatement = conn.prepareStatement(query);
 
-            preparedStatement.setInt(1, entriesPerPage);
-            preparedStatement.setInt(2, offset);
+//            preparedStatement.setInt(1, entriesPerPage);
+//            preparedStatement.setInt(2, offset);
             resultSet = preparedStatement.executeQuery();
             return resultSet;
         } catch (SQLException e) {
