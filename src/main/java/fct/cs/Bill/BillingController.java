@@ -228,6 +228,7 @@ public class BillingController {
                                 if (entry.getBook_id() == currentItem.getBook_id()) {
                                     if (currentItem.getQuantity() > 1 ) {
                                         currentItem.setQuantity(currentItem.getQuantity() - 1);
+                                        currentItem.setTotalForItem(currentItem.getQuantity()*currentItem.getUnit_price());
                                         break;
                                     }else{
                                         billDetails.remove(currentItem);
