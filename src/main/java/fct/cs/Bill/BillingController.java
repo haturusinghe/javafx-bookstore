@@ -2,6 +2,7 @@ package fct.cs.Bill;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
+import javafx.scene.input.KeyEvent;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.events.JFXDrawerEvent;
@@ -28,6 +29,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import org.kordamp.ikonli.javafx.FontIcon;
+
+import javax.swing.*;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -383,7 +386,7 @@ public class BillingController {
         return (total - (total * disc) / 100);
     }
 
-    public void addDiscount(ActionEvent action) {
+    public void addDiscount(KeyEvent key) {
 
         finalTotal.setText(String.valueOf(getFinalTotal(Integer.parseInt(total.getText()))));
 

@@ -23,9 +23,9 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" minHeight="50.0" spacing="10.0">
          <children>
-            <VBox prefHeight="50.0" prefWidth="270.0" />
+            <VBox prefHeight="50.0" prefWidth="298.0" />
             <MFXTextField fx:id="searchItem" prefHeight="26.0" prefWidth="162.0" />
-            <MFXButton buttonType="RAISED" depthLevel="LEVEL1" onAction="#searchItem" prefHeight="35.0" prefWidth="70.0" styleClass="buttonStyle" text="Search" />
+            <MFXButton fx:id="search" buttonType="RAISED" depthLevel="LEVEL1" onAction="#searchItem" prefHeight="35.0" prefWidth="30.0" styleClass="search" text="Search" />
          </children>
          <padding>
             <Insets left="10.0" />

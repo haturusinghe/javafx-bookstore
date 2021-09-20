@@ -136,11 +136,12 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
+                                          <Label prefHeight="26.0" prefWidth="56.0" text="Discount :" />
                                        </children>
                                     </HBox>
                                     <HBox spacing="10.0">
                                        <children>
-                                          <MFXTextField fx:id="discount" lineColor="BLACK" lineStrokeCap="SQUARE" prefHeight="26.0" prefWidth="78.0" promptText="Enter Discount" />
+                                          <MFXTextField fx:id="discount" lineColor="BLACK" lineStrokeCap="SQUARE" onKeyTyped="#addDiscount" prefHeight="26.0" prefWidth="78.0" promptText="Enter Discount" />
                                        </children>
                                     </HBox>
                                  </children>

@@ -1,6 +1,8 @@
 package fct.cs.Bill;
 import fct.cs.controllers.mainPageController;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXIconWrapper;
+import io.github.palexdev.materialfx.font.MFXFontIcon;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -8,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -18,8 +21,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextField ;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import org.kordamp.ikonli.javafx.FontIcon;
+import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,6 +34,8 @@ import java.util.ResourceBundle;
 
 public class SelectCustomerController implements Initializable {
 
+    @FXML
+    private MFXButton addCustomers;
 
     @FXML
     private TableView<BillCustomer> customerTable;
@@ -71,7 +79,7 @@ public class SelectCustomerController implements Initializable {
     public void initialize(URL location , ResourceBundle resources) {
 
         CustomerManager = new CustomerManager();
-        searchButton();
+        Buttons();
         setColumns();
         loadDataTable();
 
@@ -102,7 +110,7 @@ public class SelectCustomerController implements Initializable {
             TableCell<BillCustomer, Integer> tableCell = new TableCell<>() {
                 javafx.scene.image.Image imgSelect = new Image(getClass().getResourceAsStream("/images/book.png"));
                 final javafx.scene.control.Button btnSelect = new Button();
-//                FontIcon icon3 = new FontIcon("antf-book");
+                FontIcon icon3 = new FontIcon("anto-user-add");
 
 
                 @Override
@@ -131,7 +139,7 @@ public class SelectCustomerController implements Initializable {
                                 "\n" +
                                 "    -fx-font-size: 13px;\n" +
                                 "\n" +
-                                "    -fx-text-fill: #fff;\n" +
+                                "    -fx-text-fill: white;\n" +
                                 "    -fx-alignment: center;\n" +
                                 "    -fx-font-family: \"Segoe UI\", Helvetica, Arial, sans-serif;\n" +
                                 "\n" +
@@ -140,16 +148,16 @@ public class SelectCustomerController implements Initializable {
                                 "\n" +
                                 "    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);");
 
-                        btnSelect.setText("Select");
-//                        icon3.setIconColor(Color.RED);
-//                        icon3.setIconSize(30);
 
-//                        ImageView iv = new ImageView();
-//                        iv.setImage(imgSelect);
-//                        iv.setPreserveRatio(true);
-//                        iv.setSmooth(true);
-//                        iv.setCache(true);
-//                        btnSelect.setGraphic(icon3);
+                        icon3.setIconColor(Color.WHITE);
+                        icon3.setIconSize(30);
+
+                        ImageView iv = new ImageView();
+                        iv.setImage(imgSelect);
+                        iv.setPreserveRatio(true);
+                        iv.setSmooth(true);
+                        iv.setCache(true);
+                        btnSelect.setGraphic(icon3);
 
                         this.setGraphic(btnSelect);
                         this.setAlignment(Pos.CENTER);
@@ -200,7 +208,7 @@ public class SelectCustomerController implements Initializable {
 
 
     @FXML
-    void searchCustomer(ActionEvent actionEvent) {
+    void searchCustomer(KeyEvent keyEvent) {
         String key = searchCustomer.getText();
         searchTable(key);
         customerTable.setItems(customerFilteredList);
@@ -214,12 +222,19 @@ public class SelectCustomerController implements Initializable {
 
 
     }
-    public void searchButton(){
-
+    public void Buttons(){
         search.setText("");
      FontIcon icon  =  new FontIcon("anto-search") ;
-     icon.setIconSize(30);
+     icon.setIconSize(50);
         search.setGraphic(icon);
+
+        FontIcon addIcon = new FontIcon("anto-plus-circle");
+        addIcon.setIconColor(Color.WHITE);
+        addIcon.setIconSize(25);
+
+
+
+        addCustomers.setGraphic(addIcon);
     }
 //    public void getCustomerData() {
 //        ArrayList<BillCustomer> cList = CustomerManager.getCustomerList(100, 1);

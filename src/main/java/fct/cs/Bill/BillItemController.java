@@ -3,6 +3,8 @@ package fct.cs.Bill;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -50,6 +52,8 @@ public class BillItemController implements Initializable {
     @FXML
     private TextField searchItem;
 
+    @FXML
+    private MFXButton search;
 
 
     private ItemManager ItemManager ;
@@ -70,6 +74,7 @@ public class BillItemController implements Initializable {
             e.printStackTrace();
         }
         customerManager = new CustomerManager();
+        buttons();
         setColumns();
         loadDataItemTable();
 
@@ -208,6 +213,14 @@ public class BillItemController implements Initializable {
 
 //        }
 
+    public void buttons(){
+
+        search.setText("");
+        FontIcon icon  =  new FontIcon("anto-search") ;
+        icon.setIconSize(50);
+        search.setGraphic(icon);
+
+    }
 
 public void goToSelectCustomer(ActionEvent action){
         parentController.moveToSelectCustomer();
