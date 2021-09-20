@@ -117,7 +117,7 @@ CREATE TABLE `customer` (
   `mobile` varchar(12) DEFAULT NULL,
   `email` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +126,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'Jason Bourne','Colombo','0714331372','nimal1998@gmail.com'),(2,'Kamal','Kelaniya','0714345672','kamal1997@gmail.com'),(3,'Bill Murr','Colombo','0659856589','bill@dc.com');
+INSERT INTO `customer` VALUES (1,'Jason Bourne','Kandy','0714331372','nimal1998@gmail.com'),(2,'Kamal','Kelaniya','0714345672','kamal1997@gmail.com'),(3,'Bill Murr','Colombo','0659856589','bill@dc.com'),(4,'Mile Teller','Kandy','0564987456','safs@asfa.com');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,7 +154,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (6,'Male','Edas',10000,'Ted','Tada'),(7,'Male','Cali',10000,'Jay','Elec');
+INSERT INTO `employee` VALUES (6,'Male','Edas',10000,'Ted','Tada'),(7,'Male','California',90000,'Jay','Elec');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,7 +183,7 @@ CREATE TABLE `inventory` (
 
 LOCK TABLES `inventory` WRITE;
 /*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
-INSERT INTO `inventory` VALUES (1,550,15,10),(2,100,17,10),(3,750,35,10),(5,5000,3,1);
+INSERT INTO `inventory` VALUES (1,550,15,10),(2,100,17,10),(3,750,50,10),(5,5000,15,10),(6,500,0,5),(8,1750,7,10);
 /*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,7 +217,7 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
-INSERT INTO `login` VALUES (20,'123456789','ted@mail.com','1000:442368e2730b2323d1032c9d7cfcd3c8:f42f193cd577b8662527dacfedc9873f0be9df6e3d73515a784e24249a7c9b997ad25bcb99aae3bb86d8975ef941617ddcea396e970148a31fa1ca8b4afd7e06','What\'s your favorite food?','1000:59c5887cbd87ac53e38a8c9086141a87:1f728d5ec911bdc66b19babf4c3b0996a6b79556b80c4a07b53dd43009f53b1b7c1a4e0ddbdeef215461b71f9e7b59143ed4734d1c7cedfa13c67d88340415da',1,6),(21,'6969696969','jay@mail.com','1000:425daee4a621298c9f1a32124548ebf3:ed09ced6e53b2832ab5908888b2eb2dcf3328e37ca01a552d2135d45142485590f3ce780fccd477b53cf139eb9b93acb8994cc43dc545187d78fd07febf9230b','Who was your childhood hero?','1000:3cbc3f77c446376679a6feae304622a5:dc306d1be70bc0b805d09c39f5913d1e6db2842e18c06e1bf0ebfd81da05d348a21bbcf66eba158409c32cc01da41d1774170adc71c1b0ffe7808de3dcbb02f2',0,7);
+INSERT INTO `login` VALUES (20,'0703400702','ted@mail.com','1000:442368e2730b2323d1032c9d7cfcd3c8:f42f193cd577b8662527dacfedc9873f0be9df6e3d73515a784e24249a7c9b997ad25bcb99aae3bb86d8975ef941617ddcea396e970148a31fa1ca8b4afd7e06','What\'s your favorite food?','1000:59c5887cbd87ac53e38a8c9086141a87:1f728d5ec911bdc66b19babf4c3b0996a6b79556b80c4a07b53dd43009f53b1b7c1a4e0ddbdeef215461b71f9e7b59143ed4734d1c7cedfa13c67d88340415da',1,6),(21,'0703400701','jay@mail.com','1000:425daee4a621298c9f1a32124548ebf3:ed09ced6e53b2832ab5908888b2eb2dcf3328e37ca01a552d2135d45142485590f3ce780fccd477b53cf139eb9b93acb8994cc43dc545187d78fd07febf9230b','Who was your childhood hero?','1000:3cbc3f77c446376679a6feae304622a5:dc306d1be70bc0b805d09c39f5913d1e6db2842e18c06e1bf0ebfd81da05d348a21bbcf66eba158409c32cc01da41d1774170adc71c1b0ffe7808de3dcbb02f2',0,7);
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -294,4 +294,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-19 16:18:51
+-- Dump completed on 2021-09-20 10:29:37
