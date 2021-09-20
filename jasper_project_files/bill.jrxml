@@ -71,7 +71,8 @@ LDkyLDRmOGZiOWM2LTNhYmYtNGNmOS1hNjI0LTYyMmRkZmZjZGVmNDs=]]>
     order_details.unit_price,
     (
         order_details.quantity * order_details.unit_price
-    ) AS subTotal
+    ) AS subTotal,
+    orders.*
 FROM
     orders,
     order_details,
@@ -100,6 +101,54 @@ WHERE
 		<field name="subTotal" class="java.lang.Long">
 			<property name="com.jaspersoft.studio.field.name" value="subTotal"/>
 			<property name="com.jaspersoft.studio.field.label" value="subTotal"/>
+		</field>
+		<field name="order_id" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="order_id"/>
+			<property name="com.jaspersoft.studio.field.label" value="order_id"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="customer_id" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="customer_id"/>
+			<property name="com.jaspersoft.studio.field.label" value="customer_id"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="employee_id" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="employee_id"/>
+			<property name="com.jaspersoft.studio.field.label" value="employee_id"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="order_date" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.name" value="order_date"/>
+			<property name="com.jaspersoft.studio.field.label" value="order_date"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="total_quantity" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="total_quantity"/>
+			<property name="com.jaspersoft.studio.field.label" value="total_quantity"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="total_price" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="total_price"/>
+			<property name="com.jaspersoft.studio.field.label" value="total_price"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="total_discount" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="total_discount"/>
+			<property name="com.jaspersoft.studio.field.label" value="total_discount"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="discount_perc" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="discount_perc"/>
+			<property name="com.jaspersoft.studio.field.label" value="discount_perc"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 	</subDataset>
 	<parameter name="o_id" class="java.lang.Integer">
@@ -241,78 +290,17 @@ WHERE
 			</textField>
 		</band>
 	</title>
-	<summary>
-		<band height="293" splitType="Stretch">
-			<property name="local_mesure_unitheight" value="pixel"/>
-			<frame>
-				<reportElement x="0" y="150" width="261" height="101" uuid="658ca325-c842-4643-ad3f-198e01f0f65c">
-					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
-				</reportElement>
-				<frame>
-					<reportElement x="0" y="0" width="261" height="26" uuid="db98a92b-85b9-4104-aa0a-3e271bc4a348">
-						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
-					</reportElement>
-					<staticText>
-						<reportElement x="0" y="0" width="131" height="26" uuid="6d62b041-54bf-4350-8c74-54de5a382403"/>
-						<text><![CDATA[Total Quantity:]]></text>
-					</staticText>
-					<textField>
-						<reportElement x="131" y="0" width="130" height="26" uuid="2a66cc92-6324-4425-90a1-c9c9ddae1397"/>
-						<textFieldExpression><![CDATA[$F{total_quantity}]]></textFieldExpression>
-					</textField>
-				</frame>
-				<frame>
-					<reportElement x="0" y="26" width="261" height="25" uuid="cd84bb79-2d6c-4098-af9a-b174efbbb26b">
-						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
-					</reportElement>
-					<staticText>
-						<reportElement x="0" y="0" width="131" height="25" uuid="3053f4db-81ff-4fb7-89e7-41b9f62e3b95"/>
-						<text><![CDATA[Sub Total (Rs.):]]></text>
-					</staticText>
-					<textField>
-						<reportElement x="131" y="0" width="130" height="25" uuid="b8247f81-be3a-4b8c-b400-570569fb9ed7"/>
-						<textFieldExpression><![CDATA[$F{total_price}+$F{total_discount}]]></textFieldExpression>
-					</textField>
-				</frame>
-				<frame>
-					<reportElement x="0" y="51" width="261" height="25" uuid="f045def4-e2da-4013-993a-ee4f63a1b575">
-						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
-					</reportElement>
-					<staticText>
-						<reportElement x="0" y="0" width="131" height="25" uuid="bb95f0e4-d8df-44b0-a64c-d80f48fdafc7"/>
-						<text><![CDATA[Discount (Rs.):]]></text>
-					</staticText>
-					<textField>
-						<reportElement x="131" y="0" width="130" height="25" uuid="08f897ae-fa49-4641-8adf-c97df500574c"/>
-						<textFieldExpression><![CDATA[$F{total_discount}]]></textFieldExpression>
-					</textField>
-				</frame>
-				<frame>
-					<reportElement x="0" y="76" width="261" height="25" uuid="5c776017-5402-460c-abc5-2f65062ae809">
-						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
-					</reportElement>
-					<staticText>
-						<reportElement x="0" y="0" width="131" height="25" uuid="33d27caa-c1ad-409d-8780-2ccf7906a477"/>
-						<text><![CDATA[Total (Rs.):]]></text>
-					</staticText>
-					<textField>
-						<reportElement x="131" y="0" width="130" height="25" uuid="3e881654-081f-40c9-b402-e01084c6b04e"/>
-						<textFieldExpression><![CDATA[$F{total_price}]]></textFieldExpression>
-					</textField>
-				</frame>
-			</frame>
-			<staticText>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="263" width="556" height="30" backcolor="#E6E8E9" uuid="36aa233d-4305-48e6-974a-1bbf89bb3c8f"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="9" isItalic="true"/>
-				</textElement>
-				<text><![CDATA[THANKYOU FOR YOUR BUSINESS]]></text>
-			</staticText>
+	<detail>
+		<band height="100" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.spreadsheet.SpreadsheetLayout"/>
 			<componentElement>
-				<reportElement x="0" y="0" width="555" height="130" uuid="0854c6d3-d354-463a-8deb-84f391cefe12">
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="555" height="100" uuid="0854c6d3-d354-463a-8deb-84f391cefe12">
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
 					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.components.autoresize.next" value="true"/>
+					<property name="com.jaspersoft.studio.components.autoresize.proportional" value="true"/>
 				</reportElement>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="tableDataset" uuid="7fbfa63d-b6d4-4876-b65a-9400c39247a5">
@@ -321,11 +309,11 @@ WHERE
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="160" uuid="df37f2d3-9dfb-4b03-b580-1a87e532f235">
+					<jr:column width="222" uuid="df37f2d3-9dfb-4b03-b580-1a87e532f235">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
 						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement key="" style="Column header" x="0" y="0" width="160" height="30" forecolor="#000000" uuid="4cae36cc-8b7a-465f-8958-58da43d84f5f"/>
+								<reportElement key="" style="Column header" x="0" y="0" width="222" height="30" forecolor="#000000" uuid="4cae36cc-8b7a-465f-8958-58da43d84f5f"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font fontName="Arial" size="12" isBold="true"/>
@@ -335,7 +323,7 @@ WHERE
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField>
-								<reportElement style="Detail" x="0" y="0" width="160" height="30" uuid="6dbcd166-f03e-47be-a474-8849c645e745"/>
+								<reportElement style="Detail" x="0" y="0" width="222" height="30" uuid="6dbcd166-f03e-47be-a474-8849c645e745"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font fontName="Arial" size="12"/>
@@ -344,11 +332,11 @@ WHERE
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="80" uuid="285b8fa0-262a-499f-881d-eafd4694d5a4">
+					<jr:column width="111" uuid="285b8fa0-262a-499f-881d-eafd4694d5a4">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
 						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement key="" style="Column header" x="0" y="0" width="80" height="30" forecolor="#000000" uuid="2f567fcd-55f0-4da8-81cc-375cc92d2376"/>
+								<reportElement key="" style="Column header" x="0" y="0" width="111" height="30" forecolor="#000000" uuid="2f567fcd-55f0-4da8-81cc-375cc92d2376"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font fontName="Arial" size="12" isBold="true"/>
@@ -358,7 +346,7 @@ WHERE
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField>
-								<reportElement style="Detail" x="0" y="0" width="80" height="30" uuid="ed8bb37e-7bc7-40dd-9de2-3eeb0f4e21ca"/>
+								<reportElement style="Detail" x="0" y="0" width="111" height="30" uuid="ed8bb37e-7bc7-40dd-9de2-3eeb0f4e21ca"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font fontName="Arial" size="12"/>
@@ -367,11 +355,11 @@ WHERE
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="80" uuid="715710f4-7adf-4d85-81af-12a4ae999173">
+					<jr:column width="111" uuid="715710f4-7adf-4d85-81af-12a4ae999173">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
 						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement key="" style="Column header" x="0" y="0" width="80" height="30" forecolor="#000000" uuid="35464f4c-0cbd-47db-b263-8f004f87e1d6"/>
+								<reportElement key="" style="Column header" x="0" y="0" width="111" height="30" forecolor="#000000" uuid="35464f4c-0cbd-47db-b263-8f004f87e1d6"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font fontName="Arial" size="12" isBold="true"/>
@@ -381,7 +369,7 @@ WHERE
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField>
-								<reportElement style="Detail" x="0" y="0" width="80" height="30" uuid="83e0f96e-9e97-4d3a-acb9-d297c0fdd178"/>
+								<reportElement style="Detail" x="0" y="0" width="111" height="30" uuid="83e0f96e-9e97-4d3a-acb9-d297c0fdd178"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font fontName="Arial" size="12"/>
@@ -390,11 +378,11 @@ WHERE
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="80" uuid="bfc53ef4-15fa-4961-8414-84bcb6828fb2">
+					<jr:column width="111" uuid="bfc53ef4-15fa-4961-8414-84bcb6828fb2">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
 						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement key="" style="Column header" x="0" y="0" width="80" height="30" forecolor="#000000" uuid="2dfeb161-bba0-45a6-a9cf-f8172d9c0ced"/>
+								<reportElement key="" style="Column header" x="0" y="0" width="111" height="30" forecolor="#000000" uuid="2dfeb161-bba0-45a6-a9cf-f8172d9c0ced"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font fontName="Arial" size="12" isBold="true"/>
@@ -404,7 +392,7 @@ WHERE
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField>
-								<reportElement style="Detail" x="0" y="0" width="80" height="30" uuid="0e150dcf-90d8-4b47-9852-05d18f65904c"/>
+								<reportElement style="Detail" x="0" y="0" width="111" height="30" uuid="0e150dcf-90d8-4b47-9852-05d18f65904c"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font fontName="Arial" size="12"/>
@@ -415,6 +403,86 @@ WHERE
 					</jr:column>
 				</jr:table>
 			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="100" splitType="Immediate">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<frame>
+				<reportElement x="0" y="0" width="555" height="100" uuid="658ca325-c842-4643-ad3f-198e01f0f65c">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				</reportElement>
+				<frame>
+					<reportElement x="0" y="0" width="555" height="25" uuid="db98a92b-85b9-4104-aa0a-3e271bc4a348">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="0" y="0" width="278" height="25" uuid="6d62b041-54bf-4350-8c74-54de5a382403"/>
+						<text><![CDATA[Total Quantity:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="278" y="0" width="277" height="25" uuid="2a66cc92-6324-4425-90a1-c9c9ddae1397"/>
+						<textFieldExpression><![CDATA[$F{total_quantity}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="0" y="25" width="555" height="25" uuid="cd84bb79-2d6c-4098-af9a-b174efbbb26b">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="0" y="0" width="278" height="25" uuid="3053f4db-81ff-4fb7-89e7-41b9f62e3b95"/>
+						<text><![CDATA[Sub Total (Rs.):]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="278" y="0" width="277" height="25" uuid="b8247f81-be3a-4b8c-b400-570569fb9ed7"/>
+						<textFieldExpression><![CDATA[$F{total_price}+$F{total_discount}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="0" y="50" width="555" height="25" uuid="f045def4-e2da-4013-993a-ee4f63a1b575">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="0" y="0" width="278" height="25" uuid="bb95f0e4-d8df-44b0-a64c-d80f48fdafc7"/>
+						<text><![CDATA[Discount (Rs.):]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="278" y="0" width="277" height="25" uuid="08f897ae-fa49-4641-8adf-c97df500574c"/>
+						<textFieldExpression><![CDATA[$F{total_discount}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="0" y="75" width="555" height="25" uuid="5c776017-5402-460c-abc5-2f65062ae809">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="0" y="0" width="278" height="25" uuid="33d27caa-c1ad-409d-8780-2ccf7906a477"/>
+						<text><![CDATA[Total (Rs.):]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="278" y="0" width="277" height="25" uuid="3e881654-081f-40c9-b402-e01084c6b04e"/>
+						<textFieldExpression><![CDATA[$F{total_price}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</frame>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="200"/>
+	</lastPageFooter>
+	<summary>
+		<band height="200" splitType="Immediate">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement stretchType="ContainerBottom" mode="Opaque" x="0" y="0" width="555" height="200" backcolor="#E6E8E9" uuid="36aa233d-4305-48e6-974a-1bbf89bb3c8f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[THANKYOU FOR YOUR BUSINESS]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>
