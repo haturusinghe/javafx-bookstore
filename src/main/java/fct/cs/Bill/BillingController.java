@@ -431,10 +431,15 @@ public class BillingController {
         if(billDetails.size() == 0 ){
             ErrorShow("No Items in the Bill!!");
         }else {
-            Order order = getOrderEntryFromBill();
-            billManager.updateOrderEntry(order);
-            billManager.updateOrderDetailsByArray(billDetails);
-            confirmationToInvoice();
+
+          if  (!discount.isValid()){
+              ErrorShow("Enter a Valid Discount !!");
+          }else {
+              Order order = getOrderEntryFromBill();
+              billManager.updateOrderEntry(order);
+              billManager.updateOrderDetailsByArray(billDetails);
+              confirmationToInvoice();
+          }
         }
     }
 
@@ -491,6 +496,7 @@ public class BillingController {
         currentEmployeeID = employeeID ;
     }
 
+    
     public void displayDate(ActionEvent actionEvent) {
         getCurrentDate();
     }
