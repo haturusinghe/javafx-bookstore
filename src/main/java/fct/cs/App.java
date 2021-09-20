@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.File;
 import java.io.IOException;
 
 public class App extends Application {
@@ -16,8 +17,15 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-//        scene = new Scene(loadFXML("fxml/login/login"),1280,720);
-        scene = new Scene(loadFXML("fxml/settings/getting-started"),1280,720);
+
+        File myObj = new File("config.xml");
+        if (myObj.createNewFile()) {
+            scene = new Scene(loadFXML("fxml/settings/getting-started"),1280,720);
+        } else {
+            scene = new Scene(loadFXML("fxml/login/login"),1280,720);
+        }
+
+//        scene = new Scene(loadFXML("fxml/settings/getting-started"),1280,720);
 //        scene = new Scene(loadFXML("main-dash"),1280,720);
         scene.getStylesheets().add(
                 "https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Inconsolata:wght@300&family=Josefin+Sans&family=Montserrat:wght@300;400&family=Teko&family=Work+Sans&display=swap");
