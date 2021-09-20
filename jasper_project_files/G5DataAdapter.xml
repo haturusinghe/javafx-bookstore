@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl"><name>G5 Book</name><driver>com.mysql.jdbc.Driver</driver><username>root</username><password></password><savePassword>true</savePassword><url>jdbc:mysql://localhost:3306/g05_bookstore</url><database></database><serverAddress></serverAddress><classpath>C:\Users\L0GiC_301\.m2\repository\mysql\mysql-connector-java\8.0.26\mysql-connector-java-8.0.26.jar</classpath></jdbcDataAdapter>

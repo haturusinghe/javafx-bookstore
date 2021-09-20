@@ -70,6 +70,7 @@ public class BillingController {
     @FXML
     private Button chargeCustomer;
 
+
     @FXML
     private Button cancel;
     @FXML
