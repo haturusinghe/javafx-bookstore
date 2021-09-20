@@ -115,6 +115,9 @@ public class BillingController {
     @FXML
     private Label customerID;
 
+    private int lastAddedOrder = 0;
+
+
     @FXML
     private TableColumn remove;
     @FXML
@@ -135,6 +138,15 @@ public class BillingController {
     private SelectCustomerController SelectCustomerController ;
     MFXDatePicker datePicker;
 //    private int subTotal;
+
+
+    public int getLastAddedOrder() {
+        return lastAddedOrder;
+    }
+
+    public void setLastAddedOrder(int lastAddedOrder) {
+        this.lastAddedOrder = lastAddedOrder;
+    }
 
     private int orderDetailId = 1;
     //    private ArrayList<Billdetails> BillitemsList;
@@ -427,7 +439,7 @@ public class BillingController {
             ErrorShow("No Items in the Bill!!");
         }else {
             Order order = getOrderEntryFromBill();
-            billManager.updateOrderEntry(order);
+            setLastAddedOrder(billManager.updateOrderEntry(order));
             billManager.updateOrderDetailsByArray(billDetails);
             confirmationToInvoice();
         }
@@ -453,7 +465,7 @@ public class BillingController {
         JFXButton no = new JFXButton("No");
         JFXDialog dialog = new JFXDialog( stackPane, DialogLayout , JFXDialog.DialogTransition.TOP);
         yes.setOnAction(e->{
-            billManager.jasperInvoice();
+            billManager.jasperInvoice(getLastAddedOrder());
             cancelOrders();
             dialog.close();
 

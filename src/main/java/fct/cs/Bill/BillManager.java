@@ -7,6 +7,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,12 +24,13 @@ public class BillManager {
             e.printStackTrace();
         }
     }
-    public boolean updateOrderEntry(Order entry){
+    public int updateOrderEntry(Order entry){
         String addQuery = "insert into orders(customer_id , employee_id,order_date,total_quantity, total_price, total_discount,discount_perc ) values (?,?,?,?,?,?,?)";
         PreparedStatement preparedStatement = null;
+        int last_inserted_id = 0;
         int count = 0;
         try {
-            preparedStatement = conn.prepareStatement(addQuery);
+            preparedStatement = conn.prepareStatement(addQuery,Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1,entry.getCustomer_id());
             preparedStatement.setInt(2,entry.getEmployee_id());
             preparedStatement.setDate(3, (Date) entry.getOrder_date());
@@ -38,11 +40,17 @@ public class BillManager {
             preparedStatement.setInt(7,entry.getDiscount_perc());
 
             count = preparedStatement.executeUpdate();
+            ResultSet keys = preparedStatement.getGeneratedKeys();
+
+            if(keys.next())
+            {
+                last_inserted_id = keys.getInt(1);
+                return last_inserted_id;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        return count > 0;
+        return last_inserted_id;
     }
 
     public boolean updateOrderDetailsEntry(orderDetails entry){
@@ -154,18 +162,21 @@ public class BillManager {
     }
 
 
-    public void jasperInvoice(){
+    public void jasperInvoice(int lastAddedOrder){
         JasperPrint jp ;
-        Map param = new HashMap();
+        Map params = new HashMap();
+
+        params.put("o_id", lastAddedOrder);
 
         try{
-            jp = JasperFillManager.fillReport("jasper_files/invoice.jasper" ,
-                    param,
-                    conn);
+
+            File f = new File("src/main/resources/fct/cs/jasper/bill.jasper");
+            System.out.println(f.getAbsolutePath());
+            jp = JasperFillManager.fillReport(f.getAbsolutePath(), params, conn);
 
             JasperViewer viewer = new JasperViewer(jp,false);
 
-            viewer.setTitle("Report");
+            viewer.setTitle("Invoice");
 //            JasperExportManager.exportReportToPdfFile(jp, "jasper_files/invoice.pdf");
             viewer.setSize(600 , 800);
             viewer.setZoomRatio(0.5F);
