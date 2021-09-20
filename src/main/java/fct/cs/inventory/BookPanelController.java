@@ -46,7 +46,7 @@ public class BookPanelController {
     @FXML
     private JFXDrawer drawer;
 
-    private InventoryController parentController;
+    private NewInventoryController parentController;
 
     public void loadBookDetails(Book bookDetails) {
         String authorName = bookDetails.getAuthor().getFirst_name() + " " + bookDetails.getAuthor().getLast_name();
@@ -67,7 +67,7 @@ public class BookPanelController {
         this.drawer = drawer;
     }
 
-    public void setParentController(InventoryController parentController) {
+    public void setParentController(NewInventoryController parentController) {
         this.parentController = parentController;
     }
 

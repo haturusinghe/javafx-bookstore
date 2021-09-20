@@ -33,7 +33,7 @@ public class EditInventoryController {
 
     private InventoryManager inventoryManager;
 
-    private InventoryController parentController;
+    private NewInventoryController parentController;
 
     private boolean isAddingNew = false;
 
@@ -72,9 +72,13 @@ public class EditInventoryController {
         this.drawer = drawer;
     }
 
-    public void setParentController(InventoryController parentController) {
+    public void setParentController(NewInventoryController parentController) {
         this.parentController = parentController;
     }
+
+    /*public void setParentController(InventoryController parentController) {
+        this.parentController = parentController;
+    }*/
 
     public void setInventoryManager(InventoryManager inventoryManager) {
         this.inventoryManager = inventoryManager;
