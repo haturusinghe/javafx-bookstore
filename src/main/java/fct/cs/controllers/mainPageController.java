@@ -199,6 +199,7 @@ public class mainPageController implements Initializable {
                 mainContent_vbox.getChildren().add(loader.load());
                 BillingController controller = loader.getController();
                 controller.setManager(isManager);
+                controller.getEmployeeId(currentEmployeeID);
                 currentPage = "billing";
                 setHeaderText("Create New Bill");
             } catch (IOException e) {

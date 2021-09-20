@@ -132,6 +132,7 @@ public class BillingController {
     private BillManager billManager;
     private NewCustomerController newCustomerController ;
     private SelectCustomerController SelectCustomerController ;
+    private  int currentEmployeeID;
     MFXDatePicker datePicker;
 //    private int subTotal;
 
@@ -229,12 +230,10 @@ public class BillingController {
                                     if (currentItem.getQuantity() > 1 ) {
                                         currentItem.setQuantity(currentItem.getQuantity() - 1);
                                         currentItem.setTotalForItem(currentItem.getQuantity()*currentItem.getUnit_price());
-                                        break;
                                     }else{
                                         billDetails.remove(currentItem);
-                                        break;
                                     }
-
+                                    break;
 
                                 }
                             }
@@ -479,6 +478,11 @@ public class BillingController {
     public void hideDrawer(JFXDrawerEvent jfxDrawerEvent) {
         moveToSelectCustomer();
         drawer.toBack();
+    }
+
+    public void getEmployeeId(int employeeID)
+    {
+        currentEmployeeID = employeeID ;
     }
 
     public void displayDate(ActionEvent actionEvent) {
