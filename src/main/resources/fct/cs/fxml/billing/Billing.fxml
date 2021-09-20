@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="680.0" maxWidth="1030.0" minHeight="680.0" prefHeight="680.0" prefWidth="1030.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.BillingController">
+<VBox maxHeight="680.0" maxWidth="1030.0" minHeight="680.0" prefHeight="680.0" prefWidth="1030.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.BillingController">
    <children>
       <StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="680.0" minWidth="-Infinity" prefHeight="685.0" prefWidth="1029.0">
          <children>
@@ -36,6 +36,20 @@
                                     <Font size="27.0" />
                                  </font>
                               </MFXLabel>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="46.0" prefWidth="458.0">
+                           <children>
+                              <Label prefHeight="46.0" prefWidth="102.0" text="   Employee ID :">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="employeeID" prefHeight="46.0" prefWidth="114.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" minHeight="50.0">

@@ -118,12 +118,14 @@ public class BillingController {
     private TableColumn remove;
     @FXML
     private JFXDrawer drawer;
+    @FXML
+    private Label employeeID;
 
     private FXMLLoader loader = null;
 
     private BillingController thisController = this;
     private String currentPage = "";
-    public static Label static_label;
+    public static Label currentCustomer;
     public static FXMLLoader load;
 
     private ObservableList<Billdetails> BillingObservableList = FXCollections.observableArrayList();
@@ -141,7 +143,7 @@ public class BillingController {
     private boolean alreadyAdded = false;
 
     public void initialize() {
-
+        employeeID.setText(String.valueOf(currentEmployeeID));
         datePicker = new MFXDatePicker(LocalDate.now());
         datePicker.setPickerColor(Color.BLACK);
         datePicker.setLineColor(Color.BLACK);
@@ -166,7 +168,7 @@ public class BillingController {
                 "Must only contain digits"
         );
 
-        static_label = customerName;
+        currentCustomer = customerName;
         billManager = new BillManager();
         billDetails = new ArrayList<Billdetails>();
         moveToSelectCustomer();
@@ -404,7 +406,7 @@ public class BillingController {
 
     public Order getOrderEntryFromBill(){
         int customer_id = Integer.parseInt(customerID.getText());
-        int employee_id = Integer.parseInt(empIdField.getText()); ;
+        int employee_id = Integer.parseInt(employeeID.getText()); ;
         Date order_date = getCurrentDate();
         int total_quantity = getQuantity(billDetails);
         int total_discount = (Integer.parseInt(total.getText()) * Integer.parseInt(discount.getText()))/100;
