@@ -225,7 +225,7 @@ public class SelectCustomerController implements Initializable {
     public void Buttons(){
         search.setText("");
      FontIcon icon  =  new FontIcon("anto-search") ;
-     icon.setIconSize(50);
+     icon.setIconSize(40);
         search.setGraphic(icon);
 
         FontIcon addIcon = new FontIcon("anto-plus-circle");

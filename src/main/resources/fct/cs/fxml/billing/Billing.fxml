@@ -90,11 +90,11 @@
                         <TableView fx:id="BillTable" prefHeight="350.0" prefWidth="434.0">
                            <columns>
                               <TableColumn fx:id="bookID" prefWidth="48.799989342689514" text="ID" />
-                              <TableColumn fx:id="item" prefWidth="163.19988250732422" text="Item Name" />
-                              <TableColumn fx:id="unitPrice" prefWidth="56.0" text="Unit Price" />
-                              <TableColumn fx:id="qty" minWidth="0.0" prefWidth="33.5999755859375" text="QTY" />
-                              <TableColumn fx:id="totalPrice" prefWidth="83.199951171875" text="Total Price" />
-                              <TableColumn fx:id="remove" prefWidth="70.39999389648438" text="Remove" />
+                              <TableColumn fx:id="item" prefWidth="167.2000732421875" text="Item Name" />
+                              <TableColumn fx:id="unitPrice" prefWidth="63.20001220703125" text="Unit Price" />
+                              <TableColumn fx:id="qty" minWidth="0.0" prefWidth="28.79998779296875" text="QTY" />
+                              <TableColumn fx:id="totalPrice" prefWidth="70.39996337890625" text="Total Price" />
+                              <TableColumn fx:id="remove" prefWidth="76.7999267578125" text="Remove" />
                            </columns>
                         </TableView>
                         <HBox>
@@ -141,7 +141,7 @@
                                     </HBox>
                                     <HBox spacing="10.0">
                                        <children>
-                                          <MFXTextField fx:id="discount" lineColor="BLACK" lineStrokeCap="SQUARE" onKeyTyped="#addDiscount" prefHeight="26.0" prefWidth="78.0" promptText="Enter Discount" />
+                                          <MFXTextField fx:id="discount" lineColor="BLACK" lineStrokeCap="SQUARE" onKeyTyped="#addDiscount" prefHeight="26.0" prefWidth="78.0" promptText="Enter Discount" text="0" />
                                        </children>
                                     </HBox>
                                  </children>

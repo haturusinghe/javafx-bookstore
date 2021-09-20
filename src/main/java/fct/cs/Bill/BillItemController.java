@@ -17,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -116,7 +117,7 @@ public class BillItemController implements Initializable {
         TableCell<BillItem, Integer> tableCell = new TableCell<>() {
 //            javafx.scene.image.Image imgSelect = new Image(getClass().getResourceAsStream("/images/book.png"));
             final javafx.scene.control.Button btnAdd = new Button();
-//            FontIcon icon3 = new FontIcon("antf-book");
+            FontIcon icon3 = new FontIcon("anto-plus-circle");
 
 
             @Override
@@ -162,16 +163,15 @@ public class BillItemController implements Initializable {
                             "    -fx-padding: 5 5 5 5;\n" +
                             "\n" +
                             "    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);");
-                    btnAdd.setText("ADD");
-//                    icon3.setIconColor(Color.RED);
-//                    icon3.setIconSize(30);
-//
-//                    ImageView iv = new ImageView();
-//                    iv.setImage(imgSelect);
-//                    iv.setPreserveRatio(true);
-//                    iv.setSmooth(true);
-//                    iv.setCache(true);
-//                    btnAdd.setGraphic(icon3);
+
+                    icon3.setIconColor(Color.WHITE);
+                    icon3.setIconSize(30);
+
+                    ImageView iv = new ImageView();
+                    iv.setPreserveRatio(true);
+                    iv.setSmooth(true);
+                    iv.setCache(true);
+                    btnAdd.setGraphic(icon3);
 
                     this.setGraphic(btnAdd);
                     this.setAlignment(Pos.CENTER);
@@ -199,7 +199,7 @@ public class BillItemController implements Initializable {
         });
     }
             @FXML
-        void searchItem(ActionEvent actionEvent) {
+        void searchItem(KeyEvent keyEvent) {
             String key = searchItem.getText();
             searchItemTable(key);
             itemTable.setItems(itemFilteredList);
@@ -217,7 +217,7 @@ public class BillItemController implements Initializable {
 
         search.setText("");
         FontIcon icon  =  new FontIcon("anto-search") ;
-        icon.setIconSize(50);
+        icon.setIconSize(40);
         search.setGraphic(icon);
 
     }
