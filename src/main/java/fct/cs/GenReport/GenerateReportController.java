@@ -139,16 +139,17 @@ public class GenerateReportController implements Initializable {
         reportIcon.setIconSize(16);
         reportIcon.setIconColor(Color.web("#f1c40f"));
 
+
         MFXStepperToggle selectTypeStep1 = new MFXStepperToggle("Select Report Type", reportIcon);
 
-        VBox step1Box = new VBox(40, reportTypeCombo);
+        VBox step1Box = new VBox(40,createLabel("Select Report Type"), reportTypeCombo);
 
         step1Box.setAlignment(Pos.CENTER);
         selectTypeStep1.setContent(step1Box);
         selectTypeStep1.getValidator().addDependencies(reportTypeCombo.getValidator());
 
         MFXStepperToggle selectParamStep = new MFXStepperToggle("Select Parameters", new MFXFontIcon("mfx-user", 16, Color.web("#49a6d7")));
-        VBox step2Box = new VBox(40, yearCombo, monthCombo);
+        VBox step2Box = new VBox(40,createLabel("Select Parameters") ,yearCombo, monthCombo);
         step2Box.setAlignment(Pos.CENTER);
         selectParamStep.setContent(step2Box);
 
@@ -228,11 +229,17 @@ public class GenerateReportController implements Initializable {
             monthHbox.setVisible(true);
         }
 
+        MFXLabel completedLabel = new MFXLabel("Click Next to Generate Report");
+        completedLabel.setFont(Font.font("Open Sans Bold", 24));
+        completedLabel.setTextFill(Color.web("#85CB33"));
+        HBox completedBox = new HBox(completedLabel);
+
         reportTypeHbox.setMaxWidth(Region.USE_PREF_SIZE);
         yearHbox.setMaxWidth(Region.USE_PREF_SIZE);
         monthHbox.setMaxWidth(Region.USE_PREF_SIZE);
+        completedBox.setMaxWidth(Region.USE_PREF_SIZE);
 
-        VBox box = new VBox(10, reportTypeHbox, yearHbox, monthHbox);
+        VBox box = new VBox(10, reportTypeHbox, yearHbox, monthHbox,completedBox);
         box.setAlignment(Pos.CENTER);
         StackPane.setAlignment(box, Pos.CENTER);
         return box;
