@@ -30,8 +30,8 @@
     -fx-font-size: 13px;
 }
 .table-row-cell:hover {
-    -fx-background-color: #93f9b911;
-    -fx-text-background-color: red;
+    -fx-background-color: grey;
+    -fx-text-background-color: white;
     -fx-background-size: 80px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: 90%;

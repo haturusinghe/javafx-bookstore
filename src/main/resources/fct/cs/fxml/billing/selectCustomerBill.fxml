@@ -31,7 +31,7 @@
                </font>
             </MFXButton>
             <VBox prefHeight="50.0" prefWidth="102.0" />
-            <MFXTextField fx:id="searchCustomer" onKeyTyped="#searchCustomer" prefHeight="26.0" prefWidth="165.0" />
+            <MFXTextField fx:id="searchCustomer" onKeyTyped="#searchCustomer" prefHeight="26.0" prefWidth="165.0" text="ID/Name" />
             <MFXButton fx:id="search" buttonType="RAISED" depthLevel="LEVEL1" prefHeight="30.0" prefWidth="12.0" styleClass="search" stylesheets="@../../styles/BillTables_style.css" />
          </children>
          <padding>

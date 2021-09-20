@@ -24,7 +24,7 @@
       <HBox alignment="CENTER_LEFT" minHeight="50.0" spacing="10.0">
          <children>
             <VBox prefHeight="50.0" prefWidth="298.0" />
-            <MFXTextField fx:id="searchItem" onKeyTyped="#searchItem" prefHeight="26.0" prefWidth="162.0" />
+            <MFXTextField fx:id="searchItem" onKeyTyped="#searchItem" prefHeight="26.0" prefWidth="162.0" text="ID/Title" />
             <MFXButton fx:id="search" buttonType="RAISED" depthLevel="LEVEL1" onAction="#searchItem" prefHeight="35.0" prefWidth="30.0" styleClass="search" text="Search" />
          </children>
          <padding>
@@ -34,7 +34,7 @@
       <TableView fx:id="itemTable" prefHeight="451.0" prefWidth="542.0">
          <columns>
             <TableColumn fx:id="itemId" prefWidth="31.999998450279236" text="ID" />
-            <TableColumn fx:id="itemName" prefWidth="166.39995956420898" text="Item Name" />
+            <TableColumn fx:id="itemName" prefWidth="166.39995956420898" text="Title" />
             <TableColumn fx:id="isbn" prefWidth="96.80006408691406" text="ISBN" />
             <TableColumn fx:id="unit_price" minWidth="0.0" prefWidth="76.0" text="Unit Price" />
             <TableColumn fx:id="activeQty" prefWidth="74.4000244140625" text="Qty in Stock" />
