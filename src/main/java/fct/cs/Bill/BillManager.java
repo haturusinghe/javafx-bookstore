@@ -8,6 +8,8 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -169,15 +171,11 @@ public class BillManager {
         params.put("o_id", lastAddedOrder);
 
         try{
-
-            File f = new File("src/main/resources/fct/cs/jasper/bill.jasper");
-            System.out.println(f.getAbsolutePath());
-            jp = JasperFillManager.fillReport(f.getAbsolutePath(), params, conn);
+            InputStream path = getClass().getResourceAsStream("/fct/cs/jasper/bill.jasper");
+            jp = JasperFillManager.fillReport(path, params, conn);
 
             JasperViewer viewer = new JasperViewer(jp,false);
-
             viewer.setTitle("Invoice");
-//            JasperExportManager.exportReportToPdfFile(jp, "jasper_files/invoice.pdf");
             viewer.setSize(600 , 800);
             viewer.setZoomRatio(0.5F);
 

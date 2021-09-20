@@ -25,6 +25,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -78,14 +79,13 @@ public class GenerateReportController implements Initializable {
             if (reportTypeCombo.getSelectionModel().getSelectedItem() == "Yearly Report") {
                 generateYearly(yearCombo.getSelectedValue());
             } else {
-                generateMonthly(yearCombo.getSelectedValue(),monthCombo.getSelectedValue().getMonthNum());
+                generateMonthly(yearCombo.getSelectedValue(), monthCombo.getSelectedValue().getMonthNum());
             }
             resetForm();
             stepper.getStepperToggles().clear();
             stepper.getStepperToggles().addAll(stepperToggles);
 
         });
-
 
 
     }
@@ -191,8 +191,6 @@ public class GenerateReportController implements Initializable {
         });
 
 
-
-
         return List.of(selectTypeStep1, selectParamStep, step3);
     }
 
@@ -213,8 +211,8 @@ public class GenerateReportController implements Initializable {
                 yearCombo.selectedValueProperty()
         ));
 
-        monthLabel1 = createLabel(monthLabel1,"Selected Month: ");
-        monthLabel2 = createLabel(monthLabel2,"");
+        monthLabel1 = createLabel(monthLabel1, "Selected Month: ");
+        monthLabel2 = createLabel(monthLabel2, "");
         monthLabel2.textProperty().bind(Bindings.createStringBinding(
                 () -> monthCombo.getSelectedValue() != null ? monthCombo.getSelectedValue().getMonthName() : "",
                 monthCombo.selectedValueProperty()
@@ -224,9 +222,9 @@ public class GenerateReportController implements Initializable {
         HBox reportTypeHbox = new HBox(reportTypeLabel1, reportTypeLabel2);
         HBox yearHbox = new HBox(yearLabel1, yearLabel2);
         HBox monthHbox = new HBox(monthLabel1, monthLabel2);
-        if (reportTypeCombo.getSelectionModel().getSelectedItem() == "Yearly Report"){
+        if (reportTypeCombo.getSelectionModel().getSelectedItem() == "Yearly Report") {
             monthHbox.setVisible(false);
-        }else {
+        } else {
             monthHbox.setVisible(true);
         }
 
@@ -247,10 +245,10 @@ public class GenerateReportController implements Initializable {
     }
 
     private MFXLabel createLabel(String text) {
-        return createLabel(new MFXLabel(),text);
+        return createLabel(new MFXLabel(), text);
     }
 
-    private MFXLabel createLabel(MFXLabel label,String text) {
+    private MFXLabel createLabel(MFXLabel label, String text) {
         label.setText(text);
         label.setAlignment(Pos.CENTER_LEFT);
         label.setPrefWidth(200);
@@ -267,11 +265,9 @@ public class GenerateReportController implements Initializable {
         params.put("month", month);
         try {
             Connection conn = DatabaseHandler.getInstance().getConn();
+            InputStream path = getClass().getResourceAsStream("/fct/cs/jasper/monthly.jasper");
 
-//            JasperReport jr = JasperCompileManager.compileReport(f.getAbsolutePath());
-            File f = new File("src/main/resources/fct/cs/jasper/monthly.jasper");
-            System.out.println(f.getAbsolutePath());
-            jp = JasperFillManager.fillReport(f.getAbsolutePath(), params, conn);
+            jp = JasperFillManager.fillReport(path, params, conn);
             JasperViewer viewer = new JasperViewer(jp, false);
             viewer.setTitle("Monthly Report");
             viewer.setVisible(true);
@@ -291,11 +287,8 @@ public class GenerateReportController implements Initializable {
         params.put("year", year);
         try {
             Connection conn = DatabaseHandler.getInstance().getConn();
-
-//            JasperReport jr = JasperCompileManager.compileReport(f.getAbsolutePath());
-            File f = new File("src/main/resources/fct/cs/jasper/yearly.jasper");
-            System.out.println(f.getAbsolutePath());
-            jp = JasperFillManager.fillReport(f.getAbsolutePath(), params, conn);
+            InputStream path = getClass().getResourceAsStream("/fct/cs/jasper/yearly.jasper");
+            jp = JasperFillManager.fillReport(path, params, conn);
             JasperViewer viewer = new JasperViewer(jp, false);
             viewer.setTitle("Yearly Report");
             viewer.setVisible(true);
