@@ -28,6 +28,7 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -234,6 +235,11 @@ public class SettingsController implements Initializable {
                         sr.runScript(reader);
                         updateProgress(0.8d, 1.0d);
                         NotificationCreator.showSuccessBottomRight("Success", "Created Database");
+                        Properties configFile = new Properties();
+                        configFile.setProperty("writeToDb", LocalDate.now().toString());
+                        OutputStream o = new FileOutputStream("config.xml");
+                        configFile.storeToXML(o, "Successfully written to database");
+                        o.close();
                         view = FXMLLoader.load(getClass().getResource("/fct/cs/fxml/login/login.fxml"));
                     } finally {
 
