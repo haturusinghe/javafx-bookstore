@@ -1,6 +1,7 @@
 package fct.cs.Settings;
 
 import com.jfoenix.controls.JFXButton;
+import fct.cs.commonUtil.AppUtils;
 import fct.cs.commonUtil.NotificationCreator;
 import io.github.palexdev.materialfx.beans.NumberRange;
 import io.github.palexdev.materialfx.controls.*;
@@ -272,6 +273,7 @@ public class SettingsController implements Initializable {
             Scene scene = new Scene(createDBTask.getValue());
             NotificationCreator.showSuccessBottomRight("Loading...", "Loading Login Page");
             Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            AppUtils.enableDrag(scene,window);
             window.setScene(scene);
             window.show();
             System.out.println("thread complete");
