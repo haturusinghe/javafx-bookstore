@@ -1,4 +1,4 @@
-package fct.cs;
+package fct.cs.commonUtil;
 
 
 
