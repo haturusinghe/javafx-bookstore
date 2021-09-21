@@ -1,26 +1,35 @@
 package fct.cs.controllers;
 
+import com.jfoenix.controls.JFXBadge;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSnackbar;
 import fct.cs.Bill.BillingController;
 import fct.cs.Dash.DashController;
 import fct.cs.NewCustomer.NewCustomerController;
 import fct.cs.Profile.ProfileController;
 import fct.cs.inventory.NewInventoryController;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.base.AbstractMFXDialog;
+import io.github.palexdev.materialfx.controls.factories.MFXDialogFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class mainPageController implements Initializable {
@@ -28,6 +37,7 @@ public class mainPageController implements Initializable {
     /* TODO: Hide Employees if not Manager */
 
     public JFXButton homePage;
+    public HBox topBar;
     @FXML
     private Label pageHeaderLabel;
 
@@ -68,9 +78,9 @@ public class mainPageController implements Initializable {
     public void setManager(boolean manager) {
         this.isManager = manager;
         System.out.println("Is manager" + manager);
-        if(!isManager){
+        if (!isManager) {
             employeePage.setDisable(true);
-        }else{
+        } else {
             employeePage.setDisable(false);
         }
 //        loadHomePage();
@@ -78,6 +88,45 @@ public class mainPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        MFXButton btnNoti = new MFXButton("", 20, 30);
+        btnNoti.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(90), Insets.EMPTY)));
+        FontIcon infoIcon = new FontIcon("cil-bell-exclamation");
+        infoIcon.setIconColor(Color.WHITE);
+        infoIcon.setIconSize(15);
+
+
+      /*  JFXBadge badge = new JFXBadge(btnNoti, Pos.TOP_RIGHT);
+        badge.setText("1");
+        badge.setStyle("-fx-text-fill:#fff;");
+        badge.setMinHeight(10);
+        badge.setMinWidth(10);
+        badge.setMaxSize(10,10);
+        badge.setPrefSize(10,10);
+        badge.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY,Insets.EMPTY)));
+        badge.setEnabled(true);*/
+
+//        btnNoti.setGraphic(new StackPane(infoIcon,badge));
+        btnNoti.setGraphic(infoIcon);
+        btnNoti.setOnAction(actionEvent -> {
+            AbstractMFXDialog genericDialog = MFXDialogFactory.buildGenericDialog("Group 05 - Members", "1. CS/2018/013 - GEETHANJANA K.K.D.Y.\n" +
+                    "2. CS/2018/014 - GUNARATHNA A.D.D.\n" +
+                    "3. CS/2018/015 - HATURUSINGHE S.\n" +
+                    "4. CS/2018/017 - JAYALATH H.G.A.S.\n" +
+                    "5. CS/2018/032 - PERERA W.N.B.\n" +
+                    "6. CS/2018/038 - SANDAMINI W.A.H.\n" +
+                    "7. CS/2018/044 - THILAKARATHNE D.G.S.P.");
+            genericDialog.setCloseHandler(c -> {
+                genericDialog.close();
+                mainPageController.this.mainAnchor.getChildren().remove(genericDialog);
+            });
+            genericDialog.setVisible(false);
+            this.mainAnchor.getChildren().add(genericDialog);
+            genericDialog.setIsDraggable(true);
+            genericDialog.show();
+        });
+        topBar.getChildren().addAll(btnNoti);
+
+
         loadHomePage();
     }
 
@@ -93,7 +142,7 @@ public class mainPageController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             System.out.println("already loaded");
         }
 //        EmployeeController childController = loader.getController();
@@ -110,13 +159,13 @@ public class mainPageController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             System.out.println("already loaded");
         }
     }
 
     public void loadInventoryPage(ActionEvent actionEvent) {
-       loadInventoryPage();
+        loadInventoryPage();
     }
 
     public void loadInventoryPage() {
@@ -132,7 +181,7 @@ public class mainPageController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             System.out.println("already loaded");
         }
     }
@@ -141,7 +190,7 @@ public class mainPageController implements Initializable {
         System.exit(0);
     }
 
-    public void setHeaderText(String string){
+    public void setHeaderText(String string) {
         pageHeaderLabel.setText(string);
         pageHeaderLabel.setStyle("-fx-font-family: Montserrat;");
     }
@@ -164,7 +213,7 @@ public class mainPageController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             System.out.println("already loaded");
         }
     }
@@ -182,7 +231,7 @@ public class mainPageController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             System.out.println("already loaded");
         }
     }
@@ -202,7 +251,7 @@ public class mainPageController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             System.out.println("already loaded");
         }
 
@@ -224,7 +273,7 @@ public class mainPageController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             System.out.println("already loaded");
         }
 
@@ -241,14 +290,14 @@ public class mainPageController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             System.out.println("already loaded");
         }
     }
 
     public void setCurrentEmployeeID(int idFromLogin) {
         this.currentEmployeeID = idFromLogin;
-        System.out.println("Current Employee ID : "+currentEmployeeID);
+        System.out.println("Current Employee ID : " + currentEmployeeID);
     }
 
     public void logout(ActionEvent actionEvent) {
@@ -260,7 +309,7 @@ public class mainPageController implements Initializable {
         }
         Scene scene = new Scene(view);
         System.out.println("Load Login page");
-        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
@@ -280,7 +329,7 @@ public class mainPageController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             System.out.println("already loaded");
         }
     }
