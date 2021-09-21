@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="685.0" prefWidth="1030.0" style="-fx-background-color:white" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Profile.ProfileController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="702.0" prefWidth="1030.0">
+         <children>
+            <HBox prefHeight="330.0" prefWidth="154.0" />
+            <VBox alignment="CENTER_LEFT" prefHeight="330.0" prefWidth="732.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+                     <children>
+                        <ImageView fx:id="profile" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <VBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="306.0" spacing="5.0">
+                           <children>
+                              <Label fx:id="nameLabel" text="John Doe">
+                                 <font>
+                                    <Font size="45.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="employeeID" text="John Doe">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="locationLabel" text="Colombo">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="genderLabel" text="John Doe">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="50.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox spacing="100.0">
+                     <children>
+                        <VBox alignment="CENTER" spacing="50.0">
+                           <children>
+                              <JFXTextField fx:id="fName" editable="false" labelFloat="true" promptText="First Name" text="John">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="email" editable="false" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Email" text="John">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="location" editable="false" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Loctation" text="John">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="50.0">
+                           <children>
+                              <JFXTextField fx:id="lName" editable="false" labelFloat="true" promptText="Last Name" text="Doe">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="phone" editable="false" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Phone Numer" text="John">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="salary" editable="false" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Salary" text="John">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="50.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="732.0" spacing="30.0">
+                     <children>
+                        <MFXButton fx:id="saveBtn" disable="true" onAction="#saveChanges" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: black;" text="Save" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton layoutX="350.0" layoutY="29.0" onAction="#enableEdit" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: black;" text="Edit" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </MFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

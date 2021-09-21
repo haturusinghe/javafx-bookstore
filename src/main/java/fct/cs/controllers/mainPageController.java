@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import fct.cs.Bill.BillingController;
 import fct.cs.Dash.DashController;
 import fct.cs.NewCustomer.NewCustomerController;
+import fct.cs.Profile.ProfileController;
 import fct.cs.inventory.NewInventoryController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -263,4 +264,25 @@ public class mainPageController implements Initializable {
         window.setScene(scene);
         window.show();
     }
+
+    public void loadProfile(ActionEvent actionEvent) {
+
+        if (!currentPage.equals("profile")) {
+            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/profile/profile.fxml"));
+            try {
+                mainContent_vbox.getChildren().clear();
+                mainContent_vbox.getChildren().add(loader.load());
+                ProfileController controller = loader.getController();
+//                controller.setManager(isManager);
+                controller.setEmployeeId(currentEmployeeID);
+                currentPage = "profile";
+                setHeaderText("User Profile");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("already loaded");
+        }
+    }
+
 }
