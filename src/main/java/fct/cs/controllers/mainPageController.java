@@ -37,7 +37,9 @@ public class mainPageController implements Initializable {
     /* TODO: Hide Employees if not Manager */
 
     public JFXButton homePage;
-    public HBox topBar;
+
+    private HBox topBar;
+
     @FXML
     private Label pageHeaderLabel;
 
@@ -88,6 +90,12 @@ public class mainPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        <HBox fx:id="topBar" alignment="CENTER_RIGHT" prefHeight="78.0" prefWidth="842.0" />
+        topBar = new HBox();
+        topBar.setAlignment(Pos.CENTER_RIGHT);
+        topBar.setPrefHeight(78);
+        topBar.setPrefWidth(842);
+
         MFXButton btnNoti = new MFXButton("", 20, 30);
         btnNoti.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(90), Insets.EMPTY)));
         FontIcon infoIcon = new FontIcon("cil-bell-exclamation");
@@ -126,12 +134,12 @@ public class mainPageController implements Initializable {
         });
         topBar.getChildren().addAll(btnNoti);
 
-
         loadHomePage();
     }
 
     @FXML
     void loadEmployeePage(ActionEvent event) {
+        header_hbox.getChildren().remove(topBar);
         if (currentPage != "employees") {
             loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/employee/new-employee-page.fxml"));
             try {
@@ -149,6 +157,7 @@ public class mainPageController implements Initializable {
     }
 
     public void loadOrdersPage(ActionEvent actionEvent) {
+        header_hbox.getChildren().remove(topBar);
         if (!currentPage.equals("orders")) {
             loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/orders/orders.fxml"));
             try {
@@ -169,6 +178,7 @@ public class mainPageController implements Initializable {
     }
 
     public void loadInventoryPage() {
+        header_hbox.getChildren().remove(topBar);
         if (!currentPage.equals("inventory")) {
             loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/inventory/new-inventory.fxml"));
             try {
@@ -202,6 +212,7 @@ public class mainPageController implements Initializable {
 
     public void loadHomePage() {
         if (!currentPage.equals("home")) {
+            header_hbox.getChildren().add(topBar);
             loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/dash/dash.fxml"));
             try {
                 mainContent_vbox.getChildren().clear();
@@ -219,6 +230,8 @@ public class mainPageController implements Initializable {
     }
 
     public void loadCustomerPage() {
+        header_hbox.getChildren().remove(topBar);
+        header_hbox.getChildren().remove(topBar);
         if (!currentPage.equals("customer")) {
             loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/customer/new-customer-page.fxml"));
             try {
@@ -237,7 +250,7 @@ public class mainPageController implements Initializable {
     }
 
     public void loadBilling(ActionEvent actionEvent) {
-
+        header_hbox.getChildren().remove(topBar);
         if (!currentPage.equals("billing")) {
             loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/billing/Billing.fxml"));
             try {
@@ -262,7 +275,7 @@ public class mainPageController implements Initializable {
     }
 
     public void reportsPage(ActionEvent actionEvent) {
-
+        header_hbox.getChildren().remove(topBar);
         if (!currentPage.equals("reports")) {
             loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/report/report-generate.fxml"));
             try {
@@ -280,6 +293,7 @@ public class mainPageController implements Initializable {
     }
 
     public void loadBookPage(ActionEvent actionEvent) {
+        header_hbox.getChildren().remove(topBar);
         if (!currentPage.equals("books")) {
             loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/book/mainbook.fxml"));
             try {
@@ -301,6 +315,7 @@ public class mainPageController implements Initializable {
     }
 
     public void logout(ActionEvent actionEvent) {
+        header_hbox.getChildren().remove(topBar);
         Parent view = null;
         try {
             view = FXMLLoader.load(getClass().getResource("/fct/cs/fxml/login/login.fxml"));
@@ -315,7 +330,7 @@ public class mainPageController implements Initializable {
     }
 
     public void loadProfile(ActionEvent actionEvent) {
-
+        header_hbox.getChildren().remove(topBar);
         if (!currentPage.equals("profile")) {
             loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/profile/profile.fxml"));
             try {
