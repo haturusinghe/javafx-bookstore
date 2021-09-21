@@ -200,7 +200,7 @@ public class mainPageController implements Initializable {
                 mainContent_vbox.getChildren().add(loader.load());
                 BillingController controller = loader.getController();
                 controller.setManager(isManager);
-                controller.getEmployeeId(currentEmployeeID);
+                controller.setEmployeeId(currentEmployeeID);
                 currentPage = "billing";
                 setHeaderText("Create New Bill");
             } catch (IOException e) {
@@ -253,6 +253,6 @@ public class mainPageController implements Initializable {
 
     public void setCurrentEmployeeID(int idFromLogin) {
         currentEmployeeID = idFromLogin;
-        System.out.println(currentEmployeeID);
+        System.out.println("Current Employee : "+currentEmployeeID);
     }
 }
