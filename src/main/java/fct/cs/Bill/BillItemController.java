@@ -3,6 +3,8 @@ package fct.cs.Bill;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -15,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -50,6 +53,8 @@ public class BillItemController implements Initializable {
     @FXML
     private TextField searchItem;
 
+    @FXML
+    private MFXButton search;
 
 
     private ItemManager ItemManager ;
@@ -70,6 +75,7 @@ public class BillItemController implements Initializable {
             e.printStackTrace();
         }
         customerManager = new CustomerManager();
+        buttons();
         setColumns();
         loadDataItemTable();
 
@@ -111,7 +117,7 @@ public class BillItemController implements Initializable {
         TableCell<BillItem, Integer> tableCell = new TableCell<>() {
 //            javafx.scene.image.Image imgSelect = new Image(getClass().getResourceAsStream("/images/book.png"));
             final javafx.scene.control.Button btnAdd = new Button();
-//            FontIcon icon3 = new FontIcon("antf-book");
+            FontIcon icon3 = new FontIcon("anto-plus-circle");
 
 
             @Override
@@ -142,29 +148,30 @@ public class BillItemController implements Initializable {
                     });
 
 
-                    btnAdd.setStyle(" -fx-background-color: \n" +
-                            "        #090a0c,\n" +
-                            "        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),\n" +
-                            "        linear-gradient(#20262b, #191d22),\n" +
-                            "        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));\n" +
-                            "    -fx-background-radius: 5,4,3,5;\n" +
-                            "    -fx-background-insets: 0,1,2,0;\n" +
-                            "    -fx-text-fill: white;\n" +
-                            "    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );\n" +
-                            "    -fx-font-family: \"Arial\";\n" +
-                            "    -fx-text-fill: linear-gradient(white, #d0d0d0);\n" +
-                            "    -fx-font-size: 12px;\n" +
-                            "    -fx-padding: 10 20 10 20;");
-                    btnAdd.setText("ADD");
-//                    icon3.setIconColor(Color.RED);
-//                    icon3.setIconSize(30);
-//
-//                    ImageView iv = new ImageView();
-//                    iv.setImage(imgSelect);
-//                    iv.setPreserveRatio(true);
-//                    iv.setSmooth(true);
-//                    iv.setCache(true);
-//                    btnAdd.setGraphic(icon3);
+                    btnAdd.setStyle(" -fx-background-color: #2A2A2A;\n" +
+                            "\n" +
+                            "    -fx-background-color: #2A2A2A;\n" +
+                            "    -fx-background-radius: 9,8,5,4,3;\n" +
+                            "\n" +
+                            "    -fx-font-size: 13px;\n" +
+                            "\n" +
+                            "    -fx-text-fill: #fff;\n" +
+                            "    -fx-alignment: center;\n" +
+                            "    -fx-font-family: \"Segoe UI\", Helvetica, Arial, sans-serif;\n" +
+                            "\n" +
+                            "    -fx-background-insets: 0,0,0,0;\n" +
+                            "    -fx-padding: 5 5 5 5;\n" +
+                            "\n" +
+                            "    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);");
+
+                    icon3.setIconColor(Color.WHITE);
+                    icon3.setIconSize(30);
+
+                    ImageView iv = new ImageView();
+                    iv.setPreserveRatio(true);
+                    iv.setSmooth(true);
+                    iv.setCache(true);
+                    btnAdd.setGraphic(icon3);
 
                     this.setGraphic(btnAdd);
                     this.setAlignment(Pos.CENTER);
@@ -192,7 +199,7 @@ public class BillItemController implements Initializable {
         });
     }
             @FXML
-        void searchItem(ActionEvent actionEvent) {
+        void searchItem(KeyEvent keyEvent) {
             String key = searchItem.getText();
             searchItemTable(key);
             itemTable.setItems(itemFilteredList);
@@ -206,6 +213,14 @@ public class BillItemController implements Initializable {
 
 //        }
 
+    public void buttons(){
+
+        search.setText("");
+        FontIcon icon  =  new FontIcon("anto-search") ;
+        icon.setIconSize(40);
+        search.setGraphic(icon);
+
+    }
 
 public void goToSelectCustomer(ActionEvent action){
         parentController.moveToSelectCustomer();

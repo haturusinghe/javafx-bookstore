@@ -1,0 +1,64 @@
+.table-view{
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+    -fx-fill:black;
+
+}
+.table-view .column-header{
+    -fx-content-display: none;
+}
+.table-view .column-header-background {
+    -fx-background-color: white;
+    -fx-background-insets:  0 0 10 0 ;
+    -fx-padding : 0 0 10 0 ;
+    -fx-effect: dropshadow(two-pass-box , rgb(10,101,107),15,0,0,0.1);
+}
+.table-view .column-header , .table-view .filler {
+    -fx-size : 40 ;
+    -fx-border-image-width: 0 0 10 0;
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label{
+    -fx-text-fill: black;
+
+}
+
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+    -fx-font-size: 13px;
+}
+.table-row-cell:hover {
+    -fx-background-color: grey;
+    -fx-text-background-color: white;
+    -fx-background-size: 80px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 90%;
+}
+
+
+.buttonStyle {
+
+    -fx-background-color: #2A2A2A;
+
+    -fx-background-color: #2A2A2A;
+    -fx-background-radius: 9,8,5,4,3;
+
+    -fx-font-size: 13px;
+
+    -fx-text-fill: #fff;
+    -fx-alignment: center;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+
+    -fx-background-insets: 0,0,0,0;
+    -fx-padding: 5 5 5 5;
+
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+.search{
+    -fx-background-color:white;
+    -fx-background-insets: 1 ;
+
+}

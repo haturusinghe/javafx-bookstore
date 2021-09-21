@@ -2,6 +2,7 @@ package fct.cs.Bill;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
+import javafx.scene.input.KeyEvent;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.events.JFXDrawerEvent;
@@ -28,6 +29,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import org.kordamp.ikonli.javafx.FontIcon;
+
+import javax.swing.*;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -115,19 +118,18 @@ public class BillingController {
     @FXML
     private Label customerID;
 
-    private int lastAddedOrder = 0;
-
-
     @FXML
     private TableColumn remove;
     @FXML
     private JFXDrawer drawer;
+    @FXML
+    private Label employeeID;
 
     private FXMLLoader loader = null;
 
     private BillingController thisController = this;
     private String currentPage = "";
-    public static Label static_label;
+    public static Label currentCustomer;
     public static FXMLLoader load;
 
     private ObservableList<Billdetails> BillingObservableList = FXCollections.observableArrayList();
@@ -136,6 +138,7 @@ public class BillingController {
     private BillManager billManager;
     private NewCustomerController newCustomerController ;
     private SelectCustomerController SelectCustomerController ;
+    private  int currentEmployeeID;
     MFXDatePicker datePicker;
 //    private int subTotal;
 
@@ -154,6 +157,7 @@ public class BillingController {
 
     public void initialize() {
 
+        employeeID.setText(String.valueOf(currentEmployeeID));
         datePicker = new MFXDatePicker(LocalDate.now());
         datePicker.setPickerColor(Color.BLACK);
         datePicker.setLineColor(Color.BLACK);
@@ -178,7 +182,7 @@ public class BillingController {
                 "Must only contain digits"
         );
 
-        static_label = customerName;
+        currentCustomer = customerName;
         billManager = new BillManager();
         billDetails = new ArrayList<Billdetails>();
         moveToSelectCustomer();
@@ -241,12 +245,11 @@ public class BillingController {
                                 if (entry.getBook_id() == currentItem.getBook_id()) {
                                     if (currentItem.getQuantity() > 1 ) {
                                         currentItem.setQuantity(currentItem.getQuantity() - 1);
-                                        break;
+                                        currentItem.setTotalForItem(currentItem.getQuantity()*currentItem.getUnit_price());
                                     }else{
                                         billDetails.remove(currentItem);
-                                        break;
                                     }
-
+                                    break;
 
                                 }
                             }
@@ -388,12 +391,19 @@ public class BillingController {
     }
 
     public int getFinalTotal(int total) {
-        int disc = Integer.parseInt(discount.getText());
+        int disc = 0  ;
+      try {
+          disc = Integer.parseInt(discount.getText());
 
-        return (total - (total * disc) / 100);
+      }finally {
+
+          return (total - (total * disc) / 100);
+      }
+
+
     }
 
-    public void addDiscount(ActionEvent action) {
+    public void addDiscount(KeyEvent key) {
 
         finalTotal.setText(String.valueOf(getFinalTotal(Integer.parseInt(total.getText()))));
 
@@ -410,14 +420,14 @@ public class BillingController {
         loadBillTable();
         customerName.setText("");
         customerID.setText("");
-        discount.setText("");
+        discount.setText("0");
         moveToSelectCustomer();
 
     }
 
     public Order getOrderEntryFromBill(){
         int customer_id = Integer.parseInt(customerID.getText());
-        int employee_id = Integer.parseInt(empIdField.getText()); ;
+        int employee_id = Integer.parseInt(employeeID.getText()); ;
         Date order_date = getCurrentDate();
         int total_quantity = getQuantity(billDetails);
         int total_discount = (Integer.parseInt(total.getText()) * Integer.parseInt(discount.getText()))/100;
@@ -438,10 +448,17 @@ public class BillingController {
         if(billDetails.size() == 0 ){
             ErrorShow("No Items in the Bill!!");
         }else {
-            Order order = getOrderEntryFromBill();
+
+          if  (!discount.isValid()){
+              ErrorShow("Enter a Valid Discount !!");
+              discount.setText("");
+          }else {
+
+              Order order = getOrderEntryFromBill();
             setLastAddedOrder(billManager.updateOrderEntry(order));
-            billManager.updateOrderDetailsByArray(billDetails);
-            confirmationToInvoice();
+              billManager.updateOrderDetailsByArray(billDetails);
+              confirmationToInvoice();
+          }
         }
     }
 
@@ -449,13 +466,17 @@ public class BillingController {
         JFXDialogLayout DialogLayout = new JFXDialogLayout();
         JFXButton button = new JFXButton("Okay");
         JFXDialog dialog = new JFXDialog( stackPane, DialogLayout , JFXDialog.DialogTransition.TOP);
+
         button.setOnAction(e ->{
             dialog.close();
         });
+        Label msg = new Label(str);
 
-        DialogLayout.setHeading(new Label(str));
+        msg.setStyle("-fx-font-size: 14px ;");
+        DialogLayout.setHeading(msg);
         DialogLayout.setActions(button);
         dialog.show();
+
     }
 
     public void confirmationToInvoice(){
@@ -492,6 +513,13 @@ public class BillingController {
         moveToSelectCustomer();
         drawer.toBack();
     }
+
+    public void getEmployeeId(int employeeID)
+    {
+        currentEmployeeID = employeeID ;
+        System.out.println("Employee ID" + currentEmployeeID);
+    }
+
 
     public void displayDate(ActionEvent actionEvent) {
         getCurrentDate();

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="680.0" maxWidth="1030.0" minHeight="680.0" prefHeight="680.0" prefWidth="1030.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.BillingController">
+<VBox maxHeight="680.0" maxWidth="1030.0" minHeight="680.0" prefHeight="680.0" prefWidth="1030.0" style="-fx-background-color: white;" stylesheets="@../../styles/BillTables_style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.Bill.BillingController">
    <children>
       <StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="680.0" minWidth="-Infinity" prefHeight="685.0" prefWidth="1029.0">
          <children>
@@ -38,9 +38,23 @@
                               </MFXLabel>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" minHeight="50.0">
+                        <HBox prefHeight="27.0" prefWidth="458.0">
                            <children>
-                              <HBox alignment="CENTER_LEFT">
+                              <Label prefHeight="29.0" prefWidth="102.0" text="   Employee ID :">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="employeeID" prefHeight="25.0" prefWidth="114.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" minHeight="30.0" prefHeight="30.0" prefWidth="448.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="222.0">
                                  <children>
                                     <Label prefHeight="26.0" prefWidth="94.0" text="Customer ID:">
                                        <font>
@@ -76,20 +90,15 @@
                         <TableView fx:id="BillTable" prefHeight="350.0" prefWidth="434.0">
                            <columns>
                               <TableColumn fx:id="bookID" prefWidth="48.799989342689514" text="ID" />
-                              <TableColumn fx:id="item" prefWidth="163.19988250732422" text="Item Name" />
-                              <TableColumn fx:id="unitPrice" prefWidth="56.0" text="Unit Price" />
-                              <TableColumn fx:id="qty" minWidth="0.0" prefWidth="33.5999755859375" text="QTY" />
-                              <TableColumn fx:id="totalPrice" prefWidth="83.199951171875" text="Total Price" />
-                              <TableColumn fx:id="remove" prefWidth="70.39999389648438" text="Remove" />
+                              <TableColumn fx:id="item" prefWidth="167.2000732421875" text="Item Name" />
+                              <TableColumn fx:id="unitPrice" prefWidth="63.20001220703125" text="Unit Price" />
+                              <TableColumn fx:id="qty" minWidth="0.0" prefWidth="28.79998779296875" text="QTY" />
+                              <TableColumn fx:id="totalPrice" prefWidth="70.39996337890625" text="Total Price" />
+                              <TableColumn fx:id="remove" prefWidth="76.7999267578125" text="Remove" />
                            </columns>
                         </TableView>
                         <HBox>
                            <children>
-                              <HBox>
-                                 <children>
-                                    <MFXTextField fx:id="empIdField" promptText="Enter Employee ID" />
-                                 </children>
-                              </HBox>
                               <HBox fx:id="dateHBox" alignment="CENTER_LEFT" spacing="20.0">
                                  <children>
                                     <Label text="Select Date:">
@@ -102,6 +111,7 @@
                                     <Insets bottom="10.0" left="10.0" right="20.0" top="5.0" />
                                  </padding>
                               </HBox>
+                              <HBox />
                            </children>
                            <VBox.margin>
                               <Insets />
@@ -116,22 +126,22 @@
                                  <children>
                                     <HBox spacing="10.0">
                                        <children>
-                                          <Label prefHeight="30.0" prefWidth="56.0" text="Total :" textAlignment="RIGHT">
+                                          <Label prefHeight="30.0" prefWidth="65.0" text="Total :" textAlignment="RIGHT">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="total" prefHeight="26.0" prefWidth="71.0">
+                                          <Label fx:id="total" prefHeight="26.0" prefWidth="90.0">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
+                                          <Label prefHeight="26.0" prefWidth="56.0" text="Discount :" />
                                        </children>
                                     </HBox>
                                     <HBox spacing="10.0">
                                        <children>
-                                          <MFXTextField fx:id="discount" lineColor="BLACK" lineStrokeCap="SQUARE" prefHeight="26.0" prefWidth="78.0" promptText="Enter Discount" />
-                                          <MFXButton buttonType="RAISED" depthLevel="LEVEL1" onAction="#addDiscount" text="Discount" />
+                                          <MFXTextField fx:id="discount" lineColor="BLACK" lineStrokeCap="SQUARE" onKeyTyped="#addDiscount" prefHeight="26.0" prefWidth="78.0" promptText="Enter Discount" text="0" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -157,12 +167,12 @@
                         </VBox>
                         <HBox alignment="CENTER" spacing="20.0">
                            <children>
-                              <MFXButton fx:id="chargeCustomer" buttonType="RAISED" depthLevel="LEVEL1" onAction="#ChargeCustomer" prefHeight="50.0" prefWidth="174.0" text="Charge Customer">
+                              <MFXButton fx:id="chargeCustomer" buttonType="RAISED" depthLevel="LEVEL1" onAction="#ChargeCustomer" prefHeight="50.0" prefWidth="174.0" styleClass="buttonStyle" text="Charge Customer">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </MFXButton>
-                              <MFXButton fx:id="cancel" buttonType="RAISED" depthLevel="LEVEL1" onAction="#cancelOrder" prefHeight="50.0" prefWidth="174.0" text="Cancel">
+                              <MFXButton fx:id="cancel" buttonType="RAISED" depthLevel="LEVEL1" onAction="#cancelOrder" prefHeight="50.0" prefWidth="174.0" styleClass="buttonStyle" text="Cancel">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
