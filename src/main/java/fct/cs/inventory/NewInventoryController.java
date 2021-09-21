@@ -44,7 +44,9 @@ import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class NewInventoryController implements Initializable {
+    private static boolean isManager;
 
+    /* TODO: Hide Add, Update and Delete buttons if not Manager */
 
     MFXTableColumn<StockEntry> bookIdCol;
     MFXTableColumn<StockEntry> bookTitleCol;
@@ -64,8 +66,6 @@ public class NewInventoryController implements Initializable {
     @FXML
     private MFXTableView inventoryTable;
 
-    private boolean isManager = false;
-
     private InventoryManager inventoryManager;
 
     private ObservableList<StockEntry> stockEntryObservableList = FXCollections.observableArrayList();
@@ -79,7 +79,23 @@ public class NewInventoryController implements Initializable {
     private final MFXCheckbox lowCheck = new MFXCheckbox();
     private final MFXCheckbox outCheck = new MFXCheckbox();
     private final MFXComboBox<Category> searchCombo = new MFXComboBox<>();
+    private MFXButton addBtn = new MFXButton();
 
+    public void setManager(boolean b) {
+        isManager = b;
+        setupUi(b);
+    }
+
+    private void setupUi(boolean b) {
+        Platform.runLater(() -> {
+            addBtn.setVisible(b);
+            if(!b){
+                inventoryTable.getTableColumns().remove(updateColumn);
+                inventoryTable.getTableColumns().remove(deleteColumn);
+            }
+        });
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -175,7 +191,6 @@ public class NewInventoryController implements Initializable {
             addIcon.setIconColor(Color.WHITE);
             addIcon.setIconSize(25);
 
-            MFXButton addBtn = new MFXButton();
             addBtn.setText("Add New Entry");
             addBtn.setStyle("-fx-background-color: #2B2B2B;-fx-font-size: 20px;-fx-background-radius: 9,8,5,4,3;-fx-text-fill: #fff;");
             addBtn.setGraphic(addIcon);
