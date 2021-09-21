@@ -140,6 +140,7 @@ public class BillingController {
     private SelectCustomerController SelectCustomerController ;
     private  int currentEmployeeID;
     MFXDatePicker datePicker;
+    private int lastAddedOrder;
 //    private int subTotal;
 
 
@@ -514,15 +515,15 @@ public class BillingController {
         drawer.toBack();
     }
 
-    public void getEmployeeId(int employeeID)
-    {
-        currentEmployeeID = employeeID ;
-        System.out.println("Employee ID" + currentEmployeeID);
-    }
-
 
     public void displayDate(ActionEvent actionEvent) {
         getCurrentDate();
+    }
+
+    public void setEmployeeId(int id) {
+        currentEmployeeID = id ;
+        employeeID.setText(String.valueOf(currentEmployeeID));
+        System.out.println("Employee ID" + currentEmployeeID);
     }
 }
 
