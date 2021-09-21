@@ -137,6 +137,7 @@ public class BillingController {
     private NewCustomerController newCustomerController ;
     private SelectCustomerController SelectCustomerController ;
     MFXDatePicker datePicker;
+    private int employeeID;
 //    private int subTotal;
 
 
@@ -495,6 +496,11 @@ public class BillingController {
 
     public void displayDate(ActionEvent actionEvent) {
         getCurrentDate();
+    }
+
+    public void setCurrentEmployee(int currentEmployeeID) {
+        this.employeeID = currentEmployeeID;
+        empIdField.setText(String.valueOf(employeeID));
     }
 }
 

@@ -56,7 +56,7 @@ public class mainPageController implements Initializable {
     private String currentPage = "";
 
     private boolean isManager = true;
-    private int currentEmployeeID;
+    private int currentEmployeeID = -69;
 
     public void setManager(boolean manager) {
         this.isManager = manager;
@@ -124,6 +124,7 @@ public class mainPageController implements Initializable {
             System.out.println("already loaded");
         }
     }
+
     public void loadBillingPage(ActionEvent actionEvent) {
         if (!currentPage.equals("Billing")) {
             loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/billing/Billing.fxml"));
@@ -199,6 +200,7 @@ public class mainPageController implements Initializable {
                 mainContent_vbox.getChildren().add(loader.load());
                 BillingController controller = loader.getController();
                 controller.setManager(isManager);
+                controller.setCurrentEmployee(currentEmployeeID);
                 currentPage = "billing";
                 setHeaderText("Create New Bill");
             } catch (IOException e) {
@@ -251,6 +253,6 @@ public class mainPageController implements Initializable {
 
     public void setCurrentEmployeeID(int idFromLogin) {
         this.currentEmployeeID = idFromLogin;
-        System.out.println(currentEmployeeID);
+        System.out.println("Current Employee ID : "+currentEmployeeID);
     }
 }
