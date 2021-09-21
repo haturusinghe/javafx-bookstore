@@ -19,6 +19,28 @@ public class App extends Application {
     @Override
     public void start(Stage stage){
 
+        checkLaunch();
+
+//        scene = new Scene(loadFXML("fxml/settings/getting-started"),1280,720);
+//        scene = new Scene(loadFXML("test"),1280,720);
+
+        /*try {
+            scene = new Scene(loadFXML("main-dash"),1280,720);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+        scene.getStylesheets().add(
+                "https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Inconsolata:wght@300&family=Josefin+Sans&family=Montserrat:wght@300;400&family=Teko&family=Work+Sans&display=swap");
+//        scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Inconsolata:700");
+        //'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap'
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        AppUtils.enableDrag(scene,stage);
+        stage.show();
+    }
+
+    private void checkLaunch() {
         File myObj = new File("config.xml");
         try{
             if (myObj.createNewFile()) {
@@ -58,18 +80,6 @@ public class App extends Application {
             }
             e.printStackTrace();
         }
-
-//        scene = new Scene(loadFXML("fxml/settings/getting-started"),1280,720);
-//        scene = new Scene(loadFXML("main-dash"),1280,720);
-//        scene = new Scene(loadFXML("test"),1280,720);
-        scene.getStylesheets().add(
-                "https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Inconsolata:wght@300&family=Josefin+Sans&family=Montserrat:wght@300;400&family=Teko&family=Work+Sans&display=swap");
-//        scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Inconsolata:700");
-        //'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap'
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        AppUtils.enableDrag(scene,stage);
-        stage.show();
     }
 
     public static void setRoot(String fxml) throws IOException {

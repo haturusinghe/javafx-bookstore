@@ -93,7 +93,7 @@
                         <HBox fx:id="header_hbox" alignment="CENTER_LEFT" prefHeight="124.0" prefWidth="1030.0" styleClass="content-header">
                             <children>
                                 <Label id="header_label" fx:id="pageHeaderLabel" text="Dashboard" />
-                        <HBox fx:id="topBar" alignment="CENTER_RIGHT" prefHeight="78.0" prefWidth="842.0" />
+                        <!--<HBox fx:id="topBar" alignment="CENTER_RIGHT" prefHeight="78.0" prefWidth="842.0" />-->
                             </children>
                         </HBox>
                         <Separator prefWidth="200.0" />
