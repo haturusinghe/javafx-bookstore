@@ -2,6 +2,7 @@ package fct.cs.Bill;
 import fct.cs.controllers.mainPageController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXIconWrapper;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,7 +66,7 @@ public class SelectCustomerController implements Initializable {
     private FilteredList<BillCustomer> customerFilteredList = new FilteredList<>(customerObservableList);
 
     @FXML
-    private TextField searchCustomer;
+    private MFXTextField searchCustomer;
     @FXML
     private MFXButton search;
 
@@ -78,6 +79,7 @@ public class SelectCustomerController implements Initializable {
     @Override
     public void initialize(URL location , ResourceBundle resources) {
 
+        searchCustomer.setIcon(new MFXIconWrapper(new MFXFontIcon("mfx-search", 28, Color.web("#4D4D4D")), 24));
         CustomerManager = new CustomerManager();
         Buttons();
         setColumns();
@@ -223,10 +225,10 @@ public class SelectCustomerController implements Initializable {
 
     }
     public void Buttons(){
-        search.setText("");
+/*        search.setText("");
      FontIcon icon  =  new FontIcon("anto-search") ;
      icon.setIconSize(40);
-        search.setGraphic(icon);
+        search.setGraphic(icon);*/
 
         FontIcon addIcon = new FontIcon("anto-plus-circle");
         addIcon.setIconColor(Color.WHITE);

@@ -4,7 +4,9 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXIconWrapper;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.github.palexdev.materialfx.font.MFXFontIcon;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -51,7 +53,7 @@ public class BillItemController implements Initializable {
     private Label name;
 
     @FXML
-    private TextField searchItem;
+    private MFXTextField searchItem;
 
     @FXML
     private MFXButton search;
@@ -68,7 +70,7 @@ public class BillItemController implements Initializable {
 
     @Override
     public void initialize(URL location , ResourceBundle resources) {
-
+        searchItem.setIcon(new MFXIconWrapper(new MFXFontIcon("mfx-search", 28, Color.web("#4D4D4D")), 24));
         try {
             ItemManager = new ItemManager();
         } catch (SQLException e) {
@@ -215,10 +217,10 @@ public class BillItemController implements Initializable {
 
     public void buttons(){
 
-        search.setText("");
+       /* search.setText("");
         FontIcon icon  =  new FontIcon("anto-search") ;
         icon.setIconSize(40);
-        search.setGraphic(icon);
+        search.setGraphic(icon);*/
 
     }
 
