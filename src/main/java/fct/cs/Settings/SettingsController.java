@@ -221,15 +221,15 @@ public class SettingsController implements Initializable {
                     //Creating a reader object
                     Reader reader = null;
                     try {
-                        /*URL res = getClass().getResource("/fct/cs/sql/db.sql");
-                        File file = Paths.get(res.toURI()).toFile();
+//                        URL res = getClass().getResource("/fct/cs/sql/db.sql");
+                        File file = new File("db.sql");
                         String absolutePath = file.getAbsolutePath();
                         System.out.println(absolutePath);
                         updateMessage("Read from File");
                         updateProgress(0.4d, 1.0d);
-                        reader = new BufferedReader(new FileReader(absolutePath));*/
-                        InputStream res = getClass().getResourceAsStream("/fct/cs/sql/db.sql");
-                        reader = new InputStreamReader(res);
+                        reader = new BufferedReader(new FileReader(absolutePath));
+//                        InputStream res = getClass().getResourceAsStream("db.sql");
+//                        reader = new InputStreamReader(res);
                         updateMessage("Writing to Database");
                         updateProgress(0.5d, 1.0d);
                         sr.runScript(reader);
