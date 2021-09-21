@@ -62,7 +62,7 @@
                                     <Font size="22.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXTextField fx:id="location" editable="false" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Loctation" text="John">
+                              <JFXTextField fx:id="location" editable="false" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Location" text="John">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
