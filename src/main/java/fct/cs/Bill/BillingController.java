@@ -164,6 +164,18 @@ public class BillingController {
         datePicker.setLineColor(Color.BLACK);
         datePicker.setColorText(true);
         dateHBox.getChildren().add(datePicker);
+        datePicker.setOnMouseEntered(mouseEvent -> {
+            if(datePicker.getDate().isAfter(LocalDate.now())){
+                datePicker.getDatePicker().setValue(LocalDate.now());
+                datePicker.getContent().setCurrentDate(LocalDate.now());
+            }
+        });
+        datePicker.setOnMouseExited(mouseEvent -> {
+            if(datePicker.getDate().isAfter(LocalDate.now())){
+                datePicker.getDatePicker().setValue(LocalDate.now());
+                datePicker.getContent().setCurrentDate(LocalDate.now());
+            }
+        });
 
 
         discount.setText("0");
@@ -438,6 +450,10 @@ public class BillingController {
     }
 
     public Date getCurrentDate(){
+        if(datePicker.getDate().isAfter(LocalDate.now())){
+            datePicker.getDatePicker().setValue(LocalDate.now());
+            datePicker.getContent().setCurrentDate(LocalDate.now());
+        }
         return Date.valueOf(datePicker.getDate());
     }
 
