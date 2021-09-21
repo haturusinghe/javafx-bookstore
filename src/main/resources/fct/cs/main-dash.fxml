@@ -80,6 +80,12 @@
                                         <FontIcon fill="WHITE" iconLiteral="cil-taxi" iconSize="20"/>
                                     </graphic>
                                 </JFXButton>
+                                <JFXButton minWidth="220.0" onAction="#logout" prefHeight="50.0"
+                                           styleClass="side-nav-button" text="Log Out">
+                                    <graphic>
+                                        <FontIcon fill="WHITE" iconLiteral="anto-logout" iconSize="20"/>
+                                    </graphic>
+                                </JFXButton>
                                 <JFXButton minWidth="220.0" onAction="#exit" prefHeight="50.0"
                                            styleClass="side-nav-button" text="Close">
                                     <graphic>
