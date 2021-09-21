@@ -9,16 +9,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class mainPageController implements Initializable {
+
+    /* TODO: Hide Employees if not Manager */
 
     public JFXButton homePage;
     @FXML
@@ -61,6 +67,11 @@ public class mainPageController implements Initializable {
     public void setManager(boolean manager) {
         this.isManager = manager;
         System.out.println("Is manager" + manager);
+        if(!isManager){
+            employeePage.setDisable(true);
+        }else{
+            employeePage.setDisable(false);
+        }
 //        loadHomePage();
     }
 
@@ -114,7 +125,7 @@ public class mainPageController implements Initializable {
                 mainContent_vbox.getChildren().clear();
                 mainContent_vbox.getChildren().add(loader.load());
                 NewInventoryController inventoryController = loader.getController();
-//                NewInventoryController.setManager(isManager);
+                inventoryController.setManager(isManager);
                 currentPage = "inventory";
                 setHeaderText("Manage Inventory");
             } catch (IOException e) {
@@ -124,22 +135,6 @@ public class mainPageController implements Initializable {
             System.out.println("already loaded");
         }
     }
-
-    public void loadBillingPage(ActionEvent actionEvent) {
-        if (!currentPage.equals("Billing")) {
-            loader = new FXMLLoader(getClass().getResource("/fct/cs/fxml/billing/Billing.fxml"));
-            try {
-                mainContent_vbox.getChildren().clear();
-                mainContent_vbox.getChildren().add(loader.load());
-                currentPage = "Billing";
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }else{
-            System.out.println("already loaded");
-        }
-    }
-
 
     public void exit(ActionEvent actionEvent) {
         System.exit(0);
@@ -200,7 +195,7 @@ public class mainPageController implements Initializable {
                 mainContent_vbox.getChildren().add(loader.load());
                 BillingController controller = loader.getController();
                 controller.setManager(isManager);
-                controller.setCurrentEmployee(currentEmployeeID);
+                controller.setEmployeeId(currentEmployeeID);
                 currentPage = "billing";
                 setHeaderText("Create New Bill");
             } catch (IOException e) {
@@ -250,9 +245,22 @@ public class mainPageController implements Initializable {
         }
     }
 
-
     public void setCurrentEmployeeID(int idFromLogin) {
         this.currentEmployeeID = idFromLogin;
         System.out.println("Current Employee ID : "+currentEmployeeID);
+    }
+
+    public void logout(ActionEvent actionEvent) {
+        Parent view = null;
+        try {
+            view = FXMLLoader.load(getClass().getResource("/fct/cs/fxml/login/login.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(view);
+        System.out.println("Load Login page");
+        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 }
