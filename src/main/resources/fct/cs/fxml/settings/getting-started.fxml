@@ -55,7 +55,7 @@
                                  <children>
                                     <HBox layoutX="10.0" layoutY="26.0" minWidth="300.0" prefHeight="34.0" prefWidth="626.0">
                                        <children>
-                                          <MFXTextField fx:id="dbURL" focusTraversable="false" prefHeight="33.0" prefWidth="265.0" promptText="Enter Database URL" />
+                                          <MFXTextField fx:id="dbURL" focusTraversable="false" prefHeight="33.0" prefWidth="265.0" promptText="Enter Database URL : localhost:3306 " />
                                        </children>
                                     </HBox>
                                     <HBox minWidth="300.0" prefHeight="34.0" prefWidth="626.0">
@@ -73,20 +73,37 @@
                               <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="680.0" />
                               <VBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="680.0">
                                  <children>
-                                    <JFXButton fx:id="submitBtn" buttonType="RAISED" onAction="#submitInfo" prefHeight="33.0" prefWidth="265.0" ripplerFill="#723fff" style="-fx-background-color: #1473e8;" text="Submit" textFill="WHITE">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                       <effect>
-                                          <BoxBlur />
-                                       </effect>
-                                    </JFXButton>
+                                    <HBox>
+                                       <children>
+                                          <JFXButton fx:id="submitBtn" buttonType="RAISED" onAction="#submitInfo" prefHeight="33.0" prefWidth="265.0" ripplerFill="#723fff" style="-fx-background-color: #1473e8;" text="Submit" textFill="WHITE">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <effect>
+                                                <BoxBlur />
+                                             </effect>
+                                          </JFXButton>
+                                          <HBox fx:id="progressBox" prefHeight="34.0" prefWidth="86.0" />
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
                         </VBox>
                      </children>
                   </VBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="32.0" prefWidth="643.0">
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                     <children>
+                        <Label fx:id="conStatus" prefHeight="42.0" prefWidth="192.0" text="Connecting..">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>

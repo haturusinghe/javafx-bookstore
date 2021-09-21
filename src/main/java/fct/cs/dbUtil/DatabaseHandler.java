@@ -16,17 +16,6 @@ public class DatabaseHandler {
         createConnection();
     }
 
-    private DatabaseHandler(String user, String pass, String url) {
-        changeDbInfo(user,pass,url);
-        createConnection();
-    }
-
-    private static void changeDbInfo(String user, String pass , String url){
-        USER = user;
-        PASS = pass;
-        DB_URL = "jdbc:mysql://" + url;
-    }
-
     public static DatabaseHandler getInstance() throws SQLException {
         if (instance == null) {
             instance = new DatabaseHandler();
@@ -37,14 +26,9 @@ public class DatabaseHandler {
         return instance;
     }
 
-    public static DatabaseHandler getInstance(String user, String pass, String url) throws SQLException {
-        instance = new DatabaseHandler(user, pass, url);
-        return instance;
-    }
-
-    public void createConnection()  {
+    public void createConnection() {
         try {
-            this.conn = DriverManager.getConnection(DB_URL,USER,PASS);
+            this.conn = DriverManager.getConnection(DB_URL, USER, PASS);
             System.out.println("Connection Created xoxo");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,7 +39,7 @@ public class DatabaseHandler {
         return conn;
     }
 
-    public ResultSet excecuteQuery(String query)  {
+    public ResultSet excecuteQuery(String query) {
         ResultSet resultSet;
         try {
             stmt = conn.createStatement();
@@ -68,7 +52,7 @@ public class DatabaseHandler {
         }
     }
 
-    public void closeConnection(){
+    public void closeConnection() {
         try {
             conn.close();
             System.out.println("Connection Closed");
