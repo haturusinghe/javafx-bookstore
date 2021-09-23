@@ -232,22 +232,21 @@ public class BookManager {
     }
 
     public static boolean addSingleBook(BookData entry){
-        String addQuery = "insert into book (book_id, isbn, category_id, publisher, author_id, title, b_year,mrp,num_pages,lang,book_description) values (?,?,?,?,?,?,?,?,?,?,?)";
+        String addQuery = "insert into book (isbn, category_id, publisher, author_id, title, b_year,mrp,num_pages,lang,book_description) values (?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement preparedStatement = null;
         int count = 0;
         try {
             preparedStatement = conn.prepareStatement(addQuery);
-            preparedStatement.setInt(1, entry.getBook_id());
-            preparedStatement.setString(2,entry.getIsbn());
-            preparedStatement.setInt(3, entry.getCategory_id());
-            preparedStatement.setString(4,entry.getPublisher());
-            preparedStatement.setInt(5, entry.getAuthor_id());
-            preparedStatement.setString(6,entry.getTitle());
-            preparedStatement.setInt(7, entry.getB_year());
-            preparedStatement.setInt(8, entry.getMrp());
-            preparedStatement.setInt(9, entry.getNum_pages());
-            preparedStatement.setString(10,entry.getLang());
-            preparedStatement.setString(11,entry.getBook_description());
+            preparedStatement.setString(1,entry.getIsbn());
+            preparedStatement.setInt(2, entry.getCategory_id());
+            preparedStatement.setString(3,entry.getPublisher());
+            preparedStatement.setInt(4, entry.getAuthor_id());
+            preparedStatement.setString(5,entry.getTitle());
+            preparedStatement.setInt(6, entry.getB_year());
+            preparedStatement.setInt(7, entry.getMrp());
+            preparedStatement.setInt(8, entry.getNum_pages());
+            preparedStatement.setString(9,entry.getLang());
+            preparedStatement.setString(10,entry.getBook_description());
             count = preparedStatement.executeUpdate();
             NotificationCreator.showSuccessBottomRight("Operation Successfully Completed","Book Added Successfully");
         } catch (SQLException e) {

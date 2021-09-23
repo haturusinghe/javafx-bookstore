@@ -1,5 +1,6 @@
 package fct.cs.NewCustomer;
 
+import fct.cs.commonUtil.NotificationCreator;
 import fct.cs.dbUtil.DatabaseHandler;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +15,8 @@ public class CustomerManager {
         try {
             conn = DatabaseHandler.getInstance().getConn();
         } catch (SQLException c) {
-            c.printStackTrace();
+            NotificationCreator.showErrorBottomRight("Error",c.getMessage());
+//            c.printStackTrace();
         }
     }
 
@@ -36,7 +38,8 @@ public class CustomerManager {
             resultSet = preparedStatement.executeQuery();
             return resultSet;
         } catch (SQLException c) {
-            c.printStackTrace();
+            NotificationCreator.showErrorBottomRight("Error",c.getMessage());
+//            c.printStackTrace();
             return null;
         }
     }
@@ -55,7 +58,8 @@ public class CustomerManager {
                 ));
             }
         } catch (SQLException c) {
-            c.printStackTrace();
+//            c.printStackTrace();
+            NotificationCreator.showErrorBottomRight("Error",c.getMessage());
         }
 
         return orderList;
@@ -75,7 +79,8 @@ public class CustomerManager {
             preparedStatement.setInt(5, Integer.parseInt(entry.getcustomer_id()));
             count = preparedStatement.executeUpdate();
         } catch (SQLException c) {
-            c.printStackTrace();
+//            c.printStackTrace();
+            NotificationCreator.showErrorBottomRight("Error",c.getMessage());
         }
 
         return count > 0;
@@ -90,7 +95,8 @@ public class CustomerManager {
             preparedStatement.setInt(1, Integer.parseInt(entry.getcustomer_id()));
             count = preparedStatement.executeUpdate();
         } catch (SQLException c) {
-            c.printStackTrace();
+//            c.printStackTrace();
+            NotificationCreator.showErrorBottomRight("Error",c.getMessage());
         }
 
         return count > 0;
@@ -108,7 +114,8 @@ public class CustomerManager {
             preparedStatement.setString(4,entry.getemail());
             count = preparedStatement.executeUpdate();
         } catch (SQLException c) {
-            c.printStackTrace();
+            NotificationCreator.showErrorBottomRight("Error",c.getMessage());
+//            c.printStackTrace();
         }
         return count > 0;
     }

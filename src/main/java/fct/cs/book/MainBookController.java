@@ -111,6 +111,7 @@ public class MainBookController implements Initializable {
     public void getBookData() {
         ArrayList<BookData> eList = BookManager.getBookList(100,1);
         Platform.runLater(()->{
+            bookObservableList.clear();
             for (BookData e :
                     eList) {
                 bookObservableList.add(e);

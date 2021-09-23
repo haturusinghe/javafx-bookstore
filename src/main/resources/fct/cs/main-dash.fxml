@@ -39,7 +39,7 @@
                                         <FontIcon fill="WHITE" iconLiteral="anto-credit-card" iconSize="20" />
                                     </graphic>
                                 </JFXButton>
-                                <JFXButton fx:id="inventoryPage" minWidth="220.0" onAction="#loadInventoryPage" prefHeight="50.0" styleClass="side-nav-button" text="Inventroy">
+                                <JFXButton fx:id="inventoryPage" minWidth="220.0" onAction="#loadInventoryPage" prefHeight="50.0" styleClass="side-nav-button" text="Inventory">
                                     <graphic>
                                         <FontIcon fill="WHITE" iconLiteral="anto-shop" iconSize="20" />
                                     </graphic>
