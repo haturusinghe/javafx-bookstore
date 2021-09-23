@@ -50,12 +50,13 @@ public class App extends Application {
                 InputStream f = new FileInputStream("config.xml");
                 configFile.loadFromXML(f);
                 f.close();
-                String writeDate = configFile.getProperty("writeToDb");
+                String writeDate = "";
+                writeDate = configFile.getProperty("writeToDb");
 
-                if(writeDate.length() > 0) {
-                    scene = new Scene(loadFXML("fxml/login/login"), 1280, 720);
-                }else{
+                if(writeDate == null || writeDate.length() < 1) {
                     scene = new Scene(loadFXML("fxml/settings/getting-started"), 1280, 720);
+                }else{
+                    scene = new Scene(loadFXML("fxml/login/login"), 1280, 720);
                 }
             }
         } catch (InvalidPropertiesFormatException e) {
