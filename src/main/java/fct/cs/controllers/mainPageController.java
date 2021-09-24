@@ -7,6 +7,7 @@ import fct.cs.Bill.BillingController;
 import fct.cs.Dash.DashController;
 import fct.cs.NewCustomer.NewCustomerController;
 import fct.cs.Profile.ProfileController;
+import fct.cs.commonUtil.AppUtils;
 import fct.cs.inventory.NewInventoryController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.base.AbstractMFXDialog;
@@ -325,6 +326,7 @@ public class mainPageController implements Initializable {
         Scene scene = new Scene(view);
         System.out.println("Load Login page");
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        AppUtils.enableDrag(scene,window);
         window.setScene(scene);
         window.show();
     }

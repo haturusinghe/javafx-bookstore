@@ -1,6 +1,7 @@
 package fct.cs;
 
 import fct.cs.commonUtil.AppUtils;
+import fct.cs.commonUtil.NotificationCreator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -59,14 +60,14 @@ public class App extends Application {
                     scene = new Scene(loadFXML("fxml/login/login"), 1280, 720);
                 }
             }
-        } catch (InvalidPropertiesFormatException e) {
+        } catch (Exception e) {
             try {
                 scene = new Scene(loadFXML("fxml/settings/getting-started"), 1280, 720);
             } catch (IOException ex) {
-                ex.printStackTrace();
+                System.out.println(ex.getMessage());
             }
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } /*catch (FileNotFoundException e) {
             try {
                 scene = new Scene(loadFXML("fxml/settings/getting-started"), 1280, 720);
             } catch (IOException ex) {
@@ -80,7 +81,7 @@ public class App extends Application {
                 ex.printStackTrace();
             }
             e.printStackTrace();
-        }
+        }*/
     }
 
     public static void setRoot(String fxml) throws IOException {

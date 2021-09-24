@@ -1,4 +1,4 @@
-package fct.cs.Bill;
+package fct.cs.Bill.data;
 
 public class BillCustomer {
     private int customer_id ;

@@ -1,5 +1,7 @@
 package fct.cs.Bill;
 
+import fct.cs.Bill.data.Billdetails;
+import fct.cs.Bill.data.orderDetails;
 import fct.cs.data.Order;
 import fct.cs.dbUtil.DatabaseHandler;
 import net.sf.jasperreports.engine.JRException;
@@ -7,9 +9,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 
-import java.io.File;
 import java.io.InputStream;
-import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;

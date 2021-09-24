@@ -136,7 +136,7 @@ public class SettingsController implements Initializable {
                 lockForm(false);
                 updateMessage("Error Reading Settings");
                 updateProgress(0.0d, 1.0d);
-                getException().printStackTrace();
+//                getException().printStackTrace();
                 NotificationCreator.showErrorBottomRight("Error", "Error Reading settings");
             }
         };

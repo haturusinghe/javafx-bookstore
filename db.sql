@@ -130,7 +130,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'Jason Bourne','Kandy','0714331372','nimal1998@gmail.com'),(2,'Kamal','Kelaniya','0714345672','kamal1997@gmail.com'),(3,'Bill Murr','Colombo','0659856589','bill@dc.com'),(4,'Mile Teller','Kandy','0564987456','safs@asfa.com');
+INSERT INTO `customer` VALUES (1,'Jason Bourne','Kandy','0714331372','nimal1998@gmail.com'),(2,'Kamal','Kelaniya','0714345672','kamal1997@gmail.com'),(3,'Bill Burr','Colombo','0659856589','bill@dc.com'),(4,'Peter Parker','Kandy','0564987456','safs@asfa.com');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,7 +158,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (6,'Male','Edas',10000,'Ted','Tada'),(7,'Male','California',90000,'Jay','Elec'),(8,'Male','Chicago',10000,'Kanye','West');
+INSERT INTO `employee` VALUES (6,'Male','London',10000,'Ted','Lasso'),(7,'Male','California',90000,'Jay','Electronica'),(8,'Male','Chicago',10000,'Kanye','West');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,7 +221,7 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
-INSERT INTO `login` VALUES (20,'0703400702','ted@mail.com','1000:442368e2730b2323d1032c9d7cfcd3c8:f42f193cd577b8662527dacfedc9873f0be9df6e3d73515a784e24249a7c9b997ad25bcb99aae3bb86d8975ef941617ddcea396e970148a31fa1ca8b4afd7e06','What\'s your favorite food?','1000:59c5887cbd87ac53e38a8c9086141a87:1f728d5ec911bdc66b19babf4c3b0996a6b79556b80c4a07b53dd43009f53b1b7c1a4e0ddbdeef215461b71f9e7b59143ed4734d1c7cedfa13c67d88340415da',1,6),(21,'0703400701','jay@mail.com','1000:425daee4a621298c9f1a32124548ebf3:ed09ced6e53b2832ab5908888b2eb2dcf3328e37ca01a552d2135d45142485590f3ce780fccd477b53cf139eb9b93acb8994cc43dc545187d78fd07febf9230b','Who was your childhood hero?','1000:3cbc3f77c446376679a6feae304622a5:dc306d1be70bc0b805d09c39f5913d1e6db2842e18c06e1bf0ebfd81da05d348a21bbcf66eba158409c32cc01da41d1774170adc71c1b0ffe7808de3dcbb02f2',0,7),(22,'0451234567','kanye@mail.com','1000:12218b0a2eab084fd1282cfbf59a9f46:2a382aab03d938c1252d1cf4330980f67ff64d78b9497908feaabd62d650814409d29cfa412d358d9592267635324777d77159fb172fafe924f4f7867189e62b','What\'s your favorite food?','1000:911d50cfd6fdf9a99938605d88f19033:458eede03e0f269dd4999ae5948545c3dffc5524ecafa647f0c5e16f0850621ca519a8dfc61bb12bf163f032253e5ac3cde47259fb8c4c9c38469cea31278c6d',0,8);
+INSERT INTO `login` VALUES (20,'0755555555','admin1@mail.com','1000:442368e2730b2323d1032c9d7cfcd3c8:f42f193cd577b8662527dacfedc9873f0be9df6e3d73515a784e24249a7c9b997ad25bcb99aae3bb86d8975ef941617ddcea396e970148a31fa1ca8b4afd7e06','What\'s your favorite food?','1000:59c5887cbd87ac53e38a8c9086141a87:1f728d5ec911bdc66b19babf4c3b0996a6b79556b80c4a07b53dd43009f53b1b7c1a4e0ddbdeef215461b71f9e7b59143ed4734d1c7cedfa13c67d88340415da',1,6),(21,'0766666666','jay@mail.com','1000:425daee4a621298c9f1a32124548ebf3:ed09ced6e53b2832ab5908888b2eb2dcf3328e37ca01a552d2135d45142485590f3ce780fccd477b53cf139eb9b93acb8994cc43dc545187d78fd07febf9230b','Who was your childhood hero?','1000:3cbc3f77c446376679a6feae304622a5:dc306d1be70bc0b805d09c39f5913d1e6db2842e18c06e1bf0ebfd81da05d348a21bbcf66eba158409c32cc01da41d1774170adc71c1b0ffe7808de3dcbb02f2',0,7),(22,'0451234567','employee1@mail.com','1000:12218b0a2eab084fd1282cfbf59a9f46:2a382aab03d938c1252d1cf4330980f67ff64d78b9497908feaabd62d650814409d29cfa412d358d9592267635324777d77159fb172fafe924f4f7867189e62b','What\'s your favorite food?','1000:911d50cfd6fdf9a99938605d88f19033:458eede03e0f269dd4999ae5948545c3dffc5524ecafa647f0c5e16f0850621ca519a8dfc61bb12bf163f032253e5ac3cde47259fb8c4c9c38469cea31278c6d',0,8);
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 

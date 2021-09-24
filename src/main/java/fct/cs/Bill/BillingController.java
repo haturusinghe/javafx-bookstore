@@ -2,6 +2,8 @@ package fct.cs.Bill;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
+import fct.cs.Bill.data.BillCustomer;
+import fct.cs.Bill.data.Billdetails;
 import javafx.scene.input.KeyEvent;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXDrawer;
@@ -10,7 +12,6 @@ import fct.cs.NewCustomer.NewCustomerController;
 import fct.cs.data.Order;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import io.github.palexdev.materialfx.controls.cell.MFXDateCell;
 import io.github.palexdev.materialfx.utils.BindingUtils;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -23,14 +24,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import org.kordamp.ikonli.javafx.FontIcon;
-
-import javax.swing.*;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -42,12 +40,6 @@ public class BillingController {
 
     public HBox dateHBox;
     public MFXTextField empIdField;
-
-    /* TODO : Improve all billing pages and related forms styling/layout */
-    /* TODO : Add success/error notifications */
-    /* TODO : Add table styling */
-    /* TODO : Fix button sizes */
-    /* TODO : Remove current styles from table buttons and use FontIcons in buttons instead */
 
     @FXML
     private StackPane stackPane;

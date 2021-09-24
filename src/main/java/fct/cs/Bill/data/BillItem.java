@@ -1,4 +1,4 @@
-package fct.cs.Bill;
+package fct.cs.Bill.data;
 
 public class BillItem {
     private int item_id;

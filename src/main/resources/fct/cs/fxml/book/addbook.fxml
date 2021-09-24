@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="490.0" stylesheets="@../../styles/booksidepanel.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.book.AddBookController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="490.0" stylesheets="@../../styles/booksidepanel.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fct.cs.book.AddBookController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="500.0" spacing="10.0">
          <children>
@@ -41,9 +41,9 @@
                </children>
             </HBox>
             <Separator prefWidth="200.0" />
-            <HBox fx:id="id_isbn_hbox" alignment="CENTER" layoutX="50.0" layoutY="383.0">
+            <HBox fx:id="id_isbn_hbox" alignment="CENTER_LEFT" layoutX="50.0" layoutY="383.0">
                <children>
-                  <VBox>
+                  <!--<VBox>
                      <children>
                         <Label styleClass="textLabel" text="Book ID" />
                         <TextField fx:id="id_txtField">
@@ -53,13 +53,14 @@
                         </TextField>
                      </children>
                   </VBox>
-                  <Separator orientation="VERTICAL" />
+                  <Separator orientation="VERTICAL" />-->
                   <VBox>
                      <children>
                         <Label styleClass="textLabel" text="ISBN" />
                         <TextField fx:id="isbn_txtField" />
                      </children>
                   </VBox>
+                  <TextField fx:id="id_txtField" visible="false" text="69"/>
                </children>
             </HBox>
             <Separator prefWidth="200.0" />

@@ -27,8 +27,6 @@ import java.util.ResourceBundle;
 
 public class MainBookController implements Initializable {
 
-    /* TODO : Remove bookID field from Add/Update forms and make it AUTO_INCREMENT */
-
     public MFXTableView bookTable;
     public JFXDrawer drawer;
     private MainBookController thisController = this;

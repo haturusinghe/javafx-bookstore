@@ -1,5 +1,6 @@
 package fct.cs.Bill;
 
+import fct.cs.Bill.data.BillItem;
 import fct.cs.dbUtil.DatabaseHandler;
 
 import java.sql.Connection;
